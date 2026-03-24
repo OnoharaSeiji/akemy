@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apostila 004 — Gêneros textuais: tirinha, charge, cartum, infográfico e notícia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f7f4;--bg2:#eef3ef;--card:#ffffff;--line:#dbe5dd;--ink:#1f2a22;--muted:#5e6c61;
+  --primary:#2f7a50;--primary-soft:#e8f4ec;--secondary:#1e5a8e;--secondary-soft:#eaf3fb;
+  --accent:#8d3f20;--accent-soft:#fff0e7;--violet:#6d3cc2;--violet-soft:#f2ecff;
+  --danger:#b44343;--shadow:0 14px 34px rgba(31,42,34,.08);--r-xl:24px;--r-lg:18px;--r-md:14px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:
+radial-gradient(circle at top left, rgba(47,122,80,.08), transparent 24%),
+linear-gradient(180deg,#f8faf8 0%,var(--bg) 100%);color:var(--ink);line-height:1.68}
+a{text-decoration:none;color:inherit}
+.hero{background:linear-gradient(135deg,#193024 0%,#224534 55%,#1f3650 100%);color:#f5faf6;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+radial-gradient(circle at top right, rgba(255,255,255,.10), transparent 22%),
+radial-gradient(circle at bottom left, rgba(255,255,255,.08), transparent 26%)}
+.hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:44px 24px 36px;display:grid;grid-template-columns:1.28fr .72fr;gap:22px}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:800;color:#cde9d6}
+.badge:before{content:"";width:28px;height:1px;background:#cde9d6}
+h1{margin:12px 0 10px;font-size:clamp(2rem,4.4vw,3.55rem);line-height:1.02;letter-spacing:-.03em}
+.subtitle{max-width:760px;color:rgba(245,250,246,.84);font-size:1rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13);font-size:12px;font-weight:700}
+.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:22px;backdrop-filter:blur(10px);align-self:start}
+.hero-card strong.num{display:block;font-size:3rem;line-height:1;font-weight:900}
+.hero-card .mini{color:rgba(245,250,246,.76);font-size:.92rem}
+.progress-wrap{height:9px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;margin:14px 0}
+.progress{height:100%;background:linear-gradient(90deg,#67c18a 0%,#a1e2b6 100%)}
+.topnav{position:sticky;top:0;z-index:20;background:rgba(248,250,248,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(219,229,221,.95)}
+.topnav-inner{max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;gap:10px;flex-wrap:wrap}
+.topnav a{font-size:13px;font-weight:700;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff}
+.topnav a:hover{background:var(--bg2)}
+main{max-width:1120px;margin:0 auto;padding:24px}
+.section{margin:22px 0;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--shadow);overflow:hidden}
+.section-head{padding:22px 24px 12px;background:linear-gradient(180deg,#fff 0%,#f9fbf9 100%);border-bottom:1px solid #edf3ee}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:var(--primary)}
+.section h2{margin:8px 0 0;font-size:clamp(1.45rem,3vw,2.2rem);line-height:1.08;letter-spacing:-.02em}
+.section-sub{margin-top:10px;color:var(--muted)}
+.section-body{padding:20px 24px 26px}
+.grid-2,.grid-3{display:grid;gap:16px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:#fff;border:1px solid #e7eee8;border-radius:18px;padding:18px}
+.card h3{margin:0 0 10px;font-size:1.02rem}
+.card p:last-child,.card ul:last-child,.card ol:last-child{margin-bottom:0}
+.note,.example-box,.recall,.study-plan,.error-box{border-radius:16px;padding:16px 18px;margin:16px 0}
+.note{background:var(--primary-soft);border:1px solid #cfe5d6}
+.note.blue{background:var(--secondary-soft);border-color:#d7e7f7}
+.note.orange{background:var(--accent-soft);border-color:#f2d4c2}
+.note.violet{background:var(--violet-soft);border-color:#ddd0fb}
+.study-plan{background:#f6fbf7;border:1px solid #dbe9de}
+.example-box{background:#fffdf7;border:1px solid #eee3c8}
+.recall{background:#f8f5ff;border:1px solid #e2d9fb}
+.error-box{background:#fff5f5;border:1px solid #f0cccc}
+ol,ul{padding-left:20px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5ece7;border-radius:16px;overflow:hidden}
+th,td{padding:12px 14px;border:1px solid #e5ece7;text-align:left;vertical-align:top}
+th{background:#f5f9f6}
+.exercise{border:1px solid #e2eae4;border-radius:18px;padding:18px;background:#fff;margin:16px 0}
+.exercise .tag{display:inline-flex;padding:6px 10px;border-radius:999px;background:#eff5f0;color:#577060;font-size:12px;font-weight:800;margin-bottom:10px}
+.exercise h4{margin:0 0 10px;font-size:1.02rem}
+.options{display:grid;gap:10px;margin-top:14px}
+.option{border:1px solid #dce6de;background:#fff;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer;font:500 15px Inter,sans-serif;color:var(--ink);transition:.15s ease}
+.option:hover{transform:translateY(-1px);border-color:#a8c7b3}
+.option.correct{background:#eef9f1;border-color:#8dc29f}
+.option.wrong{background:#fff1f1;border-color:#e2a8a8}
+.feedback{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:14px}
+.feedback.ok{display:block;background:#eef9f1;color:#245439;border:1px solid #b6ddc2}
+.feedback.bad{display:block;background:#fff1f1;color:#7e2c2c;border:1px solid #e4b1b1}
+.timeline{display:grid;gap:12px}
+.timeline-item{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start}
+.timeline-item .when{font-weight:900;color:var(--primary)}
+.checklist{display:grid;gap:10px;margin-top:10px}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:#fff;border:1px solid #e5ece7;border-radius:12px}
+.ck input{margin-top:4px;transform:scale(1.15)}
+.footer{background:#172920;color:#f0f7f2;margin-top:28px}
+.footer-inner{max-width:1120px;margin:0 auto;padding:26px 24px}
+.footer-grid{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.back-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:14px;background:linear-gradient(90deg,#67c18a 0%,#8ad2a6 100%);color:#14301f;font-weight:900;letter-spacing:.02em}
+.footer-meta{color:rgba(240,247,242,.76);font-size:14px}
+.small{font-size:13px;color:var(--muted)}
+@media (max-width:900px){.hero-inner,.grid-2,.grid-3{grid-template-columns:1fr}main{padding:16px}.topnav-inner,.hero-inner,.footer-inner{padding-left:16px;padding-right:16px}.section-head,.section-body{padding-left:16px;padding-right:16px}.timeline-item{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-page="apostila-004">
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge">Projeto Akemy · Vestibulinho ETEC</div>
+      <h1>Apostila 004<span style="display:block;font-size:.56em;margin-top:10px;color:#d0f0da">Gêneros textuais: tirinha, charge, cartum, infográfico e notícia</span></h1>
+      <p class="subtitle">A prova costuma cobrar não só o que o texto diz, mas que tipo de texto é esse, para quem ele fala e com que finalidade. Aqui você aprende a reconhecer o gênero e usar isso a seu favor na interpretação.</p>
+      <div class="hero-meta"><span class='chip'>Gêneros textuais</span><span class='chip'>Humor e crítica</span><span class='chip'>Multimodalidade</span></div>
+    </div>
+    <aside class="hero-card">
+      <div class="mini">Sequência do cronograma</div>
+      <strong class="num">04</strong>
+      <div class="mini">Semana 02</div>
+      <div class="progress-wrap"><div class="progress" style="width:1.6%"></div></div>
+      <div class="mini">Foco: <strong>Português · leitura de gênero e finalidade</strong></div>
+      <div class="mini" style="margin-top:8px">Tempo sugerido: <strong>60 a 90 min</strong></div>
+      <div class="mini" style="margin-top:8px">Método: teoria → recuperação ativa → exercícios → revisão</div>
+    </aside>
+  </div>
+</header>
+<nav class="topnav"><div class="topnav-inner"><a href='#visao-geral'>Visão geral</a><a href='#teoria-1'>Bloco 1</a><a href='#teoria-2'>Bloco 2</a><a href='#teoria-3'>Bloco 3</a><a href='#exercicios'>Exercícios</a><a href='#checklist'>Checklist</a></div></nav>
+<main>
+<section class='section' id='visao-geral'><div class='section-head'><div class='kicker'>Panorama</div><h2>O que esta apostila vai construir</h2><div class='section-sub'>Leia este bloco antes de começar a teoria principal. Ele organiza intenção, foco e tempo de estudo.</div></div><div class='section-body'><div class='grid-3'><div class='card'><h3>O que esta apostila resolve</h3><p>confusão entre charge, cartum, tirinha, notícia, campanha e infográfico.</p></div><div class='card'><h3>Ponto-chave da prova</h3><p>gênero textual não é detalhe teórico; ele muda o jeito de ler e o tipo de inferência esperado.</p></div><div class='card'><h3>Meta da sessão</h3><p>olhar para um texto e reconhecer função, público, linguagem e efeito principal.</p></div></div></div></section><section class='section' id='teoria-1'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>O que é gênero textual</h2><div class='section-sub'>Gênero textual é uma forma socialmente reconhecida de organizar linguagem para cumprir uma finalidade.</div></div><div class='section-body'><div class='grid-3'><div class='card'><h3>Tirinha</h3><p>Sequência curta de quadros, geralmente com personagens recorrentes. Pode trazer humor, crítica ou comentário do cotidiano.</p></div><div class='card'><h3>Charge</h3><p>Costuma dialogar com um fato atual e produzir crítica social ou política. Depende mais do contexto histórico do momento.</p></div><div class='card'><h3>Cartum</h3><p>Humor mais universal, menos preso a um fato específico do noticiário. Pode continuar fazendo sentido anos depois.</p></div></div><div class='grid-2'><div class='card'><h3>Infográfico</h3><p>Combina texto, imagem, números e organização visual para explicar rapidamente um assunto.</p></div><div class='card'><h3>Notícia</h3><p>Busca informar sobre um fato. Em tese, tende à objetividade, ainda que a seleção de foco e linguagem também produza efeito.</p></div></div></div></section><section class='section' id='teoria-2'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Finalidade, público e linguagem</h2><div class='section-sub'>Identificar o gênero ajuda a prever o objetivo do texto e, com isso, interpretar melhor as questões.</div></div><div class='section-body'><table><tr><th>Gênero</th><th>Finalidade principal</th><th>Marcas comuns</th></tr><tr><td>Tirinha</td><td>narrar rapidamente, gerar humor ou reflexão</td><td>quadros, fala de personagens, desfecho final</td></tr><tr><td>Charge</td><td>criticar fato atual</td><td>referência a acontecimento ou figura pública</td></tr><tr><td>Infográfico</td><td>explicar com apoio visual</td><td>setas, blocos, números, ícones</td></tr><tr><td>Notícia</td><td>informar</td><td>título, lead, dados, local e tempo</td></tr></table><div class='note violet'>Se a questão perguntar 'a finalidade do texto', pense: informar, convencer, criticar, sensibilizar, orientar, divertir.</div></div></section><section class='section' id='teoria-3'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Humor, ironia e crítica</h2><div class='section-sub'>Em gêneros visuais, o humor não é só piada. Muitas vezes ele serve para mostrar contradição.</div></div><div class='section-body'><div class='grid-2'><div class='card'><h3>Como o humor aparece</h3><ul><li>quebra de expectativa</li><li>duplo sentido</li><li>contraste entre fala e imagem</li><li>literalização de uma expressão</li></ul></div><div class='card'><h3>Como a crítica aparece</h3><ul><li>exagero proposital</li><li>uso de estereótipos para contestar um comportamento</li><li>mostrar incoerência entre discurso e prática</li><li>comparação entre o ideal e o real</li></ul></div></div><div class='example-box'><h4>Exemplo guiado</h4><p>Numa charge sobre seca, um personagem diz 'a situação está sob controle' enquanto o cenário mostra terra rachada e reservatórios vazios. A crítica nasce do contraste entre discurso e evidência visual.</p></div></div></section><section class='section' id='exercicios'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Como resolver questões sobre gênero</h2><div class='section-sub'>A banca costuma misturar conteúdo, intenção e formato.</div></div><div class='section-body'><div class='grid-2'><div class='card'><h3>Perguntas típicas</h3><ul><li>qual é a finalidade do texto?</li><li>que efeito de humor ou crítica é produzido?</li><li>qual característica do gênero aparece aqui?</li><li>que público esse texto pretende atingir?</li></ul></div><div class='card'><h3>Procedimento</h3><ol><li>identifique o gênero antes de interpretar detalhes</li><li>observe se há apoio visual ou se tudo depende do texto verbal</li><li>pergunte qual é a ação que o texto tenta provocar no leitor</li></ol></div></div><div class='error-box'><strong>Erro comum:</strong> tratar qualquer texto com imagem como se fosse tirinha. A organização e a finalidade importam tanto quanto a presença de desenho.</div></div></section><section class='section' id='exercicios'><div class='section-head'><div class='kicker'>Treino</div><h2>Exercícios interativos</h2><div class='section-sub'>Resolva sem consultar a teoria. Depois use a explicação para corrigir o raciocínio, não apenas para marcar certo ou errado.</div></div><div class='section-body'><div class="exercise"><div class="tag">Questão 1</div><h4>Qual gênero costuma depender mais de um fato atual do noticiário para produzir crítica?</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Cartum tende a ser mais universal.">A) cartum</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Charge costuma dialogar com contexto atual.">B) charge</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não é o foco aqui.">C) conto</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não tem essa função crítica imediata.">D) verbete</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 2</div><h4>Um texto com blocos curtos, ícones, números e setas explicando consumo de água é, mais provavelmente, um:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é a organização típica desse gênero.">A) infográfico</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não corresponde.">B) poema</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Cartum não se organiza assim.">C) cartum</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Editorial é argumentativo, sem essa forma típica.">D) editorial</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 3</div><h4>Em uma tirinha, o humor final nasce da quebra de expectativa entre a fala da personagem e o último quadro. O principal efeito é de:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não necessariamente.">A) suspense policial</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="A quebra de expectativa produz o efeito.">B) humor construído por contraste</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não é o caso.">C) explicação científica</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Tirinha não funciona assim nesse exemplo.">D) descrição objetiva</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 4</div><h4>Quando a questão pergunta pela finalidade de uma notícia, a resposta mais adequada tende a ser:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é a finalidade principal da notícia.">A) informar sobre um fato</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Isso seria narrativa ficcional.">B) contar uma história fictícia</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não corresponde ao gênero.">C) ensinar uma fórmula matemática</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Notícia não tem essa finalidade principal.">D) fazer humor sempre</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 5</div><h4>Qual é a melhor pista para diferenciar cartum de charge?</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Os dois podem ter desenho.">A) a presença de desenho</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Isso não basta.">B) o uso de balões de fala</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é uma diferença central.">C) o vínculo mais forte com a atualidade no caso da charge</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não define sozinho.">D) o número de quadros</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 6</div><h4>Ao identificar o gênero textual antes de resolver a questão, o estudante ganha vantagem porque:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Precisa, e com atenção.">A) não precisa mais ler o texto</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Gênero orienta interpretação.">B) já entende melhor a finalidade e o tipo de leitura esperado</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Ajuda, mas não garante.">C) sempre sabe a resposta de imediato</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Em muitos gêneros, imagem é decisiva.">D) pode ignorar as imagens</button></div><div class="feedback"></div></div><div class='note violet'><strong>Revisão curta:</strong> depois de terminar, volte às duas questões em que você mais hesitou. Explique em voz alta por que a alternativa correta é a melhor e por que a errada pareceu atraente.</div></div></section><section class='section' id='checklist'><div class='section-head'><div class='kicker'>Fechamento</div><h2>Checklist e revisão do dia seguinte</h2><div class='section-sub'>Marque apenas o que você realmente consegue explicar sem olhar. Amanhã, revise primeiro o que ficar em aberto.</div></div><div class='section-body'><div class='checklist'><label class='ck'><input type='checkbox'><span>Consigo diferenciar tirinha, charge, cartum, notícia e infográfico.</span></label><label class='ck'><input type='checkbox'><span>Entendi por que gênero textual muda a forma de leitura.</span></label><label class='ck'><input type='checkbox'><span>Sei localizar finalidade, público e efeito principal do texto.</span></label><label class='ck'><input type='checkbox'><span>Consigo explicar como humor e crítica podem nascer do contraste.</span></label><label class='ck'><input type='checkbox'><span>Registrei um erro meu envolvendo gênero textual ou finalidade.</span></label></div><div class='study-plan'><strong>Plano de revisão espaçada</strong><ul><li><strong>Hoje:</strong> releia apenas os pontos em que errou.</li><li><strong>Amanhã:</strong> tente explicar o conteúdo em 3 minutos sem consultar.</li><li><strong>Daqui a 4–7 dias:</strong> resolva 2 ou 3 questões mistas sobre este tema.</li></ul></div><div class='error-box'><strong>Caderno de erros:</strong> registre o assunto, o erro que cometeu, o sinal que ignorou e como pretende evitar a repetição.</div></div></section>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <a class="back-btn" href="../index.html">← VOLTAR PARA O CRONOGRAMA</a>
+      <div class='footer-meta'><div><strong>Apostila 004</strong> · Semana 02 · Português · leitura de gênero e finalidade</div><div>Projeto Akemy · Vestibulinho ETEC 2026</div></div>
+    </div>
+  </div>
+</footer>
+<script>
+function answer(btn){
+  const ex = btn.closest('.exercise');
+  ex.querySelectorAll('.option').forEach(b=>b.classList.remove('correct','wrong'));
+  const ok = btn.dataset.correct === 'true';
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  ex.querySelectorAll('.option').forEach(b=>{ if(b!==btn && b.dataset.correct==='true') b.classList.add('correct'); });
+  const fb = ex.querySelector('.feedback');
+  fb.className = 'feedback ' + (ok ? 'ok' : 'bad');
+  fb.innerHTML = '<strong>' + (ok ? 'Acertou.' : 'Errou.') + '</strong> ' + btn.dataset.exp;
+  fb.style.display = 'block';
+}
+(function(){
+  const pageKey = 'akemy-' + document.body.dataset.page;
+  const boxes = document.querySelectorAll('.ck input[type="checkbox"]');
+  const saved = JSON.parse(localStorage.getItem(pageKey) || '[]');
+  boxes.forEach((box, i) => {
+    box.checked = !!saved[i];
+    box.addEventListener('change', () => {
+      localStorage.setItem(pageKey, JSON.stringify([...boxes].map(x => x.checked)));
+    });
+  });
+})();
+</script>
+</body></html>
