@@ -1,52 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Página não encontrada</title>
-  <link rel="stylesheet" href="./style.css" />
-  <style>
-    body {
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      padding: 24px;
-    }
-    .notfound {
-      max-width: 680px;
-      background: #fff;
-      padding: 32px;
-      border-radius: 24px;
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
-      text-align: center;
-    }
-    .notfound h1 {
-      margin-top: 0;
-      font-size: 42px;
-    }
-    .notfound p {
-      color: #475569;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    .notfound a {
-      display: inline-block;
-      margin-top: 18px;
-      background: #2563eb;
-      color: #fff;
-      text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-weight: 700;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="notfound">
-    <h1>404</h1>
-    <p>Esta página não existe ou ainda não foi publicada.</p>
-    <p>Volte para o cronograma principal da Akemy.</p>
-    <a href="./">Voltar ao cronograma</a>
-  </div>
+  <main class="container" style="padding:64px 20px">
+    <article class="card" style="max-width:720px;margin:0 auto;text-align:center">
+      <div class="eyebrow" style="color:#c17c26">Erro 404</div>
+      <h1 style="font-size:clamp(2rem,6vw,3rem);line-height:1.05;margin-bottom:12px">Esta página não existe neste repositório</h1>
+      <p class="lead" style="margin-bottom:22px">Volte ao cronograma principal e abra as apostilas disponíveis a partir dele. Se você clicou em uma apostila ainda não publicada, esse comportamento é esperado.</p>
+      <a class="btn btn-primary" href="index.html">Voltar para o cronograma</a>
+    </article>
+  </main>
 </body>
 </html>
