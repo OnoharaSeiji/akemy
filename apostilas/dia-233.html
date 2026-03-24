@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apostila 233 — Aprofundamento de Matemática e Biologia</title>
+  <meta name="description" content="Apostila 233 do projeto Akemy Estudos para o Vestibulinho ETEC 2026." />
+  <style>
+    :root {
+      --bg: #f5f7f6;
+      --paper: #ffffff;
+      --paper-2: #f8fbf9;
+      --text: #1f2a22;
+      --muted: #5d6b61;
+      --line: #dce7df;
+      --primary: #2f7a50;
+      --primary-dark: #22593a;
+      --primary-soft: #e7f4ec;
+      --secondary: #245f8f;
+      --accent: #6a43c1;
+      --warning: #8c5626;
+      --shadow: 0 10px 30px rgba(20, 35, 25, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(47, 122, 80, 0.08), transparent 20%),
+        radial-gradient(circle at top right, rgba(36, 95, 143, 0.08), transparent 22%),
+        linear-gradient(180deg, #f9fbfa 0%, var(--bg) 100%);
+      line-height: 1.68;
+    }
+
+    a { color: inherit; }
+
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .hero { padding: 34px 0 20px; }
+
+    .hero__card, .card, .section-card, .exercise, details.answer {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+    }
+
+    .hero__card {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 10px; }
+    h2 { font-size: 1.55rem; line-height: 1.15; margin-bottom: 12px; }
+    h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .subtitle, .muted, li::marker { color: var(--muted); }
+    .hero__lead { font-size: 1.02rem; color: var(--text); max-width: 62ch; }
+
+    .hero__meta { display: grid; gap: 12px; }
+    .meta-card {
+      background: linear-gradient(180deg, #fff 0%, var(--paper-2) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 14px;
+    }
+    .meta-card strong { display: block; margin-bottom: 8px; font-size: .92rem; color: var(--primary-dark); }
+    .meta-card p { margin-bottom: 0; color: var(--muted); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+      padding-bottom: 36px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 16px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .card, .section-card, .exercise { padding: 20px; }
+    .toc ul, .list, .checklist ul { margin: 0; padding-left: 18px; }
+    .toc li + li, .list li + li, .checklist li + li { margin-top: 8px; }
+
+    .cta-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .cta-back:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+    .main { display: grid; gap: 16px; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: .84rem;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 12px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #fff 0%, #fbfcfb 100%);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+    }
+    .mini-card p:last-child { margin-bottom: 0; }
+
+    .exercise { border-radius: var(--radius-lg); }
+    .question {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+    .question:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    details.answer {
+      margin-top: 10px;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      background: var(--paper-2);
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--secondary);
+      outline: none;
+    }
+    details.answer p { margin: 10px 0 0; }
+    details.answer ul { margin: 10px 0 0; padding-left: 18px; }
+
+    .callout {
+      border-left: 5px solid var(--warning);
+      background: #fff8f1;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 14px 16px;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 6px 0 24px;
+    }
+    .footer-nav .small { color: var(--muted); font-size: .92rem; }
+
+    code.inline {
+      background: #f0f5f1;
+      padding: 2px 7px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      font-size: .95em;
+    }
+
+    @media (max-width: 980px) {
+      .hero__card, .layout, .grid-3 { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+
+    @media (max-width: 720px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .section-head, .footer-nav { flex-direction: column; align-items: start; }
+      .container { width: min(var(--max), calc(100% - 20px)); }
+      .hero__card, .card, .section-card, .exercise { padding: 18px; }
+    }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero__card">
+        <div>
+          <p class="eyebrow">Akemy Estudos</p>
+          <h1>Apostila 233 — Aprofundamento de Matemática e Biologia</h1>
+          <p class="subtitle">Vestibulinho ETEC 2026 · Dia 233 · 07/11/2026</p>
+          <p class="hero__lead">Hoje o estudo aprofunda <strong>Matemática, Biologia e Química</strong>. A aluna já não deve apenas repetir definições: ela precisa comparar situações, justificar escolhas e explicar raciocínios com mais precisão.</p>
+        </div>
+        <div class="hero__meta">
+          <div class="meta-card">
+            <strong>Tempo estimado</strong>
+            <p>80 a 100 minutos</p>
+          </div>
+          <div class="meta-card">
+            <strong>Objetivo do dia</strong>
+            <p>Aprofundar Matemática, Biologia e Química com exemplos resolvidos, comparação de casos e treino orientado.</p>
+          </div>
+          <div class="meta-card">
+            <strong>Meta real</strong>
+            <p>Terminar a sessão com compreensão verificável, respostas corrigidas e pelo menos dois registros úteis no caderno de erros.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <aside class="sidebar">
+      <div class="card toc">
+        <p class="eyebrow">Navegação</p>
+        <h3>Índice da apostila</h3>
+        <ul><li><a href="#roteiro">1. Como usar o dia</a></li>
+<li><a href="#teoria">2. Núcleo conceitual</a></li>
+<li><a href="#guiada">3. Prática guiada</a></li>
+<li><a href="#independente">4. Prática independente</a></li>
+<li><a href="#recuperacao">5. Recuperação ativa</a></li>
+<li><a href="#checklist">6. Checklist e caderno de erros</a></li>
+<li><a href="#gabarito">7. Como usar o gabarito</a></li></ul>
+      </div>
+
+      <div class="card">
+        <p class="eyebrow">Ação rápida</p>
+        <h3>Voltar para o cronograma</h3>
+        <p class="muted">Use este botão para retornar ao calendário e marcar o dia como concluído.</p>
+        <a class="cta-back" href="../index.html">VOLTAR PARA O CRONOGRAMA</a>
+      </div>
+
+      <div class="card checklist">
+        <p class="eyebrow">Meta do dia</p>
+        <h3>Ao terminar, a aluna deve conseguir</h3>
+        <ul><li>Matemática</li><li>Biologia</li><li>Química</li></ul>
+      </div>
+    </aside>
+
+    <div class="main">
+      
+      <section id="roteiro" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 1</p>
+            <h2>Como usar o dia de hoje</h2>
+          </div>
+          <span class="badge">8 a 10 minutos</span>
+        </div>
+        
+        <p>Hoje o estudo aprofunda <strong>Matemática, Biologia e Química</strong>. A aluna já não deve apenas repetir definições: ela precisa comparar situações, justificar escolhas e explicar raciocínios com mais precisão.</p>
+        <div class="grid-3">
+          <div class="mini-card"><h3>Objetivo central</h3><p>Aprofundar Matemática, Biologia e Química com exemplos resolvidos, comparação de casos e treino orientado.</p></div>
+          <div class="mini-card"><h3>Foco da semana</h3><p>Revisão temática rápida: Português/Matemática, Bio/Química e Física/História/Geografia</p></div>
+          <div class="mini-card"><h3>Estratégia</h3><p>Leia devagar, explique com suas palavras, resolva e só então confira a resposta comentada.</p></div>
+        </div>
+        <div class="callout">
+          <strong>Regra do dia:</strong> não marque como concluído só porque leu. Marque somente se você conseguiu explicar, resolver e corrigir.
+        </div>
+        
+      </section>
+    
+      <section id="teoria" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 2</p>
+            <h2>Núcleo conceitual da sessão</h2>
+          </div>
+          <span class="badge">18 a 25 minutos</span>
+        </div>
+        
+        <p>Antes de resolver questões, a aluna precisa saber <strong>o que observar</strong> em cada foco do dia. Use os painéis abaixo como guia de leitura.</p>
+        <div class="grid-2">
+    <div class="mini-card">
+      <h3>Matemática</h3>
+      <p><strong>O que observar:</strong> Observe conceito, palavras-chave, relação entre partes e o que a questão realmente pede.</p>
+      <p><strong>Erro comum:</strong> Responder rápido demais sem checar o enunciado.</p>
+      <p><strong>Aplicação em prova:</strong> Aplique isso em questões que exigem leitura, comparação e justificativa.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Biologia</h3>
+      <p><strong>O que observar:</strong> Observe conceito, palavras-chave, relação entre partes e o que a questão realmente pede.</p>
+      <p><strong>Erro comum:</strong> Responder rápido demais sem checar o enunciado.</p>
+      <p><strong>Aplicação em prova:</strong> Aplique isso em questões que exigem leitura, comparação e justificativa.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Química</h3>
+      <p><strong>O que observar:</strong> Observe conceito, palavras-chave, relação entre partes e o que a questão realmente pede.</p>
+      <p><strong>Erro comum:</strong> Responder rápido demais sem checar o enunciado.</p>
+      <p><strong>Aplicação em prova:</strong> Aplique isso em questões que exigem leitura, comparação e justificativa.</p>
+    </div></div>
+        <div style="margin-top:14px"><p>Hoje <strong>Matemática</strong> entra como eixo de organização do estudo. Mesmo quando o tema parecer conhecido, o objetivo é revisar com método: identificar conceito, diferenciar casos próximos, observar erro comum e aplicar em pergunta de prova.</p><p>Hoje <strong>Biologia</strong> entra como eixo de organização do estudo. Mesmo quando o tema parecer conhecido, o objetivo é revisar com método: identificar conceito, diferenciar casos próximos, observar erro comum e aplicar em pergunta de prova.</p><p>Hoje <strong>Química</strong> entra como eixo de organização do estudo. Mesmo quando o tema parecer conhecido, o objetivo é revisar com método: identificar conceito, diferenciar casos próximos, observar erro comum e aplicar em pergunta de prova.</p></div>
+        
+      </section>
+    
+      <section id="guiada" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 3</p>
+            <h2>Prática guiada com correção comentada</h2>
+          </div>
+          <span class="badge">18 a 25 minutos</span>
+        </div>
+        
+        <p>Resolva primeiro sem olhar a resposta. Depois abra a correção comentada e compare <strong>seu raciocínio</strong>, não apenas o resultado.</p>
+        <div class="exercise">
+          
+        <div class="question">
+          <h3>Questão 1</h3>
+          <p>Escreva uma explicação curta sobre <strong>Matemática</strong> e diga qual erro de prova você quer evitar ao estudá-lo.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>A resposta ideal deixa claro o conceito, indica um erro comum e mostra como checar o enunciado antes de responder.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 2</h3>
+          <p>Escreva uma explicação curta sobre <strong>Biologia</strong> e diga qual erro de prova você quer evitar ao estudá-lo.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>A resposta ideal deixa claro o conceito, indica um erro comum e mostra como checar o enunciado antes de responder.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 3</h3>
+          <p>Escreva uma explicação curta sobre <strong>Química</strong> e diga qual erro de prova você quer evitar ao estudá-lo.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>A resposta ideal deixa claro o conceito, indica um erro comum e mostra como checar o enunciado antes de responder.</p></div></details>
+        </div>
+    
+        </div>
+        
+      </section>
+    
+      <section id="independente" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 4</p>
+            <h2>Prática independente e transferência</h2>
+          </div>
+          <span class="badge">20 a 30 minutos</span>
+        </div>
+        
+        <p>Agora o apoio diminui. Tente responder com o caderno fechado e só depois confira as respostas. Se travar, não pule direto para o gabarito: escreva ao menos uma hipótese.</p>
+        <div class="exercise">
+          
+        <div class="question">
+          <h3>Questão 1</h3>
+          <p>Escreva uma definição operacional de <strong>Matemática</strong> — isto é, uma explicação que ajude a resolver questão, não apenas a repetir um conceito.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Uma definição operacional mostra o que observar, como reconhecer o tema e qual decisão a aluna deve tomar diante de uma questão.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 2</h3>
+          <p>Escreva uma definição operacional de <strong>Biologia</strong> — isto é, uma explicação que ajude a resolver questão, não apenas a repetir um conceito.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Uma definição operacional mostra o que observar, como reconhecer o tema e qual decisão a aluna deve tomar diante de uma questão.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 3</h3>
+          <p>Escreva uma definição operacional de <strong>Química</strong> — isto é, uma explicação que ajude a resolver questão, não apenas a repetir um conceito.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Uma definição operacional mostra o que observar, como reconhecer o tema e qual decisão a aluna deve tomar diante de uma questão.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 4</h3>
+          <p>Escreva uma definição operacional de <strong>História</strong> — isto é, uma explicação que ajude a resolver questão, não apenas a repetir um conceito.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Uma definição operacional mostra o que observar, como reconhecer o tema e qual decisão a aluna deve tomar diante de uma questão.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 5</h3>
+          <p>Escreva uma definição operacional de <strong>Geografia</strong> — isto é, uma explicação que ajude a resolver questão, não apenas a repetir um conceito.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Uma definição operacional mostra o que observar, como reconhecer o tema e qual decisão a aluna deve tomar diante de uma questão.</p></div></details>
+        </div>
+    
+        </div>
+        
+      </section>
+    
+      <section id="recuperacao" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 5</p>
+            <h2>Recuperação ativa e revisão pela memória</h2>
+          </div>
+          <span class="badge">8 a 12 minutos</span>
+        </div>
+        
+            <p>Feche a apostila por dois minutos. Em seguida, tente responder sem consultar:</p>
+            <ul class="list">
+              <li>Quais foram os dois focos principais de hoje?</li>
+              <li>Qual erro de prova você mais precisa evitar nesse conteúdo?</li>
+              <li>Que pista do enunciado ajuda a decidir o caminho de resolução?</li>
+              <li>O que você ainda não consegue explicar com segurança?</li>
+            </ul>
+            <div class="callout">
+              <strong>Importante:</strong> recuperação ativa não é adivinhação. É esforço de memória. Mesmo uma resposta incompleta já fortalece o estudo.
+            </div>
+            
+      </section>
+    
+      <section id="checklist" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 6</p>
+            <h2>Checklist final e caderno de erros</h2>
+          </div>
+          <span class="badge">6 a 10 minutos</span>
+        </div>
+        
+        <div class="grid-2">
+          <div class="card checklist">
+            <p class="eyebrow">Checklist</p>
+            <ul>
+              <li>[ ] Li cada bloco sem correr</li>
+              <li>[ ] Tentei responder antes de abrir as respostas</li>
+              <li>[ ] Corrigi pelo raciocínio, não só pelo resultado</li>
+              <li>[ ] Identifiquei pelo menos 2 erros ou inseguranças</li>
+              <li>[ ] Sei dizer qual será o foco da revisão da próxima sessão</li>
+            </ul>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Caderno de erros</p>
+            <p>Registre assim:</p>
+            <ul class="list">
+              <li><strong>Questão:</strong> número ou tema</li>
+              <li><strong>Errei porque:</strong> distração, conceito, cálculo, leitura, pressa</li>
+              <li><strong>O que o enunciado mostrava:</strong> pista que passou despercebida</li>
+              <li><strong>Como evitar:</strong> procedimento concreto para a próxima vez</li>
+            </ul>
+          </div>
+        </div>
+        
+      </section>
+    
+      <section id="gabarito" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 7</p>
+            <h2>Como usar as respostas comentadas</h2>
+          </div>
+          <span class="badge">3 a 5 minutos</span>
+        </div>
+        
+        <p>O objetivo do gabarito não é encerrar o estudo. Ele serve para <strong>comparar estratégias</strong>. Quando sua resposta diferir da comentada, pergunte:</p>
+        <ul class="list">
+          <li>eu não sabia o conteúdo ou li rápido demais?</li>
+          <li>ignorei uma palavra-chave?</li>
+          <li>faltou justificar melhor?</li>
+          <li>acertei por chute ou por entendimento?</li>
+        </ul>
+        <p>Use essa comparação para alimentar a revisão da semana e não repetir o mesmo tropeço.</p>
+        
+      </section>
+    
+      <div class="footer-nav">
+        <span class="small">Fase 4 — Sprint Final · Semana 34 · Revisão temática rápida: Português/Matemática, Bio/Química e Física/História/Geografia</span>
+        <a class="cta-back" href="../index.html">VOLTAR PARA O CRONOGRAMA</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
