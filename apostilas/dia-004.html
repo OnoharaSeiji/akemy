@@ -1,150 +1,1104 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Apostila 004 — Gêneros textuais: tirinha, charge, cartum, infográfico e notícia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#f5f7f4;--bg2:#eef3ef;--card:#ffffff;--line:#dbe5dd;--ink:#1f2a22;--muted:#5e6c61;
-  --primary:#2f7a50;--primary-soft:#e8f4ec;--secondary:#1e5a8e;--secondary-soft:#eaf3fb;
-  --accent:#8d3f20;--accent-soft:#fff0e7;--violet:#6d3cc2;--violet-soft:#f2ecff;
-  --danger:#b44343;--shadow:0 14px 34px rgba(31,42,34,.08);--r-xl:24px;--r-lg:18px;--r-md:14px;
-}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:
-radial-gradient(circle at top left, rgba(47,122,80,.08), transparent 24%),
-linear-gradient(180deg,#f8faf8 0%,var(--bg) 100%);color:var(--ink);line-height:1.68}
-a{text-decoration:none;color:inherit}
-.hero{background:linear-gradient(135deg,#193024 0%,#224534 55%,#1f3650 100%);color:#f5faf6;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:
-radial-gradient(circle at top right, rgba(255,255,255,.10), transparent 22%),
-radial-gradient(circle at bottom left, rgba(255,255,255,.08), transparent 26%)}
-.hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:44px 24px 36px;display:grid;grid-template-columns:1.28fr .72fr;gap:22px}
-.badge{display:inline-flex;align-items:center;gap:10px;font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:800;color:#cde9d6}
-.badge:before{content:"";width:28px;height:1px;background:#cde9d6}
-h1{margin:12px 0 10px;font-size:clamp(2rem,4.4vw,3.55rem);line-height:1.02;letter-spacing:-.03em}
-.subtitle{max-width:760px;color:rgba(245,250,246,.84);font-size:1rem}
-.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13);font-size:12px;font-weight:700}
-.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:22px;backdrop-filter:blur(10px);align-self:start}
-.hero-card strong.num{display:block;font-size:3rem;line-height:1;font-weight:900}
-.hero-card .mini{color:rgba(245,250,246,.76);font-size:.92rem}
-.progress-wrap{height:9px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;margin:14px 0}
-.progress{height:100%;background:linear-gradient(90deg,#67c18a 0%,#a1e2b6 100%)}
-.topnav{position:sticky;top:0;z-index:20;background:rgba(248,250,248,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(219,229,221,.95)}
-.topnav-inner{max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;gap:10px;flex-wrap:wrap}
-.topnav a{font-size:13px;font-weight:700;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff}
-.topnav a:hover{background:var(--bg2)}
-main{max-width:1120px;margin:0 auto;padding:24px}
-.section{margin:22px 0;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--shadow);overflow:hidden}
-.section-head{padding:22px 24px 12px;background:linear-gradient(180deg,#fff 0%,#f9fbf9 100%);border-bottom:1px solid #edf3ee}
-.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:var(--primary)}
-.section h2{margin:8px 0 0;font-size:clamp(1.45rem,3vw,2.2rem);line-height:1.08;letter-spacing:-.02em}
-.section-sub{margin-top:10px;color:var(--muted)}
-.section-body{padding:20px 24px 26px}
-.grid-2,.grid-3{display:grid;gap:16px}
-.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.card{background:#fff;border:1px solid #e7eee8;border-radius:18px;padding:18px}
-.card h3{margin:0 0 10px;font-size:1.02rem}
-.card p:last-child,.card ul:last-child,.card ol:last-child{margin-bottom:0}
-.note,.example-box,.recall,.study-plan,.error-box{border-radius:16px;padding:16px 18px;margin:16px 0}
-.note{background:var(--primary-soft);border:1px solid #cfe5d6}
-.note.blue{background:var(--secondary-soft);border-color:#d7e7f7}
-.note.orange{background:var(--accent-soft);border-color:#f2d4c2}
-.note.violet{background:var(--violet-soft);border-color:#ddd0fb}
-.study-plan{background:#f6fbf7;border:1px solid #dbe9de}
-.example-box{background:#fffdf7;border:1px solid #eee3c8}
-.recall{background:#f8f5ff;border:1px solid #e2d9fb}
-.error-box{background:#fff5f5;border:1px solid #f0cccc}
-ol,ul{padding-left:20px}
-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5ece7;border-radius:16px;overflow:hidden}
-th,td{padding:12px 14px;border:1px solid #e5ece7;text-align:left;vertical-align:top}
-th{background:#f5f9f6}
-.exercise{border:1px solid #e2eae4;border-radius:18px;padding:18px;background:#fff;margin:16px 0}
-.exercise .tag{display:inline-flex;padding:6px 10px;border-radius:999px;background:#eff5f0;color:#577060;font-size:12px;font-weight:800;margin-bottom:10px}
-.exercise h4{margin:0 0 10px;font-size:1.02rem}
-.options{display:grid;gap:10px;margin-top:14px}
-.option{border:1px solid #dce6de;background:#fff;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer;font:500 15px Inter,sans-serif;color:var(--ink);transition:.15s ease}
-.option:hover{transform:translateY(-1px);border-color:#a8c7b3}
-.option.correct{background:#eef9f1;border-color:#8dc29f}
-.option.wrong{background:#fff1f1;border-color:#e2a8a8}
-.feedback{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:14px}
-.feedback.ok{display:block;background:#eef9f1;color:#245439;border:1px solid #b6ddc2}
-.feedback.bad{display:block;background:#fff1f1;color:#7e2c2c;border:1px solid #e4b1b1}
-.timeline{display:grid;gap:12px}
-.timeline-item{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start}
-.timeline-item .when{font-weight:900;color:var(--primary)}
-.checklist{display:grid;gap:10px;margin-top:10px}
-.ck{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:#fff;border:1px solid #e5ece7;border-radius:12px}
-.ck input{margin-top:4px;transform:scale(1.15)}
-.footer{background:#172920;color:#f0f7f2;margin-top:28px}
-.footer-inner{max-width:1120px;margin:0 auto;padding:26px 24px}
-.footer-grid{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
-.back-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:14px;background:linear-gradient(90deg,#67c18a 0%,#8ad2a6 100%);color:#14301f;font-weight:900;letter-spacing:.02em}
-.footer-meta{color:rgba(240,247,242,.76);font-size:14px}
-.small{font-size:13px;color:var(--muted)}
-@media (max-width:900px){.hero-inner,.grid-2,.grid-3{grid-template-columns:1fr}main{padding:16px}.topnav-inner,.hero-inner,.footer-inner{padding-left:16px;padding-right:16px}.section-head,.section-body{padding-left:16px;padding-right:16px}.timeline-item{grid-template-columns:1fr}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apostila 03 — Números, operações, frações, porcentagem e cronologia histórica</title>
+  <meta name="description" content="Apostila 03 do projeto Akemy Estudos para o Vestibulinho ETEC 2026." />
+  <style>
+    :root {
+      --bg: #f5f7f6;
+      --paper: #ffffff;
+      --paper-2: #f8fbf9;
+      --text: #1f2a22;
+      --muted: #5d6b61;
+      --line: #dce7df;
+      --primary: #2f7a50;
+      --primary-dark: #22593a;
+      --primary-soft: #e7f4ec;
+      --secondary: #245f8f;
+      --accent: #6a43c1;
+      --warning: #8c5626;
+      --shadow: 0 10px 30px rgba(20, 35, 25, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(47, 122, 80, 0.08), transparent 20%),
+        radial-gradient(circle at top right, rgba(36, 95, 143, 0.08), transparent 22%),
+        linear-gradient(180deg, #f9fbfa 0%, var(--bg) 100%);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero { padding: 34px 0 20px; }
+
+    .hero__card {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 22px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    h1, h2, h3, h4, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0 0 14px;
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 1.08rem;
+    }
+
+    .hero__lead {
+      color: var(--muted);
+      margin-bottom: 0;
+      max-width: 68ch;
+    }
+
+    .hero__meta {
+      display: grid;
+      gap: 14px;
+    }
+
+    .meta-card {
+      background: linear-gradient(180deg, #ffffff 0%, var(--paper-2) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+    }
+
+    .meta-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+    }
+
+    .meta-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      padding-bottom: 42px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .toc ul,
+    .checklist ul,
+    .list,
+    .gabarito,
+    .question-list,
+    .step-list,
+    .week-checklist {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .toc li,
+    .checklist li,
+    .list li,
+    .gabarito li,
+    .question-list li,
+    .step-list li,
+    .week-checklist li { margin: 8px 0; }
+
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .toc a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    .cta-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .cta-back:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .main { display: grid; gap: 18px; }
+    section { scroll-margin-top: 18px; }
+
+    .section-card {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin-bottom: 0;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-size: 0.84rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .callout {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbf8 100%);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin: 16px 0;
+    }
+
+    .callout strong { color: var(--primary-dark); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, #ffffff 0%, #fafcfa 100%);
+      padding: 16px;
+    }
+
+    .mini-card h3,
+    .mini-card h4 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .exercise {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #fbfcfb 100%);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .exercise h3,
+    .exercise h4 {
+      margin-bottom: 10px;
+      font-size: 1.02rem;
+    }
+
+    .alternatives {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .alternative {
+      display: block;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .alternative:hover {
+      border-color: #bdd7c6;
+      background: #f8fcf9;
+    }
+
+    .answer-reveal {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #f3f8f5;
+      border: 1px solid #d7e8dc;
+      color: #2a4734;
+      display: none;
+    }
+
+    .exercise[data-state="shown"] .answer-reveal { display: block; }
+
+    .reveal-btn {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .reveal-btn:hover { background: var(--paper-2); }
+
+    .formula {
+      border-left: 4px solid var(--secondary);
+      background: #f5f9fd;
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin: 12px 0;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      background: #f3f8f5;
+      color: var(--primary-dark);
+      font-size: 0.92rem;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .checklist-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .check-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .check-item input {
+      accent-color: var(--primary);
+      margin-top: 3px;
+      transform: scale(1.15);
+    }
+
+    .footer-nav {
+      margin-top: 8px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-nav a:hover { background: var(--primary-dark); }
+
+    .muted { color: var(--muted); }
+
+    .inline-tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #f1f6f2;
+      border: 1px solid var(--line);
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin: 4px 8px 0 0;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      margin: 10px 0 0;
+    }
+
+    @media (max-width: 980px) {
+      .hero__card,
+      .layout,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar { position: static; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(var(--max), calc(100% - 20px)); }
+      .hero { padding-top: 20px; }
+      .hero__card,
+      .card,
+      .section-card { padding: 18px; }
+      h1 { font-size: 2rem; }
+      .section-head { flex-direction: column; }
+      .badge { white-space: normal; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .sidebar { display: none; }
+      .layout { grid-template-columns: 1fr; }
+      .section-card, .hero__card { box-shadow: none; }
+      .reveal-btn { display: none; }
+      .answer-reveal { display: block !important; }
+      .footer-nav { display: none; }
+    }
+  </style>
 </head>
-<body data-page="apostila-004">
-<header class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="badge">Projeto Akemy · Vestibulinho ETEC</div>
-      <h1>Apostila 004<span style="display:block;font-size:.56em;margin-top:10px;color:#d0f0da">Gêneros textuais: tirinha, charge, cartum, infográfico e notícia</span></h1>
-      <p class="subtitle">A prova costuma cobrar não só o que o texto diz, mas que tipo de texto é esse, para quem ele fala e com que finalidade. Aqui você aprende a reconhecer o gênero e usar isso a seu favor na interpretação.</p>
-      <div class="hero-meta"><span class='chip'>Gêneros textuais</span><span class='chip'>Humor e crítica</span><span class='chip'>Multimodalidade</span></div>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero__card">
+        <div>
+          <p class="eyebrow">Akemy Estudos</p>
+          <h1>Apostila 04 — Gêneros textuais, finalidade, público e efeitos de sentido</h1>
+          <p class="subtitle">Vestibulinho ETEC 2026 · Dia 004</p>
+          <p class="hero__lead">
+            Esta apostila foi construída para aprofundar um ponto decisivo da prova: reconhecer
+            <strong>que tipo de texto está diante da aluna</strong>, <strong>para que ele foi produzido</strong>
+            e <strong>como linguagem verbal e não verbal trabalham juntas</strong>.
+            O objetivo não é decorar nomes. O objetivo é aprender a ler com critério
+            textos como <strong>tirinha, charge, cartum, infográfico e publicidade</strong>,
+            porque a ETEC gosta de cobrar justamente a relação entre forma, intenção e sentido.
+          </p>
+        </div>
+        <div class="hero__meta">
+          <div class="meta-card">
+            <strong>Tempo estimado</strong>
+            <p>80 a 95 minutos</p>
+          </div>
+          <div class="meta-card">
+            <strong>Objetivo do dia</strong>
+            <p>Distinguir gêneros textuais próximos entre si, identificar finalidade, público e recursos de linguagem.</p>
+          </div>
+          <div class="meta-card">
+            <strong>Meta real</strong>
+            <p>Terminar a apostila sabendo justificar por que um texto é tirinha, charge, cartum, infográfico ou anúncio.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <aside class="hero-card">
-      <div class="mini">Sequência do cronograma</div>
-      <strong class="num">04</strong>
-      <div class="mini">Semana 02</div>
-      <div class="progress-wrap"><div class="progress" style="width:1.6%"></div></div>
-      <div class="mini">Foco: <strong>Português · leitura de gênero e finalidade</strong></div>
-      <div class="mini" style="margin-top:8px">Tempo sugerido: <strong>60 a 90 min</strong></div>
-      <div class="mini" style="margin-top:8px">Método: teoria → recuperação ativa → exercícios → revisão</div>
+  </header>
+
+  <main class="container layout">
+    <aside class="sidebar">
+      <div class="card toc">
+        <p class="eyebrow">Navegação</p>
+        <h3>Índice da apostila</h3>
+        <ul>
+          <li><a href="#como-estudar">1. Como estudar esta apostila</a></li>
+          <li><a href="#generos">2. O que são gêneros textuais</a></li>
+          <li><a href="#tirinha-charge-cartum">3. Tirinha, charge e cartum</a></li>
+          <li><a href="#publicidade">4. Texto publicitário e persuasão</a></li>
+          <li><a href="#infografico">5. Infográfico e leitura visual</a></li>
+          <li><a href="#recuperacao">6. Recuperação ativa</a></li>
+          <li><a href="#checklist">7. Checklist e revisão</a></li>
+          <li><a href="#gabarito">8. Gabarito</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <p class="eyebrow">Ação rápida</p>
+        <h3>Voltar para o cronograma</h3>
+        <p class="muted">Use este botão para retornar ao calendário e marcar o dia como concluído.</p>
+        <a class="cta-back" href="../index.html">VOLTAR PARA O CRONOGRAMA</a>
+      </div>
+
+      <div class="card checklist">
+        <p class="eyebrow">Meta do dia</p>
+        <h3>Ao terminar, a aluna deve conseguir</h3>
+        <ul>
+          <li>Explicar o que define um gênero textual</li>
+          <li>Diferenciar tirinha, charge e cartum sem chute</li>
+          <li>Identificar a finalidade de um anúncio</li>
+          <li>Ler imagem, título, legenda e dados de forma integrada</li>
+          <li>Justificar respostas com base no texto e não na opinião pessoal</li>
+        </ul>
+      </div>
     </aside>
-  </div>
-</header>
-<nav class="topnav"><div class="topnav-inner"><a href='#visao-geral'>Visão geral</a><a href='#teoria-1'>Bloco 1</a><a href='#teoria-2'>Bloco 2</a><a href='#teoria-3'>Bloco 3</a><a href='#exercicios'>Exercícios</a><a href='#checklist'>Checklist</a></div></nav>
-<main>
-<section class='section' id='visao-geral'><div class='section-head'><div class='kicker'>Panorama</div><h2>O que esta apostila vai construir</h2><div class='section-sub'>Leia este bloco antes de começar a teoria principal. Ele organiza intenção, foco e tempo de estudo.</div></div><div class='section-body'><div class='grid-3'><div class='card'><h3>O que esta apostila resolve</h3><p>confusão entre charge, cartum, tirinha, notícia, campanha e infográfico.</p></div><div class='card'><h3>Ponto-chave da prova</h3><p>gênero textual não é detalhe teórico; ele muda o jeito de ler e o tipo de inferência esperado.</p></div><div class='card'><h3>Meta da sessão</h3><p>olhar para um texto e reconhecer função, público, linguagem e efeito principal.</p></div></div></div></section><section class='section' id='teoria-1'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>O que é gênero textual</h2><div class='section-sub'>Gênero textual é uma forma socialmente reconhecida de organizar linguagem para cumprir uma finalidade.</div></div><div class='section-body'><div class='grid-3'><div class='card'><h3>Tirinha</h3><p>Sequência curta de quadros, geralmente com personagens recorrentes. Pode trazer humor, crítica ou comentário do cotidiano.</p></div><div class='card'><h3>Charge</h3><p>Costuma dialogar com um fato atual e produzir crítica social ou política. Depende mais do contexto histórico do momento.</p></div><div class='card'><h3>Cartum</h3><p>Humor mais universal, menos preso a um fato específico do noticiário. Pode continuar fazendo sentido anos depois.</p></div></div><div class='grid-2'><div class='card'><h3>Infográfico</h3><p>Combina texto, imagem, números e organização visual para explicar rapidamente um assunto.</p></div><div class='card'><h3>Notícia</h3><p>Busca informar sobre um fato. Em tese, tende à objetividade, ainda que a seleção de foco e linguagem também produza efeito.</p></div></div></div></section><section class='section' id='teoria-2'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Finalidade, público e linguagem</h2><div class='section-sub'>Identificar o gênero ajuda a prever o objetivo do texto e, com isso, interpretar melhor as questões.</div></div><div class='section-body'><table><tr><th>Gênero</th><th>Finalidade principal</th><th>Marcas comuns</th></tr><tr><td>Tirinha</td><td>narrar rapidamente, gerar humor ou reflexão</td><td>quadros, fala de personagens, desfecho final</td></tr><tr><td>Charge</td><td>criticar fato atual</td><td>referência a acontecimento ou figura pública</td></tr><tr><td>Infográfico</td><td>explicar com apoio visual</td><td>setas, blocos, números, ícones</td></tr><tr><td>Notícia</td><td>informar</td><td>título, lead, dados, local e tempo</td></tr></table><div class='note violet'>Se a questão perguntar 'a finalidade do texto', pense: informar, convencer, criticar, sensibilizar, orientar, divertir.</div></div></section><section class='section' id='teoria-3'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Humor, ironia e crítica</h2><div class='section-sub'>Em gêneros visuais, o humor não é só piada. Muitas vezes ele serve para mostrar contradição.</div></div><div class='section-body'><div class='grid-2'><div class='card'><h3>Como o humor aparece</h3><ul><li>quebra de expectativa</li><li>duplo sentido</li><li>contraste entre fala e imagem</li><li>literalização de uma expressão</li></ul></div><div class='card'><h3>Como a crítica aparece</h3><ul><li>exagero proposital</li><li>uso de estereótipos para contestar um comportamento</li><li>mostrar incoerência entre discurso e prática</li><li>comparação entre o ideal e o real</li></ul></div></div><div class='example-box'><h4>Exemplo guiado</h4><p>Numa charge sobre seca, um personagem diz 'a situação está sob controle' enquanto o cenário mostra terra rachada e reservatórios vazios. A crítica nasce do contraste entre discurso e evidência visual.</p></div></div></section><section class='section' id='exercicios'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Como resolver questões sobre gênero</h2><div class='section-sub'>A banca costuma misturar conteúdo, intenção e formato.</div></div><div class='section-body'><div class='grid-2'><div class='card'><h3>Perguntas típicas</h3><ul><li>qual é a finalidade do texto?</li><li>que efeito de humor ou crítica é produzido?</li><li>qual característica do gênero aparece aqui?</li><li>que público esse texto pretende atingir?</li></ul></div><div class='card'><h3>Procedimento</h3><ol><li>identifique o gênero antes de interpretar detalhes</li><li>observe se há apoio visual ou se tudo depende do texto verbal</li><li>pergunte qual é a ação que o texto tenta provocar no leitor</li></ol></div></div><div class='error-box'><strong>Erro comum:</strong> tratar qualquer texto com imagem como se fosse tirinha. A organização e a finalidade importam tanto quanto a presença de desenho.</div></div></section><section class='section' id='exercicios'><div class='section-head'><div class='kicker'>Treino</div><h2>Exercícios interativos</h2><div class='section-sub'>Resolva sem consultar a teoria. Depois use a explicação para corrigir o raciocínio, não apenas para marcar certo ou errado.</div></div><div class='section-body'><div class="exercise"><div class="tag">Questão 1</div><h4>Qual gênero costuma depender mais de um fato atual do noticiário para produzir crítica?</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Cartum tende a ser mais universal.">A) cartum</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Charge costuma dialogar com contexto atual.">B) charge</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não é o foco aqui.">C) conto</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não tem essa função crítica imediata.">D) verbete</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 2</div><h4>Um texto com blocos curtos, ícones, números e setas explicando consumo de água é, mais provavelmente, um:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é a organização típica desse gênero.">A) infográfico</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não corresponde.">B) poema</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Cartum não se organiza assim.">C) cartum</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Editorial é argumentativo, sem essa forma típica.">D) editorial</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 3</div><h4>Em uma tirinha, o humor final nasce da quebra de expectativa entre a fala da personagem e o último quadro. O principal efeito é de:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não necessariamente.">A) suspense policial</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="A quebra de expectativa produz o efeito.">B) humor construído por contraste</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não é o caso.">C) explicação científica</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Tirinha não funciona assim nesse exemplo.">D) descrição objetiva</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 4</div><h4>Quando a questão pergunta pela finalidade de uma notícia, a resposta mais adequada tende a ser:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é a finalidade principal da notícia.">A) informar sobre um fato</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Isso seria narrativa ficcional.">B) contar uma história fictícia</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não corresponde ao gênero.">C) ensinar uma fórmula matemática</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Notícia não tem essa finalidade principal.">D) fazer humor sempre</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 5</div><h4>Qual é a melhor pista para diferenciar cartum de charge?</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Os dois podem ter desenho.">A) a presença de desenho</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Isso não basta.">B) o uso de balões de fala</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é uma diferença central.">C) o vínculo mais forte com a atualidade no caso da charge</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não define sozinho.">D) o número de quadros</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 6</div><h4>Ao identificar o gênero textual antes de resolver a questão, o estudante ganha vantagem porque:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Precisa, e com atenção.">A) não precisa mais ler o texto</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Gênero orienta interpretação.">B) já entende melhor a finalidade e o tipo de leitura esperado</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Ajuda, mas não garante.">C) sempre sabe a resposta de imediato</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Em muitos gêneros, imagem é decisiva.">D) pode ignorar as imagens</button></div><div class="feedback"></div></div><div class='note violet'><strong>Revisão curta:</strong> depois de terminar, volte às duas questões em que você mais hesitou. Explique em voz alta por que a alternativa correta é a melhor e por que a errada pareceu atraente.</div></div></section><section class='section' id='checklist'><div class='section-head'><div class='kicker'>Fechamento</div><h2>Checklist e revisão do dia seguinte</h2><div class='section-sub'>Marque apenas o que você realmente consegue explicar sem olhar. Amanhã, revise primeiro o que ficar em aberto.</div></div><div class='section-body'><div class='checklist'><label class='ck'><input type='checkbox'><span>Consigo diferenciar tirinha, charge, cartum, notícia e infográfico.</span></label><label class='ck'><input type='checkbox'><span>Entendi por que gênero textual muda a forma de leitura.</span></label><label class='ck'><input type='checkbox'><span>Sei localizar finalidade, público e efeito principal do texto.</span></label><label class='ck'><input type='checkbox'><span>Consigo explicar como humor e crítica podem nascer do contraste.</span></label><label class='ck'><input type='checkbox'><span>Registrei um erro meu envolvendo gênero textual ou finalidade.</span></label></div><div class='study-plan'><strong>Plano de revisão espaçada</strong><ul><li><strong>Hoje:</strong> releia apenas os pontos em que errou.</li><li><strong>Amanhã:</strong> tente explicar o conteúdo em 3 minutos sem consultar.</li><li><strong>Daqui a 4–7 dias:</strong> resolva 2 ou 3 questões mistas sobre este tema.</li></ul></div><div class='error-box'><strong>Caderno de erros:</strong> registre o assunto, o erro que cometeu, o sinal que ignorou e como pretende evitar a repetição.</div></div></section>
-</main>
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <a class="back-btn" href="../index.html">← VOLTAR PARA O CRONOGRAMA</a>
-      <div class='footer-meta'><div><strong>Apostila 004</strong> · Semana 02 · Português · leitura de gênero e finalidade</div><div>Projeto Akemy · Vestibulinho ETEC 2026</div></div>
+
+    <div class="main">
+      <section id="como-estudar" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 1</p>
+            <h2>Como estudar esta apostila</h2>
+          </div>
+          <span class="badge">10 minutos</span>
+        </div>
+
+        <p>
+          Hoje a aluna vai estudar um tipo de conteúdo que costuma enganar porque parece simples.
+          Muita gente olha uma tirinha, uma charge ou um anúncio e pensa:
+          <em>“É só ler rapidinho.”</em>
+          Não é. A prova costuma cobrar:
+        </p>
+        <ul class="list">
+          <li>qual é o gênero textual;</li>
+          <li>qual é a finalidade do texto;</li>
+          <li>quem é o público-alvo;</li>
+          <li>como imagem e palavra constroem sentido;</li>
+          <li>onde está o humor, a ironia ou a crítica.</li>
+        </ul>
+
+        <div class="callout">
+          <strong>Regra do dia:</strong> toda vez que a aluna der nome a um gênero textual,
+          ela deve conseguir completar a frase:
+          <em>“Eu sei que este texto é esse gênero porque...”</em>
+        </div>
+
+        <div class="grid-2">
+          <div class="mini-card">
+            <h3>Como render mais</h3>
+            <ul class="list">
+              <li>Ler a parte verbal e observar a parte visual.</li>
+              <li>Procurar pista de contexto: tempo, assunto, intenção.</li>
+              <li>Comparar gêneros parecidos antes de responder.</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <h3>O que evitar</h3>
+            <ul class="list">
+              <li>Confundir “ter desenho” com “ser a mesma coisa”.</li>
+              <li>Ignorar a finalidade do texto.</li>
+              <li>Responder pela aparência sem explicar o motivo.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="generos" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 2</p>
+            <h2>O que são gêneros textuais de verdade</h2>
+          </div>
+          <span class="badge">18 minutos</span>
+        </div>
+
+        <p>
+          Gênero textual é uma forma social de organizar a linguagem.
+          Em outras palavras: são tipos de texto que circulam no mundo com
+          <strong>funções diferentes</strong>.
+          Uma receita ensina a fazer algo. Um anúncio tenta convencer.
+          Uma notícia informa. Uma tirinha geralmente narra uma pequena cena.
+          Uma charge critica um fato do momento.
+        </p>
+
+        <p>
+          O erro comum é achar que gênero textual é só “o formato”.
+          Não basta olhar e dizer:
+          <em>“Tem desenho, então é tirinha.”</em>
+          Isso não é suficiente.
+          Para identificar o gênero com segurança, a aluna precisa observar:
+        </p>
+
+        <div class="grid-2">
+          <div class="mini-card">
+            <h3>1. Finalidade</h3>
+            <p>O texto quer informar, criticar, vender, divertir, orientar ou convencer?</p>
+          </div>
+          <div class="mini-card">
+            <h3>2. Público</h3>
+            <p>Para quem esse texto parece ter sido produzido?</p>
+          </div>
+          <div class="mini-card">
+            <h3>3. Linguagem</h3>
+            <p>Predomina linguagem objetiva, humor, ironia, informalidade, dados ou apelo emocional?</p>
+          </div>
+          <div class="mini-card">
+            <h3>4. Suporte e forma</h3>
+            <p>É um quadrinho? Um cartaz? Um gráfico com legendas? Um slogan?</p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Resumo importante:</strong> o gênero textual não é identificado por um único detalhe.
+          Ele é identificado pelo conjunto: <strong>forma + finalidade + linguagem + contexto</strong>.
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 1</h3>
+          <p>O que melhor ajuda a identificar um gênero textual com segurança?</p>
+          <ol class="list" type="a">
+            <li>Apenas o tamanho do texto.</li>
+            <li>Somente a presença de imagens.</li>
+            <li>O conjunto formado por finalidade, linguagem, contexto e forma.</li>
+            <li>A opinião pessoal do leitor.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: c.</strong>
+            Não basta olhar só para a aparência. O gênero textual depende do conjunto de características.
+          </div>
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 2</h3>
+          <p>Um texto com título, imagem chamativa, slogan e convite para compra tem, em geral, a finalidade principal de:</p>
+          <ol class="list" type="a">
+            <li>narrar uma aventura fictícia.</li>
+            <li>persuadir o leitor a adotar uma ação.</li>
+            <li>registrar fatos históricos antigos.</li>
+            <li>explicar conceitos científicos com neutralidade.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: b.</strong>
+            Esses elementos apontam para texto publicitário, cujo objetivo central é convencer.
+          </div>
+        </div>
+      </section>
+
+      <section id="tirinha-charge-cartum" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 3</p>
+            <h2>Tirinha, charge e cartum: sem confundir o que parece igual</h2>
+          </div>
+          <span class="badge">24 minutos</span>
+        </div>
+
+        <p>
+          Esses três gêneros são muito confundidos porque todos podem ter desenho e humor.
+          Mas a prova não quer saber se a aluna achou “parecido”.
+          Ela quer saber se a aluna percebeu a <strong>diferença de função</strong>.
+        </p>
+
+        <div class="grid-3">
+          <div class="mini-card">
+            <h3>Tirinha</h3>
+            <p>Normalmente apresenta uma pequena sequência de cenas, com personagens, fala e um desfecho rápido.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Charge</h3>
+            <p>Costuma criticar um fato atual, político ou social. Depende mais do contexto do momento.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Cartum</h3>
+            <p>Também usa humor, mas costuma tratar tema mais geral e atemporal, sem depender de notícia específica.</p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Dica que resolve muita questão:</strong>
+          se o texto depende de um acontecimento do momento para fazer sentido,
+          a chance de ser <strong>charge</strong> é alta.
+          Se o humor funciona mesmo sem contexto noticioso, pode ser <strong>cartum</strong>.
+          Se há sequência curta de ações em quadrinhos, tende a ser <strong>tirinha</strong>.
+        </div>
+
+        <h3>Exemplo guiado 1</h3>
+        <div class="mini-card">
+          <p><strong>Situação:</strong> três quadrinhos mostram uma criança dizendo que vai estudar,
+          depois abrindo o celular, depois falando “amanhã eu começo”.</p>
+        </div>
+        <p>
+          Esse texto se aproxima de <strong>tirinha</strong>, porque há
+          <strong>sequência de ações</strong> e construção de humor ao longo dos quadros.
+        </p>
+
+        <h3>Exemplo guiado 2</h3>
+        <div class="mini-card">
+          <p><strong>Situação:</strong> um desenho mostra um político segurando uma placa escrita
+          “economia”, enquanto tudo ao redor está pegando fogo, em referência a uma crise recente.</p>
+        </div>
+        <p>
+          Isso se aproxima de <strong>charge</strong>, porque há crítica ligada a um fato social/político
+          do momento.
+        </p>
+
+        <h3>Exemplo guiado 3</h3>
+        <div class="mini-card">
+          <p><strong>Situação:</strong> um personagem diz “estou economizando água” enquanto deixa a torneira aberta,
+          criando humor pela contradição.</p>
+        </div>
+        <p>
+          Isso se aproxima de <strong>cartum</strong>, porque o humor funciona sem depender de um evento específico do noticiário.
+        </p>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 3</h3>
+          <p>O traço mais característico da charge é:</p>
+          <ol class="list" type="a">
+            <li>sempre apresentar vários quadros e personagens fixos.</li>
+            <li>depender frequentemente de contexto atual e crítica social ou política.</li>
+            <li>ensinar um conteúdo científico com gráficos.</li>
+            <li>ser obrigatoriamente destinada a crianças.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: b.</strong>
+            A charge costuma dialogar com acontecimentos recentes e faz crítica social ou política.
+          </div>
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 4</h3>
+          <p>Uma sequência curta de quadrinhos com personagens, falas e desfecho rápido se aproxima mais de:</p>
+          <ol class="list" type="a">
+            <li>tirinha.</li>
+            <li>infográfico.</li>
+            <li>edital.</li>
+            <li>charge obrigatoriamente.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: a.</strong>
+            A sequência narrativa curta é marca forte da tirinha.
+          </div>
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 5</h3>
+          <p>Quando o humor de um texto visual funciona mesmo sem referência a fato atual específico, ele se aproxima mais de:</p>
+          <ol class="list" type="a">
+            <li>cartum.</li>
+            <li>ata.</li>
+            <li>charge necessariamente.</li>
+            <li>gráfico estatístico.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: a.</strong>
+            O cartum tende a ser mais universal e atemporal.
+          </div>
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 6</h3>
+          <p>Qual alternativa explica melhor por que charge e cartum não são a mesma coisa?</p>
+          <ol class="list" type="a">
+            <li>Porque um sempre tem cor e o outro não.</li>
+            <li>Porque a charge depende mais de contexto atual, e o cartum costuma ser mais atemporal.</li>
+            <li>Porque um usa palavras e o outro nunca usa.</li>
+            <li>Porque o cartum é sempre sério.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: b.</strong>
+            Essa é a diferença conceitual mais útil para a prova.
+          </div>
+        </div>
+      </section>
+
+      <section id="publicidade" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 4</p>
+            <h2>Texto publicitário: convencer é a missão principal</h2>
+          </div>
+          <span class="badge">18 minutos</span>
+        </div>
+
+        <p>
+          O texto publicitário não existe para informar de maneira neutra.
+          Ele existe para <strong>persuadir</strong>.
+          Isso significa que ele tenta levar o leitor a fazer alguma coisa:
+        </p>
+        <ul class="list">
+          <li>comprar um produto;</li>
+          <li>mudar um comportamento;</li>
+          <li>clicar em um link;</li>
+          <li>participar de uma campanha;</li>
+          <li>lembrar de uma marca.</li>
+        </ul>
+
+        <p>
+          Para convencer, o anúncio costuma usar:
+        </p>
+        <div class="grid-2">
+          <div class="mini-card">
+            <h3>Slogan</h3>
+            <p>Frase curta e marcante para fixar a mensagem.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Imperativo</h3>
+            <p>Verbos como “compre”, “participe”, “venha”, “descubra”.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Apelo emocional</h3>
+            <p>Busca despertar desejo, medo, urgência, cuidado ou pertencimento.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Imagem estratégica</h3>
+            <p>A imagem não enfeita: ela ajuda a convencer.</p>
+          </div>
+        </div>
+
+        <h3>Exemplo guiado</h3>
+        <div class="mini-card">
+          <p><strong>Anúncio:</strong> “Volte a ler 15 minutos por dia. Seu futuro agradece.”</p>
+        </div>
+        <p>
+          A finalidade desse anúncio não é apenas falar sobre leitura.
+          É <strong>estimular um comportamento</strong>. O verbo implícito é um convite à ação.
+        </p>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 7</h3>
+          <p>A principal finalidade do texto publicitário é:</p>
+          <ol class="list" type="a">
+            <li>registrar fatos históricos sem interferência.</li>
+            <li>convencer o leitor a adotar uma ação, ideia ou consumo.</li>
+            <li>explicar fórmulas matemáticas.</li>
+            <li>informar de forma totalmente neutra.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: b.</strong>
+            A publicidade trabalha com persuasão.
+          </div>
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 8</h3>
+          <p>Em um anúncio, a presença de verbos como “experimente”, “garanta” e “venha” indica principalmente:</p>
+          <ol class="list" type="a">
+            <li>linguagem persuasiva voltada à ação do leitor.</li>
+            <li>linguagem científica e neutra.</li>
+            <li>texto narrativo de aventura.</li>
+            <li>linguagem exclusivamente poética.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: a.</strong>
+            Esses verbos acionam o leitor e funcionam como convite ou ordem suave.
+          </div>
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 9</h3>
+          <p>Ao analisar um texto publicitário, o leitor deve observar:</p>
+          <ol class="list" type="a">
+            <li>somente se gostou da imagem.</li>
+            <li>apenas a cor de fundo.</li>
+            <li>como palavras e imagens se unem para convencer.</li>
+            <li>somente se o texto é comprido ou curto.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: c.</strong>
+            A força do anúncio está justamente na combinação entre recursos visuais e verbais.
+          </div>
+        </div>
+      </section>
+
+      <section id="infografico" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 5</p>
+            <h2>Infográfico e leitura visual: quando informação também se organiza em imagem</h2>
+          </div>
+          <span class="badge">18 minutos</span>
+        </div>
+
+        <p>
+          O infográfico mistura informação verbal e visual para facilitar compreensão.
+          Ele pode trazer:
+        </p>
+        <ul class="list">
+          <li>ícones;</li>
+          <li>setas;</li>
+          <li>títulos e subtítulos;</li>
+          <li>números e porcentagens;</li>
+          <li>legendas e pequenos blocos explicativos.</li>
+        </ul>
+
+        <p>
+          Em prova, o erro comum é olhar só para o desenho e ignorar os dados,
+          ou olhar só para os dados e ignorar a organização visual.
+          O leitor competente faz as duas coisas.
+        </p>
+
+        <h3>Exemplo guiado</h3>
+        <div class="mini-card">
+          <p><strong>Infográfico hipotético:</strong> “Como economizar água em casa”. Ele apresenta ícones de torneira, banho, descarga e lavagem de roupa, com pequenas dicas e porcentagens de consumo.</p>
+        </div>
+        <p>
+          A finalidade principal aqui é <strong>informar e orientar</strong>.
+          Não é contar uma história nem fazer crítica de humor.
+          O visual ajuda a organizar os dados para leitura rápida.
+        </p>
+
+        <div class="callout">
+          <strong>Pergunta-chave para esse gênero:</strong>
+          o texto quer explicar algo com apoio visual?
+          Se sim, o caminho de análise muda. A leitura precisa integrar
+          <strong>título, dados, setas, porcentagens, ícones e legendas</strong>.
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 10</h3>
+          <p>A principal função de um infográfico é, em geral:</p>
+          <ol class="list" type="a">
+            <li>narrar uma ficção em vários capítulos.</li>
+            <li>organizar informações de maneira visual e verbal para facilitar a compreensão.</li>
+            <li>satirizar políticos do momento.</li>
+            <li>substituir qualquer tipo de texto escrito.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: b.</strong>
+            O infográfico existe para organizar e explicar informação com clareza.
+          </div>
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 11</h3>
+          <p>Ao ler um infográfico, a melhor atitude do leitor é:</p>
+          <ol class="list" type="a">
+            <li>considerar só a imagem, porque o resto é detalhe.</li>
+            <li>considerar só o texto escrito, porque a imagem é enfeite.</li>
+            <li>integrar título, números, ícones, legendas e blocos verbais.</li>
+            <li>ignorar a ordem em que as informações aparecem.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: c.</strong>
+            O sentido do infográfico nasce da integração entre elementos verbais e visuais.
+          </div>
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 12</h3>
+          <p>Se um texto apresenta dados, porcentagens, setas e pequenas explicações com o objetivo de orientar o leitor, ele se aproxima mais de:</p>
+          <ol class="list" type="a">
+            <li>tirinha.</li>
+            <li>infográfico.</li>
+            <li>charge.</li>
+            <li>crônica literária.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: b.</strong>
+            Esses elementos são típicos de infográfico.
+          </div>
+        </div>
+      </section>
+
+      <section id="recuperacao" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 6</p>
+            <h2>Recuperação ativa e comparação final</h2>
+          </div>
+          <span class="badge">10 minutos</span>
+        </div>
+
+        <p>
+          Agora feche a apostila por dois minutos e tente responder sem olhar:
+        </p>
+        <ol class="list">
+          <li>O que define um gênero textual além da aparência?</li>
+          <li>Qual é a diferença central entre charge e cartum?</li>
+          <li>O que faz uma tirinha parecer tirinha?</li>
+          <li>Qual é a finalidade principal de um anúncio?</li>
+          <li>Como deve ser a leitura de um infográfico?</li>
+        </ol>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 13</h3>
+          <p>Marque a alternativa que apresenta a associação correta:</p>
+          <ol class="list" type="a">
+            <li>Charge → humor atemporal sem crítica; Cartum → texto de venda; Tirinha → gráfico com dados.</li>
+            <li>Tirinha → sequência curta de cenas; Charge → crítica ligada ao contexto atual; Infográfico → informação organizada visualmente.</li>
+            <li>Infográfico → narrativa em quadrinhos; Anúncio → texto científico; Cartum → formulário.</li>
+            <li>Cartum → texto sempre político do dia; Charge → receita; Tirinha → edital.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: b.</strong>
+            Essa alternativa resume corretamente os três gêneros.
+          </div>
+        </div>
+
+        <div class="exercise" data-state="hidden">
+          <h3>Questão 14</h3>
+          <p>Uma questão pede que a aluna identifique o gênero de um texto com imagem e crítica a um fato político da semana. Antes de marcar, a melhor atitude é:</p>
+          <ol class="list" type="a">
+            <li>Responder só porque há desenho.</li>
+            <li>Observar finalidade, contexto atual e efeito de crítica.</li>
+            <li>Ignorar o tema político e olhar apenas a cor.</li>
+            <li>Supor que todo texto com humor é tirinha.</li>
+          </ol>
+          <button class="reveal-btn" type="button">Mostrar resposta</button>
+          <div class="answer-reveal">
+            <strong>Resposta: b.</strong>
+            O contexto atual e a crítica são pistas fortes de charge.
+          </div>
+        </div>
+      </section>
+
+      <section id="checklist" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 7</p>
+            <h2>Checklist do dia e revisão espaçada</h2>
+          </div>
+          <span class="badge">8 minutos</span>
+        </div>
+
+        <div class="checklist-grid">
+          <label class="check-item"><input type="checkbox" /> <span>Entendi que gênero textual é forma + finalidade + linguagem + contexto.</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>Consigo diferenciar tirinha, charge e cartum sem me apoiar só na aparência.</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>Reconheço que a publicidade usa recursos para persuadir.</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>Consigo explicar por que um infográfico precisa ser lido de forma integrada.</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>Registrei pelo menos 2 erros no caderno com o motivo do erro.</span></label>
+        </div>
+
+        <div class="callout">
+          <strong>Revisão em 24 horas:</strong> refaça 2 questões sobre tirinha/charge/cartum, 1 sobre publicidade e 1 sobre infográfico sem consultar a apostila.
+        </div>
+
+        <div class="callout">
+          <strong>Revisão em 7 dias:</strong> tente explicar em voz alta, com suas palavras, a diferença entre charge e cartum e a finalidade de um texto publicitário.
+        </div>
+      </section>
+
+      <section id="gabarito" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 8</p>
+            <h2>Gabarito consolidado</h2>
+          </div>
+          <span class="badge">Correção final</span>
+        </div>
+
+        <ul class="gabarito">
+          <li>Questão 1 — <strong>c</strong></li>
+          <li>Questão 2 — <strong>b</strong></li>
+          <li>Questão 3 — <strong>b</strong></li>
+          <li>Questão 4 — <strong>a</strong></li>
+          <li>Questão 5 — <strong>a</strong></li>
+          <li>Questão 6 — <strong>b</strong></li>
+          <li>Questão 7 — <strong>b</strong></li>
+          <li>Questão 8 — <strong>a</strong></li>
+          <li>Questão 9 — <strong>c</strong></li>
+          <li>Questão 10 — <strong>b</strong></li>
+          <li>Questão 11 — <strong>c</strong></li>
+          <li>Questão 12 — <strong>b</strong></li>
+          <li>Questão 13 — <strong>b</strong></li>
+          <li>Questão 14 — <strong>b</strong></li>
+        </ul>
+
+        <div class="divider"></div>
+        <p class="muted" style="margin-top:16px;">
+          Missão do Dia 4: deixar a aluna mais criteriosa ao reconhecer gêneros textuais.
+          O nome do gênero importa, mas o que realmente pesa é conseguir justificar a resposta com base na finalidade e no contexto.
+        </p>
+      </section>
+
+      <div class="footer-nav">
+        <a href="../index.html">VOLTAR PARA O CRONOGRAMA</a>
+      </div>
     </div>
-  </div>
-</footer>
-<script>
-function answer(btn){
-  const ex = btn.closest('.exercise');
-  ex.querySelectorAll('.option').forEach(b=>b.classList.remove('correct','wrong'));
-  const ok = btn.dataset.correct === 'true';
-  btn.classList.add(ok ? 'correct' : 'wrong');
-  ex.querySelectorAll('.option').forEach(b=>{ if(b!==btn && b.dataset.correct==='true') b.classList.add('correct'); });
-  const fb = ex.querySelector('.feedback');
-  fb.className = 'feedback ' + (ok ? 'ok' : 'bad');
-  fb.innerHTML = '<strong>' + (ok ? 'Acertou.' : 'Errou.') + '</strong> ' + btn.dataset.exp;
-  fb.style.display = 'block';
-}
-(function(){
-  const pageKey = 'akemy-' + document.body.dataset.page;
-  const boxes = document.querySelectorAll('.ck input[type="checkbox"]');
-  const saved = JSON.parse(localStorage.getItem(pageKey) || '[]');
-  boxes.forEach((box, i) => {
-    box.checked = !!saved[i];
-    box.addEventListener('change', () => {
-      localStorage.setItem(pageKey, JSON.stringify([...boxes].map(x => x.checked)));
+  </main>
+
+  <script>
+    document.querySelectorAll('.reveal-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        const exercise = button.closest('.exercise');
+        const shown = exercise.getAttribute('data-state') === 'shown';
+        exercise.setAttribute('data-state', shown ? 'hidden' : 'shown');
+        button.textContent = shown ? 'Mostrar resposta' : 'Ocultar resposta';
+      });
     });
-  });
-})();
-</script>
-</body></html>
+  </script>
+</body>
+</html>
