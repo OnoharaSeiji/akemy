@@ -1,867 +1,626 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Apostila 01 — Como a prova funciona e como começar a acertar</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#f5f7f4;
-  --paper:#ffffff;
-  --paper-2:#f9fbf8;
-  --ink:#1b241f;
-  --muted:#5e6c62;
-  --line:#d7e2d8;
-  --green:#2f7a50;
-  --green-2:#e7f3eb;
-  --blue:#1e5a8e;
-  --blue-2:#eaf3fb;
-  --gold:#c58a23;
-  --gold-2:#fff4df;
-  --red:#ad4444;
-  --red-2:#fdeeee;
-  --purple:#6b4acb;
-  --purple-2:#f1edff;
-  --shadow:0 18px 40px rgba(29,39,33,.08);
-  --radius-xl:28px;
-  --radius-lg:20px;
-  --radius-md:14px;
-  --radius-sm:10px;
-  --max:1160px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,sans-serif;
-  color:var(--ink);
-  background:
-    radial-gradient(circle at top left, rgba(47,122,80,.08), transparent 18%),
-    radial-gradient(circle at top right, rgba(30,90,142,.08), transparent 24%),
-    linear-gradient(180deg,#f9fbf9 0%, var(--bg) 100%);
-  line-height:1.7;
-}
-img{max-width:100%; display:block}
-a{text-decoration:none; color:inherit}
-.container{width:min(var(--max), calc(100% - 28px)); margin:0 auto}
-.hero{
-  padding:30px 0 18px;
-}
-.hero-box{
-  background:linear-gradient(135deg, rgba(255,255,255,.96), rgba(250,252,250,.96));
-  border:1px solid rgba(215,226,216,.9);
-  border-radius:var(--radius-xl);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-.hero-top{
-  display:grid;
-  grid-template-columns:1.3fr .9fr;
-  gap:24px;
-  padding:28px;
-}
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:var(--green-2);
-  color:var(--green);
-  border:1px solid #cfe4d6;
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:.82rem;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-h1,h2,h3,h4,p{margin:0 0 14px}
-h1{
-  font-family:Merriweather, serif;
-  font-size:clamp(2rem, 4vw, 3.1rem);
-  line-height:1.1;
-  letter-spacing:-.03em;
-  margin-top:14px;
-}
-.hero p.lead{font-size:1.02rem; color:var(--muted); max-width:62ch}
-.hero-grid-mini{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:12px;
-  margin-top:18px;
-}
-.mini{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:14px;
-}
-.mini .label{font-size:.8rem; color:var(--muted); display:block; margin-bottom:6px}
-.mini strong{font-size:1.08rem}
-.hero-side{
-  display:grid;
-  gap:14px;
-}
-.side-card{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:16px;
-}
-.side-card h3{margin-bottom:10px; font-size:1rem}
-.progress-wrap{
-  height:14px; background:#e4ece5; border-radius:999px; overflow:hidden; border:1px solid var(--line);
-}
-.progress-bar{
-  width:.4%; height:100%; background:linear-gradient(90deg, var(--green), #4fb176); border-radius:999px;
-}
-.quick-list{
-  display:grid; gap:8px; padding:0; margin:0; list-style:none;
-}
-.quick-list li{
-  background:var(--paper-2);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:10px 12px;
-  font-size:.92rem;
-}
-.sticky-nav{
-  position:sticky; top:0; z-index:20;
-  background:rgba(245,247,244,.86);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(215,226,216,.9);
-}
-.nav-row{
-  width:min(var(--max), calc(100% - 28px));
-  margin:0 auto;
-  display:flex; gap:10px; overflow:auto; padding:12px 0;
-}
-.nav-link{
-  white-space:nowrap;
-  padding:10px 14px;
-  border-radius:999px;
-  background:#fff;
-  border:1px solid var(--line);
-  font-weight:700;
-  font-size:.9rem;
-}
-.page{padding:24px 0 32px}
-.section{
-  margin:0 0 22px;
-  background:rgba(255,255,255,.94);
-  border:1px solid rgba(215,226,216,.95);
-  box-shadow:var(--shadow);
-  border-radius:var(--radius-xl);
-  padding:24px;
-}
-.section-head{
-  display:flex; justify-content:space-between; gap:18px; align-items:flex-start; margin-bottom:18px;
-}
-.kicker{
-  display:inline-flex; align-items:center; gap:8px;
-  font-size:.8rem; font-weight:800; text-transform:uppercase;
-  padding:7px 11px; border-radius:999px; letter-spacing:.06em;
-}
-.k-green{background:var(--green-2); color:var(--green)}
-.k-blue{background:var(--blue-2); color:var(--blue)}
-.k-gold{background:var(--gold-2); color:#8c5f11}
-.k-red{background:var(--red-2); color:var(--red)}
-.k-purple{background:var(--purple-2); color:var(--purple)}
-h2{font-size:1.7rem; line-height:1.15; letter-spacing:-.02em}
-.subtitle{color:var(--muted); max-width:70ch}
-.grid-2{display:grid; grid-template-columns:1.1fr .9fr; gap:18px}
-.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-.card{
-  background:linear-gradient(180deg, #fff, var(--paper-2));
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-}
-.card h3{font-size:1.06rem; margin-bottom:10px}
-.callout{
-  border-left:5px solid var(--green);
-  background:var(--green-2);
-  border-radius:14px;
-  padding:14px 16px;
-}
-.callout.blue{border-left-color:var(--blue); background:var(--blue-2)}
-.callout.gold{border-left-color:var(--gold); background:var(--gold-2)}
-.callout.red{border-left-color:var(--red); background:var(--red-2)}
-.list{
-  margin:0; padding-left:18px;
-}
-.list li + li{margin-top:8px}
-.flow-svg, .chart-svg, .timeline-svg{width:100%; height:auto; display:block; background:#fff; border:1px solid var(--line); border-radius:18px}
-.table{
-  width:100%; border-collapse:collapse; font-size:.95rem;
-}
-.table th,.table td{
-  padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;
-}
-.table th{background:#f7faf7; color:var(--muted); font-size:.82rem; text-transform:uppercase; letter-spacing:.05em}
-.exercise{
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:16px;
-  background:#fff;
-}
-.exercise + .exercise{margin-top:14px}
-.options{display:grid; gap:10px; margin-top:12px}
-.option{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:12px 14px;
-  background:#fff;
-  cursor:pointer;
-  transition:.18s ease;
-}
-.option:hover{transform:translateY(-1px); border-color:#c8d8cb; background:#fafdfb}
-.option.correct{background:#ecf9f0; border-color:#8fd1a2}
-.option.wrong{background:#fff0f0; border-color:#e4aaaa}
-.btn-answer, .footer-btn{
-  appearance:none;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:#fff;
-  color:var(--ink);
-  padding:10px 14px;
-  font-weight:700;
-  cursor:pointer;
-}
-.btn-answer:hover,.footer-btn:hover{background:#f8fbf9}
-.answer{
-  display:none;
-  margin-top:12px;
-  border-top:1px dashed var(--line);
-  padding-top:12px;
-  color:var(--muted);
-}
-.answer.show{display:block}
-.video-list{display:grid; gap:14px}
-.video-card{
-  display:grid;
-  grid-template-columns:1.3fr auto;
-  gap:12px;
-  align-items:center;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:16px;
-  background:linear-gradient(180deg, #fff, #fafcfa);
-}
-.video-card h4{margin:0 0 6px; font-size:1rem}
-.video-card p{margin:0; color:var(--muted); font-size:.92rem}
-.video-link{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:10px 14px; border-radius:999px;
-  background:#111; color:#fff; font-weight:800; font-size:.9rem;
-}
-.video-link:hover{background:#000}
-.checklist{
-  display:grid; gap:10px;
-}
-.checklist label{
-  display:flex; gap:10px; align-items:flex-start;
-  background:#fff; border:1px solid var(--line); border-radius:14px; padding:12px 14px;
-}
-input[type="checkbox"]{accent-color:var(--green); transform:translateY(3px)}
-.footer-nav{
-  display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
-  padding:4px 0 10px;
-}
-.footer-btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  padding:13px 18px;
-}
-.footer-btn.primary{
-  background:var(--green);
-  border-color:var(--green);
-  color:#fff;
-}
-.footer-btn.primary:hover{background:#245d3d}
-.small{font-size:.9rem; color:var(--muted)}
-@media (max-width: 980px){
-  .hero-top,.grid-2,.grid-3{grid-template-columns:1fr}
-}
-@media (max-width: 720px){
-  .container{width:min(var(--max), calc(100% - 18px))}
-  .section{padding:18px}
-  .hero-top{padding:18px}
-  .hero-grid-mini{grid-template-columns:1fr}
-  .video-card{grid-template-columns:1fr}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akemy Estudos · Dia 001</title>
+  <style>
+    :root{
+      --bg:#0f0b16;
+      --bg2:#171122;
+      --panel:#1a1326;
+      --panel2:#211730;
+      --line:rgba(255,255,255,.08);
+      --text:#f7f2ff;
+      --muted:#c8bfd8;
+      --soft:#9e92b2;
+      --rose:#c15c8a;
+      --wine:#7b2f4f;
+      --violet:#6d56c9;
+      --blue:#295d8f;
+      --gold:#d9a86c;
+      --mint:#2f7b62;
+      --danger:#ba5c5c;
+      --ok:#58b383;
+      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(193,92,138,.12), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(109,86,201,.10), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(41,93,143,.12), transparent 28%),
+        linear-gradient(180deg, #0f0b16 0%, #120d19 100%);
+    }
+    a{color:inherit}
+    .container{width:min(1180px, calc(100% - 28px));margin:0 auto}
+    .hero{padding:26px 0 14px}
+    .hero-panel{
+      background:linear-gradient(180deg, rgba(26,19,38,.96), rgba(18,13,25,.92));
+      border:1px solid var(--line);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:28px;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(135deg, rgba(217,168,108,.07), transparent 28%),
+        linear-gradient(220deg, rgba(193,92,138,.08), transparent 35%);
+      pointer-events:none;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:22px;position:relative;z-index:1}
+    .eyebrow{display:inline-flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.06);border:1px solid var(--line);
+      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#f5d6ae;
+    }
+    h1,h2,h3,p{margin:0}
+    h1{margin-top:14px;font-size:clamp(34px, 6vw, 58px);line-height:1.03;max-width:11ch}
+    .lead{margin-top:16px;font-size:18px;line-height:1.75;color:var(--muted);max-width:66ch}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:800;font-size:15px;
+      border:1px solid var(--line);transition:.18s ease transform,.18s ease background;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--rose),var(--wine));color:#fff;border-color:transparent}
+    .btn-secondary{background:rgba(255,255,255,.05)}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+    .mini-card{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:18px;padding:16px}
+    .mini-card span{display:block;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .mini-card strong{font-size:22px;line-height:1.1}
+    .hero-art{display:grid;gap:14px}
+    .poster{
+      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .poster::before{
+      content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.35;filter:blur(2px)
+    }
+    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#fbe6c7}
+    .poster strong{font-size:24px;line-height:1.08;max-width:9ch}
+    .poster small{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55}
+    .poster-rock{background:linear-gradient(155deg, rgba(123,47,79,.40), rgba(26,19,38,.98))}
+    .poster-rock::before{background:radial-gradient(circle, rgba(217,168,108,.95), transparent 62%)}
+    .poster-social{background:linear-gradient(155deg, rgba(47,123,98,.34), rgba(26,19,38,.98))}
+    .poster-social::before{background:radial-gradient(circle, rgba(255,255,255,.72), transparent 62%)}
+    .section{padding:20px 0}
+    .section-title{color:#f4c894;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
+    .section h2{font-size:clamp(28px,3vw,40px);margin-bottom:10px}
+    .section-intro{color:var(--muted);line-height:1.75;font-size:17px;max-width:72ch}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+      border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)
+    }
+    .card h3{font-size:22px;margin-bottom:10px}
+    .card p,.card li{color:var(--muted);line-height:1.78;font-size:16px}
+    .card ul{padding-left:18px;margin:10px 0 0}
+    .focus-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .focus-box{border-radius:20px;padding:18px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
+    .focus-box strong{display:block;font-size:18px;margin-bottom:8px}
+    .focus-box p{color:var(--muted);line-height:1.65}
+    .feed-card{
+      border-radius:28px; overflow:hidden; border:1px solid var(--line); background:#15101f;
+      box-shadow:var(--shadow)
+    }
+    .feed-top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+    .feed-user{display:flex;align-items:center;gap:12px}
+    .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--rose));display:grid;place-items:center;font-weight:800}
+    .feed-handle strong{display:block}
+    .feed-handle span{color:var(--soft);font-size:14px}
+    .feed-media{
+      position:relative;padding:24px;min-height:230px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(217,168,108,.25), transparent 22%),
+        radial-gradient(circle at 80% 30%, rgba(109,86,201,.25), transparent 22%),
+        linear-gradient(160deg, rgba(41,93,143,.35), rgba(123,47,79,.25), rgba(23,17,34,.95));
+    }
+    .feed-badge{display:inline-flex;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16)}
+    .feed-title{font-size:32px;line-height:1.04;max-width:13ch;margin-top:16px}
+    .feed-copy{margin-top:12px;color:#f1e9ff;max-width:48ch;line-height:1.7}
+    .feed-actions{display:flex;gap:18px;padding:16px 18px;color:var(--muted);border-top:1px solid var(--line)}
+    .arrow-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:center;margin-top:14px}
+    .flow-node{padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:130px}
+    .flow-node strong{display:block;font-size:18px;margin-bottom:8px}
+    .flow-arrow{display:grid;place-items:center;color:#f4c894;font-size:26px;font-weight:900}
+    table{width:100%;border-collapse:collapse;margin-top:14px}
+    th,td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+    th{color:#f4c894;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+    td{color:var(--muted);line-height:1.6}
+    .diagram-card{padding:0;overflow:hidden}
+    .diagram-wrap{padding:20px}
+    .formula{
+      margin-top:12px;padding:16px 18px;border-radius:18px;border:1px solid rgba(217,168,108,.20);
+      background:rgba(217,168,108,.08);color:#ffe1be;font-weight:700;line-height:1.7
+    }
+    .example{margin-top:14px;padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .example h4{margin:0 0 10px;font-size:18px}
+    .example p{color:var(--muted);line-height:1.72;margin-top:10px}
+    .label{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#f5d6ae}
+    .qa{display:grid;gap:14px;margin-top:16px}
+    .q-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .q-card strong{display:block;font-size:18px;line-height:1.45}
+    .q-card p{margin-top:10px;color:var(--muted)}
+    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800}
+    summary::-webkit-details-marker{display:none}
+    details > div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
+    .practice-list{display:grid;gap:12px;margin-top:14px}
+    .practice-item{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.035)}
+    .practice-item strong{display:block;line-height:1.65}
+    .practice-item ol{margin:10px 0 0 18px;color:var(--muted);line-height:1.75}
+    .bar-chart{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:end;margin-top:18px;min-height:220px}
+    .bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:10px}
+    .bar > div{width:80%;border-radius:18px 18px 8px 8px;background:linear-gradient(180deg, rgba(193,92,138,.92), rgba(109,86,201,.88));border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;font-weight:800;color:white;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+    .bar:nth-child(2) > div{background:linear-gradient(180deg, rgba(47,123,98,.95), rgba(41,93,143,.88))}
+    .bar:nth-child(3) > div{background:linear-gradient(180deg, rgba(217,168,108,.95), rgba(180,95,47,.88))}
+    .bar span{color:var(--muted);font-size:14px;text-align:center}
+    .checklist{display:grid;gap:12px;margin-top:14px}
+    .check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .check .box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(255,255,255,.28);margin-top:2px;flex:0 0 auto}
+    .resources{display:grid;gap:12px;margin-top:14px}
+    .resource{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);text-decoration:none}
+    .resource strong{display:block;font-size:16px}
+    .resource span{display:block;color:var(--muted);line-height:1.6;margin-top:6px}
+    .resource em{font-style:normal;color:#f4c894;white-space:nowrap;align-self:center}
+    .footer-nav{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 0 42px}
+    .tiny{font-size:13px;color:var(--soft)}
+    @media (max-width: 980px){
+      .hero-grid,.grid-2,.grid-3,.focus-row,.arrow-flow{grid-template-columns:1fr}
+      .hero-meta{grid-template-columns:1fr 1fr}
+      .bar-chart{grid-template-columns:1fr}
+      .resource{flex-direction:column}
+    }
+    @media (max-width: 640px){
+      .container{width:min(100% - 18px, 100%)}
+      .hero-panel,.card{padding:18px}
+      .hero-meta{grid-template-columns:1fr}
+      .feed-title{font-size:26px}
+      h1{font-size:34px}
+    }
+  </style>
 </head>
 <body>
-<header class="hero">
-  <div class="container">
-    <div class="hero-box">
-      <div class="hero-top">
-        <div>
-          <span class="eyebrow">Apostila 001 · Semana 01 · Fase 1 — Alicerce</span>
-          <h1>Como a prova funciona e como começar a acertar</h1>
-          <p class="lead">Hoje a meta não é ver muita matéria. Hoje a meta é <strong>entrar no jogo do jeito certo</strong>: entender como a prova pensa, como ler uma questão sem cair em armadilha e como iniciar Matemática e cronologia com segurança.</p>
-          <div class="hero-grid-mini">
-            <div class="mini">
-              <span class="label">Tempo estimado</span>
-              <strong>75–90 min</strong>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="pill">Fase 1 · Base</span>
+              <span class="pill">Semana 1</span>
+              <span class="pill">Dia 001</span>
+              <span class="pill">Sem quiz no topo</span>
             </div>
-            <div class="mini">
-              <span class="label">Foco principal</span>
-              <strong>Leitura de enunciado</strong>
+            <h1>Português · leitura de comando, assunto e ideia principal</h1>
+            <p class="lead">Hoje é o primeiro passo do projeto. A missão é simples: aprender a ler a questão com calma, separar <strong>sobre o que o texto fala</strong> do que ele <strong>quer defender ou destacar</strong> e resolver sem cair na armadilha do impulso. O tom visual conversa com feed, playlist e cinema, mas o foco é prova real.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#missao">Começar a apostila</a>
+              <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
             </div>
-            <div class="mini">
-              <span class="label">Eixo do dia</span>
-              <strong>Interpretação + base lógica</strong>
+            <div class="hero-meta">
+              <div class="mini-card"><span>Meta do dia</span><strong>Ler melhor antes de responder</strong></div>
+              <div class="mini-card"><span>Modelo</span><strong>Concreto → visual → abstrato</strong></div>
+              <div class="mini-card"><span>Tempo sugerido</span><strong>60–90 min</strong></div>
             </div>
           </div>
-        </div>
-        <div class="hero-side">
-          <div class="side-card">
-            <h3>O que você precisa sair sabendo hoje</h3>
-            <ul class="quick-list">
-              <li>Entender o que a questão realmente pede</li>
-              <li>Distinguir assunto, tema e ideia principal</li>
-              <li>Diferenciar explícito e implícito</li>
-              <li>Evitar tropeço em operações básicas e porcentagem</li>
-              <li>Ler ordem cronológica sem confundir século</li>
-            </ul>
-          </div>
-          <div class="side-card">
-            <h3>Progresso do projeto</h3>
-            <div class="progress-wrap"><div class="progress-bar"></div></div>
-            <p class="small" style="margin-top:10px">Dia 01 de 255 · início da construção da base</p>
+          <div class="hero-art">
+            <article class="poster poster-rock">
+              <div class="tag">playlist</div>
+              <strong>Rock de largada</strong>
+              <small>Energia para começar com atenção, sem pressa e sem leitura automática.</small>
+            </article>
+            <article class="poster poster-social">
+              <div class="tag">feed</div>
+              <strong>Leitura que não cai no clickbait</strong>
+              <small>O treino de hoje ajuda a enxergar o comando antes de se apegar à primeira alternativa bonita.</small>
+            </article>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<nav class="sticky-nav">
-  <div class="nav-row">
-    <a class="nav-link" href="#bloco0">Panorama</a>
-    <a class="nav-link" href="#bloco1">Como a prova pensa</a>
-    <a class="nav-link" href="#bloco2">Ler o enunciado</a>
-    <a class="nav-link" href="#bloco3">Interpretação</a>
-    <a class="nav-link" href="#bloco4">Matemática</a>
-    <a class="nav-link" href="#bloco5">Cronologia</a>
-    <a class="nav-link" href="#bloco6">Vídeo-aulas</a>
-    <a class="nav-link" href="#bloco7">Checklist</a>
-  </div>
-</nav>
-
-<main class="page">
-  <div class="container">
-
-    <section class="section" id="bloco0">
-      <div class="section-head">
-        <div>
-          <div class="kicker k-green">Panorama da sessão</div>
-          <h2>Como estudar esta apostila sem desperdiçar tempo</h2>
-          <p class="subtitle">Este Dia 1 foi redesenhado para parecer menos com “texto corrido” e mais com o tipo de leitura multimodal que a prova costuma pedir: <strong>texto, diagrama, quadro comparativo, linha do tempo e questão comentada</strong>.</p>
+  <main class="container">
+    <section class="section" id="missao">
+      <div class="section-title">Mapa da missão</div>
+      <h2>O que precisa sair dominado hoje</h2>
+      <p class="section-intro">Em vestibulinho, muita gente erra não por não saber português, mas por misturar três camadas diferentes: <strong>o comando da questão</strong>, <strong>o assunto</strong> e <strong>a ideia principal</strong>. O treino de hoje separa essas peças.</p>
+      <div class="focus-row">
+        <div class="focus-box">
+          <strong>1. Ler o comando</strong>
+          <p>Entender exatamente o verbo da questão: identificar, concluir, localizar, comparar, inferir.</p>
         </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Método do dia</h3>
-          <table class="table">
-            <thead>
-              <tr><th>Etapa</th><th>O que fazer</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>1. Ler</td><td>Entender o comando, não correr para a alternativa.</td></tr>
-              <tr><td>2. Observar</td><td>Perceber pistas visuais, conectivos, contraste e ordem temporal.</td></tr>
-              <tr><td>3. Resolver</td><td>Explicar para si mesma por que uma alternativa está certa e por que as outras não estão.</td></tr>
-              <tr><td>4. Registrar</td><td>Salvar no caderno de erros o motivo do erro, não só a resposta certa.</td></tr>
-            </tbody>
-          </table>
+        <div class="focus-box">
+          <strong>2. Encontrar o assunto</strong>
+          <p>Responder: sobre o que o texto fala de modo geral?</p>
         </div>
-        <div class="callout gold">
-          <strong>Regra do Dia 1</strong><br>
-          Não tente “zerar o conteúdo”. Tente sair <strong>menos ingênua diante da prova</strong>. Quem aprende a ler o enunciado com precisão já começa a ganhar pontos antes de dominar todo o conteúdo.
+        <div class="focus-box">
+          <strong>3. Encontrar a ideia principal</strong>
+          <p>Responder: o que o texto quer destacar, defender, resumir ou mostrar sobre esse assunto?</p>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="bloco1">
-      <div class="section-head">
-        <div>
-          <div class="kicker k-blue">Bloco 1 · 15 min</div>
-          <h2>Como a prova pensa</h2>
-          <p class="subtitle">A prova não premia apenas memória. Ela testa leitura, atenção, relação entre informações e capacidade de evitar resposta “bonita, mas errada”.</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Quatro erros que mais derrubam alunos</h3>
-          <ul class="list">
-            <li><strong>Ler só por cima</strong> e marcar sem voltar ao texto.</li>
-            <li><strong>Responder algo verdadeiro</strong>, mas diferente do que foi pedido.</li>
-            <li><strong>Travar em uma questão</strong> e deixar outras fáceis para trás.</li>
-            <li><strong>Ignorar palavras de comando</strong> como “inferir”, “principal”, “incorreta” e “de acordo com o texto”.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Infográfico — rota inteligente da questão</h3>
-          <svg class="flow-svg" viewBox="0 0 620 260" role="img" aria-label="Fluxo visual para resolver questão">
-            <rect x="20" y="24" width="132" height="70" rx="16" fill="#e7f3eb" stroke="#bfd8c7"/>
-            <text x="86" y="52" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="#2f7a50">Leia o comando</text>
-            <text x="86" y="73" text-anchor="middle" font-family="Inter" font-size="13" fill="#5e6c62">o que a questão quer?</text>
-
-            <rect x="170" y="24" width="132" height="70" rx="16" fill="#eaf3fb" stroke="#bfd7ec"/>
-            <text x="236" y="52" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="#1e5a8e">Volte ao texto</text>
-            <text x="236" y="73" text-anchor="middle" font-family="Inter" font-size="13" fill="#5e6c62">procure a pista certa</text>
-
-            <rect x="320" y="24" width="132" height="70" rx="16" fill="#fff4df" stroke="#ecd6a6"/>
-            <text x="386" y="52" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="#8c5f11">Elimine o excesso</text>
-            <text x="386" y="73" text-anchor="middle" font-family="Inter" font-size="13" fill="#5e6c62">cuidado com exageros</text>
-
-            <rect x="470" y="24" width="132" height="70" rx="16" fill="#f1edff" stroke="#d8ccff"/>
-            <text x="536" y="52" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="#6b4acb">Marque e siga</text>
-            <text x="536" y="73" text-anchor="middle" font-family="Inter" font-size="13" fill="#5e6c62">se travar, volte depois</text>
-
-            <line x1="152" y1="59" x2="170" y2="59" stroke="#9ab7a1" stroke-width="4"/>
-            <line x1="302" y1="59" x2="320" y2="59" stroke="#9fbfda" stroke-width="4"/>
-            <line x1="452" y1="59" x2="470" y2="59" stroke="#d4c390" stroke-width="4"/>
-
-            <rect x="60" y="150" width="500" height="74" rx="18" fill="#ffffff" stroke="#d7e2d8"/>
-            <text x="310" y="180" text-anchor="middle" font-family="Inter" font-size="16" font-weight="700" fill="#1b241f">Pergunta de ouro antes de marcar</text>
-            <text x="310" y="203" text-anchor="middle" font-family="Inter" font-size="14" fill="#5e6c62">“Esta alternativa responde exatamente ao que foi pedido ou só parece boa?”</text>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="bloco2">
-      <div class="section-head">
-        <div>
-          <div class="kicker k-gold">Bloco 2 · 20–25 min</div>
-          <h2>Como ler um enunciado de verdade</h2>
-          <p class="subtitle">A mesma alternativa pode parecer correta para uma leitura apressada e errada para uma leitura rigorosa. O comando manda na resposta.</p>
-        </div>
-      </div>
-
-      <div class="grid-3">
-        <div class="card">
-          <h3>Verbos de comando</h3>
-          <ul class="list">
-            <li><strong>Identificar</strong> = localizar</li>
-            <li><strong>Inferir</strong> = concluir pelas pistas</li>
-            <li><strong>Relacionar</strong> = ligar uma informação à outra</li>
-            <li><strong>Concluir</strong> = chegar ao resultado lógico</li>
-            <li><strong>Comparar</strong> = observar diferenças e semelhanças</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Erro clássico</h3>
-          <p>Responder algo <strong>verdadeiro</strong>, mas que não atende o foco do enunciado.</p>
-          <div class="callout red" style="margin-top:10px">
-            Se a pergunta quer a <strong>causa principal</strong>, não basta marcar qualquer detalhe correto do texto.
-          </div>
-        </div>
-        <div class="card">
-          <h3>Checklist relâmpago</h3>
-          <ul class="list">
-            <li>A questão pede o quê?</li>
-            <li>É explícito ou implícito?</li>
-            <li>Quer opinião, causa, efeito ou comparação?</li>
-            <li>Existe palavra como “principal” ou “incorreta”?</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exercise" style="margin-top:18px">
-        <h3>Questão guiada — entendendo o foco</h3>
-        <p><strong>Enunciado:</strong> “De acordo com o texto, a principal causa da mudança de comportamento do personagem foi:”</p>
-        <button class="btn-answer" onclick="toggleAnswer(this)">Ver análise do comando</button>
-        <div class="answer">
-          A pergunta quer: <strong>informação do texto</strong>, não opinião pessoal; quer a <strong>causa</strong>, não o efeito; quer a <strong>principal</strong>, não um detalhe secundário. Só esse mapeamento já elimina respostas que parecem corretas, mas fogem do centro da questão.
-        </div>
-      </div>
-
-      <div class="grid-2" style="margin-top:18px">
-        <div class="exercise">
-          <h3>Prática rápida 1</h3>
-          <p>No enunciado <em>“Pode-se inferir que o autor é favorável à ideia de que...”</em>, a habilidade principal é:</p>
-          <div class="options">
-            <div class="option" onclick="markOption(this,'wrong')">a) localizar uma data exata</div>
-            <div class="option" onclick="markOption(this,'correct')">b) descobrir a opinião implícita do autor</div>
-            <div class="option" onclick="markOption(this,'wrong')">c) comparar duas personagens</div>
-            <div class="option" onclick="markOption(this,'wrong')">d) medir a quantidade de palavras</div>
-          </div>
-          <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
-          <div class="answer">Resposta correta: <strong>b</strong>. A palavra <em>inferir</em> mostra que o texto não entrega tudo de forma direta; a aluna precisa concluir pelas pistas.</div>
-        </div>
-
-        <div class="exercise">
-          <h3>Prática rápida 2</h3>
-          <p>No enunciado <em>“Assinale a alternativa incorreta de acordo com o gráfico”</em>, o risco principal é:</p>
-          <div class="options">
-            <div class="option" onclick="markOption(this,'wrong')">a) esquecer o nome do gráfico</div>
-            <div class="option" onclick="markOption(this,'correct')">b) marcar a alternativa certa quando a questão pede a incorreta</div>
-            <div class="option" onclick="markOption(this,'wrong')">c) usar calculadora</div>
-            <div class="option" onclick="markOption(this,'wrong')">d) escrever a resposta por extenso</div>
-          </div>
-          <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
-          <div class="answer">Resposta correta: <strong>b</strong>. Em prova objetiva, uma palavra muda toda a lógica. <em>Correta</em> e <em>incorreta</em> não podem ser lidas no automático.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="bloco3">
-      <div class="section-head">
-        <div>
-          <div class="kicker k-purple">Bloco 3 · 20–25 min</div>
-          <h2>Interpretação de texto sem chute</h2>
-          <p class="subtitle">A prova gosta de misturar texto, imagem e inferência. Aqui você vai treinar com um mini-texto e um apoio visual no estilo “material híbrido”.</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Assunto × tema × ideia principal</h3>
-          <table class="table">
-            <thead><tr><th>Conceito</th><th>O que significa</th><th>Exemplo</th></tr></thead>
-            <tbody>
-              <tr><td>Assunto</td><td>O tema geral do texto</td><td>Tecnologia</td></tr>
-              <tr><td>Tema</td><td>O recorte feito pelo texto</td><td>Uso equilibrado da tecnologia</td></tr>
-              <tr><td>Ideia principal</td><td>A mensagem central</td><td>Tecnologia pode ajudar, mas precisa de limite e propósito</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="card">
-          <h3>Quadro visual — explícito e implícito</h3>
-          <svg class="chart-svg" viewBox="0 0 620 260" role="img" aria-label="Comparação visual entre informação explícita e implícita">
-            <rect x="22" y="28" width="266" height="180" rx="18" fill="#eaf3fb" stroke="#bfd7ec"/>
-            <text x="155" y="62" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#1e5a8e">EXPLÍCITO</text>
-            <text x="155" y="92" text-anchor="middle" font-family="Inter" font-size="14" fill="#455e71">Está escrito de forma direta</text>
-            <text x="155" y="126" text-anchor="middle" font-family="Inter" font-size="14" fill="#455e71">“Pedro ganhou uma bicicleta”</text>
-            <text x="155" y="153" text-anchor="middle" font-family="Inter" font-size="14" fill="#455e71">A informação aparece no texto</text>
-
-            <rect x="332" y="28" width="266" height="180" rx="18" fill="#f1edff" stroke="#d8ccff"/>
-            <text x="465" y="62" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#6b4acb">IMPLÍCITO</text>
-            <text x="465" y="92" text-anchor="middle" font-family="Inter" font-size="14" fill="#5f5780">Você conclui pelas pistas</text>
-            <text x="465" y="126" text-anchor="middle" font-family="Inter" font-size="14" fill="#5f5780">“Pedro voltou mais cuidadoso no dia seguinte”</text>
-            <text x="465" y="153" text-anchor="middle" font-family="Inter" font-size="14" fill="#5f5780">Inferência: ele aprendeu com o erro</text>
-          </svg>
-        </div>
-      </div>
-
-      <div class="exercise" style="margin-top:18px">
-        <h3>Texto híbrido para estudo</h3>
-        <p><strong>Texto:</strong> Em muitas cidades, o tempo que crianças e adolescentes passam em frente às telas cresceu bastante nos últimos anos. Isso não significa que a tecnologia seja ruim por si só, mas mostra a necessidade de equilíbrio. Quando usada com objetivos claros, ela pode ajudar nos estudos, no acesso à informação e na comunicação. O problema aparece quando substitui completamente atividades como leitura, brincadeiras, sono adequado e convivência com outras pessoas.</p>
-        <div class="callout blue" style="margin-top:12px">
-          <strong>Pista visual:</strong> pense neste texto como um gráfico mental com duas colunas: <em>uso produtivo</em> × <em>uso sem equilíbrio</em>.
-        </div>
-      </div>
-
-      <div class="grid-2" style="margin-top:18px">
-        <div class="exercise">
-          <h3>Questão 1</h3>
-          <p>A ideia principal do texto é:</p>
-          <div class="options">
-            <div class="option" onclick="markOption(this,'wrong')">a) crianças devem viver sem tecnologia</div>
-            <div class="option" onclick="markOption(this,'wrong')">b) a internet atrapalha todo tipo de estudo</div>
-            <div class="option" onclick="markOption(this,'correct')">c) a tecnologia pode ajudar, mas não deve substituir outras atividades importantes</div>
-            <div class="option" onclick="markOption(this,'wrong')">d) o texto trata apenas de celular</div>
-          </div>
-          <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
-          <div class="answer">Resposta correta: <strong>c</strong>. O texto não demoniza a tecnologia; ele defende uso equilibrado.</div>
-        </div>
-        <div class="exercise">
-          <h3>Questão 2</h3>
-          <p>Pode-se inferir que o autor:</p>
-          <div class="options">
-            <div class="option" onclick="markOption(this,'wrong')">a) rejeita totalmente a tecnologia</div>
-            <div class="option" onclick="markOption(this,'correct')">b) defende o uso consciente e com propósito</div>
-            <div class="option" onclick="markOption(this,'wrong')">c) considera leitura desnecessária</div>
-            <div class="option" onclick="markOption(this,'wrong')">d) fala apenas de escolas públicas</div>
-          </div>
-          <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
-          <div class="answer">Resposta correta: <strong>b</strong>. Isso é implícito porque o texto não diz “uso consciente” exatamente assim, mas toda a argumentação aponta para isso.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="bloco4">
-      <div class="section-head">
-        <div>
-          <div class="kicker k-blue">Bloco 4 · 15 min</div>
-          <h2>Diagnóstico matemático inicial</h2>
-          <p class="subtitle">No Dia 1, Matemática entra como base de segurança: operações, ordem de resolução e porcentagem simples. O objetivo não é ver tudo; é não tropeçar no básico.</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Mapa mental visual das operações</h3>
-          <svg class="flow-svg" viewBox="0 0 620 320" role="img" aria-label="Mapa mental das quatro operações">
-            <circle cx="310" cy="160" r="62" fill="#e7f3eb" stroke="#bfd8c7"/>
-            <text x="310" y="152" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#2f7a50">4 operações</text>
-            <text x="310" y="175" text-anchor="middle" font-family="Inter" font-size="13" fill="#496455">o que cada uma faz</text>
-
-            <rect x="48" y="44" width="180" height="68" rx="16" fill="#eaf3fb" stroke="#bfd7ec"/>
-            <text x="138" y="72" text-anchor="middle" font-family="Inter" font-size="16" font-weight="800" fill="#1e5a8e">Adição</text>
-            <text x="138" y="95" text-anchor="middle" font-family="Inter" font-size="13" fill="#496455">juntar · acrescentar · total</text>
-
-            <rect x="392" y="44" width="180" height="68" rx="16" fill="#fdeeee" stroke="#efc4c4"/>
-            <text x="482" y="72" text-anchor="middle" font-family="Inter" font-size="16" font-weight="800" fill="#ad4444">Subtração</text>
-            <text x="482" y="95" text-anchor="middle" font-family="Inter" font-size="13" fill="#6d5252">tirar · comparar · diferença</text>
-
-            <rect x="48" y="210" width="180" height="68" rx="16" fill="#fff4df" stroke="#ecd6a6"/>
-            <text x="138" y="238" text-anchor="middle" font-family="Inter" font-size="16" font-weight="800" fill="#8c5f11">Multiplicação</text>
-            <text x="138" y="261" text-anchor="middle" font-family="Inter" font-size="13" fill="#6b5b3c">grupos iguais · repetição</text>
-
-            <rect x="392" y="210" width="180" height="68" rx="16" fill="#f1edff" stroke="#d8ccff"/>
-            <text x="482" y="238" text-anchor="middle" font-family="Inter" font-size="16" font-weight="800" fill="#6b4acb">Divisão</text>
-            <text x="482" y="261" text-anchor="middle" font-family="Inter" font-size="13" fill="#5f5780">repartir · partes iguais</text>
-
-            <line x1="245" y1="120" x2="280" y2="142" stroke="#bfd8c7" stroke-width="4"/>
-            <line x1="375" y1="120" x2="340" y2="142" stroke="#efc4c4" stroke-width="4"/>
-            <line x1="245" y1="232" x2="280" y2="179" stroke="#ecd6a6" stroke-width="4"/>
-            <line x1="375" y1="232" x2="340" y2="179" stroke="#d8ccff" stroke-width="4"/>
-          </svg>
-        </div>
-
-        <div class="card">
-          <h3>Ordem das operações</h3>
-          <ul class="list">
-            <li>Primeiro <strong>parênteses</strong></li>
-            <li>Depois <strong>multiplicações e divisões</strong></li>
-            <li>Por fim <strong>adições e subtrações</strong></li>
-          </ul>
-          <div class="callout gold" style="margin-top:14px">
-            <strong>Exemplo:</strong> em <strong>8 + 2 × 3</strong>, primeiro faça 2 × 3 = 6. Depois: 8 + 6 = 14.
-          </div>
-          <div class="callout blue" style="margin-top:12px">
-            <strong>Porcentagem:</strong> 25% = 1/4, 50% = metade, 10% = dividir por 10.
-          </div>
-        </div>
-      </div>
-
-      <div class="grid-3" style="margin-top:18px">
-        <div class="exercise">
-          <h3>Conta 1</h3>
-          <p><strong>15 - 3 × 4 = ?</strong></p>
-          <div class="options">
-            <div class="option" onclick="markOption(this,'wrong')">a) 48</div>
-            <div class="option" onclick="markOption(this,'wrong')">b) 12</div>
-            <div class="option" onclick="markOption(this,'correct')">c) 3</div>
-            <div class="option" onclick="markOption(this,'wrong')">d) 27</div>
-          </div>
-          <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
-          <div class="answer">Resposta correta: <strong>c</strong>. Primeiro 3 × 4 = 12. Depois 15 − 12 = 3.</div>
-        </div>
-        <div class="exercise">
-          <h3>Conta 2</h3>
-          <p><strong>50% de 30 = ?</strong></p>
-          <div class="options">
-            <div class="option" onclick="markOption(this,'wrong')">a) 10</div>
-            <div class="option" onclick="markOption(this,'wrong')">b) 12</div>
-            <div class="option" onclick="markOption(this,'correct')">c) 15</div>
-            <div class="option" onclick="markOption(this,'wrong')">d) 20</div>
-          </div>
-          <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
-          <div class="answer">Resposta correta: <strong>c</strong>. 50% é metade. Metade de 30 é 15.</div>
-        </div>
-        <div class="exercise">
-          <h3>Problema</h3>
-          <p>Uma camiseta custa R$ 40 e recebeu desconto de 25%. Qual foi o valor do desconto?</p>
-          <div class="options">
-            <div class="option" onclick="markOption(this,'wrong')">a) R$ 5</div>
-            <div class="option" onclick="markOption(this,'correct')">b) R$ 10</div>
-            <div class="option" onclick="markOption(this,'wrong')">c) R$ 15</div>
-            <div class="option" onclick="markOption(this,'wrong')">d) R$ 20</div>
-          </div>
-          <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
-          <div class="answer">Resposta correta: <strong>b</strong>. 25% é um quarto. Um quarto de 40 é 10.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="bloco5">
-      <div class="section-head">
-        <div>
-          <div class="kicker k-red">Bloco 5 · 10–15 min</div>
-          <h2>Cronologia e leitura de século</h2>
-          <p class="subtitle">História no Dia 1 entra como orientação temporal. A prova gosta de sequência, comparação e noção de processo. Quem não se localiza no tempo confunde causa, consequência e período.</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Linha do tempo visual</h3>
-          <svg class="timeline-svg" viewBox="0 0 820 220" role="img" aria-label="Linha do tempo com anos em ordem cronológica">
-            <line x1="80" y1="120" x2="740" y2="120" stroke="#cfd9d1" stroke-width="6" stroke-linecap="round"/>
-            <circle cx="130" cy="120" r="18" fill="#fdeeee" stroke="#efc4c4"/>
-            <circle cx="290" cy="120" r="18" fill="#fff4df" stroke="#ecd6a6"/>
-            <circle cx="470" cy="120" r="18" fill="#eaf3fb" stroke="#bfd7ec"/>
-            <circle cx="680" cy="120" r="18" fill="#e7f3eb" stroke="#bfd8c7"/>
-            <text x="130" y="95" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#ad4444">1500</text>
-            <text x="290" y="95" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#8c5f11">1822</text>
-            <text x="470" y="95" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#1e5a8e">1889</text>
-            <text x="680" y="95" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#2f7a50">2026</text>
-            <text x="130" y="160" text-anchor="middle" font-family="Inter" font-size="13" fill="#6b5b3c">século 15</text>
-            <text x="290" y="160" text-anchor="middle" font-family="Inter" font-size="13" fill="#6b5b3c">século 19</text>
-            <text x="470" y="160" text-anchor="middle" font-family="Inter" font-size="13" fill="#6b5b3c">século 19</text>
-            <text x="680" y="160" text-anchor="middle" font-family="Inter" font-size="13" fill="#6b5b3c">século 21</text>
-          </svg>
-        </div>
-
-        <div class="card">
-          <h3>Regra prática do século</h3>
-          <ul class="list">
-            <li>1501 a 1600 → século 16</li>
-            <li>1801 a 1900 → século 19</li>
-            <li>1901 a 2000 → século 20</li>
-            <li>2001 a 2100 → século 21</li>
-          </ul>
-          <div class="callout red" style="margin-top:14px">
-            <strong>Erro comum:</strong> achar que 1822 está no século 18 só porque começa com 18. Não está. 1822 fica no <strong>século 19</strong>.
-          </div>
-        </div>
-      </div>
-
-      <div class="grid-2" style="margin-top:18px">
-        <div class="exercise">
-          <h3>Questão 1</h3>
-          <p>Qual ano é mais antigo?</p>
-          <div class="options">
-            <div class="option" onclick="markOption(this,'wrong')">a) 2026</div>
-            <div class="option" onclick="markOption(this,'wrong')">b) 1930</div>
-            <div class="option" onclick="markOption(this,'correct')">c) 1889</div>
-            <div class="option" onclick="markOption(this,'wrong')">d) 2001</div>
-          </div>
-          <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
-          <div class="answer">Resposta correta: <strong>c</strong>. Entre as opções, 1889 é o ano mais antigo.</div>
-        </div>
-
-        <div class="exercise">
-          <h3>Questão 2</h3>
-          <p>O ano de 2026 pertence ao:</p>
-          <div class="options">
-            <div class="option" onclick="markOption(this,'wrong')">a) século 20</div>
-            <div class="option" onclick="markOption(this,'correct')">b) século 21</div>
-            <div class="option" onclick="markOption(this,'wrong')">c) século 22</div>
-            <div class="option" onclick="markOption(this,'wrong')">d) século 19</div>
-          </div>
-          <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
-          <div class="answer">Resposta correta: <strong>b</strong>. Todo ano entre 2001 e 2100 pertence ao século 21.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="bloco6">
-      <div class="section-head">
-        <div>
-          <div class="kicker k-blue">Apoio extra</div>
-          <h2>Vídeo-aulas recomendadas para o Dia 1</h2>
-          <p class="subtitle">Adicionei links externos de apoio para os temas do dia: estratégias de leitura e explícito/implícito, porcentagem e linha do tempo/cronologia. Não são materiais “oficiais da ETEC”, mas ajudam a reforçar exatamente o conteúdo estudado hoje.</p>
-        </div>
-      </div>
-
-      <div class="video-list">
-        <div class="video-card">
-          <div>
-            <h4>Estratégias de leitura: do explícito ao implícito</h4>
-            <p>Bom para reforçar inferência, leitura por pistas e diferença entre informação explícita e implícita.</p>
-          </div>
-          <a class="video-link" href="https://www.youtube.com/watch?v=ki5vcMcCDKw" target="_blank" rel="noopener noreferrer">Abrir vídeo</a>
-        </div>
-
-        <div class="video-card">
-          <div>
-            <h4>Interpretação e compreensão de textos</h4>
-            <p>Útil para consolidar ideia principal, leitura do enunciado e raciocínio de compreensão textual.</p>
-          </div>
-          <a class="video-link" href="https://www.youtube.com/watch?v=W3XrpIRTgzA" target="_blank" rel="noopener noreferrer">Abrir vídeo</a>
-        </div>
-
-        <div class="video-card">
-          <div>
-            <h4>Porcentagem — como calcular mais rápido</h4>
-            <p>Serve como reforço para o bloco matemático inicial do Dia 1.</p>
-          </div>
-          <a class="video-link" href="https://www.youtube.com/watch?v=nYWKUkzmmAE" target="_blank" rel="noopener noreferrer">Abrir vídeo</a>
-        </div>
-
-        <div class="video-card">
-          <div>
-            <h4>Linha do tempo da História</h4>
-            <p>Ajuda na noção de cronologia e organização de períodos históricos.</p>
-          </div>
-          <a class="video-link" href="https://www.youtube.com/watch?v=f9IBOWqTDCI" target="_blank" rel="noopener noreferrer">Abrir vídeo</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="bloco7">
-      <div class="section-head">
-        <div>
-          <div class="kicker k-green">Fechamento</div>
-          <h2>Checklist e recuperação ativa</h2>
-          <p class="subtitle">Antes de sair do Dia 1, a aluna precisa testar o que consegue puxar da memória e registrar os erros mais importantes.</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Recuperação ativa</h3>
-          <ul class="list">
-            <li>O que a questão quer dizer com <strong>inferir</strong>?</li>
-            <li>Qual a diferença entre <strong>assunto</strong> e <strong>ideia principal</strong>?</li>
-            <li>Por que <strong>8 + 2 × 3</strong> não é 30?</li>
-            <li>Quanto vale <strong>25% de 40</strong>?</li>
-            <li>Por que 2026 está no <strong>século 21</strong>?</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Checklist do dia</h3>
-          <div class="checklist">
-            <label><input type="checkbox"> Entendi o que a prova costuma cobrar em leitura de comando</label>
-            <label><input type="checkbox"> Diferenciei explícito e implícito</label>
-            <label><input type="checkbox"> Resolvi as questões de interpretação com calma</label>
-            <label><input type="checkbox"> Revisei ordem das operações e porcentagem simples</label>
-            <label><input type="checkbox"> Entendi a lógica de século e cronologia</label>
-            <label><input type="checkbox"> Anotei pelo menos 2 erros no caderno de erros</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="callout" style="margin-top:18px">
-        <strong>Mini regra para o caderno de erros:</strong> não anote só “errei a 3”. Anote <strong>por que errou</strong>: leitura apressada, comando ignorado, cálculo sem ordem, confusão de século, resposta verdadeira mas fora do foco.
       </div>
     </section>
 
     <section class="section">
-      <div class="footer-nav">
-        <a class="footer-btn" href="../index.html">← Voltar para o cronograma</a>
-        <a class="footer-btn primary" href="dia-002.html">Próxima apostila →</a>
+      <div class="section-title">Entrada concreta · CPA</div>
+      <h2>Primeiro, enxergue isso em uma cena do cotidiano</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="feed-card">
+          <div class="feed-top">
+            <div class="feed-user">
+              <div class="avatar">A</div>
+              <div class="feed-handle">
+                <strong>akemy.club</strong>
+                <span>@estudoscomestilo</span>
+              </div>
+            </div>
+            <div class="tiny">há 2 min</div>
+          </div>
+          <div class="feed-media">
+            <span class="feed-badge">evento escolar</span>
+            <h3 class="feed-title">Noite temática: magia, cinema e rock</h3>
+            <p class="feed-copy">Nesta sexta, a escola vai reunir maratona de fantasia, concurso de figurino, decoração inspirada em castelos e uma banda de alunos tocando clássicos do rock. Participe levando 1 kg de alimento para doação.</p>
+          </div>
+          <div class="feed-actions">
+            <span>❤ 1,2 mil</span>
+            <span>💬 213</span>
+            <span>↗ compartilhar</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Olhe para o post e responda</h3>
+          <p><strong>Assunto:</strong> é o tema geral do post. Aqui, o assunto é <strong>um evento escolar temático</strong>.</p>
+          <p style="margin-top:10px"><strong>Ideia principal:</strong> é a mensagem central que o post quer passar sobre esse assunto. Aqui, a ideia principal é <strong>convidar as pessoas para participar do evento e mostrar o que vai acontecer nele</strong>.</p>
+          <div class="formula">Resumo rápido: <strong>assunto</strong> é o terreno geral. <strong>Ideia principal</strong> é o coração da mensagem dentro desse terreno.</div>
+          <div class="example">
+            <h4>Erro comum</h4>
+            <p>Marcar como ideia principal apenas “magia”, “rock” ou “cinema”. Isso são partes do conteúdo, não a mensagem central.</p>
+          </div>
+        </article>
       </div>
-      <p class="small" style="text-align:center; margin-bottom:0">Apostila 01 de 255 · Projeto Akemy · Vestibulinho ETEC 2026</p>
     </section>
 
-  </div>
-</main>
+    <section class="section">
+      <div class="section-title">Visualização</div>
+      <h2>Como a leitura deve acontecer dentro da sua cabeça</h2>
+      <div class="card diagram-card">
+        <div class="diagram-wrap">
+          <div class="arrow-flow">
+            <div class="flow-node">
+              <strong>1. Leia o comando</strong>
+              <p>Antes de olhar a alternativa, descubra o que a questão quer que você faça.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">
+              <strong>2. Localize o eixo do texto</strong>
+              <p>Pergunte: o texto fala de quê? Depois: o que ele diz sobre isso?</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">
+              <strong>3. Só então compare alternativas</strong>
+              <p>Elimine opção bonita, exagerada ou fora do foco.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<script>
-function markOption(el, type){
-  const group = el.closest('.options');
-  group.querySelectorAll('.option').forEach(o => o.classList.remove('correct','wrong'));
-  el.classList.add(type);
-}
-function toggleAnswer(btn){
-  const answer = btn.nextElementSibling;
-  const open = answer.classList.contains('show');
-  answer.classList.toggle('show', !open);
-  btn.textContent = open ? 'Ver resolução' : 'Ocultar resolução';
-}
-</script>
+      <div class="grid-2" style="margin-top:18px; align-items:start;">
+        <article class="card">
+          <h3>Assunto x ideia principal</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Camada</th>
+                <th>Pergunta que resolve</th>
+                <th>Exemplo no post acima</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Assunto</strong></td>
+                <td>Sobre o que o texto fala?</td>
+                <td>Sobre um evento escolar temático.</td>
+              </tr>
+              <tr>
+                <td><strong>Ideia principal</strong></td>
+                <td>O que o texto quer destacar sobre esse assunto?</td>
+                <td>Convidar para o evento e apresentar seus atrativos.</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card">
+          <h3>Radar de comando</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Se o comando disser…</th>
+                <th>Você deve fazer…</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>assinale / marque</strong></td>
+                <td>Escolher a alternativa correta.</td>
+              </tr>
+              <tr>
+                <td><strong>segundo o texto</strong></td>
+                <td>Responder com base no texto, não na sua opinião.</td>
+              </tr>
+              <tr>
+                <td><strong>tema / assunto</strong></td>
+                <td>Encontrar o tópico geral.</td>
+              </tr>
+              <tr>
+                <td><strong>ideia principal</strong></td>
+                <td>Encontrar a mensagem central.</td>
+              </tr>
+              <tr>
+                <td><strong>infere-se / conclui-se</strong></td>
+                <td>Ler pistas e tirar uma conclusão apoiada no texto.</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Abstração</div>
+      <h2>Agora formalize a regra</h2>
+      <div class="grid-3" style="margin-top:16px;">
+        <article class="card">
+          <h3>Leitura de comando</h3>
+          <p>É a capacidade de entender o que a pergunta está pedindo. Quem lê mal o comando costuma até entender o texto, mas responde outra coisa.</p>
+        </article>
+        <article class="card">
+          <h3>Assunto</h3>
+          <p>É o tema geral do texto. Costuma caber em poucas palavras: amizade, escola, meio ambiente, evento cultural, redes sociais.</p>
+        </article>
+        <article class="card">
+          <h3>Ideia principal</h3>
+          <p>É a mensagem central que o autor quer transmitir sobre o assunto. Costuma ser mais específica do que o assunto.</p>
+        </article>
+      </div>
+      <div class="card" style="margin-top:18px;">
+        <h3>Regra de ouro da aula 1</h3>
+        <div class="formula">Toda vez que encontrar um texto, pense nesta ordem: <strong>comando → assunto → ideia principal → alternativas</strong>.</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Worked examples</div>
+      <h2>Exemplos resolvidos</h2>
+      <div class="grid-2" style="margin-top:16px;">
+        <article class="card">
+          <span class="label">Exemplo 1</span>
+          <div class="example">
+            <h4>Texto</h4>
+            <p>“Muitos estudantes deixam para estudar só quando a prova está perto. Isso aumenta a ansiedade e reduz o aproveitamento. Uma rotina curta e frequente costuma funcionar melhor.”</p>
+          </div>
+          <div class="example">
+            <h4>Questão</h4>
+            <p>Qual é a <strong>ideia principal</strong> do texto?</p>
+          </div>
+          <div class="example">
+            <h4>Resolução comentada</h4>
+            <p><strong>Assunto:</strong> estudo e rotina.</p>
+            <p><strong>Ideia principal:</strong> estudar em rotina curta e frequente é melhor do que deixar tudo para perto da prova.</p>
+            <p><strong>Por que essa é a melhor resposta?</strong> Porque resume a mensagem central. “Ansiedade” é uma parte importante, mas não é o núcleo completo da ideia.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="label">Exemplo 2</span>
+          <div class="example">
+            <h4>Texto</h4>
+            <p>“As redes sociais ajudam a divulgar campanhas de arrecadação, mas também exigem atenção para evitar boatos e informações falsas.”</p>
+          </div>
+          <div class="example">
+            <h4>Questão</h4>
+            <p>O <strong>assunto</strong> do texto é:</p>
+            <p>a) campanhas eleitorais<br>b) redes sociais<br>c) celulares modernos<br>d) música digital</p>
+          </div>
+          <div class="example">
+            <h4>Resolução comentada</h4>
+            <p><strong>Resposta:</strong> letra <strong>b</strong>.</p>
+            <p>O texto fala, de modo geral, sobre redes sociais. O restante da frase mostra o que o autor pensa sobre esse assunto: elas ajudam, mas pedem cuidado.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Prática guiada</div>
+      <h2>Agora com pistas</h2>
+      <div class="qa">
+        <article class="q-card">
+          <strong>1. Leia: “A biblioteca da escola ampliou o horário de funcionamento para que mais alunos consigam estudar após as aulas.” Qual é o assunto?</strong>
+          <details>
+            <summary>Mostrar pista</summary>
+            <div>Não responda com a intenção do texto ainda. Procure apenas o tema geral.</div>
+          </details>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>O assunto é <strong>a biblioteca da escola / ampliação do horário da biblioteca</strong>.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>2. No mesmo texto, qual é a ideia principal?</strong>
+          <details>
+            <summary>Mostrar pista</summary>
+            <div>Pergunte: o que o texto quer destacar sobre a biblioteca?</div>
+          </details>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>A ideia principal é que <strong>a ampliação do horário ajuda mais alunos a estudar depois das aulas</strong>.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>3. Em uma questão com o comando “segundo o texto”, você deve responder com base em quê?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Com base no que está escrito ou sugerido no texto, e não na sua opinião pessoal.</div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Painel visual</div>
+      <h2>Onde costuma nascer o erro</h2>
+      <p class="section-intro">O gráfico abaixo não é estatística oficial da ETEC. Ele funciona como mapa mental para lembrar os tropeços mais comuns de quem está começando.</p>
+      <div class="card" style="margin-top:16px;">
+        <div class="bar-chart">
+          <div class="bar">
+            <div style="height:78%;">78%</div>
+            <span>Ler a alternativa antes de entender o comando</span>
+          </div>
+          <div class="bar">
+            <div style="height:58%;">58%</div>
+            <span>Confundir assunto com ideia principal</span>
+          </div>
+          <div class="bar">
+            <div style="height:42%;">42%</div>
+            <span>Responder pela opinião e não pelo texto</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Prática independente</div>
+      <h2>Treino com cara de prova</h2>
+      <div class="practice-list">
+        <article class="practice-item">
+          <strong>Texto 1</strong>
+          <p class="section-intro" style="margin-top:10px">“Os celulares aproximam pessoas que estão longe, mas seu uso excessivo pode atrapalhar momentos presenciais importantes.”</p>
+          <ol>
+            <li>Qual é o assunto do texto?</li>
+            <li>Qual é a ideia principal do texto?</li>
+          </ol>
+        </article>
+
+        <article class="practice-item">
+          <strong>Texto 2</strong>
+          <p class="section-intro" style="margin-top:10px">“A coleta seletiva facilita a reciclagem e reduz o volume de lixo enviado aos aterros. Separar corretamente os materiais é uma atitude simples com impacto coletivo.”</p>
+          <ol>
+            <li>O texto fala, principalmente, sobre:</li>
+            <li>Qual alternativa melhor resume a ideia principal?
+              <br>a) O lixo sempre aumenta.<br>b) A reciclagem é impossível.<br>c) Separar materiais ajuda o meio ambiente.<br>d) Os aterros devem ser fechados.</li>
+          </ol>
+        </article>
+
+        <article class="practice-item">
+          <strong>Texto 3</strong>
+          <p class="section-intro" style="margin-top:10px">“Muitos fãs de sagas gostam de revisitar livros e filmes porque, a cada releitura, percebem detalhes antes ignorados.”</p>
+          <ol>
+            <li>Qual é o assunto?</li>
+            <li>Qual é a ideia principal?</li>
+            <li>Se a questão pedisse uma conclusão, seria correto dizer que releituras podem ampliar a compreensão? Justifique em uma frase.</li>
+          </ol>
+        </article>
+
+        <article class="practice-item">
+          <strong>Leitura de comando</strong>
+          <ol>
+            <li>Explique a diferença entre os comandos <strong>“identifique o assunto”</strong> e <strong>“identifique a ideia principal”</strong>.</li>
+            <li>Por que ler o comando depois de escolher uma alternativa costuma gerar erro?</li>
+          </ol>
+        </article>
+      </div>
+
+      <details>
+        <summary>Mostrar gabarito comentado</summary>
+        <div>
+          <p><strong>Texto 1</strong> — Assunto: celulares / uso de celulares. Ideia principal: eles aproximam pessoas distantes, mas o uso excessivo pode prejudicar momentos presenciais.</p>
+          <p><strong>Texto 2</strong> — Assunto: coleta seletiva / reciclagem. Ideia principal: separar materiais corretamente ajuda a reciclagem e beneficia o meio ambiente. Alternativa: <strong>c</strong>.</p>
+          <p><strong>Texto 3</strong> — Assunto: releitura de livros e filmes. Ideia principal: revisitar obras permite perceber detalhes novos. Conclusão possível: sim, porque o texto sugere que novas leituras ampliam a compreensão.</p>
+          <p><strong>Leitura de comando</strong> — “Assunto” pede o tema geral; “ideia principal” pede o que o texto quer afirmar ou destacar sobre esse tema.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Fechamento</div>
+      <h2>Checklist de saída</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>O que precisa estar claro agora</h3>
+          <div class="checklist">
+            <div class="check"><div class="box"></div><div>Sei que <strong>comando</strong> é o pedido da questão.</div></div>
+            <div class="check"><div class="box"></div><div>Sei diferenciar <strong>assunto</strong> de <strong>ideia principal</strong>.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo resolver sem responder pela minha opinião.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo explicar a ordem: <strong>comando → assunto → ideia principal</strong>.</div></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Caderno de erros</h3>
+          <p>Hoje, não anote só “errei a 2”. Anote <strong>por que</strong> errou:</p>
+          <ul>
+            <li>li rápido e ignorei o verbo do comando;</li>
+            <li>confundi tema geral com mensagem central;</li>
+            <li>escolhi a alternativa mais bonita, não a mais fiel ao texto;</li>
+            <li>respondi com minha opinião.</li>
+          </ul>
+          <div class="formula">Erro útil é erro explicado. Quando você nomeia o erro, fica muito mais fácil não repetir.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Vídeo-aulas</div>
+      <h2>Apoio para reforçar o mesmo assunto</h2>
+      <div class="resources">
+        <a class="resource" href="https://www.youtube.com/watch?v=vSdo8AkR7PE" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Interpretação de textos · dica rápida com foco em ETEC</strong>
+            <span>Boa para revisar leitura de comando e postura diante da questão.</span>
+          </div>
+          <em>abrir aula</em>
+        </a>
+        <a class="resource" href="https://www.youtube.com/watch?v=-Em_S_2HPbE" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Ideia principal e ideias secundárias</strong>
+            <span>Ajuda a diferenciar o centro da mensagem do resto do texto.</span>
+          </div>
+          <em>abrir aula</em>
+        </a>
+        <a class="resource" href="https://pt.khanacademy.org/humanities/pma-pr-leitura-escrita-interpretacao-n2/xc04a86cd2e5054a3%3Aunidade-1-2024/xc04a86cd2e5054a3%3Aaula5-relacao-entre-textos/v/lp-6ano-video-a-ideia-principal-em-um-texto" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Khan Academy · a ideia principal em um texto</strong>
+            <span>Explicação direta e limpa para consolidar a noção de ideia central.</span>
+          </div>
+          <em>abrir aula</em>
+        </a>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a class="btn btn-secondary" href="../index.html">← Voltar para o cronograma</a>
+      <a class="btn btn-primary" href="dia-002.html">Próxima apostila →</a>
+    </div>
+  </main>
 </body>
 </html>
