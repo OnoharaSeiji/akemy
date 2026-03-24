@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apostila Dia 02 — Vestibulinho ETEC 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════
+   DESIGN TOKENS  —  nature / fresh
+══════════════════════════════════ */
+:root {
+  --white:   #ffffff;
+  --off:     #f2f7f4;
+  --off2:    #e8f0eb;
+  --off3:    #dde8e1;
+  --border:  #c8dace;
+  --ink:     #131f18;
+  --ink2:    #2e4036;
+  --muted:   #7a9283;
+
+  --por: #c1440e;   /* terra cotta  – português  */
+  --bio: #1a7a42;   /* forest green – biologia   */
+  --geo: #1b5f8c;   /* deep ocean   – geografia  */
+
+  --por-lt: #fdf0eb;
+  --bio-lt: #edfaf3;
+  --geo-lt: #e8f2fa;
+
+  --accent: #2dba6e; /* bright mint  */
+  --yell:   #e8c040;
+  --red:    #d44;
+
+  --r: 14px;
+  --sh: 0 2px 16px rgba(19,31,24,.07);
+  --sh2: 0 8px 40px rgba(19,31,24,.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: 'Spectral', serif;
+  font-size: 15px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* subtle leaf-vein texture */
+body::before {
+  content:'';
+  position: fixed;
+  inset:0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .025;
+  background-image: radial-gradient(circle at 20% 50%, var(--accent) 0, transparent 60%),
+                    radial-gradient(circle at 80% 20%, var(--geo) 0, transparent 50%);
+}
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+/* layered organic shapes */
+.hero-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-shapes circle, .hero-shapes ellipse {
+  fill: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 60px 44px 56px;
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.hero-kicker::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.hero-h1 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 58px);
+  line-height: 1.0;
+  letter-spacing: -1.5px;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.hero-h1 .day-em { color: var(--accent); font-style: italic; font-weight: 400; }
+
+.hero-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.75;
+  max-width: 440px;
+  margin-bottom: 28px;
+}
+
+.subject-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  border: 1.5px solid;
+}
+
+.chip-por { border-color: rgba(193,68,14,.5); background: rgba(193,68,14,.15); color: #f0a080; }
+.chip-bio { border-color: rgba(26,122,66,.5);  background: rgba(26,122,66,.15);  color: #7adba0; }
+.chip-geo { border-color: rgba(27,95,140,.5);  background: rgba(27,95,140,.15);  color: #80c0e8; }
+
+/* day wheel */
+.day-wheel {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.day-wheel::before {
+  content:'';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  opacity: .3;
+}
+
+.day-num {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: 64px;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.day-of {
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,.35);
+  text-transform: uppercase;
+}
+
+.day-phase {
+  margin-top: 8px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: .7;
+}
+
+/* progress arc via clip */
+.day-progress {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,.25);
+}
+
+/* ══════════════════════════════════
+   NAV
+══════════════════════════════════ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: var(--ink2);
+  border-bottom: 1px solid rgba(45,186,110,.2);
+}
+
+.nav-row {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 44px;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-row::-webkit-scrollbar { display: none; }
+
+.nav-a {
+  padding: 13px 16px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.38);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color .2s, border-color .2s;
+}
+.nav-a:hover { color: rgba(255,255,255,.7); }
+.nav-a.p { color: #f0a080; border-bottom-color: #f0a080; }
+.nav-a.b { color: #7adba0; border-bottom-color: #7adba0; }
+.nav-a.g { color: #80c0e8; border-bottom-color: #80c0e8; }
+.nav-a.e { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ══════════════════════════════════
+   PAGE WRAP
+══════════════════════════════════ */
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 44px 80px;
+}
+
+/* ══════════════════════════════════
+   SECTION ANATOMY
+══════════════════════════════════ */
+.sec { padding-top: 72px; }
+
+.sec-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px 4px 4px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.sec-flag.por { background: var(--por-lt); color: var(--por); }
+.sec-flag.bio { background: var(--bio-lt); color: var(--bio); }
+.sec-flag.geo { background: var(--geo-lt); color: var(--geo); }
+
+.sec-flag .flag-dot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+}
+
+.sec-flag.por .flag-dot { background: var(--por); color: #fff; }
+.sec-flag.bio .flag-dot { background: var(--bio); color: #fff; }
+.sec-flag.geo .flag-dot { background: var(--geo); color: #fff; }
+
+.sec-h2 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(24px, 3.5vw, 38px);
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.por-sec .sec-h2 { color: var(--por); }
+.bio-sec .sec-h2 { color: var(--bio); }
+.geo-sec .sec-h2 { color: var(--geo); }
+
+.sec-sub {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 36px;
+  max-width: 600px;
+  font-style: italic;
+}
+
+/* ══════════════════════════════════
+   CARDS
+══════════════════════════════════ */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px 32px;
+  box-shadow: var(--sh);
+  margin-bottom: 20px;
+}
+
+.card-h3 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.three-col { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+
+/* info boxes */
+.box {
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 14px;
+  line-height: 1.65;
+  border-left: 3px solid;
+}
+.box strong {
+  display: block;
+  font-family: 'Archivo', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.box-tip  { background: rgba(45,186,110,.07); border-color: var(--accent); }
+.box-tip strong  { color: #1a9050; }
+.box-warn { background: rgba(212,68,68,.07); border-color: var(--red); }
+.box-warn strong { color: var(--red); }
+.box-info { background: rgba(27,95,140,.07); border-color: var(--geo); }
+.box-info strong { color: var(--geo); }
+.box-exam { background: rgba(232,192,64,.09); border-color: var(--yell); }
+.box-exam::before { content: "📝 CAIU NA PROVA — "; font-family:'Archivo',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; color: #a07800; }
+.box-exam strong { color: #a07800; }
+
+/* ══════════════════════════════════
+   TABLE
+══════════════════════════════════ */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 14px 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tbl th {
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'Archivo', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  background: var(--off2);
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.tbl td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(200,218,206,.4);
+  color: var(--ink2);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:hover td { background: var(--off); }
+
+/* ══════════════════════════════════
+   GENRE CARDS (português)
+══════════════════════════════════ */
+.genre-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.genre-card {
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  box-shadow: var(--sh);
+  transition: transform .2s, box-shadow .2s;
+  cursor: default;
+}
+
+.genre-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh2);
+}
+
+.genre-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.genre-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.genre-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.genre-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.genre-tag-por { background: var(--por-lt); color: var(--por); }
+.genre-card-feat { border-left: 3px solid var(--por); }
+
+/* tirinha example visual */
+.tirinha-example {
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.tirinha-panel {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 11px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.panel-figure { font-size: 22px; }
+.panel-speech {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 9.5px;
+  line-height: 1.4;
+  color: var(--ink2);
+  width: 100%;
+}
+
+/* ══════════════════════════════════
+   CELL DIAGRAM (biologia)
+══════════════════════════════════ */
+.cell-section {
+  background: var(--bio-lt);
+  border: 1px solid rgba(26,122,66,.2);
+  border-radius: var(--r);
+  padding: 32px;
+  margin: 20px 0;
+}
+
+.cell-title {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--bio);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cell-diagram-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.cell-canvas {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--sh);
+}
+
+/* organelle list */
+.organelle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.org-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid rgba(26,122,66,.15);
+  border-radius: 8px;
+  font-size: 13px;
+  transition: background .15s;
+}
+
+.org-item:hover { background: rgba(45,186,110,.07); }
+
+.org-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.org-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--bio);
+  display: block;
+}
+
+.org-func {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ══════════════════════════════════
+   GEO — BIOMES STRIP
+══════════════════════════════════ */
+.biome-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin: 20px 0;
+}
+
+.biome-card {
+  border-radius: 8px;
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 12px;
+  cursor: default;
+  transition: transform .2s;
+}
+.biome-card:hover { transform: scale(1.04); }
+
+.biome-icon { font-size: 24px; display: block; margin-bottom: 6px; }
+.biome-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 3px;
+}
+.biome-desc { font-size: 10px; color: var(--muted); line-height: 1.4; }
+
+/* ══════════════════════════════════
+   EXERCISES
+══════════════════════════════════ */
+.ex-section {
+  background: var(--off);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 44px;
+  margin: 0 -44px;
+}
+
+.ex-inner { max-width: 872px; margin: 0 auto; }
+
+.ex-section .sec-h2 { color: var(--ink); }
+.ex-section .sec-sub { color: var(--muted); }
+
+.q-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px 28px;
+  margin-bottom: 18px;
+  box-shadow: var(--sh);
+}
+
+.q-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.q-badge {
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.q-badge.por { background: var(--por); }
+.q-badge.bio { background: var(--bio); }
+.q-badge.geo { background: var(--geo); }
+
+.q-src {
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.q-text {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  color: var(--ink2);
+}
+
+.q-text-sample {
+  background: var(--off2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink2);
+  margin-bottom: 14px;
+  line-height: 1.7;
+}
+
+.opts { display: flex; flex-direction: column; gap: 7px; }
+
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 7px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  cursor: pointer;
+  transition: all .18s;
+  font-size: 13px;
+  font-family: 'Spectral', serif;
+  color: var(--ink2);
+  text-align: left;
+  width: 100%;
+}
+
+.opt:hover { border-color: var(--accent); background: var(--bio-lt); }
+.opt.c { background: var(--bio-lt); border-color: var(--bio); color: var(--bio); font-weight: 600; }
+.opt.w { background: #fef0ee; border-color: var(--red); color: #b02020; }
+
+.opt-l {
+  width: 22px; height: 22px;
+  border-radius: 5px;
+  background: var(--off2);
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--muted);
+}
+.opt.c .opt-l { background: var(--bio); color: #fff; }
+.opt.w .opt-l { background: var(--red); color: #fff; }
+
+.reveal-btn {
+  margin-top: 12px;
+  padding: 7px 18px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .18s;
+}
+.reveal-btn:hover { border-color: var(--accent); color: var(--bio); }
+
+.ans-reveal {
+  display: none;
+  margin-top: 12px;
+  background: var(--ink);
+  color: rgba(255,255,255,.82);
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.ans-reveal.open { display: block; }
+.ans-reveal .ah { color: var(--accent); font-weight: 700; }
+
+/* ══════════════════════════════════
+   SUMMARY
+══════════════════════════════════ */
+.summary-section { padding: 72px 44px 0; margin: 0 -44px; }
+.summary-inner { max-width: 872px; margin: 0 auto; }
+
+.sum-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.sum-card {
+  border-radius: var(--r);
+  padding: 22px;
+  box-shadow: var(--sh);
+}
+
+.sum-card.por-c { background: var(--por-lt); border: 1px solid rgba(193,68,14,.2); }
+.sum-card.bio-c { background: var(--bio-lt); border: 1px solid rgba(26,122,66,.2); }
+.sum-card.geo-c { background: var(--geo-lt); border: 1px solid rgba(27,95,140,.2); }
+
+.sum-card h4 {
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sum-card.por-c h4 { color: var(--por); }
+.sum-card.bio-c h4 { color: var(--bio); }
+.sum-card.geo-c h4 { color: var(--geo); }
+
+.sum-card ul { list-style: none; padding: 0; }
+.sum-card ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(0,0,0,.04);
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+.sum-card ul li:last-child { border-bottom: none; }
+.sum-card ul li::before { content: '›'; font-weight: 900; color: var(--accent); flex-shrink:0; }
+
+/* checklist */
+.checklist-card {
+  background: var(--white);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--r);
+  padding: 26px 32px;
+  margin-top: 24px;
+  box-shadow: var(--sh);
+}
+
+.checklist-card h4 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--bio);
+  margin-bottom: 16px;
+}
+
+.chk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.chk-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.chk-item:hover { background: var(--off); }
+.chk-item input { accent-color: var(--bio); width: 15px; height: 15px; cursor: pointer; }
+
+/* next banner */
+.next-banner {
+  background: var(--ink);
+  border-radius: var(--r);
+  padding: 28px 32px;
+  margin-top: 28px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.next-banner .nb-icon { font-size: 38px; flex-shrink: 0; }
+.next-banner h4 { font-family:'Archivo',sans-serif; font-size:18px; font-weight:900; color:#fff; margin-bottom:4px; }
+.next-banner p { font-size:13px; color:rgba(255,255,255,.5); line-height:1.65; }
+.next-banner .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+
+/* ══════════════════════════════════
+   MISC
+══════════════════════════════════ */
+footer {
+  position: relative;
+  z-index: 1;
+  background: var(--ink);
+  color: rgba(242,247,244,.25);
+  text-align: center;
+  padding: 24px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  letter-spacing: .5px;
+}
+footer strong { color: var(--accent); }
+
+/* pills inline */
+.pill { display:inline-block; padding:1px 8px; border-radius:20px; font-family:'Archivo',sans-serif; font-size:11px; font-weight:700; }
+.p-por { background:var(--por-lt); color:var(--por); }
+.p-bio { background:var(--bio-lt); color:var(--bio); }
+.p-geo { background:var(--geo-lt); color:var(--geo); }
+.p-acc { background:rgba(45,186,110,.12); color:#1a9050; }
+
+mark {
+  background: linear-gradient(180deg,transparent 55%,rgba(45,186,110,.3) 55%);
+  border-radius: 2px; padding: 0 2px;
+}
+
+/* responsive */
+@media (max-width: 680px) {
+  .hero-inner { grid-template-columns: 1fr; padding: 40px 20px; }
+  .page { padding: 0 20px 60px; }
+  .ex-section, .summary-section { padding-left: 20px; padding-right: 20px; margin: 0 -20px; }
+  .nav-row { padding: 0 20px; }
+  .two-col, .three-col, .genre-grid, .sum-grid, .chk-grid, .biome-strip { grid-template-columns: 1fr; }
+  .cell-diagram-wrap { grid-template-columns: 1fr; }
+  .tirinha-example { grid-template-columns: 1fr 1fr; }
+  .biome-strip { grid-template-columns: repeat(3,1fr); }
+}
+
+/* entrance */
+@keyframes rise { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+.hero-inner > * { opacity:0; animation: rise .55s ease forwards; }
+.hero-inner > *:nth-child(1) { animation-delay:.1s; }
+.hero-inner > *:nth-child(2) { animation-delay:.3s; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<header class="hero">
+  <svg class="hero-shapes" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice">
+    <circle cx="900" cy="200" r="300" stroke="rgba(45,186,110,.08)" stroke-width="1" fill="none"/>
+    <circle cx="900" cy="200" r="200" stroke="rgba(45,186,110,.06)" stroke-width="1" fill="none"/>
+    <circle cx="1100" cy="50" r="180" stroke="rgba(27,95,140,.06)" stroke-width="1" fill="none"/>
+    <ellipse cx="200" cy="350" rx="250" ry="150" stroke="rgba(193,68,14,.05)" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker">Semana 01 · Fase 1 — Alicerce · 21 de março de 2026</div>
+      <h1 class="hero-h1">Apostila <span class="day-em">Dia 02</span><br>Gêneros, Células<br>e Espaço</h1>
+      <p class="hero-desc">Você dominou o Dia 01 — agora vamos aprofundar três temas que caem com frequência altíssima: gêneros textuais, a célula viva e o conceito de espaço geográfico.</p>
+      <div class="subject-chips">
+        <span class="chip chip-por">📝 Português · Gêneros Textuais</span>
+        <span class="chip chip-bio">🧬 Biologia · A Célula</span>
+        <span class="chip chip-geo">🌍 Geografia · Espaço Geográfico</span>
+      </div>
+    </div>
+    <div class="day-wheel">
+      <div class="day-num">02</div>
+      <div class="day-of">de 255 dias</div>
+      <div class="day-phase">fase 1 · alicerce</div>
+      <div class="day-progress">0,8% concluído</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-row">
+    <a href="#portugues" class="nav-a p">📝 Português</a>
+    <a href="#biologia" class="nav-a b">🧬 Biologia</a>
+    <a href="#geografia" class="nav-a g">🌍 Geografia</a>
+    <a href="#exercicios" class="nav-a e">🎯 Exercícios</a>
+    <a href="#resumo" class="nav-a">✅ Resumo</a>
+  </div>
+</nav>
+
+<div class="page">
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 1 — PORTUGUÊS: GÊNEROS TEXTUAIS
+══════════════════════════════════════ -->
+<section class="sec por-sec" id="portugues">
+  <div class="sec-flag por"><div class="flag-dot">P</div> Português · Dia 02</div>
+  <h2 class="sec-h2">Gêneros Textuais</h2>
+  <p class="sec-sub">O Vestibulinho adora misturar textos de diferentes gêneros — tirinhas, charges, infográficos, anúncios. Saber identificar cada um é meio caminho andado para responder certo.</p>
+
+  <!-- O que é gênero textual -->
+  <div class="card">
+    <div class="card-h3">💡 O que é um Gênero Textual?</div>
+    <div class="card-sub">Definição cobrada diretamente na prova 2019 Q.24</div>
+    <p style="font-size:14px;margin-bottom:16px;">
+      Gênero textual é uma <mark>forma socialmente estável de comunicação</mark>, reconhecida por características de estrutura, linguagem, objetivo e canal de veiculação. Cada gênero tem seu propósito, seu público e seu modo de falar.
+    </p>
+    <div class="two-col">
+      <div class="box box-tip">
+        <strong>O que a prova pergunta</strong>
+        "O texto acima pertence ao gênero…" / "Assinale as características desse gênero" / "Qual é o objetivo predominante desse tipo de texto?"
+      </div>
+      <div class="box box-warn">
+        <strong>⚠️ Armadilha clássica</strong>
+        Confundir gênero com tipo textual. Tipo = narração, descrição, injunção, dissertação, exposição. Gênero = cartum, charge, carta, notícia… São coisas diferentes!
+      </div>
+    </div>
+  </div>
+
+  <!-- Grade de gêneros -->
+  <div class="card">
+    <div class="card-h3">🗂️ Os gêneros que mais aparecem no Vestibulinho</div>
+    <div class="card-sub">Organize-se: saiba a definição, o objetivo e a linguagem de cada um.</div>
+    <div class="genre-grid">
+
+      <div class="genre-card genre-card-feat">
+        <span class="genre-icon">🎭</span>
+        <div class="genre-name">Cartum</div>
+        <div class="genre-desc">Desenho humorístico ou caricatural. Satiriza comportamentos humanos de forma geral, sem personagem específico real.</div>
+        <div><span class="genre-tag genre-tag-por">Objetivo: criticar</span></div>
+        <div style="margin-top:6px;font-size:11px;color:var(--muted);">Linguagem: predominantemente não verbal (imagem). Humor como recurso principal.</div>
+      </div>
+
+      <div class="genre-card genre-card-feat">
+        <span class="genre-icon">⚡</span>
+        <div class="genre-name">Charge</div>
+        <div class="genre-desc">Caricatura de personagens reais e de fatos atuais. Liga-se a um evento específico. "Envelhece" com o tempo.</div>
+        <div><span class="genre-tag genre-tag-por">Objetivo: criticar/informar</span></div>
+        <div style="margin-top:6px;font-size:11px;color:var(--muted);">Linguagem: verbal + não verbal. Sempre exige conhecimento do fato referenciado.</div>
+      </div>
+
+      <div class="genre-card genre-card-feat">
+        <span class="genre-icon">📖</span>
+        <div class="genre-name">Tirinha</div>
+        <div class="genre-desc">Segmento de história em quadrinhos em uma faixa horizontal. Personagens fixos com personalidade estabelecida.</div>
+        <div><span class="genre-tag genre-tag-por">Objetivo: humor/crítica</span></div>
+        <div style="margin-top:6px;font-size:11px;color:var(--muted);">Linguagem: verbal (balões) + não verbal (imagem). Conclusão geralmente no último quadro.</div>
+      </div>
+
+      <div class="genre-card">
+        <span class="genre-icon">📊</span>
+        <div class="genre-name">Infográfico</div>
+        <div class="genre-desc">Combinação de dados, gráficos e texto para transmitir informações de forma visual e acessível.</div>
+        <div><span class="genre-tag genre-tag-por">Objetivo: informar</span></div>
+        <div style="margin-top:6px;font-size:11px;color:var(--muted);">Linguagem: predominantemente não verbal (ícones, gráficos). Texto é complementar.</div>
+      </div>
+
+      <div class="genre-card">
+        <span class="genre-icon">📢</span>
+        <div class="genre-name">Texto Publicitário</div>
+        <div class="genre-desc">Peças de propaganda ou campanhas de conscientização. Usa linguagem sedutora e imperativa.</div>
+        <div><span class="genre-tag genre-tag-por">Objetivo: persuadir</span></div>
+        <div style="margin-top:6px;font-size:11px;color:var(--muted);">Linguagem: verbal + visual. Usa pronomes de 2ª pessoa, imperativos e figuras de linguagem.</div>
+      </div>
+
+      <div class="genre-card">
+        <span class="genre-icon">📰</span>
+        <div class="genre-name">Texto Dissertativo</div>
+        <div class="genre-desc">Expõe um ponto de vista e argumenta em favor dele com dados, exemplos e raciocínio lógico.</div>
+        <div><span class="genre-tag genre-tag-por">Objetivo: informar/convencer</span></div>
+        <div style="margin-top:6px;font-size:11px;color:var(--muted);">Linguagem: objetiva, 3ª pessoa. Função referencial predominante.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Como analisar uma tirinha -->
+  <div class="card">
+    <div class="card-h3">🔍 Como analisar uma tirinha na prova — método em 4 passos</div>
+    <div class="card-sub">A tirinha da Mafalda (prova 2018) e do Horácio (2026) seguem exatamente essa estrutura.</div>
+
+    <div class="two-col" style="margin-bottom:20px;">
+      <div>
+        <ol style="padding-left:20px;font-size:14px;line-height:1.8;">
+          <li style="margin-bottom:10px;"><strong>Leia os balões em ordem.</strong> A tirinha conta uma sequência. Não pule quadros.</li>
+          <li style="margin-bottom:10px;"><strong>Identifique quem são os personagens.</strong> O que cada um representa? (ex: Mafalda = criança idealista)</li>
+          <li style="margin-bottom:10px;"><strong>Qual é a virada cômica/crítica?</strong> Sempre está no último quadro. É onde a mensagem se revela.</li>
+          <li style="margin-bottom:10px;"><strong>Qual é a crítica social ou mensagem?</strong> Tirinhas raramente são só piada — há sempre um comentário sobre o mundo.</li>
+        </ol>
+      </div>
+      <div>
+        <!-- Tirinha exemplo simulado -->
+        <p style="font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Exemplo simulado — estrutura típica</p>
+        <div class="tirinha-example">
+          <div class="tirinha-panel">
+            <div class="panel-figure">👩‍🎓</div>
+            <div class="panel-speech">Vou trabalhar na ONU quando crescer!</div>
+          </div>
+          <div class="tirinha-panel">
+            <div class="panel-figure">👩‍🎓</div>
+            <div class="panel-speech">Vou traduzir para os países pararem de brigar…</div>
+          </div>
+          <div class="tirinha-panel">
+            <div class="panel-figure">👩‍🎓</div>
+            <div class="panel-speech">E o mundo ficará salvo!</div>
+          </div>
+          <div class="tirinha-panel">
+            <div class="panel-figure">🌍</div>
+            <div class="panel-speech">Isso se você me prometer que vai durar até eu crescer…</div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:8px;font-style:italic;">→ Virada: a criança pede ao globo terrestre que não desapareça antes dela crescer. Crítica: o mundo está em risco.</p>
+      </div>
+    </div>
+
+    <div class="box box-exam">
+      Prova 2018 (Q.01): A Mafalda, no último quadro, usa uma pergunta para pedir ao globo terrestre que <strong>não desapareça antes de ela realizar seu plano</strong> — ou seja, pede ao mundo que sobreviva. Resposta: C.
+    </div>
+  </div>
+
+  <!-- Texto publicitário — recursos -->
+  <div class="card">
+    <div class="card-h3">📢 Recursos do Texto Publicitário e de Conscientização</div>
+    <div class="card-sub">Campanhas de doação de órgãos, sustentabilidade e saúde aparecem muito. Saiba reconhecer os recursos.</div>
+    <div class="tbl-wrap" style="overflow-x:auto;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Recurso</th>
+            <th>O que é</th>
+            <th>Exemplo do Vestibulinho</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill p-por">Imperativo</span></td>
+            <td>Verbo no modo imperativo para dar ordem ou conselho</td>
+            <td><em>"Doe órgãos!"</em> — campanha 2024 Q.26</td>
+          </tr>
+          <tr>
+            <td><span class="pill p-por">Pronome 2ª pessoa</span></td>
+            <td>"Você", "sua", "seu" — inclui o leitor diretamente</td>
+            <td><em>"Sua decisão muda destinos."</em> — 2024 Q.26</td>
+          </tr>
+          <tr>
+            <td><span class="pill p-por">Metáfora</span></td>
+            <td>Comparação implícita que cria imagem poderosa</td>
+            <td><em>"Não deixe cair por terra o que pode alçar novos voos."</em></td>
+          </tr>
+          <tr>
+            <td><span class="pill p-por">Linguagem mista</span></td>
+            <td>Verbal + visual integrados (texto e imagem juntos formam o sentido)</td>
+            <td>Cartaz com criança + balão + pulmão — só faz sentido com os dois</td>
+          </tr>
+          <tr>
+            <td><span class="pill p-por">Denotação</span></td>
+            <td>Sentido literal — palavras no seu significado direto</td>
+            <td>Dados e informações precisas em campanhas de saúde</td>
+          </tr>
+          <tr>
+            <td><span class="pill p-por">Conotação</span></td>
+            <td>Sentido figurado — palavra carregada de sentidos extras</td>
+            <td><em>"alçar novos voos"</em> = ter nova vida, não voo de pássaro</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box box-exam" style="margin-top:16px;">
+      Prova 2024 (Q.26): A campanha de doação de órgãos usa verbos e pronomes que se referem ao leitor para convencê-lo a tomar uma iniciativa em relação ao tema. Resposta: E.
+    </div>
+    <div class="box box-exam">
+      Prova 2024 (Q.27): "não deixe cair por terra o que pode alçar novos voos" = não desperdice a oportunidade de ajudar quem precisa de um doador (sentido metafórico). Resposta: E.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 2 — BIOLOGIA: A CÉLULA
+══════════════════════════════════════ -->
+<section class="sec bio-sec" id="biologia">
+  <div class="sec-flag bio"><div class="flag-dot">B</div> Biologia · Dia 02</div>
+  <h2 class="sec-h2">A Célula — Unidade da Vida</h2>
+  <p class="sec-sub">A célula é a base de toda a biologia do Vestibulinho. Sem entender a célula, você não entende genética, fisiologia, ecologia ou evolução. Este é o alicerce de tudo.</p>
+
+  <!-- Teoria celular -->
+  <div class="card">
+    <div class="card-h3">📜 A Teoria Celular</div>
+    <div class="card-sub">3 princípios que todo aluno precisa conhecer</div>
+    <div class="three-col">
+      <div class="box box-tip">
+        <strong>Princípio 1</strong>
+        Todo ser vivo é formado por <mark>uma ou mais células</mark>. Não existe vida sem célula.
+      </div>
+      <div class="box box-tip">
+        <strong>Princípio 2</strong>
+        A célula é a <mark>unidade básica de estrutura e função</mark> dos seres vivos.
+      </div>
+      <div class="box box-tip">
+        <strong>Princípio 3</strong>
+        Toda célula se origina de outra célula preexistente — <mark>Omnis cellula e cellula</mark> (Virchow, 1858).
+      </div>
+    </div>
+  </div>
+
+  <!-- Procariótica vs Eucariótica -->
+  <div class="card">
+    <div class="card-h3">🔬 Célula Procariótica vs. Eucariótica</div>
+    <div class="card-sub">A diferença mais cobrada em questões de classificação dos seres vivos</div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Característica</th>
+          <th>Procariótica 🦠</th>
+          <th>Eucariótica 🐾🌿</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Núcleo</td>
+          <td>Ausente — material genético disperso no citoplasma (nucleoide)</td>
+          <td>Presente — envolvido por membrana nuclear (carioteca)</td>
+        </tr>
+        <tr>
+          <td>Organelas membranosas</td>
+          <td>Ausentes (mitocôndrias, Golgi, etc. não existem)</td>
+          <td>Presentes (mitocôndrias, retículo, Golgi…)</td>
+        </tr>
+        <tr>
+          <td>Tamanho</td>
+          <td>Menor (~1–10 µm)</td>
+          <td>Maior (~10–100 µm)</td>
+        </tr>
+        <tr>
+          <td>Organismos</td>
+          <td>Bactérias e arqueas</td>
+          <td>Animais, plantas, fungos, protistas</td>
+        </tr>
+        <tr>
+          <td>Ribossomos</td>
+          <td>Presentes (menores, 70S)</td>
+          <td>Presentes (maiores, 80S)</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="box box-warn">
+      <strong>⚠️ Armadilha frequente</strong>
+      Vírus NÃO são células — não têm membrana celular própria nem metabolismo independente. Por isso, tecnicamente, não são seres vivos no sentido clássico. Se a questão perguntar sobre vírus e teoria celular, lembre-se disso!
+    </div>
+  </div>
+
+  <!-- Célula Animal vs Vegetal -->
+  <div class="cell-section">
+    <div class="cell-title">🌿 Animal × Vegetal — As diferenças que a prova adora cobrar</div>
+    <div class="cell-diagram-wrap">
+      <!-- SVG Célula Animal -->
+      <div class="cell-canvas">
+        <svg viewBox="0 0 280 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fef9ff;border-radius:10px;">
+          <text x="140" y="18" text-anchor="middle" font-family="Archivo,sans-serif" font-size="11" font-weight="700" fill="#555">🐾 CÉLULA ANIMAL</text>
+          <!-- membrana -->
+          <ellipse cx="140" cy="130" rx="120" ry="95" fill="#fce8ff" stroke="#c060d0" stroke-width="2.5" stroke-dasharray="none"/>
+          <!-- núcleo -->
+          <ellipse cx="130" cy="120" rx="36" ry="30" fill="#d0b0f8" stroke="#8040c0" stroke-width="1.5"/>
+          <text x="130" y="115" text-anchor="middle" font-family="Archivo,sans-serif" font-size="8" font-weight="700" fill="#5020a0">NÚCLEO</text>
+          <ellipse cx="124" cy="122" rx="8" ry="6" fill="#9060e0" opacity=".7"/>
+          <text x="124" y="125" text-anchor="middle" font-family="Archivo,sans-serif" font-size="6" fill="white">nuc.</text>
+          <!-- mitocôndrias -->
+          <ellipse cx="195" cy="105" rx="18" ry="11" fill="#ffb870" stroke="#e07020" stroke-width="1.5"/>
+          <text x="195" y="108" text-anchor="middle" font-family="Archivo,sans-serif" font-size="6.5" font-weight="700" fill="#a04000">MITO</text>
+          <ellipse cx="75" cy="155" rx="16" ry="10" fill="#ffb870" stroke="#e07020" stroke-width="1.5"/>
+          <text x="75" y="158" text-anchor="middle" font-family="Archivo,sans-serif" font-size="6.5" font-weight="700" fill="#a04000">MITO</text>
+          <!-- retículo ER -->
+          <path d="M160 140 Q175 130 180 148 Q185 164 170 160 Q155 156 160 140" fill="none" stroke="#60a0d0" stroke-width="1.5"/>
+          <text x="178" y="175" font-family="Archivo,sans-serif" font-size="6" fill="#2060a0">R.E.</text>
+          <!-- Golgi -->
+          <path d="M95 92 Q120 87 120 98" fill="none" stroke="#e06060" stroke-width="1.5"/>
+          <path d="M93 100 Q120 93 120 106" fill="none" stroke="#e06060" stroke-width="1.5"/>
+          <path d="M95 108 Q120 101 120 114" fill="none" stroke="#e06060" stroke-width="1.5"/>
+          <text x="82" y="83" font-family="Archivo,sans-serif" font-size="6" fill="#b02020">GOLGI</text>
+          <!-- centríolo (só animal!) -->
+          <rect x="185" y="145" width="16" height="8" rx="3" fill="#80d080" stroke="#208040" stroke-width="1.5"/>
+          <text x="193" y="152" text-anchor="middle" font-family="Archivo,sans-serif" font-size="5.5" fill="white" font-weight="700">CENT.</text>
+          <!-- lisossomo -->
+          <circle cx="205" cy="165" r="9" fill="#f8d060" stroke="#c09000" stroke-width="1.5"/>
+          <text x="205" y="168" text-anchor="middle" font-family="Archivo,sans-serif" font-size="5.5" fill="#705000" font-weight="700">LIS.</text>
+          <!-- legenda especial -->
+          <rect x="10" y="205" width="10" height="8" rx="2" fill="#80d080" stroke="#208040" stroke-width="1"/>
+          <text x="24" y="213" font-family="Archivo,sans-serif" font-size="7.5" fill="#208040" font-weight="700">Centríolo ← só animal!</text>
+        </svg>
+      </div>
+
+      <!-- SVG Célula Vegetal -->
+      <div class="cell-canvas">
+        <svg viewBox="0 0 280 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#f0fff4;border-radius:10px;">
+          <text x="140" y="18" text-anchor="middle" font-family="Archivo,sans-serif" font-size="11" font-weight="700" fill="#555">🌿 CÉLULA VEGETAL</text>
+          <!-- parede celular -->
+          <rect x="18" y="26" width="244" height="200" rx="6" fill="none" stroke="#208040" stroke-width="4"/>
+          <!-- membrana -->
+          <rect x="24" y="32" width="232" height="188" rx="4" fill="#e0ffe8" stroke="#40c060" stroke-width="1.5"/>
+          <!-- vacúolo central GRANDE -->
+          <ellipse cx="140" cy="130" rx="80" ry="65" fill="#c0eaff" stroke="#2080c0" stroke-width="1.5"/>
+          <text x="140" y="133" text-anchor="middle" font-family="Archivo,sans-serif" font-size="9" font-weight="700" fill="#1060a0">VACÚOLO</text>
+          <text x="140" y="146" text-anchor="middle" font-family="Archivo,sans-serif" font-size="7" fill="#1060a0">CENTRAL</text>
+          <!-- núcleo -->
+          <ellipse cx="100" cy="75" rx="26" ry="22" fill="#d0b0f8" stroke="#8040c0" stroke-width="1.5"/>
+          <text x="100" y="78" text-anchor="middle" font-family="Archivo,sans-serif" font-size="8" font-weight="700" fill="#5020a0">NÚC.</text>
+          <!-- cloroplastos -->
+          <ellipse cx="200" cy="65" rx="20" ry="12" fill="#60d060" stroke="#206020" stroke-width="1.5"/>
+          <text x="200" y="68" text-anchor="middle" font-family="Archivo,sans-serif" font-size="7" font-weight="700" fill="white">CLORO.</text>
+          <ellipse cx="55" cy="90" rx="18" ry="11" fill="#60d060" stroke="#206020" stroke-width="1.5"/>
+          <text x="55" y="93" text-anchor="middle" font-family="Archivo,sans-serif" font-size="7" font-weight="700" fill="white">CLORO.</text>
+          <!-- mitocôndrias -->
+          <ellipse cx="235" cy="110" rx="14" ry="9" fill="#ffb870" stroke="#e07020" stroke-width="1.5"/>
+          <text x="235" y="113" text-anchor="middle" font-family="Archivo,sans-serif" font-size="6" fill="#a04000" font-weight="700">MITO</text>
+          <!-- legenda especial -->
+          <rect x="10" y="205" width="10" height="8" rx="2" fill="#60d060" stroke="#206020" stroke-width="1"/>
+          <text x="24" y="213" font-family="Archivo,sans-serif" font-size="7.5" fill="#206020" font-weight="700">Parede + Cloroplasto + Vacúolo ← só vegetal!</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Diferenças em tabela -->
+    <table class="tbl" style="margin-top:20px;background:white;">
+      <thead>
+        <tr>
+          <th>Estrutura</th>
+          <th>🐾 Animal</th>
+          <th>🌿 Vegetal</th>
+          <th>Função</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Parede celular</strong></td>
+          <td style="color:var(--red)">❌ Ausente</td>
+          <td style="color:var(--bio)">✅ Presente (celulose)</td>
+          <td>Proteção e rigidez</td>
+        </tr>
+        <tr>
+          <td><strong>Cloroplastos</strong></td>
+          <td style="color:var(--red)">❌ Ausente</td>
+          <td style="color:var(--bio)">✅ Presente</td>
+          <td>Fotossíntese (converte luz → glicose)</td>
+        </tr>
+        <tr>
+          <td><strong>Vacúolo central</strong></td>
+          <td>Pequenos ou ausentes</td>
+          <td style="color:var(--bio)">✅ Grande e central</td>
+          <td>Armazenamento de água e pressão de turgor</td>
+        </tr>
+        <tr>
+          <td><strong>Centríolo</strong></td>
+          <td style="color:var(--bio)">✅ Presente</td>
+          <td style="color:var(--red)">❌ Ausente (na maioria)</td>
+          <td>Divisão celular (forma o fuso mitótico)</td>
+        </tr>
+        <tr>
+          <td><strong>Membrana plasmática</strong></td>
+          <td style="color:var(--bio)">✅ Presente</td>
+          <td style="color:var(--bio)">✅ Presente</td>
+          <td>Controle do que entra e sai da célula</td>
+        </tr>
+        <tr>
+          <td><strong>Mitocôndrias</strong></td>
+          <td style="color:var(--bio)">✅ Presente</td>
+          <td style="color:var(--bio)">✅ Presente</td>
+          <td>Respiração celular — produz ATP (energia)</td>
+        </tr>
+        <tr>
+          <td><strong>Núcleo</strong></td>
+          <td style="color:var(--bio)">✅ Presente</td>
+          <td style="color:var(--bio)">✅ Presente</td>
+          <td>Controla hereditariedade e metabolismo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Organelas e funções -->
+  <div class="card">
+    <div class="card-h3">⚙️ Organelas — nome, local e função</div>
+    <div class="card-sub">As questões adoram pedir "qual organela realiza determinada função". Aprenda o par: organela ↔ função.</div>
+    <div class="organelle-list">
+      <div class="org-item">
+        <div class="org-dot" style="background:#8040c0;"></div>
+        <div>
+          <span class="org-name">Núcleo</span>
+          <span class="org-func">Contém o DNA (material genético). Controla toda a atividade celular. Envolto pela carioteca (membrana nuclear dupla).</span>
+        </div>
+      </div>
+      <div class="org-item">
+        <div class="org-dot" style="background:#e07020;"></div>
+        <div>
+          <span class="org-name">Mitocôndria — "usina de energia"</span>
+          <span class="org-func">Realiza a <strong>respiração celular aeróbica</strong> → produz ATP (adenosina trifosfato), a "moeda de energia" da célula. Tem DNA próprio (endossimbiose).</span>
+        </div>
+      </div>
+      <div class="org-item">
+        <div class="org-dot" style="background:#60d060;"></div>
+        <div>
+          <span class="org-name">Cloroplasto — "fábrica de açúcar" (só vegetal)</span>
+          <span class="org-func">Realiza a <strong>fotossíntese</strong>: capta luz solar e CO₂ → produz glicose (C₆H₁₂O₆) + O₂. Tem clorofila (pigmento verde).</span>
+        </div>
+      </div>
+      <div class="org-item">
+        <div class="org-dot" style="background:#e06060;"></div>
+        <div>
+          <span class="org-name">Complexo de Golgi — "correio celular"</span>
+          <span class="org-func">Processa, empacota e distribui proteínas e lipídios para dentro ou fora da célula. Produz lisossomos.</span>
+        </div>
+      </div>
+      <div class="org-item">
+        <div class="org-dot" style="background:#f8d060;"></div>
+        <div>
+          <span class="org-name">Lisossomo — "sistema digestivo celular"</span>
+          <span class="org-func">Contém enzimas digestivas. Destrói partículas estranhas, restos celulares e organelas danificadas (autofagia).</span>
+        </div>
+      </div>
+      <div class="org-item">
+        <div class="org-dot" style="background:#60a0d0;"></div>
+        <div>
+          <span class="org-name">Retículo Endoplasmático</span>
+          <span class="org-func"><strong>Rugoso (REG):</strong> tem ribossomos → sintetiza proteínas para exportar. <strong>Liso (REL):</strong> sem ribossomos → produz lipídios e desintoxicação.</span>
+        </div>
+      </div>
+      <div class="org-item">
+        <div class="org-dot" style="background:#a080c0;"></div>
+        <div>
+          <span class="org-name">Ribossomo — "fábrica de proteínas"</span>
+          <span class="org-func">Síntese proteica (tradução do RNA). Presente em todas as células (procarióticas e eucarióticas). NÃO tem membrana.</span>
+        </div>
+      </div>
+    </div>
+    <div class="box box-tip" style="margin-top:16px;">
+      <strong>💡 Mnemônico para a diferença animal/vegetal</strong>
+      Lembre: a célula vegetal tem o "PCV": <strong>P</strong>arede celular, <strong>C</strong>loroplasto, <strong>V</strong>acúolo central. Tudo que a animal não tem.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 3 — GEOGRAFIA: ESPAÇO GEOGRÁFICO
+══════════════════════════════════════ -->
+<section class="sec geo-sec" id="geografia">
+  <div class="sec-flag geo"><div class="flag-dot">G</div> Geografia · Dia 02</div>
+  <h2 class="sec-h2">Espaço Geográfico e Biomas Brasileiros</h2>
+  <p class="sec-sub">Milton Santos mudou o modo como a Geografia pensa o espaço. Seu conceito foi cobrado diretamente na prova 2024 e continua sendo fundamental para entender qualquer questão de geografia humana.</p>
+
+  <!-- Milton Santos -->
+  <div class="card">
+    <div class="card-h3">🧭 O Espaço Geográfico — Milton Santos (1926–2001)</div>
+    <div class="card-sub">Geógrafo baiano, um dos mais influentes do século XX. Seu conceito de espaço é a base da geografia atual.</div>
+
+    <div class="two-col">
+      <div>
+        <div class="box box-info">
+          <strong>A definição exata (prova 2024 Q.31)</strong>
+          "O espaço geográfico é um <mark>conjunto indissociável</mark> do qual participam, de um lado, certo arranjo de objetos geográficos, objetos naturais e objetos sociais; e, de outro, a <mark>vida que os preenche e os anima</mark>, ou seja, a sociedade em movimento."
+        </div>
+
+        <p style="font-size:14px;margin:14px 0 10px;">Em linguagem simples:</p>
+        <ul style="padding-left:18px;font-size:14px;line-height:1.8;">
+          <li>Espaço ≠ apenas natureza (não é só rios, florestas e montanhas)</li>
+          <li>Espaço ≠ apenas sociedade (não é só cidades e indústrias)</li>
+          <li>Espaço = <strong>a relação entre a natureza e a sociedade que a transforma</strong></li>
+          <li>Somos "seres geográficos" — fazemos parte do espaço que habitamos</li>
+        </ul>
+      </div>
+      <div>
+        <!-- Diagrama SVG -->
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#e8f2fa;border-radius:10px;padding:10px;">
+          <!-- natureza -->
+          <ellipse cx="90" cy="110" rx="75" ry="65" fill="rgba(45,186,110,.25)" stroke="rgba(26,122,66,.6)" stroke-width="2"/>
+          <text x="65" y="80" font-family="Archivo,sans-serif" font-size="10" font-weight="700" fill="#1a7a42">NATUREZA</text>
+          <text x="65" y="93" font-family="Spectral,serif" font-size="9" fill="#1a7a42">rios, florestas,</text>
+          <text x="65" y="105" font-family="Spectral,serif" font-size="9" fill="#1a7a42">relevo, clima</text>
+          <!-- sociedade -->
+          <ellipse cx="170" cy="110" rx="75" ry="65" fill="rgba(27,95,140,.2)" stroke="rgba(27,95,140,.6)" stroke-width="2"/>
+          <text x="148" y="80" font-family="Archivo,sans-serif" font-size="10" font-weight="700" fill="#1b5f8c">SOCIEDADE</text>
+          <text x="148" y="93" font-family="Spectral,serif" font-size="9" fill="#1b5f8c">cidades, cultura,</text>
+          <text x="148" y="105" font-family="Spectral,serif" font-size="9" fill="#1b5f8c">economia, política</text>
+          <!-- interseção -->
+          <text x="128" y="118" text-anchor="middle" font-family="Archivo,sans-serif" font-size="9" font-weight="900" fill="#1a1614">ESPAÇO</text>
+          <text x="128" y="130" text-anchor="middle" font-family="Archivo,sans-serif" font-size="9" font-weight="900" fill="#1a1614">GEO.</text>
+          <!-- rótulo bottom -->
+          <text x="130" y="196" text-anchor="middle" font-family="Spectral,serif" font-size="9.5" font-style="italic" fill="#3d6050">"conjunto indissociável"</text>
+          <text x="130" y="208" text-anchor="middle" font-family="Spectral,serif" font-size="9" fill="#3d6050">— Milton Santos</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="box box-exam" style="margin-top:12px;">
+      Prova 2024 (Q.31): o espaço geográfico é o "resultado da relação entre o ser humano e o meio no qual ele habita e do qual também faz parte". Resposta: C.
+    </div>
+  </div>
+
+  <!-- Biomas -->
+  <div class="card">
+    <div class="card-h3">🌿 Biomas Brasileiros — Os 6 que a prova cobra</div>
+    <div class="card-sub">O Brasil tem a maior biodiversidade do planeta. Saber os biomas é essencial para questões de ecologia e problemas ambientais.</div>
+
+    <div class="biome-strip">
+      <div class="biome-card" style="background:rgba(0,120,60,.1);border:1px solid rgba(0,120,60,.3);">
+        <span class="biome-icon">🌳</span>
+        <span class="biome-name" style="color:#006030;">Amazônia</span>
+        <span class="biome-desc">Maior bioma. Clima equatorial. Norte do Brasil. ~49% do território.</span>
+      </div>
+      <div class="biome-card" style="background:rgba(193,68,14,.1);border:1px solid rgba(193,68,14,.3);">
+        <span class="biome-icon">🌾</span>
+        <span class="biome-name" style="color:var(--por);">Cerrado</span>
+        <span class="biome-desc">Savana. Clima tropical. Centro-Oeste. 2º maior bioma.</span>
+      </div>
+      <div class="biome-card" style="background:rgba(45,186,110,.1);border:1px solid rgba(45,186,110,.3);">
+        <span class="biome-icon">🦋</span>
+        <span class="biome-name" style="color:#1a9050;">Mata Atlântica</span>
+        <span class="biome-desc">Hotspot. Costa Leste. 75,88% desmatada. Mais biodiversidade por km².</span>
+      </div>
+      <div class="biome-card" style="background:rgba(200,160,60,.1);border:1px solid rgba(200,160,60,.3);">
+        <span class="biome-icon">🌵</span>
+        <span class="biome-name" style="color:#a07000;">Caatinga</span>
+        <span class="biome-desc">Exclusiva do Brasil. Semiárido nordestino. Animais e plantas adaptados à seca.</span>
+      </div>
+      <div class="biome-card" style="background:rgba(27,95,140,.1);border:1px solid rgba(27,95,140,.3);">
+        <span class="biome-icon">🐊</span>
+        <span class="biome-name" style="color:var(--geo);">Pantanal</span>
+        <span class="biome-desc">Maior planície alagável. Menos desmatado (15%). MT/MS.</span>
+      </div>
+      <div class="biome-card" style="background:rgba(80,160,200,.1);border:1px solid rgba(80,160,200,.3);">
+        <span class="biome-icon">🐴</span>
+        <span class="biome-name" style="color:#206080;">Pampa</span>
+        <span class="biome-desc">Campos do Sul. Apenas no RS. Subtropical. Pecuária intensa.</span>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:16px;">
+      <div class="box box-info">
+        <strong>🔥 O que é um Hotspot?</strong>
+        Área com ≥1500 espécies endêmicas E ≤30% de vegetação original preservada. A Mata Atlântica tem 75,88% desmatada → restam menos de 30% → <strong>É hotspot</strong>. O Pantanal (só 15% desmatado) NÃO é hotspot.
+      </div>
+      <div class="box box-exam">
+        Prova 2019 (Q.21): Com base no critério de hotspot (≤30% preservado) e nos dados de desmatamento, o bioma que se classifica como hotspot é a <strong>Mata Atlântica</strong> (75,88% desmatada). Resposta: B.
+      </div>
+    </div>
+  </div>
+
+  <!-- Problemas ambientais -->
+  <div class="card">
+    <div class="card-h3">🌡️ Problemas Ambientais — tema transversal que conecta tudo</div>
+    <div class="card-sub">Aparece em questões de Geografia, Biologia, Química e até Português (textos de campanhas)</div>
+    <table class="tbl">
+      <thead>
+        <tr><th>Problema</th><th>Causa principal</th><th>Consequência</th><th>Provas</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Desmatamento</strong></td>
+          <td>Agropecuária, mineração, expansão urbana</td>
+          <td>Perda de biodiversidade, erosão, mudanças climáticas</td>
+          <td>2018–2026</td>
+        </tr>
+        <tr>
+          <td><strong>Aquecimento global</strong></td>
+          <td>Emissão de gases de efeito estufa (CO₂, metano)</td>
+          <td>Derretimento das calotas, elevação do nível do mar</td>
+          <td>2019 Q.48</td>
+        </tr>
+        <tr>
+          <td><strong>Poluição hídrica</strong></td>
+          <td>Esgoto, agrotóxicos, resíduos industriais</td>
+          <td>Eutrofização, morte de peixes, doenças de veiculação hídrica</td>
+          <td>2018 Q.14</td>
+        </tr>
+        <tr>
+          <td><strong>Espécies invasoras</strong></td>
+          <td>Introdução intencional ou acidental de espécies</td>
+          <td>Extinção de espécies nativas, desequilíbrio ecológico</td>
+          <td>2019 Q.26</td>
+        </tr>
+        <tr>
+          <td><strong>Gentrificação</strong></td>
+          <td>Valorização imobiliária de áreas urbanas degradadas</td>
+          <td>Expulsão da população de baixa renda → segregação</td>
+          <td>2024 Q.46</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</div><!-- /page -->
+
+<!-- ══════════════════════════════════════
+     EXERCÍCIOS
+══════════════════════════════════════ -->
+<section class="ex-section" id="exercicios">
+  <div class="ex-inner">
+    <div class="sec-flag por" style="margin-bottom:12px;"><div class="flag-dot">🎯</div> Exercícios do Dia 02</div>
+    <h2 class="sec-h2" style="color:var(--ink);">Hora de praticar</h2>
+    <p class="sec-sub">7 questões cobrindo os três temas de hoje. Resolva sozinha antes de ver o gabarito!</p>
+
+    <!-- Q1 PORTUGUÊS -->
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-badge por">Q01</span>
+        <span class="q-src">Português · Gêneros Textuais · ETEC 2019 Q.24</span>
+      </div>
+      <div class="q-text">Sobre o <strong>cartum</strong> apresentado na prova (que retrata a evolução humana terminando no homem jogando lixo no rio), assinale a alternativa que identifica corretamente suas características, objetivo e linguagem predominante:</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'c')"><span class="opt-l">A</span> Desenho humorístico que satiriza comportamentos humanos · Objetivo: criticar · Linguagem: não verbal</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">B</span> Segmento de HQ em faixa horizontal · Objetivo: informar · Linguagem: verbal</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">C</span> Caricatura de personagem real e fato atual · Objetivo: ironizar · Linguagem: verbal e não verbal</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">D</span> Desenho com sequência de personagens · Objetivo: entreter · Linguagem: verbal</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">E</span> Narração de fato curioso de personagem histórica · Objetivo: comover · Linguagem: não verbal</button>
+      </div>
+      <button class="reveal-btn" onclick="toggleAns(this)">Ver resolução</button>
+      <div class="ans-reveal">
+        <span class="ah">Resposta: A ✅</span><br><br>
+        O cartum é um <strong>desenho humorístico/caricatural</strong> que satiriza comportamentos humanos em geral (não um evento específico como a charge). Seu objetivo é <strong>criticar</strong> — no caso, o comportamento destrutivo do homem com o ambiente. A linguagem é predominantemente <strong>não verbal</strong> (a mensagem está na imagem, não no texto).<br><br>
+        Diferença cartum/charge: charge = personagem real + fato atual + "envelhece". Cartum = comportamento genérico + "não envelhece".
+      </div>
+    </div>
+
+    <!-- Q2 PORTUGUÊS -->
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-badge por">Q02</span>
+        <span class="q-src">Português · Texto Publicitário · ETEC 2024 Q.26</span>
+      </div>
+      <div class="q-text-sample">"Sua decisão muda destinos. Não deixe cair por terra o que pode alçar novos voos. Doe órgãos!"</div>
+      <div class="q-text">Por ser uma campanha que prioriza a conscientização, o texto utiliza-se de:</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">A</span> Linguagem não verbal, embora esse tipo raramente apareça em cartazes publicitários.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">B</span> Verbos no pretérito para expressar a universalidade das ações narradas.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">C</span> Linguagem verbal rebuscada para direcionar o texto ao público acadêmico.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">D</span> Linguagem denotativa com intuito de dar sentido irônico aos termos "decisão" e "doar".</button>
+        <button class="opt" onclick="pick(this,'c')"><span class="opt-l">E</span> Verbos e pronomes que se referem ao leitor para convencê-lo a tomar uma iniciativa em relação ao tema.</button>
+      </div>
+      <button class="reveal-btn" onclick="toggleAns(this)">Ver resolução</button>
+      <div class="ans-reveal">
+        <span class="ah">Resposta: E ✅</span><br><br>
+        <strong>"Sua decisão"</strong> — pronome possessivo de 2ª pessoa aponta para o leitor.<br>
+        <strong>"Doe!"</strong> — imperativo convoca o leitor a agir.<br>
+        <strong>"alçar novos voos"</strong> — linguagem conotativa/metafórica (não literal).<br><br>
+        Texto publicitário/de conscientização usa sempre a estratégia de INCLUIR o leitor: pronomes e imperativos voltados ao "você" criam senso de responsabilidade pessoal.
+      </div>
+    </div>
+
+    <!-- Q3 BIOLOGIA -->
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-badge bio">Q03</span>
+        <span class="q-src">Biologia · Célula · Base Conceitual</span>
+      </div>
+      <div class="q-text">Sobre as diferenças entre célula animal e célula vegetal, assinale a alternativa <strong>correta</strong>:</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">A</span> Apenas a célula animal possui membrana plasmática; a vegetal é protegida somente pela parede celular.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">B</span> A célula animal possui cloroplastos que realizam a fotossíntese, enquanto a vegetal não os tem.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">C</span> Ambas possuem centríolos, que são fundamentais para a divisão celular das duas células.</button>
+        <button class="opt" onclick="pick(this,'c')"><span class="opt-l">D</span> A célula vegetal possui parede celular de celulose, cloroplastos e vacúolo central proeminente — estruturas ausentes ou reduzidas na célula animal.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">E</span> Mitocôndrias estão presentes apenas na célula animal, pois a célula vegetal obtém energia somente via fotossíntese.</button>
+      </div>
+      <button class="reveal-btn" onclick="toggleAns(this)">Ver resolução</button>
+      <div class="ans-reveal">
+        <span class="ah">Resposta: D ✅</span><br><br>
+        O mnemônico <strong>PCV</strong> resume o que é exclusivo da célula vegetal: <strong>P</strong>arede celular (celulose), <strong>C</strong>loroplasto (fotossíntese), <strong>V</strong>acúolo central grande.<br><br>
+        <strong>Por que as outras estão erradas?</strong><br>
+        A: Ambas têm membrana plasmática — a vegetal tem membrana + parede por cima.<br>
+        B: Exatamente ao contrário — cloroplastos são exclusivos da célula vegetal.<br>
+        C: Centríolos estão na célula ANIMAL; a maioria das vegetais não os tem.<br>
+        E: Mitocôndrias estão em AMBAS — a vegetal precisa de energia à noite (sem luz = sem fotossíntese).
+      </div>
+    </div>
+
+    <!-- Q4 BIOLOGIA -->
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-badge bio">Q04</span>
+        <span class="q-src">Biologia · Organelas · Base Conceitual</span>
+      </div>
+      <div class="q-text">A mitocôndria é frequentemente chamada de "usina de energia" da célula. Essa denominação se deve ao fato de que ela:</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">A</span> Realiza a fotossíntese, transformando energia luminosa em energia química sob a forma de glicose.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">B</span> Produz proteínas a partir da informação contida no DNA nuclear.</button>
+        <button class="opt" onclick="pick(this,'c')"><span class="opt-l">C</span> Realiza a respiração celular aeróbica, produzindo ATP — a principal moeda energética das células.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">D</span> Armazena grandes reservas de glicose para ser utilizada em momentos de alta demanda metabólica.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">E</span> Destrói partículas invasoras e restos celulares por meio de enzimas digestivas.</button>
+      </div>
+      <button class="reveal-btn" onclick="toggleAns(this)">Ver resolução</button>
+      <div class="ans-reveal">
+        <span class="ah">Resposta: C ✅</span><br><br>
+        Mitocôndria = respiração celular aeróbica = produção de ATP.<br>
+        Equação simplificada: glicose + O₂ → CO₂ + H₂O + <strong>ATP (energia)</strong><br><br>
+        As outras organelas:<br>
+        A → Cloroplasto (fotossíntese).<br>
+        B → Ribossomo (síntese proteica).<br>
+        D → Vacúolo/glicogênio no citoplasma.<br>
+        E → Lisossomo (digestão intracelular).
+      </div>
+    </div>
+
+    <!-- Q5 BIOLOGIA -->
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-badge bio">Q05</span>
+        <span class="q-src">Biologia · Procarioto vs Eucarioto · Base</span>
+      </div>
+      <div class="q-text">As bactérias são organismos unicelulares com organização celular diferente das células humanas. A principal diferença entre uma célula bacteriana (procariótica) e uma célula humana (eucariótica) é:</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">A</span> A célula bacteriana possui núcleo com carioteca dupla, enquanto a humana tem o DNA disperso no citoplasma.</button>
+        <button class="opt" onclick="pick(this,'c')"><span class="opt-l">B</span> A célula bacteriana não possui núcleo delimitado por membrana; seu material genético fica disperso no citoplasma.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">C</span> A célula humana não possui ribossomos, enquanto a bacteriana os possui em grande quantidade.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">D</span> A célula bacteriana possui mitocôndrias e cloroplastos, ao contrário da célula humana.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">E</span> Ambas possuem a mesma estrutura, diferindo apenas no tamanho.</button>
+      </div>
+      <button class="reveal-btn" onclick="toggleAns(this)">Ver resolução</button>
+      <div class="ans-reveal">
+        <span class="ah">Resposta: B ✅</span><br><br>
+        <strong>Procariótica (bactérias):</strong> sem núcleo organizado → DNA solto no citoplasma (nucleoide). Sem organelas membranosas (mitocôndrias, Golgi etc).<br>
+        <strong>Eucariótica (humanos, plantas, fungos):</strong> núcleo com carioteca + organelas membranosas.<br><br>
+        Ribossomos existem em AMBAS — por isso C está errada. O critério que define procariótico/eucariótico é a presença ou ausência de núcleo organizado.
+      </div>
+    </div>
+
+    <!-- Q6 GEOGRAFIA -->
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-badge geo">Q06</span>
+        <span class="q-src">Geografia · Espaço Geográfico · ETEC 2024 Q.31</span>
+      </div>
+      <div class="q-text-sample">"Para o geógrafo brasileiro Milton Santos, o conceito de espaço geográfico é definido como um conjunto indissociável do qual participam, de um lado, certo arranjo de objetos geográficos, objetos naturais e objetos sociais; e, de outro, a vida que os preenche e os anima, ou seja, a sociedade em movimento."</div>
+      <div class="q-text">De acordo com o texto, podemos concluir corretamente que o conceito de espaço geográfico é:</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">A</span> Consequência de um arranjo de objetos naturais, sem a participação da sociedade, que é vista como objeto estático.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">B</span> Produto de ações de cada indivíduo na natureza, sem relação com os movimentos mais amplos da sociedade.</button>
+        <button class="opt" onclick="pick(this,'c')"><span class="opt-l">C</span> Resultado da relação entre o ser humano e o meio no qual ele habita e do qual também faz parte.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">D</span> Efeito das modificações no núcleo do planeta Terra, causadas pelos elementos da natureza.</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">E</span> Fruto do arranjo astronômico do sistema solar, ou seja, o que chamamos de espaço sideral.</button>
+      </div>
+      <button class="reveal-btn" onclick="toggleAns(this)">Ver resolução</button>
+      <div class="ans-reveal">
+        <span class="ah">Resposta: C ✅</span><br><br>
+        A palavra-chave da definição de Milton Santos é <strong>"indissociável"</strong> — natureza e sociedade não se separam. O espaço geográfico é a RELAÇÃO entre eles.<br><br>
+        <strong>Por que as outras estão erradas?</strong><br>
+        A: Exclui a sociedade → contradiz "indissociável".<br>
+        B: Individualiza demais — o conceito é coletivo/social.<br>
+        D: Fala de núcleo da Terra → absurdo para o conceito.<br>
+        E: Confunde com espaço astronômico → completamente diferente.
+      </div>
+    </div>
+
+    <!-- Q7 GEOGRAFIA -->
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-badge geo">Q07</span>
+        <span class="q-src">Geografia · Biomas · ETEC 2019 Q.21</span>
+      </div>
+      <div class="q-text">Para ser classificada como <em>hotspot</em>, uma área deve ter pelo menos 1.500 espécies de plantas endêmicas E ter 30% ou menos de sua vegetação original preservada. Considerando os dados abaixo, qual bioma brasileiro se qualifica como hotspot?</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px;margin:12px 0;font-size:13px;">
+        <table class="tbl" style="margin:0;">
+          <thead><tr><th>Bioma</th><th>Área desmatada (%)</th></tr></thead>
+          <tbody>
+            <tr><td>Cerrado</td><td>48,22%</td></tr>
+            <tr><td>Mata Atlântica</td><td>75,88%</td></tr>
+            <tr><td>Caatinga</td><td>45,92%</td></tr>
+            <tr><td>Pampa</td><td>54,17%</td></tr>
+            <tr><td>Pantanal</td><td>15,43%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">A</span> Cerrado — pois tem a maior área original</button>
+        <button class="opt" onclick="pick(this,'c')"><span class="opt-l">B</span> Mata Atlântica — pois resta menos de 30% de vegetação original</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">C</span> Pantanal — pois é o menos desmatado e mais preservado</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">D</span> Pampa — pois tem mais de 50% desmatado</button>
+        <button class="opt" onclick="pick(this,'w')"><span class="opt-l">E</span> Caatinga — pois é exclusiva do Brasil</button>
+      </div>
+      <button class="reveal-btn" onclick="toggleAns(this)">Ver resolução</button>
+      <div class="ans-reveal">
+        <span class="ah">Resposta: B ✅</span><br><br>
+        <strong>Critério:</strong> ≤ 30% de vegetação original preservada.<br>
+        <strong>Mata Atlântica:</strong> 75,88% desmatada → apenas 100 − 75,88 = <strong>24,12% preservado</strong> → abaixo de 30% → <strong>É hotspot!</strong><br><br>
+        Atenção: a tabela mostra % desmatada, não preservada. Precisa subtrair de 100%.<br>
+        Pantanal: 15,43% desmatado → 84,57% preservado → NÃO é hotspot (preservação acima de 30%).
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     RESUMO
+══════════════════════════════════════ -->
+<section class="summary-section" id="resumo">
+  <div class="summary-inner">
+    <div class="sec-flag bio"><div class="flag-dot">✅</div> Fechamento do Dia</div>
+    <h2 class="sec-h2" style="color:var(--ink);">O que você aprendeu hoje</h2>
+    <p class="sec-sub">Guarde estes pontos — eles valem pontos!</p>
+
+    <div class="sum-grid">
+      <div class="sum-card por-c">
+        <h4>📝 Português</h4>
+        <ul>
+          <li>Cartum = satira geral, não verbal, critica comportamentos</li>
+          <li>Charge = personagem real + fato atual, "envelhece"</li>
+          <li>Tirinha = faixa horizontal, personagens fixos</li>
+          <li>Infográfico = dados + imagem, objetivo informar</li>
+          <li>Texto publicitário usa imperativo e pronomes de 2ª pessoa</li>
+          <li>"Sua decisão" + "Doe!" = estratégia de inclusão do leitor</li>
+        </ul>
+      </div>
+      <div class="sum-card bio-c">
+        <h4>🧬 Biologia</h4>
+        <ul>
+          <li>PCV: Parede, Cloroplasto, Vacúolo = só na célula vegetal</li>
+          <li>Centríolo = só célula animal</li>
+          <li>Mitocôndria = respiração celular → ATP (energia)</li>
+          <li>Cloroplasto = fotossíntese → glicose + O₂</li>
+          <li>Procarioto = sem núcleo organizado (bactérias)</li>
+          <li>Eucarioto = com núcleo + organelas (animais, plantas, fungos)</li>
+        </ul>
+      </div>
+      <div class="sum-card geo-c">
+        <h4>🌍 Geografia</h4>
+        <ul>
+          <li>Milton Santos: espaço = natureza + sociedade (indissociável)</li>
+          <li>Hotspot: ≤30% preservado + ≥1500 espécies endêmicas</li>
+          <li>Mata Atlântica = hotspot (24% preservado)</li>
+          <li>Pantanal = NÃO é hotspot (84% preservado)</li>
+          <li>Cerrado = savana brasileira, 2º maior bioma</li>
+          <li>Caatinga = exclusiva do Brasil, semiárido nordestino</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="checklist-card">
+      <h4>☑️ Checklist do Dia 02</h4>
+      <div class="chk-grid">
+        <label class="chk-item"><input type="checkbox"> Estudei os gêneros textuais com atenção</label>
+        <label class="chk-item"><input type="checkbox"> Entendi a diferença cartum × charge × tirinha</label>
+        <label class="chk-item"><input type="checkbox"> Aprendi as diferenças célula animal × vegetal</label>
+        <label class="chk-item"><input type="checkbox"> Memorizo o mnemônico PCV</label>
+        <label class="chk-item"><input type="checkbox"> Entendi o conceito de espaço geográfico (Milton Santos)</label>
+        <label class="chk-item"><input type="checkbox"> Sei o que é hotspot e qual bioma é hotspot</label>
+        <label class="chk-item"><input type="checkbox"> Resolvi os 7 exercícios sozinha</label>
+        <label class="chk-item"><input type="checkbox"> ⭐ Pronta para o Dia 03!</label>
+      </div>
+    </div>
+
+    <div class="next-banner">
+      <div class="nb-icon">📚</div>
+      <div>
+        <h4>Próxima apostila — Dia 03</h4>
+        <p>Ciências Exatas Base: Razão e proporção aplicada (Mat) · Átomo e tabela periódica (Qui) · Grandezas físicas e unidades (Fís). Três temas que se conectam e rendem muitas questões.</p>
+        <div class="chips">
+          <span class="chip chip-por" style="color:#80b4e8;border-color:rgba(30,90,142,.4);background:rgba(30,90,142,.15);">📐 Matemática · Proporção</span>
+          <span class="chip" style="color:#c898e8;border-color:rgba(107,46,130,.4);background:rgba(107,46,130,.15);">⚗️ Química · Átomo</span>
+          <span class="chip" style="color:#f0c870;border-color:rgba(200,160,40,.4);background:rgba(200,160,40,.15);">⚡ Física · Grandezas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Apostila <strong>Dia 02 de 255</strong> · Gêneros Textuais · A Célula · Espaço Geográfico · Vestibulinho ETEC 2026
+</footer>
+
+<script>
+function pick(el, type) {
+  const group = el.closest('.opts');
+  group.querySelectorAll('.opt').forEach(o => o.classList.remove('c','w'));
+  el.classList.add(type);
+}
+
+function toggleAns(btn) {
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.contains('open');
+  ans.classList.toggle('open', !open);
+  btn.textContent = open ? 'Ver resolução' : 'Ocultar resolução';
+}
+
+/* sticky nav active */
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-a');
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href')==='#'+id));
+    }
+  });
+}, { threshold: .3 });
+secs.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
