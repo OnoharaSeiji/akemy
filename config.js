@@ -4,7 +4,7 @@ window.AKEMY_CONFIG = {
   "endDate": "2026-11-29",
   "examDateTime": "2026-11-30T13:30:00-03:00",
   "publishedAt": "2026-03-24",
-  "availableApostilas": [],
+  "availableApostilas": [1, 2],
   "totalStudyDays": 216,
   "weeklyPlan": [
     {
