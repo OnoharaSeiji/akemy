@@ -1,1093 +1,651 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apostila 03 — Números, operações, frações, porcentagem e cronologia histórica</title>
-  <meta name="description" content="Apostila 03 do projeto Akemy Estudos para o Vestibulinho ETEC 2026." />
-  <style>
-    :root {
-      --bg: #f5f7f6;
-      --paper: #ffffff;
-      --paper-2: #f8fbf9;
-      --text: #1f2a22;
-      --muted: #5d6b61;
-      --line: #dce7df;
-      --primary: #2f7a50;
-      --primary-dark: #22593a;
-      --primary-soft: #e7f4ec;
-      --secondary: #245f8f;
-      --accent: #6a43c1;
-      --warning: #8c5626;
-      --shadow: 0 10px 30px rgba(20, 35, 25, 0.08);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-sm: 10px;
-      --max: 1080px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(47, 122, 80, 0.08), transparent 20%),
-        radial-gradient(circle at top right, rgba(36, 95, 143, 0.08), transparent 22%),
-        linear-gradient(180deg, #f9fbfa 0%, var(--bg) 100%);
-      line-height: 1.65;
-    }
-
-    a { color: inherit; }
-
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .hero { padding: 34px 0 20px; }
-
-    .hero__card {
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius-xl);
-      padding: 28px;
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 22px;
-    }
-
-    .eyebrow {
-      margin: 0 0 10px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
-
-    h1, h2, h3, h4, p { margin-top: 0; }
-
-    h1 {
-      margin-bottom: 10px;
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      line-height: 1.06;
-      letter-spacing: -0.03em;
-    }
-
-    .subtitle {
-      margin: 0 0 14px;
-      color: var(--secondary);
-      font-weight: 700;
-      font-size: 1.08rem;
-    }
-
-    .hero__lead {
-      color: var(--muted);
-      margin-bottom: 0;
-      max-width: 68ch;
-    }
-
-    .hero__meta {
-      display: grid;
-      gap: 14px;
-    }
-
-    .meta-card {
-      background: linear-gradient(180deg, #ffffff 0%, var(--paper-2) 100%);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-    }
-
-    .meta-card strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-      color: var(--primary-dark);
-    }
-
-    .meta-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 300px minmax(0, 1fr);
-      gap: 22px;
-      align-items: start;
-      padding-bottom: 42px;
-    }
-
-    .sidebar {
-      position: sticky;
-      top: 18px;
-      display: grid;
-      gap: 18px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
-
-    .toc ul,
-    .checklist ul,
-    .list,
-    .gabarito,
-    .question-list,
-    .step-list,
-    .week-checklist {
-      margin: 0;
-      padding-left: 18px;
-    }
-
-    .toc li,
-    .checklist li,
-    .list li,
-    .gabarito li,
-    .question-list li,
-    .step-list li,
-    .week-checklist li { margin: 8px 0; }
-
-    .toc a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .toc a:hover {
-      color: var(--primary-dark);
-      text-decoration: underline;
-    }
-
-    .cta-back {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 999px;
-      background: var(--primary);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.2s ease;
-    }
-
-    .cta-back:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-
-    .main { display: grid; gap: 18px; }
-    section { scroll-margin-top: 18px; }
-
-    .section-card {
-      background: rgba(255,255,255,0.94);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      padding: 26px;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: flex-start;
-      margin-bottom: 18px;
-    }
-
-    .section-head h2 {
-      margin-bottom: 0;
-      font-size: 1.45rem;
-      letter-spacing: -0.02em;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 9px 12px;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      font-size: 0.84rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .callout {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbf8 100%);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      margin: 16px 0;
-    }
-
-    .callout strong { color: var(--primary-dark); }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .mini-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, #ffffff 0%, #fafcfa 100%);
-      padding: 16px;
-    }
-
-    .mini-card h3,
-    .mini-card h4 {
-      margin-bottom: 8px;
-      font-size: 1rem;
-    }
-
-    .exercise {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #ffffff 0%, #fbfcfb 100%);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      margin: 14px 0;
-    }
-
-    .exercise h3,
-    .exercise h4 {
-      margin-bottom: 10px;
-      font-size: 1.02rem;
-    }
-
-    .alternatives {
-      display: grid;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .alternative {
-      display: block;
-      border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 12px;
-      padding: 12px 14px;
-    }
-
-    .alternative:hover {
-      border-color: #bdd7c6;
-      background: #f8fcf9;
-    }
-
-    .answer-reveal {
-      margin-top: 12px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      background: #f3f8f5;
-      border: 1px solid #d7e8dc;
-      color: #2a4734;
-      display: none;
-    }
-
-    .exercise[data-state="shown"] .answer-reveal { display: block; }
-
-    .reveal-btn {
-      margin-top: 14px;
-      padding: 10px 14px;
-      border: 1px solid var(--line);
-      background: var(--paper);
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 700;
-    }
-
-    .reveal-btn:hover { background: var(--paper-2); }
-
-    .formula {
-      border-left: 4px solid var(--secondary);
-      background: #f5f9fd;
-      padding: 14px 16px;
-      border-radius: 12px;
-      margin: 12px 0;
-      font-weight: 600;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 14px 0;
-      overflow: hidden;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-    }
-
-    th, td {
-      padding: 12px 14px;
-      text-align: left;
-      border-bottom: 1px solid var(--line);
-    }
-
-    th {
-      background: #f3f8f5;
-      color: var(--primary-dark);
-      font-size: 0.92rem;
-    }
-
-    tr:last-child td { border-bottom: 0; }
-
-    .checklist-grid {
-      display: grid;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .check-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #fff;
-    }
-
-    .check-item input {
-      accent-color: var(--primary);
-      margin-top: 3px;
-      transform: scale(1.15);
-    }
-
-    .footer-nav {
-      margin-top: 8px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .footer-nav a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 20px;
-      border-radius: 999px;
-      background: var(--primary);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 800;
-      box-shadow: var(--shadow);
-    }
-
-    .footer-nav a:hover { background: var(--primary-dark); }
-
-    .muted { color: var(--muted); }
-
-    .inline-tag {
-      display: inline-block;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: #f1f6f2;
-      border: 1px solid var(--line);
-      font-size: 0.84rem;
-      color: var(--muted);
-      margin: 4px 8px 0 0;
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--line), transparent);
-      margin: 10px 0 0;
-    }
-
-    @media (max-width: 980px) {
-      .hero__card,
-      .layout,
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar { position: static; }
-    }
-
-    @media (max-width: 640px) {
-      .container { width: min(var(--max), calc(100% - 20px)); }
-      .hero { padding-top: 20px; }
-      .hero__card,
-      .card,
-      .section-card { padding: 18px; }
-      h1 { font-size: 2rem; }
-      .section-head { flex-direction: column; }
-      .badge { white-space: normal; }
-    }
-
-    @media print {
-      body { background: #fff; }
-      .sidebar { display: none; }
-      .layout { grid-template-columns: 1fr; }
-      .section-card, .hero__card { box-shadow: none; }
-      .reveal-btn { display: none; }
-      .answer-reveal { display: block !important; }
-      .footer-nav { display: none; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apostila 03 — Números, operações, frações, porcentagem e cronologia histórica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f7f4;
+  --paper:#ffffff;
+  --paper-2:#f9fbf8;
+  --ink:#1b241f;
+  --muted:#5e6c62;
+  --line:#d7e2d8;
+  --green:#2f7a50;
+  --green-2:#e7f3eb;
+  --blue:#1e5a8e;
+  --blue-2:#eaf3fb;
+  --gold:#c58a23;
+  --gold-2:#fff4df;
+  --red:#ad4444;
+  --red-2:#fdeeee;
+  --purple:#6b4acb;
+  --purple-2:#f1edff;
+  --shadow:0 18px 40px rgba(29,39,33,.08);
+  --radius-xl:28px;
+  --radius-lg:20px;
+  --radius-md:14px;
+  --radius-sm:10px;
+  --max:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(197,138,35,.08), transparent 18%),
+    radial-gradient(circle at top right, rgba(47,122,80,.08), transparent 24%),
+    linear-gradient(180deg,#f9fbf9 0%, var(--bg) 100%);
+  line-height:1.7;
+}
+img{max-width:100%; display:block}
+a{text-decoration:none; color:inherit}
+.container{width:min(var(--max), calc(100% - 28px)); margin:0 auto}
+.hero{padding:30px 0 18px}
+.hero-box{
+  background:linear-gradient(135deg, rgba(255,255,255,.96), rgba(250,252,250,.96));
+  border:1px solid rgba(215,226,216,.9);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.hero-top{display:grid; grid-template-columns:1.3fr .9fr; gap:24px; padding:28px}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--gold-2); color:#8c5f11;
+  border:1px solid #f0d8a5; padding:8px 12px; border-radius:999px;
+  font-size:.82rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+}
+h1,h2,h3,h4,p{margin:0 0 14px}
+h1{
+  font-family:Merriweather, serif;
+  font-size:clamp(2rem, 4vw, 3.05rem);
+  line-height:1.1;
+  letter-spacing:-.03em;
+  margin-top:14px;
+}
+.hero p.lead{font-size:1.02rem; color:var(--muted); max-width:62ch}
+.hero-grid-mini{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:18px}
+.mini{background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:14px}
+.mini .label{font-size:.8rem; color:var(--muted); display:block; margin-bottom:6px}
+.mini strong{font-size:1.08rem}
+.hero-side{display:grid; gap:14px}
+.side-card{background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:16px}
+.side-card h3{margin-bottom:10px; font-size:1rem}
+.progress-wrap{height:14px; background:#e4ece5; border-radius:999px; overflow:hidden; border:1px solid var(--line)}
+.progress-bar{width:1.2%; height:100%; background:linear-gradient(90deg, var(--green), #4fb176); border-radius:999px}
+.side-list{display:grid; gap:10px; padding:0; margin:0; list-style:none}
+.side-list li{display:grid; grid-template-columns:12px 1fr; gap:10px; align-items:start}
+.dot{width:10px; height:10px; border-radius:999px; background:var(--gold); transform:translateY(8px)}
+.main{padding:24px 0 32px}
+.section{
+  margin:0 0 22px;
+  background:rgba(255,255,255,.94);
+  border:1px solid rgba(215,226,216,.95);
+  box-shadow:var(--shadow);
+  border-radius:var(--radius-xl);
+  padding:24px;
+}
+.section-head{display:flex; justify-content:space-between; gap:18px; align-items:flex-start; margin-bottom:18px}
+.kicker{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.8rem; font-weight:800; text-transform:uppercase;
+  padding:7px 11px; border-radius:999px; letter-spacing:.06em;
+}
+.k-green{background:var(--green-2); color:var(--green)}
+.k-blue{background:var(--blue-2); color:var(--blue)}
+.k-gold{background:var(--gold-2); color:#8c5f11}
+.k-red{background:var(--red-2); color:var(--red)}
+.k-purple{background:var(--purple-2); color:var(--purple)}
+h2{font-size:1.7rem; line-height:1.15; letter-spacing:-.02em}
+.subtitle{color:var(--muted); max-width:70ch}
+.grid-2{display:grid; grid-template-columns:1.08fr .92fr; gap:18px}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.card{
+  background:linear-gradient(180deg, #fff, var(--paper-2));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+}
+.card h3{font-size:1.06rem; margin-bottom:10px}
+.callout{
+  border-left:5px solid var(--green);
+  background:var(--green-2);
+  border-radius:14px;
+  padding:14px 16px;
+}
+.callout.blue{border-left-color:var(--blue); background:var(--blue-2)}
+.callout.gold{border-left-color:var(--gold); background:var(--gold-2)}
+.callout.red{border-left-color:var(--red); background:var(--red-2)}
+.callout.purple{border-left-color:var(--purple); background:var(--purple-2)}
+.list{margin:0; padding-left:18px}
+.list li + li{margin-top:8px}
+.flow-svg,.chart-svg,.timeline-svg{width:100%; height:auto; display:block; background:#fff; border:1px solid var(--line); border-radius:18px}
+.table{width:100%; border-collapse:collapse; font-size:.95rem}
+.table th,.table td{padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
+.table th{background:#f7faf7; color:var(--muted); font-size:.82rem; text-transform:uppercase; letter-spacing:.05em}
+.exercise{border:1px solid var(--line); border-radius:18px; padding:16px; background:#fff}
+.exercise + .exercise{margin-top:14px}
+.options{display:grid; gap:10px; margin-top:12px}
+.option{border:1px solid var(--line); border-radius:14px; padding:12px 14px; background:#fff; cursor:pointer; transition:.18s ease}
+.option:hover{transform:translateY(-1px); border-color:#c8d8cb; background:#fafdfb}
+.option.correct{background:#ecf9f0; border-color:#8fd1a2}
+.option.wrong{background:#fff0f0; border-color:#e4aaaa}
+.btn-answer,.footer-btn{appearance:none; border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink); padding:10px 14px; font-weight:700; cursor:pointer}
+.btn-answer:hover,.footer-btn:hover{background:#f8fbf9}
+.answer{display:none; margin-top:12px; border-top:1px dashed var(--line); padding-top:12px; color:var(--muted)}
+.answer.show{display:block}
+.video-list{display:grid; gap:14px}
+.video-card{display:grid; grid-template-columns:1.3fr auto; gap:12px; align-items:center; border:1px solid var(--line); border-radius:18px; padding:16px; background:linear-gradient(180deg,#fff,#fafcfa)}
+.video-card h4{margin:0 0 6px; font-size:1rem}
+.video-card p{margin:0; color:var(--muted); font-size:.92rem}
+.video-link{display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:999px; background:#111; color:#fff; font-weight:800; font-size:.9rem}
+.video-link:hover{background:#000}
+.checklist{display:grid; gap:10px}
+.checklist label{display:flex; gap:10px; align-items:flex-start; background:#fff; border:1px solid var(--line); border-radius:14px; padding:12px 14px}
+input[type="checkbox"]{accent-color:var(--gold); transform:translateY(3px)}
+.footer-nav{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; padding:4px 0 10px}
+.footer-btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:13px 18px}
+.footer-btn.primary{background:var(--gold); border-color:var(--gold); color:#fff}
+.footer-btn.primary:hover{background:#a96f10}
+.small{font-size:.9rem; color:var(--muted)}
+.pill{display:inline-flex; align-items:center; justify-content:center; padding:6px 10px; border-radius:999px; font-size:.82rem; font-weight:800; background:var(--paper-2); border:1px solid var(--line)}
+@media (max-width:980px){.hero-top,.grid-2,.grid-3{grid-template-columns:1fr}}
+@media (max-width:720px){.container{width:min(var(--max), calc(100% - 18px))}.section{padding:18px}.hero-top{padding:18px}.hero-grid-mini{grid-template-columns:1fr}.video-card{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <header class="hero">
-    <div class="container">
-      <div class="hero__card">
+<header class="hero">
+  <div class="container">
+    <div class="hero-box">
+      <div class="hero-top">
         <div>
-          <p class="eyebrow">Akemy Estudos</p>
-          <h1>Apostila 03 — Números, operações, frações, porcentagem e cronologia histórica</h1>
-          <p class="subtitle">Vestibulinho ETEC 2026 · Dia 003</p>
-          <p class="hero__lead">
-            Esta apostila foi construída para consolidar a base numérica da aluna sem superficialidade.
-            O foco do dia é fazer a aluna entender <strong>como as contas funcionam</strong>,
-            <strong>onde os erros mais comuns acontecem</strong> e <strong>como se localizar no tempo histórico</strong>
-            com clareza. O objetivo não é decorar regras soltas. O objetivo é ganhar segurança.
-          </p>
+          <span class="eyebrow">Apostila 003 · Semana 01 · Fase 1 — Alicerce</span>
+          <h1>Números, operações, frações, porcentagem e cronologia histórica</h1>
+          <p class="lead">Hoje a meta é consolidar a base matemática e temporal que derruba muita gente por distração. A apostila trabalha <strong>ordem das operações, frações, porcentagem, leitura de gráfico e linha do tempo</strong> em um formato mais visual e próximo do estilo real da prova.</p>
+          <div class="hero-grid-mini">
+            <div class="mini">
+              <span class="label">Tempo estimado</span>
+              <strong>80–95 min</strong>
+            </div>
+            <div class="mini">
+              <span class="label">Foco principal</span>
+              <strong>Cálculo com interpretação</strong>
+            </div>
+            <div class="mini">
+              <span class="label">Eixo do dia</span>
+              <strong>Número + lógica + tempo</strong>
+            </div>
+          </div>
         </div>
-        <div class="hero__meta">
-          <div class="meta-card">
-            <strong>Tempo estimado</strong>
-            <p>80 a 95 minutos</p>
+        <div class="hero-side">
+          <div class="side-card">
+            <h3>O que você precisa sair sabendo hoje</h3>
+            <ul class="side-list">
+              <li><span class="dot"></span><span>Respeitar a <strong>ordem das operações</strong> sem cair em automatismo errado.</span></li>
+              <li><span class="dot"></span><span>Entender frações como <strong>parte de um todo</strong> e reconhecer equivalência.</span></li>
+              <li><span class="dot"></span><span>Calcular <strong>porcentagem</strong> e ler dados simples em gráfico.</span></li>
+              <li><span class="dot"></span><span>Organizar fatos em <strong>cronologia</strong> e localizar séculos corretamente.</span></li>
+            </ul>
           </div>
-          <div class="meta-card">
-            <strong>Objetivo do dia</strong>
-            <p>Consolidar operações, entender frações e porcentagem sem chute e dominar a leitura de ordem cronológica e século.</p>
-          </div>
-          <div class="meta-card">
-            <strong>Meta real</strong>
-            <p>Terminar a apostila sabendo explicar o raciocínio, e não apenas repetir uma conta mecanicamente.</p>
+          <div class="side-card">
+            <h3>Progresso do projeto</h3>
+            <div class="progress-wrap"><div class="progress-bar"></div></div>
+            <p class="small" style="margin-top:10px">Dia 003 de 255. Esta é a primeira apostila com matemática mais forte e linha do tempo histórica combinadas.</p>
           </div>
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="container layout">
-    <aside class="sidebar">
-      <div class="card toc">
-        <p class="eyebrow">Navegação</p>
-        <h3>Índice da apostila</h3>
-        <ul>
-          <li><a href="#como-estudar">1. Como estudar esta apostila</a></li>
-          <li><a href="#numeros-operacoes">2. Números e operações</a></li>
-          <li><a href="#fracoes">3. Frações sem medo</a></li>
-          <li><a href="#porcentagem">4. Porcentagem com sentido</a></li>
-          <li><a href="#cronologia">5. Cronologia histórica</a></li>
-          <li><a href="#recuperacao">6. Recuperação ativa</a></li>
-          <li><a href="#checklist">7. Checklist e revisão</a></li>
-          <li><a href="#gabarito">8. Gabarito</a></li>
-        </ul>
-      </div>
+<main class="main">
+  <div class="container">
 
-      <div class="card">
-        <p class="eyebrow">Ação rápida</p>
-        <h3>Voltar para o cronograma</h3>
-        <p class="muted">Use este botão para retornar ao calendário e marcar o dia como concluído.</p>
-        <a class="cta-back" href="../index.html">VOLTAR PARA O CRONOGRAMA</a>
-      </div>
-
-      <div class="card checklist">
-        <p class="eyebrow">Meta do dia</p>
-        <h3>Ao terminar, a aluna deve conseguir</h3>
-        <ul>
-          <li>Resolver operações com mais atenção e menos impulso</li>
-          <li>Entender a diferença entre conta e raciocínio</li>
-          <li>Comparar frações de forma lógica</li>
-          <li>Calcular porcentagens simples e descontos básicos</li>
-          <li>Ordenar datas e identificar séculos corretamente</li>
-        </ul>
-      </div>
-    </aside>
-
-    <div class="main">
-      <section id="como-estudar" class="section-card">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Bloco 1</p>
-            <h2>Como estudar esta apostila</h2>
-          </div>
-          <span class="badge">10 minutos</span>
-        </div>
-
-        <p>
-          Hoje a aluna vai trabalhar com conteúdos que parecem simples, mas costumam derrubar muita gente por descuido.
-          O erro mais comum em Matemática não é “não saber a matéria”. Muitas vezes é:
-        </p>
-        <ul class="list">
-          <li>resolver rápido demais;</li>
-          <li>ignorar parênteses ou ordem das operações;</li>
-          <li>decorar regra sem entender o motivo;</li>
-          <li>confundir parte com total em porcentagem;</li>
-          <li>trocar século porque olhou só os dois primeiros números do ano.</li>
-        </ul>
-
-        <div class="callout">
-          <strong>Regra do dia:</strong> toda vez que acertar ou errar, a aluna deve conseguir explicar:
-          <em>“Por que esse resultado faz sentido?”</em>
-        </div>
-
-        <div class="grid-2">
-          <div class="mini-card">
-            <h3>Como render mais</h3>
-            <ul class="list">
-              <li>Leia o exemplo com calma.</li>
-              <li>Tampe a resolução e tente refazer sozinha.</li>
-              <li>Compare o próprio raciocínio com o modelo.</li>
-            </ul>
-          </div>
-          <div class="mini-card">
-            <h3>O que evitar</h3>
-            <ul class="list">
-              <li>Pular direto para o gabarito.</li>
-              <li>Fazer conta sem ler o enunciado inteiro.</li>
-              <li>Tratar fração e porcentagem como símbolos sem significado.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="numeros-operacoes" class="section-card">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Bloco 2</p>
-            <h2>Números e operações: atenção vale tanto quanto saber a conta</h2>
-          </div>
-          <span class="badge">25 minutos</span>
-        </div>
-
-        <p>
-          Antes de falar em fração e porcentagem, a base precisa estar firme. A prova costuma usar contas dentro de problemas.
-          Então a aluna precisa dominar três coisas:
-        </p>
+    <section class="section" id="bloco1">
+      <div class="section-head">
         <div>
-          <span class="inline-tag">ordem das operações</span>
-          <span class="inline-tag">leitura do enunciado</span>
-          <span class="inline-tag">estimativa do resultado</span>
+          <div class="kicker k-blue">Método</div>
+          <h2>Como estudar o Dia 3 sem virar “fazedor de conta”</h2>
+          <p class="subtitle">Em matemática e história, um dos maiores erros é achar que entendeu só porque acompanhou a explicação. Hoje a regra é: <strong>ver, repetir, resolver, corrigir e explicar</strong>.</p>
         </div>
+      </div>
 
-        <h3>1. Ordem das operações</h3>
-        <p>Em expressões numéricas, não se resolve “da esquerda para a direita sem critério”. Existe uma ordem:</p>
-        <div class="formula">1) parênteses · 2) multiplicação e divisão · 3) adição e subtração</div>
-
-        <div class="exercise" data-state="hidden">
-          <h3>Exemplo resolvido 1</h3>
-          <p><strong>8 + 2 × 3</strong></p>
-          <button class="reveal-btn" type="button">Mostrar comentário</button>
-          <div class="answer-reveal">
-            Primeiro vem a multiplicação: 2 × 3 = 6. Depois a adição: 8 + 6 = 14.
-            O erro comum é somar 8 + 2 antes. Isso mudaria a lógica da expressão.
+      <div class="grid-2">
+        <div class="card">
+          <h3>Ritmo sugerido do estudo</h3>
+          <table class="table">
+            <thead>
+              <tr><th>Etapa</th><th>O que fazer</th><th>Tempo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Teoria visual + exemplos resolvidos.</td><td>25 min</td></tr>
+              <tr><td>2</td><td>Questões guiadas de operações, frações e porcentagem.</td><td>25 min</td></tr>
+              <tr><td>3</td><td>Bloco de cronologia e séculos.</td><td>15 min</td></tr>
+              <tr><td>4</td><td>Prática independente + correção comentada.</td><td>20–30 min</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Erro clássico do dia</h3>
+          <p>Resolver no impulso. Isso aparece de dois jeitos:</p>
+          <ul class="list">
+            <li>fazer a conta da esquerda para a direita sem respeitar a ordem;</li>
+            <li>marcar o século pelo começo do ano, e não pelo intervalo correto.</li>
+          </ul>
+          <div class="callout gold" style="margin-top:12px">
+            <strong>Meta concreta:</strong> ao fim da apostila, a aluna deve conseguir justificar por que <strong>15 - 3 × 4</strong> não é 48 e por que <strong>1822</strong> está no <strong>século 19</strong>.
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="exercise" data-state="hidden">
-          <h3>Exemplo resolvido 2</h3>
-          <p><strong>(8 + 2) × 3</strong></p>
-          <button class="reveal-btn" type="button">Mostrar comentário</button>
-          <div class="answer-reveal">
-            Agora a conta dentro do parêntese vem antes: 8 + 2 = 10. Depois 10 × 3 = 30.
-            Os mesmos números produziram outro resultado porque a organização da expressão mudou.
+    <section class="section" id="bloco2">
+      <div class="section-head">
+        <div>
+          <div class="kicker k-gold">Núcleo 1</div>
+          <h2>Operações e ordem de resolução: onde muita questão fácil é perdida</h2>
+          <p class="subtitle">A prova não cobra só “saber fazer conta”. Ela cobra <strong>disciplina no raciocínio</strong>. Quem ignora a ordem de resolução erra questão básica e acha que o problema foi o conteúdo, quando na verdade foi o método.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h3>Regra prática</h3>
+          <ul class="list">
+            <li>Primeiro: <strong>parênteses</strong>.</li>
+            <li>Depois: <strong>multiplicação e divisão</strong>.</li>
+            <li>Por fim: <strong>adição e subtração</strong>.</li>
+          </ul>
+          <div class="callout" style="margin-top:12px">
+            <strong>Lembrete:</strong> não existe prêmio por fazer rápido demais. Existe ponto por fazer certo.
+          </div>
+          <div class="exercise" style="margin-top:16px">
+            <h3>Exemplo resolvido</h3>
+            <p><strong>8 + 2 × 3</strong></p>
+            <p>Primeiro a multiplicação:</p>
+            <p><strong>2 × 3 = 6</strong></p>
+            <p>Depois a adição:</p>
+            <p><strong>8 + 6 = 14</strong></p>
           </div>
         </div>
+        <div>
+          <h3>Fluxo visual da prioridade</h3>
+          <svg class="flow-svg" viewBox="0 0 620 320" role="img" aria-label="Fluxo da ordem das operações">
+            <rect x="30" y="28" width="560" height="264" rx="18" fill="#fff" stroke="#d7e2d8"/>
+            <text x="60" y="65" font-size="22" font-family="Inter" font-weight="800" fill="#1b241f">Ordem correta para não errar</text>
 
-        <h3>2. Estimar antes de confiar no resultado</h3>
-        <p>
-          Quando a aluna calcula <strong>49 + 51</strong>, já pode imaginar algo perto de 100.
-          Quando calcula <strong>25% de 200</strong>, já pode prever um valor menor que 200 e maior que 0.
-          Isso protege contra erros absurdos.
-        </p>
+            <rect x="72" y="95" width="476" height="48" rx="16" fill="#fff4df" stroke="#f0d8a5"/>
+            <text x="95" y="126" font-size="18" font-family="Inter" font-weight="800" fill="#8c5f11">1. Resolva o que está entre parênteses</text>
 
-        <div class="grid-2">
-          <div class="mini-card">
-            <h3>Erro comum</h3>
-            <p>Marcar qualquer número que “parece conta feita”, sem verificar se ele faz sentido.</p>
-          </div>
-          <div class="mini-card">
-            <h3>Conduta correta</h3>
-            <p>Fazer a conta e depois perguntar: <em>“Esse número combina com a situação?”</em></p>
+            <rect x="72" y="156" width="476" height="48" rx="16" fill="#eaf3fb" stroke="#d0e1f2"/>
+            <text x="95" y="187" font-size="18" font-family="Inter" font-weight="800" fill="#1e5a8e">2. Faça multiplicações e divisões</text>
+
+            <rect x="72" y="217" width="476" height="48" rx="16" fill="#e7f3eb" stroke="#cde3d4"/>
+            <text x="95" y="248" font-size="18" font-family="Inter" font-weight="800" fill="#2f7a50">3. Termine com adições e subtrações</text>
+
+            <path d="M310 143 V154" stroke="#6b4acb" stroke-width="5" stroke-linecap="round"/>
+            <path d="M310 204 V215" stroke="#6b4acb" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top:18px">
+        <div class="card">
+          <h3>Questão guiada 1</h3>
+          <p><strong>12 + 4 × 2</strong></p>
+          <p>Primeiro: <strong>4 × 2 = 8</strong></p>
+          <p>Depois: <strong>12 + 8 = 20</strong></p>
+        </div>
+        <div class="card">
+          <h3>Questão guiada 2</h3>
+          <p><strong>(12 + 4) × 2</strong></p>
+          <p>Primeiro parênteses: <strong>16</strong></p>
+          <p>Depois: <strong>16 × 2 = 32</strong></p>
+        </div>
+        <div class="card">
+          <h3>Questão guiada 3</h3>
+          <p><strong>18 ÷ 3 + 2</strong></p>
+          <p>Primeiro divisão: <strong>18 ÷ 3 = 6</strong></p>
+          <p>Depois: <strong>6 + 2 = 8</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="bloco3">
+      <div class="section-head">
+        <div>
+          <div class="kicker k-green">Núcleo 2</div>
+          <h2>Frações: da imagem para o número</h2>
+          <p class="subtitle">Frações ficam muito mais fáceis quando a aluna vê o inteiro, a parte pintada e a equivalência. Hoje o objetivo é sair da leitura visual para a leitura numérica.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h3>Ideias fundamentais</h3>
+          <ul class="list">
+            <li><strong>Numerador</strong> = quantas partes estão sendo consideradas.</li>
+            <li><strong>Denominador</strong> = em quantas partes iguais o todo foi dividido.</li>
+            <li><strong>Frações equivalentes</strong> representam a mesma quantidade, mesmo com números diferentes.</li>
+          </ul>
+          <div class="callout blue" style="margin-top:12px">
+            <strong>Exemplo:</strong> <strong>1/2</strong>, <strong>2/4</strong> e <strong>4/8</strong> representam a mesma metade.
           </div>
         </div>
+        <div>
+          <h3>Barra visual de frações equivalentes</h3>
+          <svg class="chart-svg" viewBox="0 0 620 270" role="img" aria-label="Representação visual de frações equivalentes">
+            <rect x="30" y="28" width="560" height="210" rx="18" fill="#fff" stroke="#d7e2d8"/>
+            <text x="55" y="60" font-size="21" font-family="Inter" font-weight="800" fill="#1b241f">Metade, de três jeitos diferentes</text>
 
-        <h3>3. Prática independente de operações</h3>
+            <text x="55" y="96" font-size="18" font-family="Inter" font-weight="700" fill="#2f7a50">1/2</text>
+            <rect x="120" y="78" width="380" height="28" rx="8" fill="#eef4ef" stroke="#cfe4d6"/>
+            <rect x="120" y="78" width="190" height="28" rx="8" fill="#2f7a50"/>
 
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 1</h4>
-          <p><strong>15 - 3 × 4 =</strong></p>
-          <div class="alternatives">
-            <label class="alternative">a) 48</label>
-            <label class="alternative">b) 12</label>
-            <label class="alternative">c) 3</label>
-            <label class="alternative">d) 27</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: c.</strong> Primeiro 3 × 4 = 12. Depois 15 - 12 = 3.</div>
+            <text x="55" y="152" font-size="18" font-family="Inter" font-weight="700" fill="#1e5a8e">2/4</text>
+            <rect x="120" y="134" width="380" height="28" rx="8" fill="#eef4ef" stroke="#d0e1f2"/>
+            <rect x="120" y="134" width="95" height="28" fill="#1e5a8e"/>
+            <rect x="215" y="134" width="95" height="28" fill="#1e5a8e"/>
+            <line x1="215" y1="134" x2="215" y2="162" stroke="#fff" stroke-width="4"/>
+            <line x1="310" y1="134" x2="310" y2="162" stroke="#fff" stroke-width="4"/>
+            <line x1="405" y1="134" x2="405" y2="162" stroke="#fff" stroke-width="4"/>
+
+            <text x="55" y="208" font-size="18" font-family="Inter" font-weight="700" fill="#8c5f11">4/8</text>
+            <rect x="120" y="190" width="380" height="28" rx="8" fill="#fff7ea" stroke="#f0d8a5"/>
+            <rect x="120" y="190" width="47.5" height="28" fill="#c58a23"/>
+            <rect x="167.5" y="190" width="47.5" height="28" fill="#c58a23"/>
+            <rect x="215" y="190" width="47.5" height="28" fill="#c58a23"/>
+            <rect x="262.5" y="190" width="47.5" height="28" fill="#c58a23"/>
+            <g stroke="#fff" stroke-width="3">
+              <line x1="167.5" y1="190" x2="167.5" y2="218"/>
+              <line x1="215" y1="190" x2="215" y2="218"/>
+              <line x1="262.5" y1="190" x2="262.5" y2="218"/>
+              <line x1="310" y1="190" x2="310" y2="218"/>
+              <line x1="357.5" y1="190" x2="357.5" y2="218"/>
+              <line x1="405" y1="190" x2="405" y2="218"/>
+              <line x1="452.5" y1="190" x2="452.5" y2="218"/>
+            </g>
+          </svg>
         </div>
+      </div>
 
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 2</h4>
-          <p><strong>(15 - 3) × 4 =</strong></p>
-          <div class="alternatives">
-            <label class="alternative">a) 12</label>
-            <label class="alternative">b) 36</label>
-            <label class="alternative">c) 48</label>
-            <label class="alternative">d) 60</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: c.</strong> Primeiro o parêntese: 15 - 3 = 12. Depois 12 × 4 = 48.</div>
+      <div class="exercise" style="margin-top:18px">
+        <h3>Questão visual</h3>
+        <p>Se uma pizza foi dividida em 8 fatias iguais e 4 foram comidas, a fração correspondente à parte comida é:</p>
+        <div class="options">
+          <div class="option" onclick="markOption(this,'wrong')">a) 1/8</div>
+          <div class="option" onclick="markOption(this,'wrong')">b) 2/8</div>
+          <div class="option" onclick="markOption(this,'correct')">c) 4/8</div>
+          <div class="option" onclick="markOption(this,'wrong')">d) 8/4</div>
         </div>
+        <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
+        <div class="answer">Resposta correta: <strong>c</strong>. O numerador indica quantas fatias foram comidas (4) e o denominador indica em quantas partes o todo foi dividido (8).</div>
+      </div>
+    </section>
 
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 3</h4>
-          <p>Uma caixa tem 24 lápis. Maria usou 7. Quantos lápis restaram?</p>
-          <div class="alternatives">
-            <label class="alternative">a) 31</label>
-            <label class="alternative">b) 17</label>
-            <label class="alternative">c) 18</label>
-            <label class="alternative">d) 14</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: b.</strong> O problema é de retirada: 24 - 7 = 17.</div>
+    <section class="section" id="bloco4">
+      <div class="section-head">
+        <div>
+          <div class="kicker k-red">Núcleo 3</div>
+          <h2>Porcentagem e leitura de gráfico: matemática que aparece na prova real</h2>
+          <p class="subtitle">A porcentagem não é um tópico isolado. Ela aparece em promoção, pesquisa, gráfico, comparação e interpretação de problema. Aqui vamos ligar cálculo e leitura visual.</p>
         </div>
-      </section>
+      </div>
 
-      <section id="fracoes" class="section-card">
-        <div class="section-head">
+      <div class="grid-2">
+        <div>
+          <h3>Leitura rápida de porcentagem</h3>
+          <ul class="list">
+            <li><strong>10%</strong> = a décima parte.</li>
+            <li><strong>50%</strong> = a metade.</li>
+            <li><strong>25%</strong> = a quarta parte.</li>
+            <li><strong>20%</strong> = duas vezes 10%.</li>
+          </ul>
+          <div class="callout red" style="margin-top:12px">
+            <strong>Exemplo:</strong> 25% de 40 = 10, porque 40 ÷ 4 = 10.
+          </div>
+        </div>
+        <div>
+          <h3>Gráfico simples para interpretar</h3>
+          <svg class="chart-svg" viewBox="0 0 620 320" role="img" aria-label="Gráfico de barras simples com leitura de porcentagem">
+            <rect x="30" y="28" width="560" height="250" rx="18" fill="#fff" stroke="#d7e2d8"/>
+            <text x="60" y="62" font-size="21" font-family="Inter" font-weight="800" fill="#1b241f">Leitura de dados — preferências da turma</text>
+            <line x1="90" y1="225" x2="530" y2="225" stroke="#8fa094" stroke-width="2"/>
+            <line x1="90" y1="95" x2="90" y2="225" stroke="#8fa094" stroke-width="2"/>
+            <rect x="125" y="165" width="70" height="60" rx="8" fill="#2f7a50"/>
+            <rect x="235" y="125" width="70" height="100" rx="8" fill="#1e5a8e"/>
+            <rect x="345" y="185" width="70" height="40" rx="8" fill="#c58a23"/>
+            <rect x="455" y="145" width="70" height="80" rx="8" fill="#6b4acb"/>
+            <text x="148" y="158" font-size="14" font-family="Inter" fill="#1b241f">6</text>
+            <text x="258" y="118" font-size="14" font-family="Inter" fill="#1b241f">10</text>
+            <text x="368" y="178" font-size="14" font-family="Inter" fill="#1b241f">4</text>
+            <text x="478" y="138" font-size="14" font-family="Inter" fill="#1b241f">8</text>
+            <text x="130" y="248" font-size="14" font-family="Inter" fill="#1b241f">Leitura</text>
+            <text x="246" y="248" font-size="14" font-family="Inter" fill="#1b241f">Esporte</text>
+            <text x="353" y="248" font-size="14" font-family="Inter" fill="#1b241f">Música</text>
+            <text x="462" y="248" font-size="14" font-family="Inter" fill="#1b241f">Games</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="exercise" style="margin-top:18px">
+        <h3>Questão de porcentagem com contexto</h3>
+        <p>Uma camiseta custa <strong>R$ 40</strong>. Em uma promoção, ela recebeu desconto de <strong>25%</strong>. Qual foi o valor do desconto?</p>
+        <div class="options">
+          <div class="option" onclick="markOption(this,'wrong')">a) R$ 5</div>
+          <div class="option" onclick="markOption(this,'correct')">b) R$ 10</div>
+          <div class="option" onclick="markOption(this,'wrong')">c) R$ 15</div>
+          <div class="option" onclick="markOption(this,'wrong')">d) R$ 20</div>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
+        <div class="answer">Resposta correta: <strong>b</strong>. Como 25% é a quarta parte, basta dividir 40 por 4. O desconto é de <strong>R$ 10</strong>.</div>
+      </div>
+
+      <div class="exercise">
+        <h3>Questão de gráfico</h3>
+        <p>No gráfico acima, quantos alunos preferem <strong>Games</strong>?</p>
+        <div class="options">
+          <div class="option" onclick="markOption(this,'wrong')">a) 4</div>
+          <div class="option" onclick="markOption(this,'wrong')">b) 6</div>
+          <div class="option" onclick="markOption(this,'correct')">c) 8</div>
+          <div class="option" onclick="markOption(this,'wrong')">d) 10</div>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
+        <div class="answer">Resposta correta: <strong>c</strong>. A barra de Games chega ao valor 8.</div>
+      </div>
+    </section>
+
+    <section class="section" id="bloco5">
+      <div class="section-head">
+        <div>
+          <div class="kicker k-purple">Núcleo 4</div>
+          <h2>Cronologia e séculos: localizar-se no tempo sem tropeço</h2>
+          <p class="subtitle">História começa pelo tempo. Antes de decorar fatos, a aluna precisa entender <strong>o que vem antes, o que vem depois e em que século um fato está</strong>.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h3>Regra prática para séculos</h3>
+          <ul class="list">
+            <li>Anos de <strong>1 a 100</strong> → século 1.</li>
+            <li>Anos de <strong>101 a 200</strong> → século 2.</li>
+            <li>Anos de <strong>1801 a 1900</strong> → século 19.</li>
+            <li>Anos de <strong>1901 a 2000</strong> → século 20.</li>
+            <li>Anos de <strong>2001 a 2100</strong> → século 21.</li>
+          </ul>
+          <div class="callout purple" style="margin-top:12px">
+            <strong>Erro comum:</strong> achar que 1822 está no século 18 porque começa com “18”. O século correto é o <strong>19</strong>.
+          </div>
+        </div>
+        <div>
+          <h3>Linha do tempo visual</h3>
+          <svg class="timeline-svg" viewBox="0 0 620 290" role="img" aria-label="Linha do tempo com anos históricos">
+            <rect x="30" y="28" width="560" height="220" rx="18" fill="#fff" stroke="#d7e2d8"/>
+            <text x="55" y="62" font-size="21" font-family="Inter" font-weight="800" fill="#1b241f">Do mais antigo para o mais recente</text>
+            <line x1="80" y1="160" x2="540" y2="160" stroke="#6b4acb" stroke-width="6" stroke-linecap="round"/>
+
+            <circle cx="130" cy="160" r="12" fill="#c58a23"/>
+            <text x="104" y="138" font-size="16" font-family="Inter" font-weight="700" fill="#8c5f11">1500</text>
+            <text x="88" y="196" font-size="13" font-family="Inter" fill="#1b241f">Chegada dos</text>
+            <text x="95" y="214" font-size="13" font-family="Inter" fill="#1b241f">portugueses</text>
+
+            <circle cx="245" cy="160" r="12" fill="#2f7a50"/>
+            <text x="220" y="138" font-size="16" font-family="Inter" font-weight="700" fill="#2f7a50">1822</text>
+            <text x="210" y="196" font-size="13" font-family="Inter" fill="#1b241f">Independência</text>
+
+            <circle cx="365" cy="160" r="12" fill="#1e5a8e"/>
+            <text x="340" y="138" font-size="16" font-family="Inter" font-weight="700" fill="#1e5a8e">1889</text>
+            <text x="322" y="196" font-size="13" font-family="Inter" fill="#1b241f">Proclamação</text>
+            <text x="330" y="214" font-size="13" font-family="Inter" fill="#1b241f">da República</text>
+
+            <circle cx="480" cy="160" r="12" fill="#ad4444"/>
+            <text x="455" y="138" font-size="16" font-family="Inter" font-weight="700" fill="#ad4444">1930</text>
+            <text x="461" y="196" font-size="13" font-family="Inter" fill="#1b241f">Revolução</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="exercise" style="margin-top:18px">
+        <h3>Questão de século</h3>
+        <p>O ano de <strong>2026</strong> pertence ao:</p>
+        <div class="options">
+          <div class="option" onclick="markOption(this,'wrong')">a) século 20</div>
+          <div class="option" onclick="markOption(this,'correct')">b) século 21</div>
+          <div class="option" onclick="markOption(this,'wrong')">c) século 22</div>
+          <div class="option" onclick="markOption(this,'wrong')">d) século 19</div>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
+        <div class="answer">Resposta correta: <strong>b</strong>. Todo ano entre 2001 e 2100 pertence ao século 21.</div>
+      </div>
+
+      <div class="exercise">
+        <h3>Questão de ordem cronológica</h3>
+        <p>Qual alternativa apresenta a sequência do <strong>mais antigo para o mais recente</strong>?</p>
+        <div class="options">
+          <div class="option" onclick="markOption(this,'wrong')">a) 1930 → 1889 → 1822 → 1500</div>
+          <div class="option" onclick="markOption(this,'correct')">b) 1500 → 1822 → 1889 → 1930</div>
+          <div class="option" onclick="markOption(this,'wrong')">c) 1822 → 1500 → 1930 → 1889</div>
+          <div class="option" onclick="markOption(this,'wrong')">d) 1889 → 1930 → 1500 → 1822</div>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer(this)" style="margin-top:12px">Ver resolução</button>
+        <div class="answer">Resposta correta: <strong>b</strong>. Em cronologia, o menor ano vem antes do maior quando estamos tratando de anos depois de Cristo.</div>
+      </div>
+    </section>
+
+    <section class="section" id="bloco6">
+      <div class="section-head">
+        <div>
+          <div class="kicker k-blue">Apoio extra</div>
+          <h2>Vídeo-aulas recomendadas para o Dia 3</h2>
+          <p class="subtitle">Adicionei links de apoio para os quatro blocos centrais de hoje: ordem das operações, frações, porcentagem e linha do tempo/séculos. São materiais externos de reforço.</p>
+        </div>
+      </div>
+
+      <div class="video-list">
+        <div class="video-card">
           <div>
-            <p class="eyebrow">Bloco 3</p>
-            <h2>Frações sem medo: parte, total e comparação</h2>
+            <h4>Ordem das operações e expressões numéricas</h4>
+            <p>Bom para reforçar a prioridade entre parênteses, multiplicação/divisão e adição/subtração.</p>
           </div>
-          <span class="badge">20 minutos</span>
+          <a class="video-link" href="https://www.youtube.com/watch?v=gB_W6hk4Tog" target="_blank" rel="noopener noreferrer">Abrir vídeo</a>
         </div>
 
-        <p>
-          Fração não é um desenho estranho. Fração é uma forma de mostrar <strong>partes de um todo</strong>.
-          Quando a aluna entende isso, deixa de decorar sem compreender.
-        </p>
-
-        <div class="formula">Em a/b, o número de cima mostra quantas partes foram tomadas. O de baixo mostra em quantas partes iguais o todo foi dividido.</div>
-
-        <div class="grid-2">
-          <div class="mini-card">
-            <h3>Exemplo</h3>
-            <p>Se uma pizza foi dividida em 4 partes iguais e 1 parte foi comida, isso é <strong>1/4</strong>.</p>
-          </div>
-          <div class="mini-card">
-            <h3>Erro comum</h3>
-            <p>Achar que o número de baixo é “só um enfeite”. Ele diz o tamanho das partes.</p>
-          </div>
-        </div>
-
-        <h3>Frações equivalentes</h3>
-        <p>
-          Algumas frações parecem diferentes, mas representam a mesma quantidade.
-          Exemplo: <strong>1/2 = 2/4 = 3/6</strong>. O tamanho real não mudou; só mudou a forma de escrever.
-        </p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Fração</th>
-              <th>Leitura</th>
-              <th>Significado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1/2</td>
-              <td>um meio</td>
-              <td>metade do todo</td>
-            </tr>
-            <tr>
-              <td>1/4</td>
-              <td>um quarto</td>
-              <td>uma entre quatro partes iguais</td>
-            </tr>
-            <tr>
-              <td>3/4</td>
-              <td>três quartos</td>
-              <td>três partes entre quatro</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Como comparar frações</h3>
-        <p>Existem dois casos mais comuns no início:</p>
-        <ul class="list">
-          <li><strong>Mesmo denominador:</strong> a maior é a que tem maior numerador.</li>
-          <li><strong>Mesmo numerador:</strong> a maior é a que tem denominador menor, porque as partes são maiores.</li>
-        </ul>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Exemplo resolvido 3</h4>
-          <p>Qual é maior: <strong>3/8</strong> ou <strong>5/8</strong>?</p>
-          <button class="reveal-btn" type="button">Mostrar comentário</button>
-          <div class="answer-reveal">
-            O denominador é o mesmo. Então comparamos o numerador. Como 5 é maior que 3,
-            <strong>5/8</strong> é maior que <strong>3/8</strong>.
-          </div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Exemplo resolvido 4</h4>
-          <p>Qual é maior: <strong>1/3</strong> ou <strong>1/5</strong>?</p>
-          <button class="reveal-btn" type="button">Mostrar comentário</button>
-          <div class="answer-reveal">
-            O numerador é igual. Quem tem denominador menor representa partes maiores.
-            Portanto <strong>1/3</strong> é maior que <strong>1/5</strong>.
-          </div>
-        </div>
-
-        <h3>Prática independente de frações</h3>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 4</h4>
-          <p>Se um chocolate foi dividido em 8 partes iguais e João comeu 3 partes, a fração correspondente é:</p>
-          <div class="alternatives">
-            <label class="alternative">a) 8/3</label>
-            <label class="alternative">b) 3/8</label>
-            <label class="alternative">c) 5/8</label>
-            <label class="alternative">d) 3/5</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: b.</strong> Três partes foram tomadas de um total de oito.</div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 5</h4>
-          <p>Qual é maior?</p>
-          <div class="alternatives">
-            <label class="alternative">a) 2/7</label>
-            <label class="alternative">b) 5/7</label>
-            <label class="alternative">c) são iguais</label>
-            <label class="alternative">d) não dá para comparar</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: b.</strong> Mesmo denominador: a maior é a de maior numerador.</div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 6</h4>
-          <p>Qual é maior?</p>
-          <div class="alternatives">
-            <label class="alternative">a) 1/2</label>
-            <label class="alternative">b) 1/6</label>
-            <label class="alternative">c) são iguais</label>
-            <label class="alternative">d) não dá para comparar</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: a.</strong> Mesmo numerador: a maior é a que tem denominador menor.</div>
-        </div>
-      </section>
-
-      <section id="porcentagem" class="section-card">
-        <div class="section-head">
+        <div class="video-card">
           <div>
-            <p class="eyebrow">Bloco 4</p>
-            <h2>Porcentagem com sentido: não é só “mover vírgula”</h2>
+            <h4>Frações equivalentes e simplificação</h4>
+            <p>Útil para consolidar o raciocínio de equivalência e representação da mesma quantidade em formas diferentes.</p>
           </div>
-          <span class="badge">20 minutos</span>
+          <a class="video-link" href="https://www.youtube.com/watch?v=yv5H_W0ub8o" target="_blank" rel="noopener noreferrer">Abrir vídeo</a>
         </div>
 
-        <p>
-          Porcentagem quer dizer <strong>“de cada 100”</strong>. Quando a aluna entende isso,
-          ela percebe que várias porcentagens conhecidas podem ser vistas como frações familiares.
-        </p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Porcentagem</th>
-              <th>Ideia simples</th>
-              <th>Equivalência útil</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>50%</td>
-              <td>metade</td>
-              <td>1/2</td>
-            </tr>
-            <tr>
-              <td>25%</td>
-              <td>um quarto</td>
-              <td>1/4</td>
-            </tr>
-            <tr>
-              <td>10%</td>
-              <td>dez em cada cem</td>
-              <td>1/10</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Exemplo resolvido 5</h4>
-          <p><strong>25% de 200</strong></p>
-          <button class="reveal-btn" type="button">Mostrar comentário</button>
-          <div class="answer-reveal">
-            25% é a mesma ideia de 1/4. Então basta dividir 200 por 4. Resultado: 50.
-            Quando a aluna entende a relação entre porcentagem e fração, a conta fica mais leve.
-          </div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Exemplo resolvido 6</h4>
-          <p>Uma mochila custa R$ 80 e recebeu <strong>10% de desconto</strong>. Qual foi o valor do desconto?</p>
-          <button class="reveal-btn" type="button">Mostrar comentário</button>
-          <div class="answer-reveal">
-            10% de 80 = 8. Portanto o desconto foi de <strong>R$ 8</strong>.
-            O preço final seria 80 - 8 = <strong>R$ 72</strong>.
-          </div>
-        </div>
-
-        <h3>Erros comuns em porcentagem</h3>
-        <ul class="list">
-          <li>confundir o valor do desconto com o preço final;</li>
-          <li>achar que 50% “é só metade” e esquecer de metade de quê;</li>
-          <li>não identificar qual é o total do problema.</li>
-        </ul>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 7</h4>
-          <p><strong>50% de 30 =</strong></p>
-          <div class="alternatives">
-            <label class="alternative">a) 10</label>
-            <label class="alternative">b) 12</label>
-            <label class="alternative">c) 15</label>
-            <label class="alternative">d) 20</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: c.</strong> 50% é metade. Metade de 30 é 15.</div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 8</h4>
-          <p><strong>10% de 90 =</strong></p>
-          <div class="alternatives">
-            <label class="alternative">a) 9</label>
-            <label class="alternative">b) 19</label>
-            <label class="alternative">c) 90</label>
-            <label class="alternative">d) 1</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: a.</strong> Dez por cento é um décimo. Um décimo de 90 é 9.</div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 9</h4>
-          <p>Uma camiseta custa R$ 40. Em uma promoção, ela recebeu desconto de 25%. Qual foi o valor do desconto?</p>
-          <div class="alternatives">
-            <label class="alternative">a) R$ 5</label>
-            <label class="alternative">b) R$ 10</label>
-            <label class="alternative">c) R$ 15</label>
-            <label class="alternative">d) R$ 20</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: b.</strong> 25% é 1/4. Um quarto de 40 é 10.</div>
-        </div>
-      </section>
-
-      <section id="cronologia" class="section-card">
-        <div class="section-head">
+        <div class="video-card">
           <div>
-            <p class="eyebrow">Bloco 5</p>
-            <h2>Cronologia histórica: localizar-se no tempo é pensar melhor</h2>
+            <h4>Porcentagem — cálculo e interpretação</h4>
+            <p>Serve como reforço para problemas de desconto, aumento e leitura de situações do cotidiano.</p>
           </div>
-          <span class="badge">15 minutos</span>
+          <a class="video-link" href="https://www.youtube.com/watch?v=ErplsNHi7YQ" target="_blank" rel="noopener noreferrer">Abrir vídeo</a>
         </div>
 
-        <p>
-          Em História, a aluna não precisa começar decorando tudo. Ela precisa, antes, saber
-          <strong>como ordenar acontecimentos</strong> e <strong>como interpretar séculos</strong>.
-          Isso evita muitos erros bobos.
-        </p>
-
-        <h3>1. O que é cronologia?</h3>
-        <p>
-          Cronologia é a organização dos fatos no tempo. Quando colocamos acontecimentos do mais antigo para o mais recente,
-          estamos fazendo uma linha lógica do tempo.
-        </p>
-
-        <h3>2. Como descobrir o século</h3>
-        <div class="formula">
-          Anos de 1801 a 1900 pertencem ao século 19. Anos de 1901 a 2000 pertencem ao século 20.
-          Anos de 2001 a 2100 pertencem ao século 21.
-        </div>
-
-        <div class="callout">
-          <strong>Erro comum:</strong> achar que 1822 está no século 18 porque começa com “18”.
-          Não está. 1822 pertence ao <strong>século 19</strong>.
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Exemplo resolvido 7</h4>
-          <p>Coloque em ordem do mais antigo para o mais recente: <strong>1889, 1822, 1930, 2026</strong>.</p>
-          <button class="reveal-btn" type="button">Mostrar comentário</button>
-          <div class="answer-reveal">
-            Basta comparar os anos: <strong>1822 → 1889 → 1930 → 2026</strong>.
-            O ano menor é o mais antigo.
-          </div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 10</h4>
-          <p>Qual ano é mais antigo?</p>
-          <div class="alternatives">
-            <label class="alternative">a) 2026</label>
-            <label class="alternative">b) 1930</label>
-            <label class="alternative">c) 1889</label>
-            <label class="alternative">d) 2001</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: c.</strong> 1889 é o menor ano entre as alternativas.</div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 11</h4>
-          <p>O ano de 1500 pertence ao:</p>
-          <div class="alternatives">
-            <label class="alternative">a) século 14</label>
-            <label class="alternative">b) século 15</label>
-            <label class="alternative">c) século 16</label>
-            <label class="alternative">d) século 17</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: b.</strong> Anos de 1401 a 1500 pertencem ao século 15.</div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 12</h4>
-          <p>O ano de 2026 pertence ao:</p>
-          <div class="alternatives">
-            <label class="alternative">a) século 20</label>
-            <label class="alternative">b) século 21</label>
-            <label class="alternative">c) século 22</label>
-            <label class="alternative">d) século 19</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: b.</strong> 2026 está entre 2001 e 2100, portanto é século 21.</div>
-        </div>
-
-        <div class="exercise" data-state="hidden">
-          <h4>Questão 13</h4>
-          <p>Qual é a ordem cronológica correta do mais antigo para o mais recente?</p>
-          <div class="alternatives">
-            <label class="alternative">a) 1930, 1889, 1822, 1500</label>
-            <label class="alternative">b) 1500, 1822, 1889, 1930</label>
-            <label class="alternative">c) 1822, 1500, 1930, 1889</label>
-            <label class="alternative">d) 1889, 1930, 1500, 1822</label>
-          </div>
-          <button class="reveal-btn" type="button">Mostrar resposta</button>
-          <div class="answer-reveal"><strong>Resposta correta: b.</strong> A sequência correta é 1500 → 1822 → 1889 → 1930.</div>
-        </div>
-      </section>
-
-      <section id="recuperacao" class="section-card">
-        <div class="section-head">
+        <div class="video-card">
           <div>
-            <p class="eyebrow">Bloco 6</p>
-            <h2>Recuperação ativa</h2>
+            <h4>Periodização, séculos e linha do tempo</h4>
+            <p>Ajuda a organizar noções temporais e evitar erros na localização de acontecimentos históricos.</p>
           </div>
-          <span class="badge">5 a 10 minutos</span>
+          <a class="video-link" href="https://www.youtube.com/watch?v=cLLn2mtp_j8" target="_blank" rel="noopener noreferrer">Abrir vídeo</a>
         </div>
+      </div>
+    </section>
 
-        <p>Feche a apostila por dois minutos e tente responder sem olhar:</p>
-        <ol class="question-list">
-          <li>Qual é a ordem correta das operações em uma expressão?</li>
-          <li>Por que 1/3 é maior que 1/5?</li>
-          <li>O que significa 25%?</li>
-          <li>Qual a diferença entre valor do desconto e preço final?</li>
-          <li>Como descobrir o século de um ano como 2026?</li>
-        </ol>
-
-        <div class="callout">
-          <strong>Importante:</strong> se a aluna travar, isso não significa fracasso. Significa que ainda precisa revisar.
-          A tentativa de lembrar sem olhar fortalece a memória.
+    <section class="section" id="bloco7">
+      <div class="section-head">
+        <div>
+          <div class="kicker k-green">Fechamento</div>
+          <h2>Checklist e recuperação ativa</h2>
+          <p class="subtitle">Antes de encerrar, a aluna precisa testar se consegue recuperar o raciocínio sem olhar para a explicação.</p>
         </div>
-      </section>
+      </div>
 
-      <section id="checklist" class="section-card">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Bloco 7</p>
-            <h2>Checklist do dia e revisão espaçada</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Recuperação ativa</h3>
+          <ul class="list">
+            <li>Qual é a ordem correta para resolver uma expressão numérica?</li>
+            <li>O que significam numerador e denominador?</li>
+            <li>Por que 25% de 40 é 10?</li>
+            <li>Qual é a diferença entre dado numérico e leitura de gráfico?</li>
+            <li>Por que 1822 pertence ao século 19?</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Checklist do dia</h3>
+          <div class="checklist">
+            <label><input type="checkbox"> Respeitei a ordem das operações sem improvisar.</label>
+            <label><input type="checkbox"> Entendi frações como parte de um todo.</label>
+            <label><input type="checkbox"> Reconheci frações equivalentes visualmente.</label>
+            <label><input type="checkbox"> Resolvi porcentagem com lógica, não com chute.</label>
+            <label><input type="checkbox"> Li um gráfico simples corretamente.</label>
+            <label><input type="checkbox"> Identifiquei séculos e ordem cronológica sem tropeço.</label>
+            <label><input type="checkbox"> Registrei pelo menos 2 erros no caderno.</label>
           </div>
-          <span class="badge">8 minutos</span>
         </div>
+      </div>
 
-        <div class="checklist-grid">
-          <label class="check-item"><input type="checkbox" /> <span>Entendi a ordem das operações e resolvi as contas com calma.</span></label>
-          <label class="check-item"><input type="checkbox" /> <span>Consegui explicar o que é fração e como comparar casos simples.</span></label>
-          <label class="check-item"><input type="checkbox" /> <span>Resolvi porcentagens básicas sem decorar mecanicamente.</span></label>
-          <label class="check-item"><input type="checkbox" /> <span>Entendi como ordenar datas e identificar séculos.</span></label>
-          <label class="check-item"><input type="checkbox" /> <span>Registrei pelo menos 2 erros no caderno com explicação do porquê.</span></label>
-        </div>
+      <div class="callout" style="margin-top:18px">
+        <strong>Caderno de erros do Dia 3:</strong> anote se o erro foi de <strong>pressa</strong>, <strong>ordem das operações</strong>, <strong>confusão entre parte e todo</strong>, <strong>porcentagem mal lida</strong> ou <strong>século identificado de forma errada</strong>.
+      </div>
+    </section>
 
-        <div class="callout">
-          <strong>Revisão em 24 horas:</strong> refaça 2 questões de matemática, 1 de fração, 1 de porcentagem e 1 de cronologia sem consultar a apostila.
-        </div>
-
-        <div class="callout">
-          <strong>Revisão em 7 dias:</strong> tente explicar em voz alta o que é fração equivalente, o que é 25% e como descobrir o século de 1889 e 2026.
-        </div>
-      </section>
-
-      <section id="gabarito" class="section-card">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Bloco 8</p>
-            <h2>Gabarito consolidado</h2>
-          </div>
-          <span class="badge">Correção final</span>
-        </div>
-
-        <ul class="gabarito">
-          <li>Questão 1 — <strong>c</strong></li>
-          <li>Questão 2 — <strong>c</strong></li>
-          <li>Questão 3 — <strong>b</strong></li>
-          <li>Questão 4 — <strong>b</strong></li>
-          <li>Questão 5 — <strong>b</strong></li>
-          <li>Questão 6 — <strong>a</strong></li>
-          <li>Questão 7 — <strong>c</strong></li>
-          <li>Questão 8 — <strong>a</strong></li>
-          <li>Questão 9 — <strong>b</strong></li>
-          <li>Questão 10 — <strong>c</strong></li>
-          <li>Questão 11 — <strong>b</strong></li>
-          <li>Questão 12 — <strong>b</strong></li>
-          <li>Questão 13 — <strong>b</strong></li>
-        </ul>
-
-        <div class="divider"></div>
-        <p class="muted" style="margin-top:16px;">
-          Missão do Dia 3: sair com mais segurança em números, frações, porcentagem e cronologia.
-          Não basta acertar. É preciso entender por que acertou.
-        </p>
-      </section>
-
+    <section class="section">
       <div class="footer-nav">
-        <a href="../index.html">VOLTAR PARA O CRONOGRAMA</a>
+        <a class="footer-btn" href="../index.html">← Voltar para o cronograma</a>
+        <a class="footer-btn primary" href="dia-004.html">Próxima apostila →</a>
       </div>
-    </div>
-  </main>
+      <p class="small" style="text-align:center; margin-bottom:0">Apostila 03 de 255 · Projeto Akemy · Vestibulinho ETEC 2026</p>
+    </section>
 
-  <script>
-    document.querySelectorAll('.reveal-btn').forEach((button) => {
-      button.addEventListener('click', () => {
-        const exercise = button.closest('.exercise');
-        const shown = exercise.getAttribute('data-state') === 'shown';
-        exercise.setAttribute('data-state', shown ? 'hidden' : 'shown');
-        button.textContent = shown ? 'Mostrar resposta' : 'Ocultar resposta';
-      });
-    });
-  </script>
+  </div>
+</main>
+
+<script>
+function markOption(el, type){
+  const group = el.closest('.options');
+  group.querySelectorAll('.option').forEach(o => o.classList.remove('correct','wrong'));
+  el.classList.add(type);
+}
+function toggleAnswer(btn){
+  const answer = btn.nextElementSibling;
+  const open = answer.classList.contains('show');
+  answer.classList.toggle('show', !open);
+  btn.textContent = open ? 'Ver resolução' : 'Ocultar resolução';
+}
+</script>
 </body>
 </html>
