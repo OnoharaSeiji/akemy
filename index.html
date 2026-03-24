@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Akemy Estudos — Cronograma Vestibulinho ETEC 2026</title>
-  <meta name="description" content="Cronograma dinâmico de estudos da Akemy para o Vestibulinho ETEC 2026, com calendário, progresso e acesso às apostilas.">
+  <meta name="description" content="Cronograma excelente de estudos da Akemy para o Vestibulinho ETEC 2026, com calendário, progresso, rotina semanal e acesso direto às apostilas.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,8 +14,8 @@
         <div class="hero-grid">
           <div>
             <div class="eyebrow">Akemy Estudos · Projeto ETEC</div>
-            <h1>Cronograma completo com acesso direto às apostilas</h1>
-            <p>Esta página funciona como centro do projeto: calendário dinâmico, progresso salvo no navegador, exportação/importação e links diretos para cada apostila publicada na pasta <strong>apostilas/</strong>.</p>
+            <h1>Cronograma excelente com acesso direto às apostilas</h1>
+            <p>Esta página agora incorpora a versão refinada do plano: 37 semanas, 4 fases, revisão acumulativa, treino com gráfico/mapa/tabela e simulados calibrados ao padrão real da ETEC.</p>
             <div class="hero-actions">
               <a href="#cronograma" class="btn btn-primary">Ver cronograma</a>
               <a href="#calendario" class="btn btn-outline">Abrir calendário</a>
@@ -32,7 +32,7 @@
             </div>
             <div class="metric">
               <span class="metric-label">Apostilas publicadas</span>
-              <strong id="metric-published">7</strong>
+              <strong id="metric-published">14</strong>
             </div>
             <div class="metric">
               <span class="metric-label">Contagem regressiva</span>
@@ -47,12 +47,12 @@
   <main class="container">
     <section class="section">
       <h2>Visão geral</h2>
-      <p class="lead">A estrutura foi preparada para GitHub Pages com HTML/CSS/JS puro. O estudo vai de <strong>20/03/2026</strong> até <strong>29/11/2026</strong>, deixando a prova em <strong>30/11/2026</strong> separada da rotina de preparação.</p>
+      <p class="lead">O estudo vai de <strong>20/03/2026</strong> até <strong>29/11/2026</strong>, deixando a prova em <strong>30/11/2026</strong> separada da rotina. A lógica foi reorganizada para aumentar a chance de aprovação sem inflar conteúdo de baixo retorno.</p>
       <div class="grid grid-2">
         <article class="card">
           <h3>Progresso do aluno</h3>
           <div class="progress-meta">
-            <span id="progress-text">0 de 7 apostilas publicadas concluídas</span>
+            <span id="progress-text">0 de 14 apostilas publicadas concluídas</span>
             <strong id="progress-percent">0%</strong>
           </div>
           <div class="progress-bar" aria-label="Barra de progresso">
@@ -73,9 +73,29 @@
       </div>
     </section>
 
+    <section class="section">
+      <div class="grid grid-2">
+        <article class="card">
+          <h2 style="margin-top:0">Regras fixas de execução</h2>
+          <ul id="fixed-rules" class="clean-list"></ul>
+        </article>
+        <article class="card">
+          <h2 style="margin-top:0">Rotina semanal ideal</h2>
+          <div class="table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr><th>Dia</th><th>Foco</th></tr>
+              </thead>
+              <tbody id="weekly-routine"></tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section" id="calendario">
       <h2>Calendário dinâmico</h2>
-      <p class="lead">Clique nos dias que já têm apostila publicada. Os demais continuam no planejamento, mas aparecem como <strong>Em breve</strong> até a geração do conteúdo.</p>
+      <p class="lead">Clique nos dias que já têm apostila publicada. Os demais permanecem no planejamento e aparecem como <strong>Em breve</strong> até a geração do conteúdo.</p>
       <div class="card">
         <div class="month-nav">
           <button class="btn" id="prev-month" aria-label="Mês anterior">◀</button>
@@ -88,7 +108,7 @@
 
     <section class="section" id="cronograma">
       <h2>Cronograma detalhado</h2>
-      <p class="lead">Cada linha representa uma semana do planejamento. Quando a apostila daquela faixa já foi publicada, o link abre a página correspondente em <span class="kbd">apostilas/dia-XXX.html</span>.</p>
+      <p class="lead">Cada linha representa uma semana do planejamento excelente. Quando a apostila daquela faixa já foi publicada, o link abre a página correspondente em <span class="kbd">apostilas/dia-XXX.html</span>.</p>
       <div class="card table-wrap">
         <table class="schedule-table">
           <thead>
@@ -113,7 +133,7 @@
   </main>
 
   <footer class="footer container">
-    <p>Estrutura do repositório: <strong>index.html</strong>, <strong>style.css</strong>, <strong>config.js</strong>, <strong>.nojekyll</strong>, <strong>404.html</strong> e pasta <strong>apostilas/</strong>. Feito para publicação estática simples no GitHub Pages.</p>
+    <p>Estrutura do repositório: <strong>index.html</strong>, <strong>style.css</strong>, <strong>config.js</strong>, <strong>.nojekyll</strong>, <strong>404.html</strong> e pasta <strong>apostilas/</strong>. Feito para GitHub Pages com HTML/CSS/JS puro.</p>
   </footer>
 
   <script src="config.js"></script>
@@ -127,7 +147,7 @@
     const weekdayNames = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 
     let state = {
-      currentMonth: 2, // março = 2
+      currentMonth: 2,
       currentYear: 2026,
       completed: loadProgress()
     };
@@ -187,6 +207,13 @@
         `;
         wrap.appendChild(div);
       });
+    }
+
+    function renderRules(){
+      const ul = document.getElementById('fixed-rules');
+      ul.innerHTML = cfg.fixedRules.map(rule => `<li>${rule}</li>`).join('');
+      const tbody = document.getElementById('weekly-routine');
+      tbody.innerHTML = cfg.weeklyRoutine.map(row => `<tr><td><strong>${row.day}</strong></td><td>${row.task}</td></tr>`).join('');
     }
 
     function renderQuickLinks(){
@@ -280,9 +307,7 @@
           <div class="day-number">${day}</div>
           <div class="day-badge" style="background:${badgeColor}">${helpers.formatDayNumber(study.number)}</div>
           <div class="day-study">${study.title}</div>
-          ${study.available
-            ? `<a class="day-link" href="${study.href}">Abrir apostila</a>`
-            : `<span class="day-link disabled">Em breve</span>`}
+          ${study.available ? `<a class="day-link" href="${study.href}">Abrir apostila</a>` : `<span class="day-link disabled">Em breve</span>`}
           ${study.available ? `<div class="small" style="margin-top:8px"><label><input type="checkbox" data-complete-day="${study.number}" ${done ? 'checked' : ''}> concluída</label></div>` : ''}
         `;
         grid.appendChild(cell);
@@ -313,8 +338,8 @@
     }
 
     function changeMonth(step){
-      const minMonth = 2; // março/2026
-      const maxMonth = 10; // novembro/2026
+      const minMonth = 2;
+      const maxMonth = 10;
       let nextMonth = state.currentMonth + step;
       let nextYear = state.currentYear;
       if(nextMonth < 0){ nextMonth = 11; nextYear--; }
@@ -369,6 +394,7 @@
     });
 
     renderPhases();
+    renderRules();
     renderQuickLinks();
     renderSchedule();
     renderCalendar();
