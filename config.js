@@ -6,43 +6,342 @@ window.AKEMY_CONFIG = {
   studyEnd: "2026-11-29",
   totalStudyDays: 255,
   weeklyGoalMinutes: "60–90 minutos por apostila",
-  availableApostilas: [1, 2, 3, 4, 5, 6, 7],
-  apostilaTitles: {"1": "Como estudar para o Vestibulinho", "2": "Interpretação de texto", "3": "Números, operações e cronologia histórica", "4": "Gêneros textuais", "5": "Célula e organização dos seres vivos", "6": "Espaço geográfico e biomas", "7": "Razão, proporção e regra de três"},
-  phases: [{"id": "fase1", "name": "Fase 1 — Alicerce", "start": "2026-03-20", "end": "2026-05-31", "daily": "60–90 min", "color": "#2f7a50"}, {"id": "fase2", "name": "Fase 2 — Construção", "start": "2026-06-01", "end": "2026-08-31", "daily": "90–120 min", "color": "#1e5a8e"}, {"id": "fase3", "name": "Fase 3 — Intensivo", "start": "2026-09-01", "end": "2026-10-31", "daily": "120–150 min", "color": "#8d3f20"}, {"id": "fase4", "name": "Fase 4 — Sprint Final", "start": "2026-11-01", "end": "2026-11-29", "daily": "120–150 min", "color": "#6d3cc2"}],
-  weeks: [{"number": 1, "start": "2026-03-20", "end": "2026-03-26", "theme": "Método de estudo, leitura de prova e base de raciocínio"}, {"number": 2, "start": "2026-03-27", "end": "2026-04-02", "theme": "Linguagem, células e geografia básica"}, {"number": 3, "start": "2026-04-03", "end": "2026-04-09", "theme": "Matemática operacional e bases de ciência"}, {"number": 4, "start": "2026-04-10", "end": "2026-04-16", "theme": "Gramática, ecologia e grandezas físicas"}, {"number": 5, "start": "2026-04-17", "end": "2026-04-23", "theme": "História moderna e porcentagem"}, {"number": 6, "start": "2026-04-24", "end": "2026-04-30", "theme": "Geometria inicial e interpretação aplicada"}, {"number": 7, "start": "2026-05-01", "end": "2026-05-07", "theme": "Química introdutória e estatística"}, {"number": 8, "start": "2026-05-08", "end": "2026-05-14", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 9, "start": "2026-05-15", "end": "2026-05-21", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 10, "start": "2026-05-22", "end": "2026-05-28", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 11, "start": "2026-05-29", "end": "2026-06-04", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 12, "start": "2026-06-05", "end": "2026-06-11", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 13, "start": "2026-06-12", "end": "2026-06-18", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 14, "start": "2026-06-19", "end": "2026-06-25", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 15, "start": "2026-06-26", "end": "2026-07-02", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 16, "start": "2026-07-03", "end": "2026-07-09", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 17, "start": "2026-07-10", "end": "2026-07-16", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 18, "start": "2026-07-17", "end": "2026-07-23", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 19, "start": "2026-07-24", "end": "2026-07-30", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 20, "start": "2026-07-31", "end": "2026-08-06", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 21, "start": "2026-08-07", "end": "2026-08-13", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 22, "start": "2026-08-14", "end": "2026-08-20", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 23, "start": "2026-08-21", "end": "2026-08-27", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 24, "start": "2026-08-28", "end": "2026-09-03", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 25, "start": "2026-09-04", "end": "2026-09-10", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 26, "start": "2026-09-11", "end": "2026-09-17", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 27, "start": "2026-09-18", "end": "2026-09-24", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 28, "start": "2026-09-25", "end": "2026-10-01", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 29, "start": "2026-10-02", "end": "2026-10-08", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 30, "start": "2026-10-09", "end": "2026-10-15", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 31, "start": "2026-10-16", "end": "2026-10-22", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 32, "start": "2026-10-23", "end": "2026-10-29", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 33, "start": "2026-10-30", "end": "2026-11-05", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 34, "start": "2026-11-06", "end": "2026-11-12", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 35, "start": "2026-11-13", "end": "2026-11-19", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 36, "start": "2026-11-20", "end": "2026-11-26", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}, {"number": 37, "start": "2026-11-27", "end": "2026-11-29", "theme": "Revisão progressiva, exercícios e aprofundamento por matéria"}]
+  availableApostilas: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+  apostilaTitles: {
+    1: "Como estudar para o Vestibulinho",
+    2: "Interpretação de texto",
+    3: "Números, operações e cronologia histórica",
+    4: "Gêneros textuais",
+    5: "Célula e organização dos seres vivos",
+    6: "Espaço geográfico e biomas",
+    7: "Razão, proporção e regra de três",
+    8: "Estrutura atômica, íons e organização da matéria",
+    9: "Grandezas físicas, unidades e conversões",
+    10: "Formação de palavras e classes gramaticais",
+    11: "Ecologia, cadeias alimentares e ciclos da matéria",
+    12: "Substâncias, misturas e separação de materiais",
+    13: "Porcentagem, descontos e aumentos sucessivos",
+    14: "Renascimento, mercantilismo e expansão marítima"
+  },
+  phases: [
+    {
+      id: "fase1",
+      name: "Fase 1 — Alicerce",
+      start: "2026-03-20",
+      end: "2026-05-31",
+      daily: "60–90 min",
+      color: "#2f7a50"
+    },
+    {
+      id: "fase2",
+      name: "Fase 2 — Construção",
+      start: "2026-06-01",
+      end: "2026-08-31",
+      daily: "90–120 min",
+      color: "#1e5a8e"
+    },
+    {
+      id: "fase3",
+      name: "Fase 3 — Intensivo",
+      start: "2026-09-01",
+      end: "2026-10-31",
+      daily: "120–150 min",
+      color: "#8d3f20"
+    },
+    {
+      id: "fase4",
+      name: "Fase 4 — Sprint Final",
+      start: "2026-11-01",
+      end: "2026-11-29",
+      daily: "120–150 min",
+      color: "#6d3cc2"
+    }
+  ],
+  fixedRules: [
+    "1 bloco de revisão acumulativa de 20–30 min por semana",
+    "1 mini-lista mista com 6 a 10 questões antigas",
+    "1 treino com visual: mapa, gráfico, tabela, charge ou infográfico",
+    "1 registro obrigatório no caderno de erros",
+    "Sexta ou sábado com bloco cronometrado",
+    "Domingo livre ou com revisão leve"
+  ],
+  weeklyRoutine: [
+    { day: "Segunda", task: "Teoria principal da semana" },
+    { day: "Terça", task: "Teoria + exemplos resolvidos" },
+    { day: "Quarta", task: "Exercícios guiados" },
+    { day: "Quinta", task: "Exercícios independentes" },
+    { day: "Sexta", task: "Revisão acumulativa + mini-lista mista" },
+    { day: "Sábado", task: "Bloco cronometrado ou simulado parcial" },
+    { day: "Domingo", task: "Descanso ou revisão leve" }
+  ],
+  weeks: [
+    {
+      number: 1,
+      start: "2026-03-20",
+      end: "2026-03-26",
+      theme: "Método de estudo, leitura da prova, interpretação básica, números e operações, linha do tempo geral"
+    },
+    {
+      number: 2,
+      start: "2026-03-27",
+      end: "2026-04-02",
+      theme: "Gêneros textuais, assunto x tema, ideia principal, célula, níveis de organização dos seres vivos, espaço geográfico"
+    },
+    {
+      number: 3,
+      start: "2026-04-03",
+      end: "2026-04-09",
+      theme: "Razão, proporção, conversão de unidades, grandezas físicas, estrutura atômica inicial e gráfico de setor"
+    },
+    {
+      number: 4,
+      start: "2026-04-10",
+      end: "2026-04-16",
+      theme: "Funções da linguagem, biomas brasileiros, leitura de mapas, localização e orientação espacial"
+    },
+    {
+      number: 5,
+      start: "2026-04-17",
+      end: "2026-04-23",
+      theme: "Sistema digestório, substâncias e misturas, equação do 1º grau e problemas contextualizados"
+    },
+    {
+      number: 6,
+      start: "2026-04-24",
+      end: "2026-04-30",
+      theme: "Figuras de linguagem, pressão, sociedade medieval e transição para a Idade Moderna"
+    },
+    {
+      number: 7,
+      start: "2026-05-01",
+      end: "2026-05-07",
+      theme: "Geometria plana, perímetro, área, ecologia básica, cadeia alimentar, relevo e impacto humano"
+    },
+    {
+      number: 8,
+      start: "2026-05-08",
+      end: "2026-05-14",
+      theme: "Pronomes, conectivos, coesão, pH, calor e temperatura com humor e duplo sentido em texto"
+    },
+    {
+      number: 9,
+      start: "2026-05-15",
+      end: "2026-05-21",
+      theme: "Genética introdutória, Brasil República em visão geral, estatística básica e leitura de gráficos"
+    },
+    {
+      number: 10,
+      start: "2026-05-22",
+      end: "2026-05-28",
+      theme: "Consolidação da fase: 21 questões mistas, correção comentada e mapa de erros por disciplina"
+    },
+    {
+      number: 11,
+      start: "2026-05-29",
+      end: "2026-06-04",
+      theme: "Textos multimodais, Bhaskara no nível necessário, Segunda Guerra e Guerra Fria"
+    },
+    {
+      number: 12,
+      start: "2026-06-05",
+      end: "2026-06-11",
+      theme: "Sistema nervoso, estequiometria introdutória, óptica e interpretação de medidas no enunciado"
+    },
+    {
+      number: 13,
+      start: "2026-06-12",
+      end: "2026-06-18",
+      theme: "Formação de palavras, classes gramaticais em contexto, sistemas de equações, escala e coordenadas geográficas"
+    },
+    {
+      number: 14,
+      start: "2026-06-19",
+      end: "2026-06-25",
+      theme: "Mercantilismo, expansão marítima, colonização, evolução biológica e radioatividade básica"
+    },
+    {
+      number: 15,
+      start: "2026-06-26",
+      end: "2026-07-02",
+      theme: "Estatística, média, moda, amplitude, ondas, correntes marítimas e placas tectônicas"
+    },
+    {
+      number: 16,
+      start: "2026-07-03",
+      end: "2026-07-09",
+      theme: "Variação linguística, inferência, coesão, doenças parasitárias, urbanização e problemas urbanos"
+    },
+    {
+      number: 17,
+      start: "2026-07-10",
+      end: "2026-07-16",
+      theme: "Notação científica, corpo humano II e química orgânica básica no essencial"
+    },
+    {
+      number: 18,
+      start: "2026-07-17",
+      end: "2026-07-23",
+      theme: "Energia, máquinas simples, biodiversidade, hotspots e leitura de infográficos"
+    },
+    {
+      number: 19,
+      start: "2026-07-24",
+      end: "2026-07-30",
+      theme: "Porcentagem, descontos, aumentos sucessivos, área/perímetro e separação de misturas"
+    },
+    {
+      number: 20,
+      start: "2026-07-31",
+      end: "2026-08-06",
+      theme: "Sintaxe básica, eletrostática, magnetismo, território, cidade, clima e ambiente no Brasil"
+    },
+    {
+      number: 21,
+      start: "2026-08-07",
+      end: "2026-08-13",
+      theme: "Fotossíntese, respiração, interpretação quantitativa, estatística e problemas mistos"
+    },
+    {
+      number: 22,
+      start: "2026-08-14",
+      end: "2026-08-20",
+      theme: "Leitura crítica, opinião x fato, tese implícita, ditadura militar, industrialização e questões ambientais"
+    },
+    {
+      number: 23,
+      start: "2026-08-21",
+      end: "2026-08-27",
+      theme: "Revisão da fase + Simulado 1: 50 questões, correção por assunto e replanejamento"
+    },
+    {
+      number: 24,
+      start: "2026-08-28",
+      end: "2026-09-03",
+      theme: "Diagnóstico fino: levantamento dos 12 assuntos mais errados e reforço imediato"
+    },
+    {
+      number: 25,
+      start: "2026-09-04",
+      end: "2026-09-10",
+      theme: "Revisão intensiva de Biologia, Química e Física com foco nas provas de 2020 a 2026"
+    },
+    {
+      number: 26,
+      start: "2026-09-11",
+      end: "2026-09-17",
+      theme: "História e Geografia por questões + Simulado 2 com foco em ambiente, Brasil e leitura de fonte"
+    },
+    {
+      number: 27,
+      start: "2026-09-18",
+      end: "2026-09-24",
+      theme: "Prova 2024 comentada + reforço dos pontos fracos expostos pelo exame"
+    },
+    {
+      number: 28,
+      start: "2026-09-25",
+      end: "2026-10-01",
+      theme: "Reforço de Química, Física e Geografia com bloco obrigatório de mapa e gráfico/tabela"
+    },
+    {
+      number: 29,
+      start: "2026-10-02",
+      end: "2026-10-08",
+      theme: "Simulado 3: 50 questões, correção por tema e ranking de erros reincidentes"
+    },
+    {
+      number: 30,
+      start: "2026-10-09",
+      end: "2026-10-15",
+      theme: "Revisão intensiva de Português e Matemática: interpretação, conectivos, razão, porcentagem e gráficos"
+    },
+    {
+      number: 31,
+      start: "2026-10-16",
+      end: "2026-10-22",
+      theme: "Prova 2026 comentada com atenção especial a razão, gráfico de setor e contexto histórico-cultural"
+    },
+    {
+      number: 32,
+      start: "2026-10-23",
+      end: "2026-10-29",
+      theme: "Fechamento do intensivo com lista mista pesada e revisão dos 20 erros mais comuns"
+    },
+    {
+      number: 33,
+      start: "2026-10-30",
+      end: "2026-11-05",
+      theme: "Simulado 4 + correção aprofundada com foco em tempo, resistência e estratégia"
+    },
+    {
+      number: 34,
+      start: "2026-11-06",
+      end: "2026-11-12",
+      theme: "Revisão temática rápida: Português/Matemática, Bio/Química e Física/História/Geografia"
+    },
+    {
+      number: 35,
+      start: "2026-11-13",
+      end: "2026-11-19",
+      theme: "Dois simulados: 50 questões em 4h e 40 questões em 3h para adaptação de ritmo"
+    },
+    {
+      number: 36,
+      start: "2026-11-20",
+      end: "2026-11-26",
+      theme: "Revisão final pelo caderno de erros, fórmulas essenciais e pegadinhas recorrentes"
+    },
+    {
+      number: 37,
+      start: "2026-11-27",
+      end: "2026-11-29",
+      theme: "Semana leve e estratégica: revisão final, organização da prova e estabilidade emocional"
+    }
+  ]
 };
 
 window.AKEMY_HELPERS = {
   formatDayNumber(n) {
-    return String(n).padStart(3, '0');
+    return String(n).padStart(3, "0");
   },
+
   getPhaseByDate(dateStr) {
-    const time = new Date(dateStr + "T12:00:00");
-    return window.AKEMY_CONFIG.phases.find(p => {
-      const s = new Date(p.start + "T00:00:00");
-      const e = new Date(p.end + "T23:59:59");
-      return time >= s && time <= e;
+    const time = new Date(`${dateStr}T12:00:00`);
+    return window.AKEMY_CONFIG.phases.find((phase) => {
+      const start = new Date(`${phase.start}T00:00:00`);
+      const end = new Date(`${phase.end}T23:59:59`);
+      return time >= start && time <= end;
     });
   },
+
   generateStudyDays() {
     const days = [];
-    const start = new Date(window.AKEMY_CONFIG.studyStart + "T12:00:00");
-    const end = new Date(window.AKEMY_CONFIG.studyEnd + "T12:00:00");
+    const start = new Date(`${window.AKEMY_CONFIG.studyStart}T12:00:00`);
+    const end = new Date(`${window.AKEMY_CONFIG.studyEnd}T12:00:00`);
     let current = new Date(start);
-    let i = 1;
+    let number = 1;
+
     while (current <= end) {
       const iso = current.toISOString().slice(0, 10);
+      const available = window.AKEMY_CONFIG.availableApostilas.includes(number);
+
       days.push({
-        number: i,
+        number,
         date: iso,
-        title: window.AKEMY_CONFIG.apostilaTitles[i] || `Apostila ${String(i).padStart(3, '0')}`,
+        title:
+          window.AKEMY_CONFIG.apostilaTitles[number] ||
+          `Apostila ${String(number).padStart(3, "0")}`,
         phase: window.AKEMY_HELPERS.getPhaseByDate(iso)?.id || null,
-        available: window.AKEMY_CONFIG.availableApostilas.includes(i),
-        href: window.AKEMY_CONFIG.availableApostilas.includes(i) ? `apostilas/dia-${String(i).padStart(3, '0')}.html` : null
+        available,
+        href: available
+          ? `apostilas/dia-${String(number).padStart(3, "0")}.html`
+          : null
       });
+
       current.setDate(current.getDate() + 1);
-      i++;
+      number += 1;
     }
+
     return days;
   }
 };
