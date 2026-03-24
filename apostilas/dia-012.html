@@ -1,150 +1,511 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Apostila 012 — Substâncias, misturas e separação de materiais</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#f5f7f4;--bg2:#eef3ef;--card:#ffffff;--line:#dbe5dd;--ink:#1f2a22;--muted:#5e6c61;
-  --primary:#2f7a50;--primary-soft:#e8f4ec;--secondary:#1e5a8e;--secondary-soft:#eaf3fb;
-  --accent:#8d3f20;--accent-soft:#fff0e7;--violet:#6d3cc2;--violet-soft:#f2ecff;
-  --danger:#b44343;--shadow:0 14px 34px rgba(31,42,34,.08);--r-xl:24px;--r-lg:18px;--r-md:14px;
-}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:
-radial-gradient(circle at top left, rgba(47,122,80,.08), transparent 24%),
-linear-gradient(180deg,#f8faf8 0%,var(--bg) 100%);color:var(--ink);line-height:1.68}
-a{text-decoration:none;color:inherit}
-.hero{background:linear-gradient(135deg,#193024 0%,#224534 55%,#1f3650 100%);color:#f5faf6;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:
-radial-gradient(circle at top right, rgba(255,255,255,.10), transparent 22%),
-radial-gradient(circle at bottom left, rgba(255,255,255,.08), transparent 26%)}
-.hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:44px 24px 36px;display:grid;grid-template-columns:1.28fr .72fr;gap:22px}
-.badge{display:inline-flex;align-items:center;gap:10px;font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:800;color:#cde9d6}
-.badge:before{content:"";width:28px;height:1px;background:#cde9d6}
-h1{margin:12px 0 10px;font-size:clamp(2rem,4.4vw,3.55rem);line-height:1.02;letter-spacing:-.03em}
-.subtitle{max-width:760px;color:rgba(245,250,246,.84);font-size:1rem}
-.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13);font-size:12px;font-weight:700}
-.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:22px;backdrop-filter:blur(10px);align-self:start}
-.hero-card strong.num{display:block;font-size:3rem;line-height:1;font-weight:900}
-.hero-card .mini{color:rgba(245,250,246,.76);font-size:.92rem}
-.progress-wrap{height:9px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;margin:14px 0}
-.progress{height:100%;background:linear-gradient(90deg,#67c18a 0%,#a1e2b6 100%)}
-.topnav{position:sticky;top:0;z-index:20;background:rgba(248,250,248,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(219,229,221,.95)}
-.topnav-inner{max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;gap:10px;flex-wrap:wrap}
-.topnav a{font-size:13px;font-weight:700;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff}
-.topnav a:hover{background:var(--bg2)}
-main{max-width:1120px;margin:0 auto;padding:24px}
-.section{margin:22px 0;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--shadow);overflow:hidden}
-.section-head{padding:22px 24px 12px;background:linear-gradient(180deg,#fff 0%,#f9fbf9 100%);border-bottom:1px solid #edf3ee}
-.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:var(--primary)}
-.section h2{margin:8px 0 0;font-size:clamp(1.45rem,3vw,2.2rem);line-height:1.08;letter-spacing:-.02em}
-.section-sub{margin-top:10px;color:var(--muted)}
-.section-body{padding:20px 24px 26px}
-.grid-2,.grid-3{display:grid;gap:16px}
-.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.card{background:#fff;border:1px solid #e7eee8;border-radius:18px;padding:18px}
-.card h3{margin:0 0 10px;font-size:1.02rem}
-.card p:last-child,.card ul:last-child,.card ol:last-child{margin-bottom:0}
-.note,.example-box,.recall,.study-plan,.error-box{border-radius:16px;padding:16px 18px;margin:16px 0}
-.note{background:var(--primary-soft);border:1px solid #cfe5d6}
-.note.blue{background:var(--secondary-soft);border-color:#d7e7f7}
-.note.orange{background:var(--accent-soft);border-color:#f2d4c2}
-.note.violet{background:var(--violet-soft);border-color:#ddd0fb}
-.study-plan{background:#f6fbf7;border:1px solid #dbe9de}
-.example-box{background:#fffdf7;border:1px solid #eee3c8}
-.recall{background:#f8f5ff;border:1px solid #e2d9fb}
-.error-box{background:#fff5f5;border:1px solid #f0cccc}
-ol,ul{padding-left:20px}
-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5ece7;border-radius:16px;overflow:hidden}
-th,td{padding:12px 14px;border:1px solid #e5ece7;text-align:left;vertical-align:top}
-th{background:#f5f9f6}
-.exercise{border:1px solid #e2eae4;border-radius:18px;padding:18px;background:#fff;margin:16px 0}
-.exercise .tag{display:inline-flex;padding:6px 10px;border-radius:999px;background:#eff5f0;color:#577060;font-size:12px;font-weight:800;margin-bottom:10px}
-.exercise h4{margin:0 0 10px;font-size:1.02rem}
-.options{display:grid;gap:10px;margin-top:14px}
-.option{border:1px solid #dce6de;background:#fff;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer;font:500 15px Inter,sans-serif;color:var(--ink);transition:.15s ease}
-.option:hover{transform:translateY(-1px);border-color:#a8c7b3}
-.option.correct{background:#eef9f1;border-color:#8dc29f}
-.option.wrong{background:#fff1f1;border-color:#e2a8a8}
-.feedback{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:14px}
-.feedback.ok{display:block;background:#eef9f1;color:#245439;border:1px solid #b6ddc2}
-.feedback.bad{display:block;background:#fff1f1;color:#7e2c2c;border:1px solid #e4b1b1}
-.timeline{display:grid;gap:12px}
-.timeline-item{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start}
-.timeline-item .when{font-weight:900;color:var(--primary)}
-.checklist{display:grid;gap:10px;margin-top:10px}
-.ck{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:#fff;border:1px solid #e5ece7;border-radius:12px}
-.ck input{margin-top:4px;transform:scale(1.15)}
-.footer{background:#172920;color:#f0f7f2;margin-top:28px}
-.footer-inner{max-width:1120px;margin:0 auto;padding:26px 24px}
-.footer-grid{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
-.back-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:14px;background:linear-gradient(90deg,#67c18a 0%,#8ad2a6 100%);color:#14301f;font-weight:900;letter-spacing:.02em}
-.footer-meta{color:rgba(240,247,242,.76);font-size:14px}
-.small{font-size:13px;color:var(--muted)}
-@media (max-width:900px){.hero-inner,.grid-2,.grid-3{grid-template-columns:1fr}main{padding:16px}.topnav-inner,.hero-inner,.footer-inner{padding-left:16px;padding-right:16px}.section-head,.section-body{padding-left:16px;padding-right:16px}.timeline-item{grid-template-columns:1fr}}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apostila 012 — Revisão acumulativa da semana 02</title>
+  <meta name="description" content="Apostila 012 do projeto Akemy Estudos para o Vestibulinho ETEC 2026." />
+  <style>
+    :root {
+      --bg: #f5f7f6;
+      --paper: #ffffff;
+      --paper-2: #f8fbf9;
+      --text: #1f2a22;
+      --muted: #5d6b61;
+      --line: #dce7df;
+      --primary: #2f7a50;
+      --primary-dark: #22593a;
+      --primary-soft: #e7f4ec;
+      --secondary: #245f8f;
+      --accent: #6a43c1;
+      --warning: #8c5626;
+      --shadow: 0 10px 30px rgba(20, 35, 25, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(47, 122, 80, 0.08), transparent 20%),
+        radial-gradient(circle at top right, rgba(36, 95, 143, 0.08), transparent 22%),
+        linear-gradient(180deg, #f9fbfa 0%, var(--bg) 100%);
+      line-height: 1.68;
+    }
+
+    a { color: inherit; }
+
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .hero { padding: 34px 0 20px; }
+
+    .hero__card, .card, .section-card, .exercise, details.answer {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+    }
+
+    .hero__card {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 10px; }
+    h2 { font-size: 1.55rem; line-height: 1.15; margin-bottom: 12px; }
+    h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .subtitle, .muted, li::marker { color: var(--muted); }
+    .hero__lead { font-size: 1.02rem; color: var(--text); max-width: 62ch; }
+
+    .hero__meta { display: grid; gap: 12px; }
+    .meta-card {
+      background: linear-gradient(180deg, #fff 0%, var(--paper-2) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 14px;
+    }
+    .meta-card strong { display: block; margin-bottom: 8px; font-size: .92rem; color: var(--primary-dark); }
+    .meta-card p { margin-bottom: 0; color: var(--muted); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+      padding-bottom: 36px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 16px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .card, .section-card, .exercise { padding: 20px; }
+    .toc ul, .list, .checklist ul { margin: 0; padding-left: 18px; }
+    .toc li + li, .list li + li, .checklist li + li { margin-top: 8px; }
+
+    .cta-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .cta-back:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+    .main { display: grid; gap: 16px; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: .84rem;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 12px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #fff 0%, #fbfcfb 100%);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+    }
+    .mini-card p:last-child { margin-bottom: 0; }
+
+    .exercise { border-radius: var(--radius-lg); }
+    .question {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+    .question:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    details.answer {
+      margin-top: 10px;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      background: var(--paper-2);
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--secondary);
+      outline: none;
+    }
+    details.answer p { margin: 10px 0 0; }
+    details.answer ul { margin: 10px 0 0; padding-left: 18px; }
+
+    .callout {
+      border-left: 5px solid var(--warning);
+      background: #fff8f1;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 14px 16px;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 6px 0 24px;
+    }
+    .footer-nav .small { color: var(--muted); font-size: .92rem; }
+
+    code.inline {
+      background: #f0f5f1;
+      padding: 2px 7px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      font-size: .95em;
+    }
+
+    @media (max-width: 980px) {
+      .hero__card, .layout, .grid-3 { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+
+    @media (max-width: 720px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .section-head, .footer-nav { flex-direction: column; align-items: start; }
+      .container { width: min(var(--max), calc(100% - 20px)); }
+      .hero__card, .card, .section-card, .exercise { padding: 18px; }
+    }
 </style>
 </head>
-<body data-page="apostila-012">
-<header class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="badge">Projeto Akemy · Vestibulinho ETEC</div>
-      <h1>Apostila 012<span style="display:block;font-size:.56em;margin-top:10px;color:#d0f0da">Substâncias, misturas e separação de materiais</span></h1>
-      <p class="subtitle">Depois da base atômica, é hora de olhar para os materiais do cotidiano. Esta apostila ensina a diferenciar substâncias e misturas e a escolher o método de separação mais adequado para cada caso.</p>
-      <div class="hero-meta"><span class='chip'>Substância</span><span class='chip'>Mistura</span><span class='chip'>Separação</span></div>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero__card">
+        <div>
+          <p class="eyebrow">Akemy Estudos</p>
+          <h1>Apostila 012 — Revisão acumulativa da semana 02</h1>
+          <p class="subtitle">Vestibulinho ETEC 2026 · Dia 012 · 31/03/2026</p>
+          <p class="hero__lead">Hoje o foco é revisão acumulativa. Em vez de abrir assunto novo, a aluna precisa voltar ao que estudou, recuperar pela memória, revisar pontos frágeis e transformar erro em aprendizagem útil.</p>
+        </div>
+        <div class="hero__meta">
+          <div class="meta-card">
+            <strong>Tempo estimado</strong>
+            <p>70 a 85 minutos</p>
+          </div>
+          <div class="meta-card">
+            <strong>Objetivo do dia</strong>
+            <p>Revisar a semana 02, identificar falhas de retenção e organizar o caderno de erros.</p>
+          </div>
+          <div class="meta-card">
+            <strong>Meta real</strong>
+            <p>Terminar a sessão com compreensão verificável, respostas corrigidas e pelo menos dois registros úteis no caderno de erros.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <aside class="hero-card">
-      <div class="mini">Sequência do cronograma</div>
-      <strong class="num">12</strong>
-      <div class="mini">Semana 05</div>
-      <div class="progress-wrap"><div class="progress" style="width:4.7%"></div></div>
-      <div class="mini">Foco: <strong>Química · composição e métodos de separação</strong></div>
-      <div class="mini" style="margin-top:8px">Tempo sugerido: <strong>60 a 90 min</strong></div>
-      <div class="mini" style="margin-top:8px">Método: teoria → recuperação ativa → exercícios → revisão</div>
+  </header>
+
+  <main class="container layout">
+    <aside class="sidebar">
+      <div class="card toc">
+        <p class="eyebrow">Navegação</p>
+        <h3>Índice da apostila</h3>
+        <ul><li><a href="#roteiro">1. Como usar o dia</a></li>
+<li><a href="#teoria">2. Núcleo conceitual</a></li>
+<li><a href="#guiada">3. Prática guiada</a></li>
+<li><a href="#independente">4. Prática independente</a></li>
+<li><a href="#recuperacao">5. Recuperação ativa</a></li>
+<li><a href="#checklist">6. Checklist e caderno de erros</a></li>
+<li><a href="#gabarito">7. Como usar o gabarito</a></li></ul>
+      </div>
+
+      <div class="card">
+        <p class="eyebrow">Ação rápida</p>
+        <h3>Voltar para o cronograma</h3>
+        <p class="muted">Use este botão para retornar ao calendário e marcar o dia como concluído.</p>
+        <a class="cta-back" href="../index.html">VOLTAR PARA O CRONOGRAMA</a>
+      </div>
+
+      <div class="card checklist">
+        <p class="eyebrow">Meta do dia</p>
+        <h3>Ao terminar, a aluna deve conseguir</h3>
+        <ul><li>Gêneros textuais</li><li>Assunto e tema</li><li>Ideia principal</li><li>Célula</li><li>Organização dos seres vivos</li></ul>
+      </div>
     </aside>
-  </div>
-</header>
-<nav class="topnav"><div class="topnav-inner"><a href='#visao-geral'>Visão geral</a><a href='#teoria-1'>Bloco 1</a><a href='#teoria-2'>Bloco 2</a><a href='#teoria-3'>Bloco 3</a><a href='#exercicios'>Exercícios</a><a href='#checklist'>Checklist</a></div></nav>
-<main>
-<section class='section' id='visao-geral'><div class='section-head'><div class='kicker'>Panorama</div><h2>O que esta apostila vai construir</h2><div class='section-sub'>Leia este bloco antes de começar a teoria principal. Ele organiza intenção, foco e tempo de estudo.</div></div><div class='section-body'><div class='grid-3'><div class='card'><h3>O que esta apostila resolve</h3><p>confusão entre homogêneo/heterogêneo e entre aparência uniforme e composição química.</p></div><div class='card'><h3>Meta da sessão</h3><p>classificar materiais e reconhecer processos básicos como filtração, decantação, destilação e evaporação.</p></div><div class='card'><h3>Ponto estratégico</h3><p>o método de separação depende da propriedade física explorada.</p></div></div></div></section><section class='section' id='teoria-1'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Substâncias e misturas</h2><div class='section-sub'>Nem tudo que parece uniforme é substância pura.</div></div><div class='section-body'><div class='grid-2'><div class='card'><h3>Substância pura</h3><p>Apresenta composição definida e propriedades características. Exemplo: água destilada.</p></div><div class='card'><h3>Mistura</h3><p>É a associação de duas ou mais substâncias. Exemplo: água com sal, ar atmosférico, leite.</p></div></div><div class='note'>Uma mistura pode ser homogênea (aspecto uniforme) ou heterogênea (mais de uma fase visível).</div></div></section><section class='section' id='teoria-2'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Homogênea e heterogênea</h2><div class='section-sub'>A chave aqui é a observação de fases.</div></div><div class='section-body'><table><tr><th>Tipo</th><th>Característica</th><th>Exemplo</th></tr><tr><td>Homogênea</td><td>uma única fase visível</td><td>água com sal</td></tr><tr><td>Heterogênea</td><td>duas ou mais fases visíveis</td><td>água e óleo</td></tr></table><div class='example-box'><h4>Exemplo guiado</h4><p>Ar atmosférico é mistura homogênea. Água e areia formam mistura heterogênea. Leite costuma ser tratado, em nível introdutório escolar, como mistura.</p></div></div></section><section class='section' id='teoria-3'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Métodos de separação</h2><div class='section-sub'>Cada método se apoia em uma propriedade física.</div></div><div class='section-body'><div class='grid-3'><div class='card'><h3>Filtração</h3><p>Separa sólido de líquido em mistura heterogênea, como areia e água.</p></div><div class='card'><h3>Decantação</h3><p>Separa materiais por diferença de densidade, como água e óleo.</p></div><div class='card'><h3>Evaporação</h3><p>Remove o líquido e deixa o sólido dissolvido, como sal da água do mar.</p></div><div class='card'><h3>Destilação</h3><p>Separa componentes com diferentes pontos de ebulição. Muito cobrada em contexto de água e álcool ou dessalinização.</p></div><div class='card'><h3>Peneiração</h3><p>Separa sólidos de tamanhos diferentes.</p></div><div class='card'><h3>Imantação</h3><p>Usa magnetismo para separar materiais ferromagnéticos.</p></div></div><div class='note blue'><strong>Pergunta útil:</strong> o que muda entre os componentes? Tamanho? Densidade? Ponto de ebulição? Magnetismo? A resposta aponta o método.</div></div></section><section class='section' id='exercicios'><div class='section-head'><div class='kicker'>Conteúdo</div><h2>Aplicação ao cotidiano</h2><div class='section-sub'>A banca gosta de exemplos práticos.</div></div><div class='section-body'><div class='grid-2'><div class='card'><h3>Dessalinização</h3><p>Envolve destilação: a água evapora, é condensada e separada do sal.</p></div><div class='card'><h3>Tratamento doméstico</h3><p>Coar café e filtrar água são exemplos cotidianos que ajudam a lembrar filtração.</p></div></div><div class='error-box'><strong>Erro comum:</strong> achar que decantação separa qualquer mistura. Ela depende de diferença de densidade e tempo de repouso, ou uso de funil adequado.</div></div></section><section class='section' id='exercicios'><div class='section-head'><div class='kicker'>Treino</div><h2>Exercícios interativos</h2><div class='section-sub'>Resolva sem consultar a teoria. Depois use a explicação para corrigir o raciocínio, não apenas para marcar certo ou errado.</div></div><div class='section-body'><div class="exercise"><div class="tag">Questão 1</div><h4>Água destilada é classificada como:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não.">A) mistura heterogênea</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não é mistura.">B) mistura homogênea</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é a classificação correta.">C) substância pura</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não necessariamente.">D) solução saturada</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 2</div><h4>Água e óleo formam:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Há mais de uma fase.">A) mistura homogênea</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Correto.">B) mistura heterogênea</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não.">C) substância simples</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não.">D) substância composta</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 3</div><h4>Qual método é mais adequado para separar areia e água?</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Pode até separar, mas não é o método mais adequado em nível básico.">A) destilação</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Sólido insolúvel + líquido.">B) filtração</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não há material magnético.">C) imantação</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não é o mais apropriado com líquido.">D) peneiração</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 4</div><h4>Para separar sal dissolvido em água, o processo mais adequado é:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não.">A) imantação</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Sal dissolvido não se deposita assim.">B) decantação simples</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Ao evaporar a água, o sal permanece.">C) evaporação</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não.">D) peneiração</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 5</div><h4>Qual propriedade física é explorada na decantação?</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não.">A) cor</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é a ideia central.">B) densidade</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Magnetismo é imantação.">C) magnetismo apenas</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não.">D) odor</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 6</div><h4>A destilação é útil porque:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é a propriedade explorada.">A) separa componentes com base no ponto de ebulição</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Isso é peneiração.">B) separa sólidos por tamanho</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não.">C) usa ímã em todos os casos</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Não.">D) serve apenas para misturas heterogêneas sólidas</button></div><div class="feedback"></div></div><div class='note violet'><strong>Revisão curta:</strong> depois de terminar, volte às duas questões em que você mais hesitou. Explique em voz alta por que a alternativa correta é a melhor e por que a errada pareceu atraente.</div></div></section><section class='section' id='checklist'><div class='section-head'><div class='kicker'>Fechamento</div><h2>Checklist e revisão do dia seguinte</h2><div class='section-sub'>Marque apenas o que você realmente consegue explicar sem olhar. Amanhã, revise primeiro o que ficar em aberto.</div></div><div class='section-body'><div class='checklist'><label class='ck'><input type='checkbox'><span>Consigo diferenciar substância pura e mistura.</span></label><label class='ck'><input type='checkbox'><span>Sei classificar misturas homogêneas e heterogêneas.</span></label><label class='ck'><input type='checkbox'><span>Reconheço o método de separação mais básico para casos comuns.</span></label><label class='ck'><input type='checkbox'><span>Entendi qual propriedade física está sendo explorada em cada método.</span></label><label class='ck'><input type='checkbox'><span>Anotei quais exemplos cotidianos me ajudam a lembrar cada processo.</span></label></div><div class='study-plan'><strong>Plano de revisão espaçada</strong><ul><li><strong>Hoje:</strong> releia apenas os pontos em que errou.</li><li><strong>Amanhã:</strong> tente explicar o conteúdo em 3 minutos sem consultar.</li><li><strong>Daqui a 4–7 dias:</strong> resolva 2 ou 3 questões mistas sobre este tema.</li></ul></div><div class='error-box'><strong>Caderno de erros:</strong> registre o assunto, o erro que cometeu, o sinal que ignorou e como pretende evitar a repetição.</div></div></section>
-</main>
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <a class="back-btn" href="../index.html">← VOLTAR PARA O CRONOGRAMA</a>
-      <div class='footer-meta'><div><strong>Apostila 012</strong> · Semana 05 · Química · composição e métodos de separação</div><div>Projeto Akemy · Vestibulinho ETEC 2026</div></div>
+
+    <div class="main">
+      
+      <section id="roteiro" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 1</p>
+            <h2>Como usar o dia de hoje</h2>
+          </div>
+          <span class="badge">8 a 10 minutos</span>
+        </div>
+        
+        <p>Hoje o foco é revisão acumulativa. Em vez de abrir assunto novo, a aluna precisa voltar ao que estudou, recuperar pela memória, revisar pontos frágeis e transformar erro em aprendizagem útil.</p>
+        <div class="grid-3">
+          <div class="mini-card"><h3>Objetivo central</h3><p>Revisar a semana 02, identificar falhas de retenção e organizar o caderno de erros.</p></div>
+          <div class="mini-card"><h3>Foco da semana</h3><p>Gêneros textuais, assunto x tema, ideia principal, célula, níveis de organização dos seres vivos, espaço geográfico</p></div>
+          <div class="mini-card"><h3>Estratégia</h3><p>Leia devagar, explique com suas palavras, resolva e só então confira a resposta comentada.</p></div>
+        </div>
+        <div class="callout">
+          <strong>Regra do dia:</strong> não marque como concluído só porque leu. Marque somente se você conseguiu explicar, resolver e corrigir.
+        </div>
+        
+      </section>
+    
+      <section id="teoria" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 2</p>
+            <h2>Núcleo conceitual da sessão</h2>
+          </div>
+          <span class="badge">18 a 25 minutos</span>
+        </div>
+        
+        <p>Antes de resolver questões, a aluna precisa saber <strong>o que observar</strong> em cada foco do dia. Use os painéis abaixo como guia de leitura.</p>
+        <div class="grid-2">
+    <div class="mini-card">
+      <h3>gêneros textuais</h3>
+      <p><strong>O que observar:</strong> Observe o comando do enunciado, o trecho citado e o efeito de sentido produzido.</p>
+      <p><strong>Erro comum:</strong> Tratar palavra ou frase de forma isolada, sem considerar o texto inteiro.</p>
+      <p><strong>Aplicação em prova:</strong> Aplique isso em textos curtos, tirinhas, trechos informativos ou anúncios.</p>
     </div>
-  </div>
-</footer>
-<script>
-function answer(btn){
-  const ex = btn.closest('.exercise');
-  ex.querySelectorAll('.option').forEach(b=>b.classList.remove('correct','wrong'));
-  const ok = btn.dataset.correct === 'true';
-  btn.classList.add(ok ? 'correct' : 'wrong');
-  ex.querySelectorAll('.option').forEach(b=>{ if(b!==btn && b.dataset.correct==='true') b.classList.add('correct'); });
-  const fb = ex.querySelector('.feedback');
-  fb.className = 'feedback ' + (ok ? 'ok' : 'bad');
-  fb.innerHTML = '<strong>' + (ok ? 'Acertou.' : 'Errou.') + '</strong> ' + btn.dataset.exp;
-  fb.style.display = 'block';
-}
-(function(){
-  const pageKey = 'akemy-' + document.body.dataset.page;
-  const boxes = document.querySelectorAll('.ck input[type="checkbox"]');
-  const saved = JSON.parse(localStorage.getItem(pageKey) || '[]');
-  boxes.forEach((box, i) => {
-    box.checked = !!saved[i];
-    box.addEventListener('change', () => {
-      localStorage.setItem(pageKey, JSON.stringify([...boxes].map(x => x.checked)));
-    });
-  });
-})();
-</script>
-</body></html>
+    <div class="mini-card">
+      <h3>assunto e tema</h3>
+      <p><strong>O que observar:</strong> Observe o comando do enunciado, o trecho citado e o efeito de sentido produzido.</p>
+      <p><strong>Erro comum:</strong> Tratar palavra ou frase de forma isolada, sem considerar o texto inteiro.</p>
+      <p><strong>Aplicação em prova:</strong> Aplique isso em textos curtos, tirinhas, trechos informativos ou anúncios.</p>
+    </div>
+    <div class="mini-card">
+      <h3>ideia principal</h3>
+      <p><strong>O que observar:</strong> Observe o comando do enunciado, o trecho citado e o efeito de sentido produzido.</p>
+      <p><strong>Erro comum:</strong> Tratar palavra ou frase de forma isolada, sem considerar o texto inteiro.</p>
+      <p><strong>Aplicação em prova:</strong> Aplique isso em textos curtos, tirinhas, trechos informativos ou anúncios.</p>
+    </div>
+    <div class="mini-card">
+      <h3>célula</h3>
+      <p><strong>O que observar:</strong> Observe estrutura, função, etapa do processo e consequência de alteração no sistema.</p>
+      <p><strong>Erro comum:</strong> Memorizar nomes sem compreender função ou relação entre estruturas.</p>
+      <p><strong>Aplicação em prova:</strong> Aplique isso em questões sobre corpo humano, ambiente e seres vivos.</p>
+    </div></div>
+        <div style="margin-top:14px"><p>Em <strong>gêneros textuais</strong>, a prova costuma cobrar leitura atenta de enunciado, efeito de sentido e relação entre partes do texto. O ponto central não é decorar uma definição isolada, mas perceber <strong>como o recurso aparece em contexto</strong>, o que ele produz no leitor e por que certas alternativas parecem plausíveis mesmo quando estão erradas.</p><p>Em <strong>assunto e tema</strong>, a prova costuma cobrar leitura atenta de enunciado, efeito de sentido e relação entre partes do texto. O ponto central não é decorar uma definição isolada, mas perceber <strong>como o recurso aparece em contexto</strong>, o que ele produz no leitor e por que certas alternativas parecem plausíveis mesmo quando estão erradas.</p><p>Em <strong>ideia principal</strong>, a prova costuma cobrar leitura atenta de enunciado, efeito de sentido e relação entre partes do texto. O ponto central não é decorar uma definição isolada, mas perceber <strong>como o recurso aparece em contexto</strong>, o que ele produz no leitor e por que certas alternativas parecem plausíveis mesmo quando estão erradas.</p><p>Em <strong>célula</strong>, vale mais compreender relações e funções do que memorizar nomes soltos. A ideia é responder perguntas do tipo: <em>o que faz?</em>, <em>como acontece?</em>, <em>o que muda se uma etapa falha?</em> e <em>qual relação esse conteúdo tem com a vida cotidiana ou com o ambiente?</em></p></div>
+        
+      </section>
+    
+      <section id="guiada" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 3</p>
+            <h2>Prática guiada com correção comentada</h2>
+          </div>
+          <span class="badge">18 a 25 minutos</span>
+        </div>
+        
+        <p>Resolva primeiro sem olhar a resposta. Depois abra a correção comentada e compare <strong>seu raciocínio</strong>, não apenas o resultado.</p>
+        <div class="exercise">
+          
+        <div class="question">
+          <h3>Questão 1</h3>
+          <p>Explique como você diferenciaria, em uma questão de prova, uma tirinha de uma charge sem depender só do desenho.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>A diferença aparece na finalidade e na relação com o contexto. A tirinha costuma construir uma sequência curta, muitas vezes humorística; a charge geralmente dialoga com um fato social ou político mais imediato. O aluno precisa olhar intenção, contexto e efeito de sentido.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 2</h3>
+          <p>Explique, com suas palavras, por que <strong>assunto e tema</strong> não deve ser analisado isoladamente do restante do texto.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Porque, na prova, o sentido depende do contexto. Uma palavra, um pronome, um conectivo ou um gênero só ganha valor real quando a aluna observa quem fala, para quem fala, qual é a intenção e como as partes do texto se relacionam.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 3</h3>
+          <p>Explique, com suas palavras, por que <strong>ideia principal</strong> não deve ser analisado isoladamente do restante do texto.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Porque, na prova, o sentido depende do contexto. Uma palavra, um pronome, um conectivo ou um gênero só ganha valor real quando a aluna observa quem fala, para quem fala, qual é a intenção e como as partes do texto se relacionam.</p></div></details>
+        </div>
+    
+        </div>
+        
+      </section>
+    
+      <section id="independente" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 4</p>
+            <h2>Prática independente e transferência</h2>
+          </div>
+          <span class="badge">20 a 30 minutos</span>
+        </div>
+        
+        <p>Agora o apoio diminui. Tente responder com o caderno fechado e só depois confira as respostas. Se travar, não pule direto para o gabarito: escreva ao menos uma hipótese.</p>
+        <div class="exercise">
+          
+        <div class="question">
+          <h3>Questão 1</h3>
+          <p>Por que identificar o gênero textual ajuda a prever o objetivo do texto antes mesmo de ler tudo?</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Porque o gênero orienta expectativas de linguagem, público e finalidade. Saber se é notícia, tirinha, propaganda ou infográfico ajuda a perceber como o texto quer informar, convencer ou produzir humor.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 2</h3>
+          <p>Na revisão de <strong>assunto e tema</strong>, o que deve pesar mais: definição decorada ou efeito de sentido em contexto? Justifique em 2 ou 3 frases.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Deve pesar mais o efeito de sentido em contexto, porque a prova raramente cobra a definição solta; ela costuma pedir função, intenção, humor, referência ou relação entre partes do texto.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 3</h3>
+          <p>Na revisão de <strong>ideia principal</strong>, o que deve pesar mais: definição decorada ou efeito de sentido em contexto? Justifique em 2 ou 3 frases.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>Deve pesar mais o efeito de sentido em contexto, porque a prova raramente cobra a definição solta; ela costuma pedir função, intenção, humor, referência ou relação entre partes do texto.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 4</h3>
+          <p>Explique por que decorar nomes não basta em <strong>célula</strong>. O que você precisa relacionar para acertar esse tipo de questão?</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>É preciso relacionar estrutura, função, processo e consequência. A prova costuma perguntar 'para que serve', 'o que ocorre se falhar' ou 'como um elemento se conecta a outro no sistema'.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 5</h3>
+          <p>Explique por que decorar nomes não basta em <strong>organização dos seres vivos</strong>. O que você precisa relacionar para acertar esse tipo de questão?</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>É preciso relacionar estrutura, função, processo e consequência. A prova costuma perguntar 'para que serve', 'o que ocorre se falhar' ou 'como um elemento se conecta a outro no sistema'.</p></div></details>
+        </div>
+    
+        <div class="question">
+          <h3>Questão 6</h3>
+          <p>Resuma em 3 frases o que precisa ser comparado ou contextualizado quando o tema é <strong>espaço geográfico</strong>.</p>
+          <details class='answer'><summary>Ver resposta comentada</summary><div><p>É preciso comparar antes e depois, identificar agentes ou grupos envolvidos e relacionar o processo a mudanças sociais, políticas, econômicas ou espaciais.</p></div></details>
+        </div>
+    
+        </div>
+        
+      </section>
+    
+      <section id="recuperacao" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 5</p>
+            <h2>Recuperação ativa e revisão pela memória</h2>
+          </div>
+          <span class="badge">8 a 12 minutos</span>
+        </div>
+        
+            <p>Feche a apostila por dois minutos. Em seguida, tente responder sem consultar:</p>
+            <ul class="list">
+              <li>Quais foram os dois focos principais de hoje?</li>
+              <li>Qual erro de prova você mais precisa evitar nesse conteúdo?</li>
+              <li>Que pista do enunciado ajuda a decidir o caminho de resolução?</li>
+              <li>O que você ainda não consegue explicar com segurança?</li>
+            </ul>
+            <div class="callout">
+              <strong>Importante:</strong> recuperação ativa não é adivinhação. É esforço de memória. Mesmo uma resposta incompleta já fortalece o estudo.
+            </div>
+            
+      </section>
+    
+      <section id="checklist" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 6</p>
+            <h2>Checklist final e caderno de erros</h2>
+          </div>
+          <span class="badge">6 a 10 minutos</span>
+        </div>
+        
+        <div class="grid-2">
+          <div class="card checklist">
+            <p class="eyebrow">Checklist</p>
+            <ul>
+              <li>[ ] Li cada bloco sem correr</li>
+              <li>[ ] Tentei responder antes de abrir as respostas</li>
+              <li>[ ] Corrigi pelo raciocínio, não só pelo resultado</li>
+              <li>[ ] Identifiquei pelo menos 2 erros ou inseguranças</li>
+              <li>[ ] Sei dizer qual será o foco da revisão da próxima sessão</li>
+            </ul>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Caderno de erros</p>
+            <p>Registre assim:</p>
+            <ul class="list">
+              <li><strong>Questão:</strong> número ou tema</li>
+              <li><strong>Errei porque:</strong> distração, conceito, cálculo, leitura, pressa</li>
+              <li><strong>O que o enunciado mostrava:</strong> pista que passou despercebida</li>
+              <li><strong>Como evitar:</strong> procedimento concreto para a próxima vez</li>
+            </ul>
+          </div>
+        </div>
+        
+      </section>
+    
+      <section id="gabarito" class="section-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bloco 7</p>
+            <h2>Como usar as respostas comentadas</h2>
+          </div>
+          <span class="badge">3 a 5 minutos</span>
+        </div>
+        
+        <p>O objetivo do gabarito não é encerrar o estudo. Ele serve para <strong>comparar estratégias</strong>. Quando sua resposta diferir da comentada, pergunte:</p>
+        <ul class="list">
+          <li>eu não sabia o conteúdo ou li rápido demais?</li>
+          <li>ignorei uma palavra-chave?</li>
+          <li>faltou justificar melhor?</li>
+          <li>acertei por chute ou por entendimento?</li>
+        </ul>
+        <p>Use essa comparação para alimentar a revisão da semana e não repetir o mesmo tropeço.</p>
+        
+      </section>
+    
+      <div class="footer-nav">
+        <span class="small">Fase 1 — Alicerce · Semana 02 · Gêneros textuais, assunto x tema, ideia principal, célula, níveis de organização dos seres vivos, espaço geográfico</span>
+        <a class="cta-back" href="../index.html">VOLTAR PARA O CRONOGRAMA</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
