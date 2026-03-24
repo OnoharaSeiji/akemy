@@ -1,1665 +1,380 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cronograma ETEC 2026 — Vestibulinho</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --ink: #1a1612;
-  --paper: #f5f0e8;
-  --paper2: #ede8dc;
-  --paper3: #e4ddd0;
-  --line: #d4cfc5;
-  --muted: #8a847a;
-  --gold: #b8860b;
-  --gold-light: #e8b84b;
-  --red: #c0392b;
-  --green: #2e7d50;
-  --blue: #1a5276;
-  --orange: #c0580a;
-
-  --phase1: #2e7d50;
-  --phase2: #1a5276;
-  --phase3: #7d2e2e;
-  --phase4: #5a2d82;
-
-  --p-por: #c0390a;
-  --p-mat: #1a5276;
-  --p-bio: #2e7d50;
-  --p-qui: #6b2fa0;
-  --p-fis: #b8860b;
-  --p-his: #7d2e2e;
-  --p-geo: #1a6b6b;
-  --p-rev: #555;
-  --p-sim: #333;
-  --p-des: #aaa;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  min-height: 100vh;
-}
-
-/* ── TEXTURA DE PAPEL ── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      0deg, transparent, transparent 27px,
-      rgba(139,120,80,0.08) 27px, rgba(139,120,80,0.08) 28px
-    );
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ── HERO ── */
-.hero {
-  position: relative;
-  z-index: 1;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 0;
-  overflow: hidden;
-}
-
-.hero-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 40px 50px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 40px;
-  align-items: center;
-}
-
-.hero-texture {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 10% 50%, rgba(184,134,11,0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 90% 20%, rgba(30,70,120,0.1) 0%, transparent 50%);
-}
-
-.hero-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 14px;
-}
-
-.hero h1 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -1.5px;
-  margin-bottom: 16px;
-}
-
-.hero h1 em {
-  font-style: italic;
-  color: var(--gold-light);
-  font-weight: 300;
-}
-
-.hero-sub {
-  color: rgba(245,240,232,0.6);
-  font-size: 15px;
-  max-width: 520px;
-  line-height: 1.7;
-}
-
-/* Countdown */
-.countdown-box {
-  background: rgba(245,240,232,0.06);
-  border: 1px solid rgba(245,240,232,0.12);
-  border-radius: 16px;
-  padding: 28px 32px;
-  text-align: center;
-  min-width: 240px;
-}
-
-.countdown-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 10px;
-}
-
-.countdown-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.cd-unit {
-  background: rgba(245,240,232,0.08);
-  border-radius: 8px;
-  padding: 12px 4px 8px;
-}
-
-.cd-num {
-  font-family: 'Fraunces', serif;
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--gold-light);
-  display: block;
-  line-height: 1;
-}
-
-.cd-lbl {
-  font-size: 9px;
-  color: rgba(245,240,232,0.45);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  display: block;
-  margin-top: 4px;
-}
-
-.exam-date-badge {
-  background: var(--gold);
-  color: var(--ink);
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 6px 14px;
-  border-radius: 20px;
-  letter-spacing: 0.5px;
-}
-
-/* ── STICKY NAV ── */
-.sticky-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--ink);
-  border-bottom: 2px solid var(--gold);
-}
-
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: flex;
-  align-items: center;
-  gap: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.nav-inner::-webkit-scrollbar { display: none; }
-
-.nav-link {
-  padding: 14px 18px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  color: rgba(245,240,232,0.5);
-  text-decoration: none;
-  white-space: nowrap;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
-  transition: all 0.2s;
-}
-
-.nav-link:hover { color: var(--paper); }
-.nav-link.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
-
-/* ── STATS BAR ── */
-.stats-bar {
-  position: relative;
-  z-index: 1;
-  background: var(--paper2);
-  border-bottom: 1px solid var(--line);
-  padding: 20px 40px;
-}
-
-.stats-bar-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.stat-num {
-  font-family: 'Fraunces', serif;
-  font-size: 32px;
-  font-weight: 900;
-  color: var(--gold);
-  line-height: 1;
-}
-
-.stat-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
-.stat-desc strong { display: block; color: var(--ink); font-size: 13px; }
-
-.stat-divider { width: 1px; height: 40px; background: var(--line); }
-
-/* ── SECTION ── */
-.section {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 40px;
-}
-
-.section-title {
-  font-family: 'Fraunces', serif;
-  font-size: 36px;
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  margin-bottom: 6px;
-}
-
-.section-sub {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 40px;
-}
-
-/* ── PHASES ── */
-.phases-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 60px;
-}
-
-.phase-card {
-  border-radius: 12px;
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-  color: #fff;
-}
-
-.phase-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
-}
-
-.phase-card.p1 { background: var(--phase1); }
-.phase-card.p2 { background: var(--phase2); }
-.phase-card.p3 { background: var(--phase3); }
-.phase-card.p4 { background: var(--phase4); }
-
-.phase-num {
-  font-family: 'Fraunces', serif;
-  font-size: 56px;
-  font-weight: 900;
-  opacity: 0.15;
-  position: absolute;
-  right: 12px;
-  top: 8px;
-  line-height: 1;
-}
-
-.phase-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  opacity: 0.7;
-  margin-bottom: 8px;
-}
-
-.phase-name {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.phase-period {
-  font-size: 12px;
-  opacity: 0.8;
-  margin-bottom: 16px;
-}
-
-.phase-days {
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.phase-goals {
-  margin-top: 12px;
-  font-size: 12px;
-  opacity: 0.85;
-  line-height: 1.6;
-}
-
-/* ── LEGEND ── */
-.legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 32px;
-  padding: 20px;
-  background: var(--paper2);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.legend-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-  flex-shrink: 0;
-}
-
-/* ── WEEKLY STRUCTURE ── */
-.week-struct {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  margin-bottom: 60px;
-}
-
-.day-card {
-  background: var(--paper2);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 16px 12px;
-  text-align: center;
-}
-
-.day-name {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 12px;
-}
-
-.day-subjects { display: flex; flex-direction: column; gap: 6px; }
-
-.subj-pill {
-  padding: 5px 8px;
-  border-radius: 5px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #fff;
-  text-align: center;
-}
-
-.day-hours {
-  margin-top: 10px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-}
-
-/* ── CALENDAR SECTION ── */
-.calendar-section {
-  position: relative;
-  z-index: 1;
-  background: var(--paper2);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 60px 40px;
-}
-
-.calendar-inner { max-width: 1200px; margin: 0 auto; }
-
-.month-block { margin-bottom: 48px; }
-
-.month-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.month-name {
-  font-family: 'Fraunces', serif;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-}
-
-.month-phase-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 20px;
-  color: #fff;
-  font-weight: 500;
-}
-
-.month-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-
-.month-grid-header {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  margin-bottom: 4px;
-}
-
-.grid-day-name {
-  text-align: center;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding: 6px;
-}
-
-.cal-day {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 8px 6px;
-  min-height: 70px;
-  position: relative;
-  transition: transform 0.15s;
-  cursor: default;
-}
-
-.cal-day:hover { transform: scale(1.02); z-index: 2; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-
-.cal-day.empty { background: transparent; border-color: transparent; cursor: default; }
-.cal-day.empty:hover { transform: none; box-shadow: none; }
-
-.cal-day.sunday { background: rgba(139,120,80,0.05); }
-
-.cal-day.rest .cal-subjects { display: none; }
-
-.cal-day.exam-day {
-  background: var(--ink) !important;
-  border-color: var(--gold) !important;
-  border-width: 2px !important;
-}
-
-.cal-day.exam-day .cal-num { color: var(--gold-light) !important; }
-
-.cal-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-
-.cal-subjects { display: flex; flex-direction: column; gap: 3px; }
-
-.cal-pill {
-  font-size: 9px;
-  font-weight: 600;
-  padding: 2px 5px;
-  border-radius: 3px;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  letter-spacing: 0.2px;
-}
-
-.cal-rest {
-  font-size: 9px;
-  color: var(--muted);
-  font-style: italic;
-  margin-top: 4px;
-}
-
-.cal-today {
-  border-color: var(--gold) !important;
-  border-width: 2px !important;
-}
-
-.cal-today .cal-num::after {
-  content: ' ●';
-  color: var(--gold);
-}
-
-/* ── WEEKLY PLAN TABLE ── */
-.week-section {
-  position: relative;
-  z-index: 1;
-  padding: 60px 40px;
-}
-
-.week-section-inner { max-width: 1200px; margin: 0 auto; }
-
-.phase-weeks { margin-bottom: 60px; }
-
-.phase-week-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 24px;
-  border-radius: 12px 12px 0 0;
-  color: #fff;
-  margin-bottom: 0;
-}
-
-.phase-week-header h3 {
-  font-family: 'Fraunces', serif;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.phase-week-header .phase-meta {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  opacity: 0.75;
-}
-
-.weeks-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid var(--line);
-  border-top: none;
-  border-radius: 0 0 12px 12px;
-  overflow: hidden;
-}
-
-.weeks-table th {
-  background: var(--paper3);
-  padding: 10px 14px;
-  text-align: left;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  color: var(--muted);
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--line);
-}
-
-.weeks-table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid rgba(139,120,80,0.1);
-  font-size: 13px;
-  vertical-align: top;
-}
-
-.weeks-table tr:last-child td { border-bottom: none; }
-.weeks-table tr:hover td { background: rgba(184,134,11,0.04); }
-
-.week-num-cell {
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gold);
-  white-space: nowrap;
-}
-
-.week-dates-cell {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.subject-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-
-.stag {
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 4px;
-  color: #fff;
-  letter-spacing: 0.3px;
-}
-
-.focus-cell { font-size: 13px; line-height: 1.5; color: var(--ink); }
-.focus-cell strong { color: var(--gold); font-size: 11px; display: block; margin-bottom: 2px; }
-
-.hours-cell {
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.apostila-cell {
-  font-size: 12px;
-}
-
-.apostila-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--paper2);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 3px 8px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  margin: 2px 2px 2px 0;
-}
-
-/* ── TIPS SECTION ── */
-.tips-section {
-  position: relative;
-  z-index: 1;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 60px 40px;
-}
-
-.tips-inner { max-width: 1200px; margin: 0 auto; }
-
-.tips-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.tip-card {
-  background: rgba(245,240,232,0.05);
-  border: 1px solid rgba(245,240,232,0.1);
-  border-radius: 12px;
-  padding: 24px;
-}
-
-.tip-icon { font-size: 28px; margin-bottom: 12px; }
-
-.tip-card h4 {
-  font-family: 'Fraunces', serif;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--gold-light);
-}
-
-.tip-card p { font-size: 13px; color: rgba(245,240,232,0.65); line-height: 1.7; }
-
-/* ── SUBJECT COLORS ── */
-.por { background-color: var(--p-por); }
-.mat { background-color: var(--p-mat); }
-.bio { background-color: var(--p-bio); }
-.qui { background-color: var(--p-qui); }
-.fis { background-color: var(--p-fis); }
-.his { background-color: var(--p-his); }
-.geo { background-color: var(--p-geo); }
-.rev { background-color: var(--p-rev); }
-.sim { background-color: var(--p-sim); }
-.des { background-color: transparent; }
-
-/* ── PROGRESS TRACKER ── */
-.progress-section {
-  position: relative;
-  z-index: 1;
-  padding: 60px 40px;
-  background: var(--paper2);
-  border-top: 1px solid var(--line);
-}
-
-.progress-inner { max-width: 1200px; margin: 0 auto; }
-
-.progress-timeline {
-  position: relative;
-  padding-left: 40px;
-  margin-top: 40px;
-}
-
-.progress-timeline::before {
-  content: '';
-  position: absolute;
-  left: 12px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--phase1), var(--phase2), var(--phase3), var(--phase4));
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 32px;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -34px;
-  top: 4px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 3px solid var(--paper2);
-  box-shadow: 0 0 0 2px currentColor;
-}
-
-.timeline-item.p1 .timeline-dot { color: var(--phase1); background: var(--phase1); }
-.timeline-item.p2 .timeline-dot { color: var(--phase2); background: var(--phase2); }
-.timeline-item.p3 .timeline-dot { color: var(--phase3); background: var(--phase3); }
-.timeline-item.p4 .timeline-dot { color: var(--phase4); background: var(--phase4); }
-
-.timeline-date {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-
-.timeline-event {
-  font-family: 'Fraunces', serif;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.timeline-desc { font-size: 13px; color: var(--muted); }
-
-/* footer */
-footer {
-  position: relative;
-  z-index: 1;
-  background: var(--ink);
-  color: rgba(245,240,232,0.4);
-  text-align: center;
-  padding: 40px;
-  font-size: 12px;
-}
-
-footer strong { color: var(--gold-light); }
-
-/* responsive */
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .phases-grid { grid-template-columns: repeat(2, 1fr); }
-  .tips-grid { grid-template-columns: 1fr 1fr; }
-  .section, .calendar-section, .week-section, .progress-section, .tips-section { padding: 40px 20px; }
-  .stats-bar { padding: 20px; }
-  .week-struct { grid-template-columns: repeat(4, 1fr); }
-}
-
-@media (max-width: 600px) {
-  .phases-grid { grid-template-columns: 1fr; }
-  .tips-grid { grid-template-columns: 1fr; }
-  .week-struct { grid-template-columns: repeat(2, 1fr); }
-  .month-grid, .month-grid-header { grid-template-columns: repeat(7, 1fr); font-size: 8px; }
-  .cal-day { min-height: 50px; padding: 4px; }
-  .cal-pill { display: none; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akemy Estudos — Cronograma Vestibulinho ETEC 2026</title>
+  <meta name="description" content="Cronograma dinâmico de estudos da Akemy para o Vestibulinho ETEC 2026, com calendário, progresso e acesso às apostilas.">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-texture"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="hero-eyebrow">📚 Plano de Estudos Personalizado</div>
-      <h1>Cronograma <em>Vestibulinho</em><br>ETEC 2026</h1>
-      <p class="hero-sub">255 dias de preparação inteligente — do zero ao vestibulinho. Cada dia conta, cada matéria importa. Vamos juntos até lá.</p>
-    </div>
-    <div class="countdown-box">
-      <div class="countdown-label">Faltam para a prova</div>
-      <div class="countdown-grid">
-        <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">Dias</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-lbl">Horas</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-lbl">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl">Seg</span></div>
-      </div>
-      <div class="exam-date-badge">30 · NOV · 2026 · 13h30</div>
-    </div>
-  </div>
-</header>
-
-<!-- NAV -->
-<nav class="sticky-nav">
-  <div class="nav-inner">
-    <a href="#visao-geral" class="nav-link active">Visão Geral</a>
-    <a href="#estrutura-semanal" class="nav-link">Estrutura Semanal</a>
-    <a href="#calendario" class="nav-link">Calendário</a>
-    <a href="#cronograma-detalhado" class="nav-link">Cronograma Detalhado</a>
-    <a href="#marcos" class="nav-link">Marcos e Datas</a>
-    <a href="#dicas" class="nav-link">Dicas de Estudo</a>
-  </div>
-</nav>
-
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stats-bar-inner">
-    <div class="stat-item">
-      <span class="stat-num">255</span>
-      <div class="stat-desc"><strong>Dias de preparação</strong>20 mar → 29 nov 2026</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">37</span>
-      <div class="stat-desc"><strong>Semanas de estudo</strong>4 fases progressivas</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">7</span>
-      <div class="stat-desc"><strong>Matérias cobertas</strong>Port · Mat · Bio · Qui · Fís · His · Geo</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">450+</span>
-      <div class="stat-desc"><strong>Horas de estudo</strong>~1,8h por dia em média</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">50+</span>
-      <div class="stat-desc"><strong>Apostilas diárias</strong>criadas uma a uma</div>
-    </div>
-  </div>
-</div>
-
-<!-- VISÃO GERAL -->
-<section class="section" id="visao-geral">
-  <div class="section-title">As 4 Fases da Preparação</div>
-  <div class="section-sub">Cada fase tem um objetivo claro e progressivo. Você vai evoluir de forma constante e confiante.</div>
-
-  <div class="phases-grid">
-    <div class="phase-card p1">
-      <div class="phase-num">1</div>
-      <div class="phase-tag">Fase 01 · 73 dias</div>
-      <div class="phase-name">Alicerce</div>
-      <div class="phase-period">20 mar → 31 mai 2026</div>
-      <div class="phase-days">73 dias · 10 semanas</div>
-      <div class="phase-goals">Construir a base em todas as matérias. Conceitos fundamentais, vocabulário, fórmulas essenciais. Estudar sem pressa, com solidez. 1h30 por dia.</div>
-    </div>
-    <div class="phase-card p2">
-      <div class="phase-num">2</div>
-      <div class="phase-tag">Fase 02 · 91 dias</div>
-      <div class="phase-name">Construção</div>
-      <div class="phase-period">01 jun → 31 ago 2026</div>
-      <div class="phase-days">91 dias · 13 semanas</div>
-      <div class="phase-goals">Aprofundar conteúdos, praticar exercícios, conectar teoria e prática. Questões resolvidas das provas anteriores. 2h por dia.</div>
-    </div>
-    <div class="phase-card p3">
-      <div class="phase-num">3</div>
-      <div class="phase-tag">Fase 03 · 61 dias</div>
-      <div class="phase-name">Intensivo</div>
-      <div class="phase-period">01 set → 31 out 2026</div>
-      <div class="phase-days">61 dias · 9 semanas</div>
-      <div class="phase-goals">Simulados cronometrados, revisão de pontos fracos, repertório máximo. Resolver as provas completas anteriores. 2h30 por dia.</div>
-    </div>
-    <div class="phase-card p4">
-      <div class="phase-num">4</div>
-      <div class="phase-tag">Fase 04 · 29 dias</div>
-      <div class="phase-name">Sprint Final</div>
-      <div class="phase-period">01 nov → 29 nov 2026</div>
-      <div class="phase-days">29 dias · 4 semanas</div>
-      <div class="phase-goals">Revisão geral, simulados completos, confiança e tranquilidade. Nada de conteúdo novo — apenas fixar o que já sabe. 2h por dia.</div>
-    </div>
-  </div>
-
-  <!-- LEGEND -->
-  <div class="legend">
-    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:8px;">Legenda de Matérias</div>
-    <div class="legend-item"><div class="legend-dot por"></div> Português</div>
-    <div class="legend-item"><div class="legend-dot mat"></div> Matemática</div>
-    <div class="legend-item"><div class="legend-dot bio"></div> Biologia</div>
-    <div class="legend-item"><div class="legend-dot qui"></div> Química</div>
-    <div class="legend-item"><div class="legend-dot fis"></div> Física</div>
-    <div class="legend-item"><div class="legend-dot his"></div> História</div>
-    <div class="legend-item"><div class="legend-dot geo"></div> Geografia</div>
-    <div class="legend-item"><div class="legend-dot rev"></div> Revisão Geral</div>
-    <div class="legend-item"><div class="legend-dot sim"></div> Simulado</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--line);"></div> Descanso</div>
-  </div>
-</section>
-
-<!-- ESTRUTURA SEMANAL -->
-<section class="section" id="estrutura-semanal" style="background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
-  <div class="section-title">Estrutura da Semana Típica</div>
-  <div class="section-sub">Esta é a rotina semanal que se repetirá ao longo das fases, com intensidade crescente.</div>
-
-  <div class="week-struct">
-    <div class="day-card">
-      <div class="day-name">Segunda</div>
-      <div class="day-subjects">
-        <div class="subj-pill por">Português</div>
-        <div class="subj-pill his">História</div>
-      </div>
-      <div class="day-hours">~2h de estudo</div>
-    </div>
-    <div class="day-card">
-      <div class="day-name">Terça</div>
-      <div class="day-subjects">
-        <div class="subj-pill mat">Matemática</div>
-        <div class="subj-pill fis">Física</div>
-      </div>
-      <div class="day-hours">~2h de estudo</div>
-    </div>
-    <div class="day-card">
-      <div class="day-name">Quarta</div>
-      <div class="day-subjects">
-        <div class="subj-pill bio">Biologia</div>
-        <div class="subj-pill qui">Química</div>
-      </div>
-      <div class="day-hours">~2h de estudo</div>
-    </div>
-    <div class="day-card">
-      <div class="day-name">Quinta</div>
-      <div class="day-subjects">
-        <div class="subj-pill por">Português</div>
-        <div class="subj-pill geo">Geografia</div>
-      </div>
-      <div class="day-hours">~2h de estudo</div>
-    </div>
-    <div class="day-card">
-      <div class="day-name">Sexta</div>
-      <div class="day-subjects">
-        <div class="subj-pill mat">Matemática</div>
-        <div class="subj-pill rev" style="background:var(--p-rev)">Revisão</div>
-      </div>
-      <div class="day-hours">~2h de estudo</div>
-    </div>
-    <div class="day-card">
-      <div class="day-name">Sábado</div>
-      <div class="day-subjects">
-        <div class="subj-pill sim" style="background:#333">Simulado</div>
-        <div class="subj-pill" style="background:#555">Questões</div>
-      </div>
-      <div class="day-hours">~3h de estudo</div>
-    </div>
-    <div class="day-card" style="background:rgba(139,120,80,0.06);">
-      <div class="day-name">Domingo</div>
-      <div class="day-subjects">
-        <div class="subj-pill" style="background:var(--line);color:var(--muted)">Descanso</div>
-      </div>
-      <div class="day-hours">Relaxe 🌿</div>
-    </div>
-  </div>
-
-  <div style="background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-    <div>
-      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Fase 1 · Alicerce</div>
-      <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--phase1)">1h30 / dia</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:4px;">Teoria sólida, sem pressa</div>
-    </div>
-    <div>
-      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Fase 2 · Construção</div>
-      <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--phase2)">2h / dia</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:4px;">Teoria + exercícios</div>
-    </div>
-    <div>
-      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Fase 3 e 4 · Sprint</div>
-      <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--phase3)">2h30 / dia</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:4px;">Simulados + revisão</div>
-    </div>
-  </div>
-</section>
-
-<!-- CRONOGRAMA DETALHADO -->
-<section class="week-section" id="cronograma-detalhado">
-  <div class="week-section-inner">
-    <div class="section-title">Cronograma Semana a Semana</div>
-    <div class="section-sub">37 semanas planejadas, do dia 20 de março até 29 de novembro de 2026.</div>
-
-    <!-- FASE 1 -->
-    <div class="phase-weeks">
-      <div class="phase-week-header" style="background:var(--phase1)">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;opacity:.7;margin-bottom:4px;">FASE 01 · 20 MAR → 31 MAI 2026</div>
-          <h3>🌱 Alicerce — Construindo a Base</h3>
-        </div>
-        <div class="phase-meta" style="margin-left:auto;">73 dias · 10 semanas · 1h30/dia</div>
-      </div>
-      <table class="weeks-table">
-        <thead>
-          <tr>
-            <th style="width:60px">Semana</th>
-            <th style="width:140px">Período</th>
-            <th>Matérias</th>
-            <th>Foco da Semana</th>
-            <th style="width:90px">Carga</th>
-            <th style="width:160px">Apostila</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="week-num-cell">S.01</td>
-            <td class="week-dates-cell">20–26 mar</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag mat">Mat</span><span class="stag his">His</span></div></td>
-            <td class="focus-cell"><strong>📖 Orientação Inicial</strong>Como estudar para o Vestibulinho; interpretação de texto base; números e operações; cronologia histórica.</td>
-            <td class="hours-cell">~9h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 01</span><span class="apostila-badge">📄 Apostila 02</span><span class="apostila-badge">📄 Apostila 03</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.02</td>
-            <td class="week-dates-cell">27 mar–02 abr</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag bio">Bio</span><span class="stag geo">Geo</span></div></td>
-            <td class="focus-cell"><strong>🧬 Primeiros Conceitos</strong>Gêneros textuais; célula e organização dos seres vivos; espaço geográfico (Milton Santos).</td>
-            <td class="hours-cell">~9h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 04</span><span class="apostila-badge">📄 Apostila 05</span><span class="apostila-badge">📄 Apostila 06</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.03</td>
-            <td class="week-dates-cell">03–09 abr</td>
-            <td><div class="subject-tags"><span class="stag mat">Mat</span><span class="stag qui">Qui</span><span class="stag fis">Fís</span></div></td>
-            <td class="focus-cell"><strong>⚗️ Ciências Exatas Base</strong>Razão e proporção; átomo e tabela periódica; grandezas físicas e unidades.</td>
-            <td class="hours-cell">~9h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 07</span><span class="apostila-badge">📄 Apostila 08</span><span class="apostila-badge">📄 Apostila 09</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.04</td>
-            <td class="week-dates-cell">10–16 abr</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag his">His</span><span class="stag geo">Geo</span></div></td>
-            <td class="focus-cell"><strong>🌎 Humanidades</strong>Funções da linguagem; Brasil colonial e Renascimento; biomas brasileiros I.</td>
-            <td class="hours-cell">~9h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 10</span><span class="apostila-badge">📄 Apostila 11</span><span class="apostila-badge">📄 Apostila 12</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.05</td>
-            <td class="week-dates-cell">17–23 abr</td>
-            <td><div class="subject-tags"><span class="stag bio">Bio</span><span class="stag qui">Qui</span><span class="stag mat">Mat</span></div></td>
-            <td class="focus-cell"><strong>🦠 Vida e Matéria</strong>Sistemas do corpo humano I (digestório e circulatório); substâncias simples e compostas; equações de 1º grau.</td>
-            <td class="hours-cell">~9h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 13</span><span class="apostila-badge">📄 Apostila 14</span><span class="apostila-badge">📄 Apostila 15</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.06</td>
-            <td class="week-dates-cell">24–30 abr</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag fis">Fís</span><span class="stag his">His</span></div></td>
-            <td class="focus-cell"><strong>💡 Figuras e Forças</strong>Figuras de linguagem (zeugma, metáfora, ironia); pressão e alavancas; Idade Média e Imperialismo.</td>
-            <td class="hours-cell">~9h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 16</span><span class="apostila-badge">📄 Apostila 17</span><span class="apostila-badge">📄 Apostila 18</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.07</td>
-            <td class="week-dates-cell">01–07 mai</td>
-            <td><div class="subject-tags"><span class="stag mat">Mat</span><span class="stag bio">Bio</span><span class="stag geo">Geo</span></div></td>
-            <td class="focus-cell"><strong>📐 Geometria + Ecologia</strong>Geometria plana (áreas e triângulos); ecologia — cadeias alimentares e relações ecológicas; clima e relevo brasileiro.</td>
-            <td class="hours-cell">~9h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 19</span><span class="apostila-badge">📄 Apostila 20</span><span class="apostila-badge">📄 Apostila 21</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.08</td>
-            <td class="week-dates-cell">08–14 mai</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag qui">Qui</span><span class="stag fis">Fís</span></div></td>
-            <td class="focus-cell"><strong>🔬 Estrutura Profunda</strong>Classes gramaticais (pronomes e conjunções); pH e ácido-base; calor e temperatura (escalas e propagação).</td>
-            <td class="hours-cell">~9h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 22</span><span class="apostila-badge">📄 Apostila 23</span><span class="apostila-badge">📄 Apostila 24</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.09</td>
-            <td class="week-dates-cell">15–21 mai</td>
-            <td><div class="subject-tags"><span class="stag his">His</span><span class="stag bio">Bio</span><span class="stag mat">Mat</span></div></td>
-            <td class="focus-cell"><strong>🗺️ Brasil e Vida</strong>Brasil Republicano e Ditadura Militar; genética básica (alelos, herança); estatística e gráficos.</td>
-            <td class="hours-cell">~9h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 25</span><span class="apostila-badge">📄 Apostila 26</span><span class="apostila-badge">📄 Apostila 27</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.10</td>
-            <td class="week-dates-cell">22–31 mai</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag geo">Geo</span><span class="stag rev">Rev</span></div></td>
-            <td class="focus-cell"><strong>🔄 Revisão da Fase 1</strong>Revisão geral de todos os tópicos da Fase 1; primeiro mini-simulado (10 questões de cada matéria); correção detalhada.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 28</span><span class="apostila-badge">📄 Rev.1</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- FASE 2 -->
-    <div class="phase-weeks">
-      <div class="phase-week-header" style="background:var(--phase2)">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;opacity:.7;margin-bottom:4px;">FASE 02 · 01 JUN → 31 AGO 2026</div>
-          <h3>🏗️ Construção — Aprofundando o Conhecimento</h3>
-        </div>
-        <div class="phase-meta" style="margin-left:auto;">91 dias · 13 semanas · 2h/dia</div>
-      </div>
-      <table class="weeks-table">
-        <thead>
-          <tr>
-            <th style="width:60px">Semana</th>
-            <th style="width:140px">Período</th>
-            <th>Matérias</th>
-            <th>Foco da Semana</th>
-            <th style="width:90px">Carga</th>
-            <th style="width:160px">Apostila</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="week-num-cell">S.11</td>
-            <td class="week-dates-cell">01–07 jun</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag mat">Mat</span><span class="stag his">His</span></div></td>
-            <td class="focus-cell"><strong>📝 Interpretação Avançada</strong>Textos multimodais (tirinha, charge, infográfico); equações de 2º grau (Bhaskara); 2ª Guerra Mundial e Guerra Fria.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 29</span><span class="apostila-badge">📄 Apostila 30</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.12</td>
-            <td class="week-dates-cell">08–14 jun</td>
-            <td><div class="subject-tags"><span class="stag bio">Bio</span><span class="stag qui">Qui</span><span class="stag fis">Fís</span></div></td>
-            <td class="focus-cell"><strong>⚡ Ciências Aprofundadas</strong>Sistema nervoso e endócrino; reações químicas e estequiometria; óptica (lentes e defeitos de visão).</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 31</span><span class="apostila-badge">📄 Apostila 32</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.13</td>
-            <td class="week-dates-cell">15–21 jun</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag geo">Geo</span><span class="stag mat">Mat</span></div></td>
-            <td class="focus-cell"><strong>🌍 Língua e Espaço</strong>Formação de palavras; verbos e locuções verbais; cartografia e fusos horários; sistemas de equações.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 33</span><span class="apostila-badge">📄 Apostila 34</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.14</td>
-            <td class="week-dates-cell">22–28 jun</td>
-            <td><div class="subject-tags"><span class="stag his">His</span><span class="stag bio">Bio</span><span class="stag qui">Qui</span></div></td>
-            <td class="focus-cell"><strong>🧬 Evolução e Revolução</strong>Colonização das Américas e Mercantilismo; evolução biológica (Darwin); radioatividade.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 35</span><span class="apostila-badge">📄 Apostila 36</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.15</td>
-            <td class="week-dates-cell">29 jun–05 jul</td>
-            <td><div class="subject-tags"><span class="stag mat">Mat</span><span class="stag fis">Fís</span><span class="stag geo">Geo</span></div></td>
-            <td class="focus-cell"><strong>📊 Dados e Forças</strong>Estatística (média, moda, mediana); ondas sonoras e eletromagnéticas; correntes marítimas e placas tectônicas.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 37</span><span class="apostila-badge">📄 Apostila 38</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.16</td>
-            <td class="week-dates-cell">06–12 jul</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag bio">Bio</span><span class="stag his">His</span></div></td>
-            <td class="focus-cell"><strong>🔤 Variação Linguística</strong>Variedade culta vs. informal; doenças parasitárias e prevenção; Brasil do séc. XX (Vargas ao Militar).</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 39</span><span class="apostila-badge">📄 Apostila 40</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.17</td>
-            <td class="week-dates-cell">13–19 jul</td>
-            <td><div class="subject-tags"><span class="stag mat">Mat</span><span class="stag qui">Qui</span><span class="stag geo">Geo</span></div></td>
-            <td class="focus-cell"><strong>🔢 Notação e Matéria</strong>Notação científica e potenciação; química orgânica básica; urbanização e problemas urbanos.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 41</span><span class="apostila-badge">📄 Apostila 42</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.18</td>
-            <td class="week-dates-cell">20–26 jul</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag fis">Fís</span><span class="stag bio">Bio</span></div></td>
-            <td class="focus-cell"><strong>🎭 Texto e Fenômenos</strong>Gêneros textuais II (crônica, editorial, publicitário); energia (potência, fontes renováveis); biodiversidade e hotspots.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 43</span><span class="apostila-badge">📄 Apostila 44</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.19</td>
-            <td class="week-dates-cell">27 jul–02 ago</td>
-            <td><div class="subject-tags"><span class="stag his">His</span><span class="stag mat">Mat</span><span class="stag qui">Qui</span></div></td>
-            <td class="focus-cell"><strong>⚖️ Sociedade e Cálculo</strong>Questões sociais contemporâneas; trigonometria básica (sen, cos, tg); soluções, misturas e separação.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 45</span><span class="apostila-badge">📄 Apostila 46</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.20</td>
-            <td class="week-dates-cell">03–09 ago</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag geo">Geo</span><span class="stag fis">Fís</span></div></td>
-            <td class="focus-cell"><strong>🗺️ Texto e Espaço</strong>Análise sintática básica; geopolítica e problemas ambientais; eletrostática e magnetismo.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 47</span><span class="apostila-badge">📄 Apostila 48</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.21</td>
-            <td class="week-dates-cell">10–16 ago</td>
-            <td><div class="subject-tags"><span class="stag bio">Bio</span><span class="stag mat">Mat</span><span class="stag his">His</span></div></td>
-            <td class="focus-cell"><strong>🔬 Vida em Números</strong>Corpo humano II (respiratório, imunológico); razão áurea, sequências e PA/PG; história da África e Diáspora.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 49</span><span class="apostila-badge">📄 Apostila 50</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.22</td>
-            <td class="week-dates-cell">17–23 ago</td>
-            <td><div class="subject-tags"><span class="stag qui">Qui</span><span class="stag por">Port</span><span class="stag geo">Geo</span></div></td>
-            <td class="focus-cell"><strong>🌿 Sustentabilidade</strong>Química verde e sustentabilidade; argumentação e dissertação; questões ambientais globais e Agenda 21.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 51</span><span class="apostila-badge">📄 Apostila 52</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.23</td>
-            <td class="week-dates-cell">24–31 ago</td>
-            <td><div class="subject-tags"><span class="stag rev">Rev</span><span class="stag sim">Sim</span></div></td>
-            <td class="focus-cell"><strong>🔄 Revisão da Fase 2 + Simulado</strong>Revisão completa da Fase 2; simulado com 50 questões (prova completa estilo ETEC); análise de erros e planejamento da Fase 3.</td>
-            <td class="hours-cell">~16h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Sim.1</span><span class="apostila-badge">📄 Rev.2</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- FASE 3 -->
-    <div class="phase-weeks">
-      <div class="phase-week-header" style="background:var(--phase3)">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;opacity:.7;margin-bottom:4px;">FASE 03 · 01 SET → 31 OUT 2026</div>
-          <h3>🔥 Intensivo — Questões e Simulados</h3>
-        </div>
-        <div class="phase-meta" style="margin-left:auto;">61 dias · 9 semanas · 2h30/dia</div>
-      </div>
-      <table class="weeks-table">
-        <thead>
-          <tr>
-            <th style="width:60px">Semana</th>
-            <th style="width:140px">Período</th>
-            <th>Matérias</th>
-            <th>Foco da Semana</th>
-            <th style="width:90px">Carga</th>
-            <th style="width:160px">Apostila</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="week-num-cell">S.24</td>
-            <td class="week-dates-cell">01–07 set</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag mat">Mat</span></div></td>
-            <td class="focus-cell"><strong>🎯 Pontos Fracos</strong>Identificação dos temas que mais erramos; reforço de interpretação textual; exercícios intensivos de matemática aplicada.</td>
-            <td class="hours-cell">~15h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 53</span><span class="apostila-badge">📄 Apostila 54</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.25</td>
-            <td class="week-dates-cell">08–14 set</td>
-            <td><div class="subject-tags"><span class="stag bio">Bio</span><span class="stag qui">Qui</span><span class="stag fis">Fís</span></div></td>
-            <td class="focus-cell"><strong>🧪 Ciências em Prática</strong>Resolução de provas 2018–2019 de Bio/Qui/Fís; questões de corpo humano, reações e pressão; gabarito comentado.</td>
-            <td class="hours-cell">~15h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 55</span><span class="apostila-badge">📄 Apostila 56</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.26</td>
-            <td class="week-dates-cell">15–21 set</td>
-            <td><div class="subject-tags"><span class="stag his">His</span><span class="stag geo">Geo</span><span class="stag sim">Sim</span></div></td>
-            <td class="focus-cell"><strong>🌐 Simulado Geral 2</strong>Revisão de História e Geografia via questões; simulado completo 50 questões (modelo 2024); análise de desempenho.</td>
-            <td class="hours-cell">~15h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Sim.2</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.27</td>
-            <td class="week-dates-cell">22–28 set</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag bio">Bio</span><span class="stag mat">Mat</span></div></td>
-            <td class="focus-cell"><strong>📚 Prova 2024 Completa</strong>Resolução e estudo da prova ETEC 2024 completa; discussão de cada questão; estratégias de prova.</td>
-            <td class="hours-cell">~15h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Prov.2024</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.28</td>
-            <td class="week-dates-cell">29 set–05 out</td>
-            <td><div class="subject-tags"><span class="stag qui">Qui</span><span class="stag fis">Fís</span><span class="stag geo">Geo</span></div></td>
-            <td class="focus-cell"><strong>🔁 Reforço Temático</strong>Temas mais cobrados em Qui, Fís e Geo nas últimas 5 provas; listas de exercícios temáticos; mapas mentais.</td>
-            <td class="hours-cell">~15h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 57</span><span class="apostila-badge">📄 Apostila 58</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.29</td>
-            <td class="week-dates-cell">06–12 out</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag his">His</span><span class="stag sim">Sim</span></div></td>
-            <td class="focus-cell"><strong>📝 Simulado Geral 3</strong>Revisão de Port e His via questões estilo ETEC; simulado cronometrado (4h, 50 questões); estratégia de gestão do tempo.</td>
-            <td class="hours-cell">~15h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Sim.3</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.30</td>
-            <td class="week-dates-cell">13–19 out</td>
-            <td><div class="subject-tags"><span class="stag bio">Bio</span><span class="stag mat">Mat</span><span class="stag qui">Qui</span></div></td>
-            <td class="focus-cell"><strong>🧮 Matemática e Ciências</strong>Problemas complexos de Mat; corpo humano — revisão total; química aplicada ao cotidiano; exercícios cronometrados.</td>
-            <td class="hours-cell">~15h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Apostila 59</span><span class="apostila-badge">📄 Apostila 60</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.31</td>
-            <td class="week-dates-cell">20–26 out</td>
-            <td><div class="subject-tags"><span class="stag fis">Fís</span><span class="stag geo">Geo</span><span class="stag por">Port</span></div></td>
-            <td class="focus-cell"><strong>🌊 Prova 2026 Antecipada</strong>Análise do estilo da prova mais recente (2026); questões de física aplicada; questões de geografia com mapas.</td>
-            <td class="hours-cell">~15h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Prov.2026</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.32</td>
-            <td class="week-dates-cell">27–31 out</td>
-            <td><div class="subject-tags"><span class="stag sim">Sim</span><span class="stag rev">Rev</span></div></td>
-            <td class="focus-cell"><strong>🔄 Balanço do Intensivo</strong>Simulado Geral 4 — prova completa; revisão dos temas com mais erros; planejamento detalhado do Sprint Final.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Sim.4</span><span class="apostila-badge">📄 Rev.3</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- FASE 4 -->
-    <div class="phase-weeks">
-      <div class="phase-week-header" style="background:var(--phase4)">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;opacity:.7;margin-bottom:4px;">FASE 04 · 01 NOV → 29 NOV 2026</div>
-          <h3>🚀 Sprint Final — Confiança e Revisão</h3>
-        </div>
-        <div class="phase-meta" style="margin-left:auto;">29 dias · 4 semanas · 2h/dia</div>
-      </div>
-      <table class="weeks-table">
-        <thead>
-          <tr>
-            <th style="width:60px">Semana</th>
-            <th style="width:140px">Período</th>
-            <th>Matérias</th>
-            <th>Foco da Semana</th>
-            <th style="width:90px">Carga</th>
-            <th style="width:160px">Apostila</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="week-num-cell">S.33</td>
-            <td class="week-dates-cell">01–07 nov</td>
-            <td><div class="subject-tags"><span class="stag por">Port</span><span class="stag mat">Mat</span><span class="stag bio">Bio</span></div></td>
-            <td class="focus-cell"><strong>📋 Revisão Final I</strong>Revisão geral de Port, Mat e Bio — fichas-resumo; questões rápidas (10 de cada); foco nos 20 temas mais cobrados.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Rev.F1</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.34</td>
-            <td class="week-dates-cell">08–14 nov</td>
-            <td><div class="subject-tags"><span class="stag qui">Qui</span><span class="stag fis">Fís</span><span class="stag his">His</span></div></td>
-            <td class="focus-cell"><strong>📋 Revisão Final II</strong>Revisão geral de Qui, Fís e His — fichas-resumo; fórmulas essenciais; cronologia histórica compacta; simulado rápido.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Rev.F2</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.35</td>
-            <td class="week-dates-cell">15–21 nov</td>
-            <td><div class="subject-tags"><span class="stag geo">Geo</span><span class="stag sim">Sim</span><span class="stag rev">Rev</span></div></td>
-            <td class="focus-cell"><strong>📋 Revisão Final III + Simulado</strong>Revisão de Geografia; simulado cronometrado final (50 questões, 4h); análise e correção; nenhum conteúdo novo.</td>
-            <td class="hours-cell">~12h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Sim.Final</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">S.36</td>
-            <td class="week-dates-cell">22–27 nov</td>
-            <td><div class="subject-tags"><span class="stag rev">Rev</span></div></td>
-            <td class="focus-cell"><strong>🧘 Semana Tranquila</strong>Revisão leve das fichas-resumo (30 min/dia); descanso mental; alimentação e sono adequados; preparação logística para a prova.</td>
-            <td class="hours-cell">~5h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Guia.Final</span></td>
-          </tr>
-          <tr>
-            <td class="week-num-cell">Véspera</td>
-            <td class="week-dates-cell">28–29 nov</td>
-            <td><div class="subject-tags"><span class="stag rev">Prep</span></div></td>
-            <td class="focus-cell"><strong>✅ Preparação para o Grande Dia</strong>Revisar apenas os pontos que se sente mais segura; dormir bem; organizar documentos; confiar na preparação realizada.</td>
-            <td class="hours-cell">~1h</td>
-            <td class="apostila-cell"><span class="apostila-badge">📄 Véspera</span></td>
-          </tr>
-          <tr style="background:rgba(90,45,130,0.05);">
-            <td class="week-num-cell" style="color:var(--phase4);font-size:14px;font-weight:700;">🎓 PROVA</td>
-            <td class="week-dates-cell" style="color:var(--ink);font-weight:700;">30 nov 2026</td>
-            <td><div class="subject-tags"><span class="stag" style="background:var(--phase4)">VESTIBULINHO</span></div></td>
-            <td class="focus-cell"><strong style="color:var(--phase4);">🏆 DIA DO EXAME</strong>Acordar descansada, comer bem, levar documento, caneta azul/preta, lápis. Chegar com antecedência. Ler com calma cada questão. Você está pronta!</td>
-            <td class="hours-cell">4h</td>
-            <td class="apostila-cell"><span class="apostila-badge" style="background:var(--phase4);color:#fff;border-color:var(--phase4)">⭐ 13h30</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
-</section>
-
-<!-- MARCOS -->
-<section class="progress-section" id="marcos">
-  <div class="progress-inner">
-    <div class="section-title">Marcos e Datas Importantes</div>
-    <div class="section-sub">Eventos chave ao longo da jornada de preparação.</div>
-    <div class="progress-timeline">
-      <div class="timeline-item p1">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">20 de março de 2026</div>
-        <div class="timeline-event">🌱 Início da Preparação</div>
-        <div class="timeline-desc">Hoje! Começa a Fase 1 — Alicerce. Apostila 01 em breve.</div>
-      </div>
-      <div class="timeline-item p1">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">31 de maio de 2026</div>
-        <div class="timeline-event">✅ Conclusão do Alicerce</div>
-        <div class="timeline-desc">Todas as bases estabelecidas. Primeiro mini-simulado realizado e corrigido.</div>
-      </div>
-      <div class="timeline-item p2">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">01 de junho de 2026</div>
-        <div class="timeline-event">🏗️ Início da Fase 2 — Construção</div>
-        <div class="timeline-desc">Aprofundamento dos conteúdos, mais exercícios, 2h por dia.</div>
-      </div>
-      <div class="timeline-item p2">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">23–31 de agosto de 2026</div>
-        <div class="timeline-event">📊 Simulado Geral 1</div>
-        <div class="timeline-desc">Primeira prova completa (50 questões) no estilo ETEC. Análise profunda dos erros.</div>
-      </div>
-      <div class="timeline-item p3">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">01 de setembro de 2026</div>
-        <div class="timeline-event">🔥 Início da Fase 3 — Intensivo</div>
-        <div class="timeline-desc">Resolução de provas reais, identificação de pontos fracos, 2h30 por dia.</div>
-      </div>
-      <div class="timeline-item p3">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">15 de setembro de 2026</div>
-        <div class="timeline-event">📝 Simulado Geral 2</div>
-        <div class="timeline-desc">Segundo simulado completo cronometrado — medir o progresso real.</div>
-      </div>
-      <div class="timeline-item p3">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">06 de outubro de 2026</div>
-        <div class="timeline-event">📝 Simulado Geral 3</div>
-        <div class="timeline-desc">Terceiro simulado — foco em gestão do tempo (4 horas reais).</div>
-      </div>
-      <div class="timeline-item p3">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">27–31 de outubro de 2026</div>
-        <div class="timeline-event">📝 Simulado Geral 4</div>
-        <div class="timeline-desc">Último simulado do intensivo — medir confiança e prontidão.</div>
-      </div>
-      <div class="timeline-item p4">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">01 de novembro de 2026</div>
-        <div class="timeline-event">🚀 Sprint Final</div>
-        <div class="timeline-desc">Só revisão — nenhum conteúdo novo. Confiança e tranquilidade.</div>
-      </div>
-      <div class="timeline-item p4">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">15–21 de novembro de 2026</div>
-        <div class="timeline-event">📝 Simulado Final</div>
-        <div class="timeline-desc">Último simulado completo — chegar confiante no dia da prova.</div>
-      </div>
-      <div class="timeline-item p4">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">22–29 de novembro de 2026</div>
-        <div class="timeline-event">🧘 Semana Tranquila</div>
-        <div class="timeline-desc">Revisão leve, descanso, preparação mental e logística.</div>
-      </div>
-      <div class="timeline-item p4">
-        <div class="timeline-dot" style="width:22px;height:22px;left:-38px;top:2px;"></div>
-        <div class="timeline-date">30 de novembro de 2026 · 13h30</div>
-        <div class="timeline-event" style="font-size:24px;">🏆 VESTIBULINHO ETEC 2026</div>
-        <div class="timeline-desc" style="font-size:14px;color:var(--gold);">O grande dia chegou. Você está preparada. Boa prova!</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DICAS -->
-<section class="tips-section" id="dicas">
-  <div class="tips-inner">
-    <div class="section-title" style="color:var(--paper)">Dicas para Maximizar os Estudos</div>
-    <div class="section-sub" style="color:rgba(245,240,232,0.5)">Princípios que fazem a diferença entre estudar muito e estudar bem.</div>
-    <div class="tips-grid">
-      <div class="tip-card">
-        <div class="tip-icon">⏰</div>
-        <h4>Consistência > Intensidade</h4>
-        <p>2 horas todo dia superam 14 horas num único sábado. O cérebro fixa melhor com repetição espaçada. Não pule dias — prefira menos tempo, mas todos os dias.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">✍️</div>
-        <h4>Escreva, não apenas leia</h4>
-        <p>Fazer resumos à mão, resolver exercícios no papel e reescrever conceitos com suas próprias palavras ativa a memória de longo prazo muito mais do que apenas ler.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">📄</div>
-        <h4>Leia as provas reais</h4>
-        <p>A ETEC tem um padrão claro de questões. Ler as apostilas diárias baseadas nas provas reais é a melhor forma de se familiarizar com o estilo e a linguagem do exame.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🎯</div>
-        <h4>Priorize Português e Matemática</h4>
-        <p>Essas duas matérias têm o maior número de questões e permeiam todo o exame. Interpetação de texto aparece em TODAS as disciplinas. Não negligencie nenhuma delas.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🔁</div>
-        <h4>Revise sempre</h4>
-        <p>A revisão no dia seguinte, uma semana depois e um mês depois é o que transforma o conhecimento de curto prazo em memória permanente. Use as apostilas de revisão.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">😴</div>
-        <h4>Durma bem</h4>
-        <p>O cérebro consolida memórias durante o sono. Estudar privada de sono é contraproducente. Priorize 7-8h de sono — especialmente nas semanas antes da prova.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🧘</div>
-        <h4>Domingo é sagrado</h4>
-        <p>O descanso semanal não é preguiça — é estratégia. Um domingo de recuperação garante que os outros 6 dias sejam mais produtivos. Respeite esse tempo livre.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">📊</div>
-        <h4>Acompanhe seus erros</h4>
-        <p>Anote as questões que errou nos simulados. Os erros revelam onde está o ponto fraco. Volte a esses temas nas semanas seguintes até dominar completamente.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">💬</div>
-        <h4>Explique em voz alta</h4>
-        <p>Se você consegue explicar um conceito em voz alta com simplicidade, você o domina. Se travar, ainda precisa estudar mais. Ensinar (mesmo que para si) é aprender.</p>
-      </div>
-    </div>
-
-    <!-- SUBJECTS PRIORITY -->
-    <div style="margin-top:48px;background:rgba(245,240,232,0.05);border:1px solid rgba(245,240,232,0.1);border-radius:12px;padding:28px;">
-      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--gold-light);margin-bottom:20px;">Prioridade das Matérias no Vestibulinho ETEC</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;">
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,240,232,0.04);border-radius:8px;">
-          <div style="width:32px;height:32px;border-radius:6px;background:var(--p-por);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:12px;flex-shrink:0;">P1</div>
-          <div><div style="color:#fff;font-weight:600;font-size:13px;">Português — PRIORIDADE MÁXIMA</div><div style="color:rgba(245,240,232,0.5);font-size:12px;">~8–10 questões; base para interpretar TUDO</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,240,232,0.04);border-radius:8px;">
-          <div style="width:32px;height:32px;border-radius:6px;background:var(--p-mat);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:12px;flex-shrink:0;">P2</div>
-          <div><div style="color:#fff;font-weight:600;font-size:13px;">Matemática — PRIORIDADE MÁXIMA</div><div style="color:rgba(245,240,232,0.5);font-size:12px;">~8–10 questões; sempre aplicada e contextualizada</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,240,232,0.04);border-radius:8px;">
-          <div style="width:32px;height:32px;border-radius:6px;background:var(--p-bio);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:12px;flex-shrink:0;">P3</div>
-          <div><div style="color:#fff;font-weight:600;font-size:13px;">Biologia — ALTA PRIORIDADE</div><div style="color:rgba(245,240,232,0.5);font-size:12px;">~8 questões; corpo humano e ecologia dominam</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,240,232,0.04);border-radius:8px;">
-          <div style="width:32px;height:32px;border-radius:6px;background:var(--p-qui);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:12px;flex-shrink:0;">P4</div>
-          <div><div style="color:#fff;font-weight:600;font-size:13px;">Química — ALTA PRIORIDADE</div><div style="color:rgba(245,240,232,0.5);font-size:12px;">~6 questões; átomo, substâncias e reações</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,240,232,0.04);border-radius:8px;">
-          <div style="width:32px;height:32px;border-radius:6px;background:var(--p-fis);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:12px;flex-shrink:0;">P5</div>
-          <div><div style="color:#fff;font-weight:600;font-size:13px;">Física — MÉDIA PRIORIDADE</div><div style="color:rgba(245,240,232,0.5);font-size:12px;">~6 questões; pressão, óptica e calor prevalecem</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,240,232,0.04);border-radius:8px;">
-          <div style="width:32px;height:32px;border-radius:6px;background:var(--p-his);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:12px;flex-shrink:0;">P6</div>
-          <div><div style="color:#fff;font-weight:600;font-size:13px;">História — MÉDIA PRIORIDADE</div><div style="color:rgba(245,240,232,0.5);font-size:12px;">~6 questões; contextualização sempre presente</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,240,232,0.04);border-radius:8px;">
-          <div style="width:32px;height:32px;border-radius:6px;background:var(--p-geo);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:12px;flex-shrink:0;">P7</div>
-          <div><div style="color:#fff;font-weight:600;font-size:13px;">Geografia — MÉDIA PRIORIDADE</div><div style="color:rgba(245,240,232,0.5);font-size:12px;">~6 questões; biomas, mapas e ambiente</div></div>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-box">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Akemy Estudos · Projeto ETEC</div>
+            <h1>Cronograma completo com acesso direto às apostilas</h1>
+            <p>Esta página funciona como centro do projeto: calendário dinâmico, progresso salvo no navegador, exportação/importação e links diretos para cada apostila publicada na pasta <strong>apostilas/</strong>.</p>
+            <div class="hero-actions">
+              <a href="#cronograma" class="btn btn-primary">Ver cronograma</a>
+              <a href="#calendario" class="btn btn-outline">Abrir calendário</a>
+            </div>
+          </div>
+          <div class="hero-side">
+            <div class="metric">
+              <span class="metric-label">Prova</span>
+              <strong>30/11/2026</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Dias de estudo</span>
+              <strong id="metric-total-days">255</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Apostilas publicadas</span>
+              <strong id="metric-published">7</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Contagem regressiva</span>
+              <strong id="countdown">—</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </header>
 
-    <!-- NEXT STEP -->
-    <div style="margin-top:40px;text-align:center;padding:32px;background:rgba(232,184,75,0.1);border:1px solid rgba(232,184,75,0.3);border-radius:16px;">
-      <div style="font-size:32px;margin-bottom:12px;">📚</div>
-      <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:var(--gold-light);margin-bottom:8px;">Próximo Passo: Apostila 01</div>
-      <div style="color:rgba(245,240,232,0.6);font-size:14px;line-height:1.7;max-width:500px;margin:0 auto;">Quando você estiver pronta, é só falar! Vamos criar a apostila da <strong style="color:var(--gold-light)">Apostila 01</strong> — focada em como estudar para o Vestibulinho, interpretação de texto básica, primeiros conceitos de matemática e uma introdução geral à prova.</div>
-    </div>
-  </div>
-</section>
+  <main class="container">
+    <section class="section">
+      <h2>Visão geral</h2>
+      <p class="lead">A estrutura foi preparada para GitHub Pages com HTML/CSS/JS puro. O estudo vai de <strong>20/03/2026</strong> até <strong>29/11/2026</strong>, deixando a prova em <strong>30/11/2026</strong> separada da rotina de preparação.</p>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Progresso do aluno</h3>
+          <div class="progress-meta">
+            <span id="progress-text">0 de 7 apostilas publicadas concluídas</span>
+            <strong id="progress-percent">0%</strong>
+          </div>
+          <div class="progress-bar" aria-label="Barra de progresso">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <p class="note" style="margin-top:12px">O progresso é salvo no navegador via <code>localStorage</code>. Você pode exportar o JSON e depois importar no mesmo ou em outro dispositivo.</p>
+          <div class="toolbar">
+            <button class="btn" id="btn-export">Exportar progresso</button>
+            <label class="btn" for="import-file">Importar progresso</label>
+            <input id="import-file" type="file" accept="application/json" class="hidden">
+            <button class="btn" id="btn-reset">Zerar progresso</button>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Fases do plano</h3>
+          <div class="phase-list" id="phase-list"></div>
+        </article>
+      </div>
+    </section>
 
-<footer>
-  <p>Cronograma preparado especialmente para o <strong>Vestibulinho ETEC 2026</strong> — Exame em 30 de novembro de 2026</p>
-  <p style="margin-top:6px;">255 dias · 37 semanas · 4 fases · 60+ apostilas · Uma aprovação 🏆</p>
-</footer>
+    <section class="section" id="calendario">
+      <h2>Calendário dinâmico</h2>
+      <p class="lead">Clique nos dias que já têm apostila publicada. Os demais continuam no planejamento, mas aparecem como <strong>Em breve</strong> até a geração do conteúdo.</p>
+      <div class="card">
+        <div class="month-nav">
+          <button class="btn" id="prev-month" aria-label="Mês anterior">◀</button>
+          <div class="month-title" id="month-title">—</div>
+          <button class="btn" id="next-month" aria-label="Próximo mês">▶</button>
+        </div>
+        <div class="calendar" id="calendar-grid"></div>
+      </div>
+    </section>
 
-<script>
-// COUNTDOWN
-function updateCountdown() {
-  const exam = new Date('2026-11-30T13:30:00');
-  const now = new Date();
-  const diff = exam - now;
-  if (diff <= 0) {
-    document.getElementById('cd-d').textContent = '0';
-    document.getElementById('cd-h').textContent = '0';
-    document.getElementById('cd-m').textContent = '0';
-    document.getElementById('cd-s').textContent = '0';
-    return;
-  }
-  const days = Math.floor(diff / (1000*60*60*24));
-  const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-  const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
-  const secs = Math.floor((diff % (1000*60)) / 1000);
-  document.getElementById('cd-d').textContent = String(days).padStart(2,'0');
-  document.getElementById('cd-h').textContent = String(hours).padStart(2,'0');
-  document.getElementById('cd-m').textContent = String(mins).padStart(2,'0');
-  document.getElementById('cd-s').textContent = String(secs).padStart(2,'0');
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
+    <section class="section" id="cronograma">
+      <h2>Cronograma detalhado</h2>
+      <p class="lead">Cada linha representa uma semana do planejamento. Quando a apostila daquela faixa já foi publicada, o link abre a página correspondente em <span class="kbd">apostilas/dia-XXX.html</span>.</p>
+      <div class="card table-wrap">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Semana</th>
+              <th>Período</th>
+              <th>Fase</th>
+              <th>Foco</th>
+              <th>Apostilas</th>
+            </tr>
+          </thead>
+          <tbody id="schedule-body"></tbody>
+        </table>
+      </div>
+    </section>
 
-// ACTIVE NAV
-const sections = document.querySelectorAll('section[id], div[id]');
-const navLinks = document.querySelectorAll('.nav-link');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const id = e.target.id;
-      navLinks.forEach(l => {
-        l.classList.toggle('active', l.getAttribute('href') === '#'+id);
+    <section class="section">
+      <h2>Acesso rápido às apostilas publicadas</h2>
+      <p class="lead">Use esta lista quando quiser abrir o material sem passar pela tabela semanal ou pelo calendário.</p>
+      <div class="grid grid-3" id="quick-links"></div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p>Estrutura do repositório: <strong>index.html</strong>, <strong>style.css</strong>, <strong>config.js</strong>, <strong>.nojekyll</strong>, <strong>404.html</strong> e pasta <strong>apostilas/</strong>. Feito para publicação estática simples no GitHub Pages.</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    const cfg = window.AKEMY_CONFIG;
+    const helpers = window.AKEMY_HELPERS;
+    const studyDays = helpers.generateStudyDays();
+    const publishedSet = new Set(cfg.availableApostilas);
+    const STORAGE_KEY = 'akemy_etec_progress_v1';
+    const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const weekdayNames = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+    let state = {
+      currentMonth: 2, // março = 2
+      currentYear: 2026,
+      completed: loadProgress()
+    };
+
+    function loadProgress(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed.completed) ? parsed.completed.filter(n => publishedSet.has(n)) : [];
+      }catch(e){
+        return [];
+      }
+    }
+
+    function saveProgress(){
+      const payload = { completed: [...new Set(state.completed)].sort((a,b)=>a-b) };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      updateProgressUI();
+    }
+
+    function toggleCompleted(dayNumber){
+      if(!publishedSet.has(dayNumber)) return;
+      if(state.completed.includes(dayNumber)){
+        state.completed = state.completed.filter(n => n !== dayNumber);
+      }else{
+        state.completed = [...state.completed, dayNumber];
+      }
+      saveProgress();
+      renderQuickLinks();
+      renderSchedule();
+      renderCalendar();
+    }
+
+    function updateProgressUI(){
+      const total = cfg.availableApostilas.length;
+      const done = state.completed.length;
+      const pct = total ? Math.round((done/total)*100) : 0;
+      document.getElementById('progress-text').textContent = `${done} de ${total} apostilas publicadas concluídas`;
+      document.getElementById('progress-percent').textContent = `${pct}%`;
+      document.getElementById('progress-fill').style.width = `${pct}%`;
+      document.getElementById('metric-published').textContent = String(total);
+      document.getElementById('metric-total-days').textContent = String(cfg.totalStudyDays);
+    }
+
+    function renderPhases(){
+      const wrap = document.getElementById('phase-list');
+      wrap.innerHTML = '';
+      cfg.phases.forEach(phase => {
+        const div = document.createElement('div');
+        div.className = 'phase-item';
+        div.innerHTML = `
+          <span class="tag" style="background:${phase.color}">${phase.name.replace('Fase ','').split(' — ')[0]}</span>
+          <h4 style="margin:10px 0 6px">${phase.name}</h4>
+          <div class="small">${formatDateBR(phase.start)} → ${formatDateBR(phase.end)}</div>
+          <div class="small" style="margin-top:4px">Carga sugerida: ${phase.daily}</div>
+        `;
+        wrap.appendChild(div);
       });
     }
-  });
-}, { threshold: 0.3 });
-sections.forEach(s => observer.observe(s));
-</script>
+
+    function renderQuickLinks(){
+      const wrap = document.getElementById('quick-links');
+      wrap.innerHTML = '';
+      studyDays.filter(d => d.available).forEach(day => {
+        const done = state.completed.includes(day.number);
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="small">Apostila ${helpers.formatDayNumber(day.number)} · ${formatDateBR(day.date)}</div>
+          <h3 style="margin:6px 0 8px">${day.title}</h3>
+          <div class="toolbar" style="margin-top:14px">
+            <a class="btn btn-dark" href="${day.href}">Abrir apostila</a>
+            <button class="btn" data-complete="${day.number}">${done ? 'Concluída' : 'Marcar como concluída'}</button>
+          </div>
+        `;
+        wrap.appendChild(card);
+      });
+      wrap.querySelectorAll('[data-complete]').forEach(btn => {
+        btn.addEventListener('click', () => toggleCompleted(Number(btn.dataset.complete)));
+      });
+    }
+
+    function renderSchedule(){
+      const tbody = document.getElementById('schedule-body');
+      tbody.innerHTML = '';
+      cfg.weeks.forEach(week => {
+        const start = new Date(week.start + 'T12:00:00');
+        const end = new Date(week.end + 'T12:00:00');
+        const weekDays = studyDays.filter(d => new Date(d.date + 'T12:00:00') >= start && new Date(d.date + 'T12:00:00') <= end);
+        const firstPhase = helpers.getPhaseByDate(week.start);
+        const apostilasHTML = weekDays.map(day => {
+          const done = state.completed.includes(day.number);
+          const label = `Apostila ${helpers.formatDayNumber(day.number)}`;
+          if(day.available){
+            return `<a class="link-pill" href="${day.href}" title="${day.title}">${label}${done ? ' ✓' : ''}</a>`;
+          }
+          return `<span class="link-pill muted" title="Ainda não publicada">${label}</span>`;
+        }).join(' ');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>Semana ${String(week.number).padStart(2, '0')}</strong></td>
+          <td>${formatDateBR(week.start)} → ${formatDateBR(week.end)}</td>
+          <td><span class="pill">${firstPhase ? firstPhase.name : 'Planejamento'}</span></td>
+          <td>${week.theme}</td>
+          <td>${apostilasHTML}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderCalendar(){
+      const grid = document.getElementById('calendar-grid');
+      grid.innerHTML = '';
+      weekdayNames.forEach(name => {
+        const el = document.createElement('div');
+        el.className = 'weekday';
+        el.textContent = name;
+        grid.appendChild(el);
+      });
+
+      const firstDay = new Date(state.currentYear, state.currentMonth, 1);
+      const lastDay = new Date(state.currentYear, state.currentMonth + 1, 0);
+      const offset = firstDay.getDay();
+      document.getElementById('month-title').textContent = `${monthNames[state.currentMonth]} de ${state.currentYear}`;
+
+      for(let i=0;i<offset;i++){
+        const empty = document.createElement('div');
+        empty.className = 'day-cell empty';
+        grid.appendChild(empty);
+      }
+
+      for(let day=1; day<=lastDay.getDate(); day++){
+        const current = new Date(state.currentYear, state.currentMonth, day);
+        const iso = current.toISOString().slice(0,10);
+        const study = studyDays.find(d => d.date === iso);
+        const cell = document.createElement('div');
+        cell.className = 'day-cell';
+
+        if(!study){
+          cell.innerHTML = `<div class="day-number">${day}</div><div class="day-study">Fora do período de estudo</div>`;
+          grid.appendChild(cell);
+          continue;
+        }
+
+        const phase = helpers.getPhaseByDate(iso);
+        const done = state.completed.includes(study.number);
+        const badgeColor = phase ? phase.color : '#6f6457';
+        cell.innerHTML = `
+          <div class="day-number">${day}</div>
+          <div class="day-badge" style="background:${badgeColor}">${helpers.formatDayNumber(study.number)}</div>
+          <div class="day-study">${study.title}</div>
+          ${study.available
+            ? `<a class="day-link" href="${study.href}">Abrir apostila</a>`
+            : `<span class="day-link disabled">Em breve</span>`}
+          ${study.available ? `<div class="small" style="margin-top:8px"><label><input type="checkbox" data-complete-day="${study.number}" ${done ? 'checked' : ''}> concluída</label></div>` : ''}
+        `;
+        grid.appendChild(cell);
+      }
+
+      grid.querySelectorAll('[data-complete-day]').forEach(input => {
+        input.addEventListener('change', () => toggleCompleted(Number(input.dataset.completeDay)));
+      });
+    }
+
+    function formatDateBR(iso){
+      const [y,m,d] = iso.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    function updateCountdown(){
+      const now = new Date();
+      const exam = new Date(cfg.examDateTime);
+      const diff = exam - now;
+      const el = document.getElementById('countdown');
+      if(diff <= 0){
+        el.textContent = 'Hoje';
+        return;
+      }
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      el.textContent = `${days}d ${hours}h`;
+    }
+
+    function changeMonth(step){
+      const minMonth = 2; // março/2026
+      const maxMonth = 10; // novembro/2026
+      let nextMonth = state.currentMonth + step;
+      let nextYear = state.currentYear;
+      if(nextMonth < 0){ nextMonth = 11; nextYear--; }
+      if(nextMonth > 11){ nextMonth = 0; nextYear++; }
+      if(nextYear < 2026 || nextYear > 2026) return;
+      if(nextMonth < minMonth || nextMonth > maxMonth) return;
+      state.currentMonth = nextMonth;
+      state.currentYear = nextYear;
+      renderCalendar();
+    }
+
+    document.getElementById('prev-month').addEventListener('click', () => changeMonth(-1));
+    document.getElementById('next-month').addEventListener('click', () => changeMonth(1));
+
+    document.getElementById('btn-export').addEventListener('click', () => {
+      const data = JSON.stringify({ completed: state.completed }, null, 2);
+      const blob = new Blob([data], { type:'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'akemy-progresso.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('import-file').addEventListener('change', async (e) => {
+      const file = e.target.files?.[0];
+      if(!file) return;
+      try{
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+        if(!Array.isArray(parsed.completed)) throw new Error('Formato inválido');
+        state.completed = parsed.completed.filter(n => publishedSet.has(Number(n))).map(Number);
+        saveProgress();
+        renderQuickLinks();
+        renderSchedule();
+        renderCalendar();
+      }catch(err){
+        alert('Não foi possível importar o progresso. Verifique se o arquivo JSON está correto.');
+      }finally{
+        e.target.value = '';
+      }
+    });
+
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      if(!confirm('Zerar todo o progresso salvo neste navegador?')) return;
+      state.completed = [];
+      saveProgress();
+      renderQuickLinks();
+      renderSchedule();
+      renderCalendar();
+    });
+
+    renderPhases();
+    renderQuickLinks();
+    renderSchedule();
+    renderCalendar();
+    updateProgressUI();
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+  </script>
 </body>
 </html>
