@@ -3,1627 +3,803 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    const APOSTILA = {
-      numero: 2,
-      titulo: "Fatos, Opiniões e Adição/Subtração",
-      disciplina: "Português + Matemática",
-      disciplinaIcone: "⚖️",
-      semana: 1,
-      fase: "Fase 1 — Fundamentos Críticos",
-      reino: "Reino dos Fundamentos",
-      reinoIcone: "📚",
-      raridade: "comum",
-      xp: 10,
-      moedas: 3,
-      corPrincipal: "#16a34a",
-      corSecundaria: "#4ade80"
-    };
-  </script>
-  <title>Dia 002 — Fatos, Opiniões e Adição/Subtração | Eiji</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <title>AKEMY · Dia 002 · Matemática · valor posicional e as 4 operações</title>
+  <meta name="description" content="Apostila AKEMY Dia 002: Matemática com valor posicional e as quatro operações, com quiz de revisão do dia 1, exemplos visuais, prática guiada e treino independente." />
   <style>
     :root{
-      --ink:#0f172a;
-      --navy:#16233d;
-      --blue:#2563eb;
-      --blue2:#3b82f6;
-      --sky:#dbeafe;
-      --green:#16a34a;
-      --lime:#dcfce7;
-      --orange:#ea580c;
-      --amber:#f59e0b;
-      --yellow:#fef3c7;
-      --red:#dc2626;
-      --pink:#e11d48;
-      --purple:#7c3aed;
-      --violet:#ede9fe;
-      --gray0:#f8fafc;
-      --gray1:#f1f5f9;
-      --gray2:#e2e8f0;
-      --gray3:#cbd5e1;
-      --gray4:#64748b;
-      --white:#ffffff;
-
-      --cpa-c:#ea580c;
-      --cpa-p:#2563eb;
-      --cpa-a:#7c3aed;
-
-      --radius:20px;
-      --shadow:0 12px 30px rgba(15,23,42,.10);
+      --bg:#0f0b16;
+      --bg2:#171122;
+      --panel:#1a1326;
+      --panel2:#211730;
+      --line:rgba(255,255,255,.08);
+      --text:#f7f2ff;
+      --muted:#c8bfd8;
+      --soft:#9e92b2;
+      --rose:#c15c8a;
+      --wine:#7b2f4f;
+      --violet:#6d56c9;
+      --blue:#295d8f;
+      --gold:#d9a86c;
+      --mint:#2f7b62;
+      --danger:#ba5c5c;
+      --ok:#58b383;
+      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --radius:24px;
     }
-
-    *{box-sizing:border-box;margin:0;padding:0}
+    *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      font-family:'Nunito',sans-serif;
-      background:var(--gray0);
-      color:var(--ink);
-      line-height:1.65;
+      margin:0;
+      color:var(--text);
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(193,92,138,.12), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(109,86,201,.10), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(41,93,143,.12), transparent 28%),
+        linear-gradient(180deg, #0f0b16 0%, #120d19 100%);
     }
-
-    .cover{
-      min-height:100vh;
-      background:linear-gradient(155deg,#0d1117 0%, #1a2744 46%, #2563eb 100%);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:40px 24px;
-      position:relative;
-      overflow:hidden;
-    }
-    .cover-grid{
-      position:absolute;
-      inset:0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
-      background-size:56px 56px;
-    }
-    .cover-glow{
-      position:absolute;
-      width:520px;
-      height:520px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(59,130,246,.35), transparent 70%);
-      top:-120px;
-      right:-100px;
-      animation:pulse 7s ease-in-out infinite;
-    }
-    @keyframes pulse{
-      0%,100%{transform:scale(1)}
-      50%{transform:scale(1.12)}
-    }
-    @keyframes floaty{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(24px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    .cover-icon{
-      font-size:88px;
-      position:relative;
-      z-index:2;
-      animation:floaty 2.8s ease-in-out infinite;
-      margin-bottom:14px;
-    }
-    .cover h1{
-      font-family:'Fredoka',cursive;
-      font-size:clamp(38px,7vw,74px);
-      line-height:1.08;
-      color:#fff;
-      text-shadow:0 8px 30px rgba(0,0,0,.35);
-      position:relative;
-      z-index:2;
-      animation:fadeUp .8s ease .1s both;
-    }
-    .cover-sub{
-      margin-top:14px;
-      color:rgba(255,255,255,.9);
-      font-weight:800;
-      font-size:clamp(16px,2.5vw,22px);
-      position:relative;
-      z-index:2;
-      animation:fadeUp .8s ease .3s both;
-    }
-    .cover-pills{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
-      margin-top:26px;
-      position:relative;
-      z-index:2;
-      animation:fadeUp .8s ease .5s both;
-    }
-    .pill{
-      padding:9px 16px;
-      border-radius:999px;
-      font-size:13px;
-      font-weight:900;
-      border:2px solid rgba(255,255,255,.24);
-      color:#fff;
-      background:rgba(255,255,255,.12);
-      backdrop-filter:blur(4px);
-    }
-    .cover-note{
-      margin-top:24px;
-      max-width:720px;
-      padding:18px 22px;
-      border-radius:18px;
-      background:rgba(255,255,255,.12);
-      border:1.5px solid rgba(255,255,255,.25);
-      color:rgba(255,255,255,.94);
-      font-size:14px;
-      font-weight:700;
-      line-height:1.65;
-      position:relative;
-      z-index:2;
-      animation:fadeUp .8s ease .7s both;
-    }
-    .cover-note strong{color:#fde68a}
-
-    .science-bar{
-      background:var(--navy);
-      padding:12px 18px;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:8px;
-    }
-    .science-chip{
-      background:rgba(255,255,255,.08);
-      color:rgba(255,255,255,.9);
-      border:1.5px solid rgba(255,255,255,.16);
-      border-radius:999px;
-      padding:6px 12px;
-      font-size:12px;
-      font-weight:800;
-    }
-
-    .nav{
-      position:sticky;
-      top:0;
-      z-index:200;
-      background:#0d1117;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:8px;
-      padding:12px 14px;
-      box-shadow:0 2px 20px rgba(0,0,0,.4);
-    }
-    .nav button{
-      border:1.5px solid rgba(255,255,255,.18);
-      background:transparent;
-      color:rgba(255,255,255,.82);
-      border-radius:999px;
-      padding:7px 14px;
-      font-family:'Nunito',sans-serif;
-      font-weight:800;
-      font-size:12px;
-      cursor:pointer;
-      transition:.22s ease;
-    }
-    .nav button:hover{
-      background:var(--blue);
-      border-color:var(--blue);
-      color:#fff;
-      transform:scale(1.04);
-    }
-
-    .page{
-      max-width:980px;
-      margin:0 auto;
-      padding:40px 18px;
-    }
-
-    .stage{
-      border-radius:24px;
-      padding:28px 24px;
-      margin-bottom:28px;
-      position:relative;
-      overflow:hidden;
-    }
-    .stage::after{
-      content:'';
-      position:absolute;
-      width:280px;
-      height:280px;
-      border-radius:50%;
-      background:rgba(255,255,255,.08);
-      right:-50px;
-      bottom:-90px;
-    }
-    .stage.orange{background:linear-gradient(135deg,#9a3412,#ea580c,#fb923c)}
-    .stage.blue{background:linear-gradient(135deg,#1e3a8a,#2563eb,#60a5fa)}
-    .stage.purple{background:linear-gradient(135deg,#4c1d95,#7c3aed,#a78bfa)}
-    .stage.green{background:linear-gradient(135deg,#065f46,#16a34a,#4ade80)}
-    .stage.dark{background:linear-gradient(135deg,#0d1117,#1a2744,#2563eb)}
-
-    .stage-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      background:rgba(255,255,255,.18);
-      color:#fff;
-      border:1.5px solid rgba(255,255,255,.28);
-      padding:6px 14px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.6px;
-      text-transform:uppercase;
-      margin-bottom:10px;
-    }
-    .stage-icon{
-      font-size:50px;
-      margin-bottom:10px;
-      display:block;
-      animation:floaty 2.6s ease-in-out infinite;
-      position:relative;
-      z-index:1;
-    }
-    .stage h2{
-      font-family:'Fredoka',cursive;
-      font-size:clamp(28px,4vw,48px);
-      color:#fff;
-      line-height:1.12;
-      text-shadow:0 4px 16px rgba(0,0,0,.25);
-      position:relative;
-      z-index:1;
-    }
-    .stage p{
-      margin-top:10px;
-      color:rgba(255,255,255,.92);
-      font-size:15px;
-      font-weight:700;
-      position:relative;
-      z-index:1;
-    }
-    .stage-tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
-      position:relative;
-      z-index:1;
-    }
-    .stage-tag{
-      background:rgba(255,255,255,.16);
-      color:#fff;
-      border:1.5px solid rgba(255,255,255,.24);
-      border-radius:999px;
-      padding:6px 12px;
-      font-size:12px;
-      font-weight:800;
-    }
-
-    .card{
-      background:var(--white);
-      border-radius:18px;
-      padding:24px;
-      margin-bottom:18px;
+    a{color:inherit}
+    .container{width:min(1180px, calc(100% - 28px));margin:0 auto}
+    .hero{padding:26px 0 14px}
+    .hero-panel{
+      background:linear-gradient(180deg, rgba(26,19,38,.96), rgba(18,13,25,.92));
+      border:1px solid var(--line);
+      border-radius:32px;
       box-shadow:var(--shadow);
-    }
-    .card h3{
-      font-family:'Fredoka',cursive;
-      font-size:24px;
-      margin-bottom:12px;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .card.bc{border-left:6px solid var(--cpa-c)}
-    .card.bc h3{color:var(--cpa-c)}
-    .card.bp{border-left:6px solid var(--cpa-p)}
-    .card.bp h3{color:var(--cpa-p)}
-    .card.ba{border-left:6px solid var(--cpa-a)}
-    .card.ba h3{color:var(--cpa-a)}
-    .card.bg{border-left:6px solid var(--green)}
-    .card.bg h3{color:var(--green)}
-    .card.bo{border-left:6px solid var(--amber)}
-    .card.bo h3{color:var(--amber)}
-    .card.br{border-left:6px solid var(--red)}
-    .card.br h3{color:var(--red)}
-
-    .cpa-label{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:5px 12px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.6px;
-      text-transform:uppercase;
-      margin-bottom:10px;
-    }
-    .cpa-c{
-      background:#fff7ed;
-      color:#9a3412;
-      border:2px solid #fb923c;
-    }
-    .cpa-p{
-      background:#eff6ff;
-      color:#1e3a8a;
-      border:2px solid #93c5fd;
-    }
-    .cpa-a{
-      background:#f5f3ff;
-      color:#4c1d95;
-      border:2px solid #c4b5fd;
-    }
-
-    .info{
-      border-radius:14px;
-      padding:16px 18px;
-      margin:12px 0;
-      font-size:14px;
-      font-weight:700;
-      line-height:1.65;
-    }
-    .info strong{font-weight:900}
-    .info.yellow{background:#fefce8;border:2px solid #fde047}
-    .info.blue{background:#eff6ff;border:2px solid #93c5fd}
-    .info.green{background:#f0fdf4;border:2px solid #86efac}
-    .info.orange{background:#fff7ed;border:2px solid #fdba74}
-    .info.purple{background:#f5f3ff;border:2px solid #c4b5fd}
-    .info.red{background:#fef2f2;border:2px solid #fca5a5}
-
-    .grid-2{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin:12px 0;
-    }
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin:12px 0;
-    }
-
-    .bubble-card{
-      background:var(--gray0);
-      border:2px solid var(--gray2);
-      border-radius:16px;
-      padding:16px;
-      text-align:center;
-      transition:.2s ease;
-      cursor:pointer;
-      min-height:110px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      gap:6px;
-    }
-    .bubble-card:hover{
-      transform:translateY(-2px) scale(1.01);
-      border-color:var(--blue);
-      background:#eff6ff;
-    }
-    .bubble-card strong{
-      font-size:15px;
-      color:var(--ink);
-    }
-    .bubble-card small{
-      color:var(--gray4);
-      font-size:12px;
-      font-weight:800;
-    }
-
-    .sun-wrap{
-      background:linear-gradient(135deg,#eff6ff,#dbeafe);
-      border:2.5px solid #93c5fd;
-      border-radius:18px;
-      padding:24px;
-      margin:16px 0;
-      text-align:center;
-    }
-    .sun-core{
-      width:160px;
-      height:160px;
-      border-radius:50%;
-      background:linear-gradient(135deg,#2563eb,#60a5fa);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      margin:0 auto 20px;
-      padding:18px;
-      font-family:'Fredoka',cursive;
-      font-size:22px;
-      line-height:1.2;
-      box-shadow:0 0 0 10px rgba(37,99,235,.12);
-    }
-    .orbit-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-    }
-    .orbit{
-      background:#fff;
-      border:2px dashed #93c5fd;
-      border-radius:14px;
-      padding:14px;
-      font-size:14px;
-      font-weight:800;
-      color:#1e3a8a;
-    }
-
-    .steps{
-      list-style:none;
-      counter-reset:step;
-    }
-    .steps li{
-      counter-increment:step;
-      display:flex;
-      align-items:flex-start;
-      gap:12px;
-      margin-bottom:13px;
-      font-size:14px;
-      font-weight:700;
-    }
-    .steps li::before{
-      content:counter(step);
-      width:32px;
-      height:32px;
-      border-radius:50%;
-      flex-shrink:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:'Fredoka',cursive;
-      color:#fff;
-      background:var(--blue);
-    }
-    .steps.orange li::before{background:var(--orange)}
-    .steps.purple li::before{background:var(--purple)}
-    .steps.green li::before{background:var(--green)}
-
-    .worked,
-    .guided,
-    .independent{
-      border-radius:18px;
-      padding:22px;
-      margin:16px 0;
-      position:relative;
-    }
-    .worked{
-      background:linear-gradient(135deg,#f8fafc,#eef2ff);
-      border:2px solid var(--gray2);
-    }
-    .worked::before{
-      content:'Exemplo resolvido';
-      position:absolute;
-      top:-12px;
-      left:18px;
-      background:var(--blue);
-      color:#fff;
-      padding:4px 14px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-    }
-    .guided{
-      background:linear-gradient(135deg,#fff7ed,#ffedd5);
-      border:2px solid #fdba74;
-    }
-    .guided::before{
-      content:'Prática guiada';
-      position:absolute;
-      top:-12px;
-      left:18px;
-      background:var(--orange);
-      color:#fff;
-      padding:4px 14px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-    }
-    .independent{
-      background:#fff;
-      border:2px solid var(--gray2);
-    }
-    .independent::before{
-      content:'Prática independente';
-      position:absolute;
-      top:-12px;
-      left:18px;
-      background:var(--green);
-      color:#fff;
-      padding:4px 14px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-    }
-
-    .question{
-      background:var(--gray0);
-      border-left:5px solid var(--gray3);
-      border-radius:14px;
-      padding:15px 16px;
-      margin-bottom:10px;
-      font-size:14px;
-      font-weight:700;
-      line-height:1.65;
-      cursor:pointer;
-      transition:.2s ease;
-    }
-    .question:hover{
-      transform:translateX(4px);
-      background:#f8fbff;
-    }
-    .question.blue{border-left-color:var(--blue)}
-    .question.orange{border-left-color:var(--orange)}
-    .question.green{border-left-color:var(--green)}
-    .question.purple{border-left-color:var(--purple)}
-
-    .show-btn{
-      border:none;
-      border-radius:999px;
-      padding:6px 14px;
-      font-family:'Nunito',sans-serif;
-      font-weight:900;
-      font-size:11px;
-      cursor:pointer;
-      margin-top:8px;
-      color:#fff;
-      background:var(--blue);
-    }
-    .show-btn.orange{background:var(--orange)}
-    .show-btn.green{background:var(--green)}
-    .show-btn.purple{background:var(--purple)}
-
-    .answer{
-      display:none;
-      margin-top:10px;
-      border-radius:12px;
-      padding:12px 14px;
-      background:#f0fdf4;
-      border:2px solid #86efac;
-      color:#166534;
-      font-size:13px;
-      font-weight:800;
-      line-height:1.6;
-    }
-    .answer.show{display:block}
-
-    .mc-opt{
-      background:var(--gray0);
-      border:2px solid var(--gray2);
-      border-radius:12px;
-      padding:12px 14px;
-      margin:7px 0;
-      cursor:pointer;
-      font-size:14px;
-      font-weight:800;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      transition:.2s ease;
-    }
-    .mc-opt:hover{
-      background:#eff6ff;
-      border-color:var(--blue);
-      transform:scale(1.01);
-    }
-    .mc-letter{
-      width:28px;
-      height:28px;
-      border-radius:50%;
-      background:var(--blue);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:12px;
-      font-weight:900;
-      flex-shrink:0;
-    }
-    .mc-opt.correct{
-      background:#f0fdf4;
-      border-color:var(--green);
-      color:#14532d;
-    }
-    .mc-opt.correct .mc-letter{background:var(--green)}
-    .mc-opt.wrong{
-      background:#fef2f2;
-      border-color:var(--red);
-      color:#7f1d1d;
-    }
-    .mc-opt.wrong .mc-letter{background:var(--red)}
-
-    .stars{
-      display:flex;
-      align-items:center;
-      gap:6px;
-      width:fit-content;
-      margin:14px 0;
-      padding:8px 18px;
-      border-radius:999px;
-      border:2px solid #fde047;
-      background:var(--yellow);
-      font-weight:900;
-    }
-    .star{
-      font-size:20px;
-      cursor:pointer;
-      user-select:none;
-      transition:.2s ease;
-    }
-    .star:hover{transform:scale(1.2)}
-    .star.off{filter:grayscale(1) opacity(.35)}
-
-    .memory-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin:16px 0;
-    }
-    .memory-card{
-      background:#fff;
-      border:2px solid var(--gray2);
-      border-radius:14px;
-      padding:16px;
-      font-size:14px;
-      font-weight:800;
-      cursor:pointer;
-      transition:.2s ease;
-      text-align:center;
-    }
-    .memory-card:hover{
-      transform:translateY(-2px);
-      border-color:var(--purple);
-      background:#f5f3ff;
-    }
-
-    .quiz-wrap{
-      background:linear-gradient(160deg,#0d1117,#1a2744);
-      border-radius:24px;
-      padding:28px;
-      margin-top:24px;
-    }
-    .quiz-wrap h3{
-      color:#fff;
-      text-align:center;
-      font-family:'Fredoka',cursive;
-      font-size:26px;
-      margin-bottom:18px;
-    }
-    .quiz-bar-wrap{
-      height:10px;
-      background:rgba(255,255,255,.12);
-      border-radius:999px;
       overflow:hidden;
-      margin-bottom:14px;
+      position:relative;
+      padding:28px;
     }
-    .quiz-bar{
-      height:100%;
-      width:0;
-      background:linear-gradient(90deg,#06b6d4,#22c55e);
-      transition:.35s ease;
-    }
-    .quiz-score{
-      text-align:center;
-      color:#fde68a;
-      font-family:'Fredoka',cursive;
-      font-size:18px;
-      margin-bottom:14px;
-    }
-    .quiz-question{
-      color:#fff;
-      font-size:17px;
-      font-weight:900;
-      min-height:58px;
-      line-height:1.5;
-      margin-bottom:16px;
-    }
-    .quiz-options{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-bottom:16px;
-    }
-    .quiz-option{
-      border:2px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      border-radius:12px;
-      padding:12px 14px;
-      font-family:'Nunito',sans-serif;
-      font-size:14px;
-      font-weight:800;
-      cursor:pointer;
-      text-align:left;
-      transition:.2s ease;
-    }
-    .quiz-option:hover:not(:disabled){
-      background:rgba(255,255,255,.15);
-      transform:scale(1.01);
-    }
-    .quiz-option.correct{
-      background:rgba(34,197,94,.28);
-      border-color:#22c55e;
-    }
-    .quiz-option.wrong{
-      background:rgba(220,38,38,.28);
-      border-color:#dc2626;
-    }
-    .quiz-feedback{
-      min-height:26px;
-      text-align:center;
-      font-size:16px;
-      font-weight:900;
-      margin-bottom:12px;
-    }
-    .quiz-next{
-      display:block;
-      margin:0 auto;
-      border:none;
-      border-radius:999px;
-      padding:12px 32px;
-      font-family:'Fredoka',cursive;
-      font-size:18px;
-      color:#fff;
-      background:linear-gradient(135deg,#06b6d4,#2563eb);
-      cursor:pointer;
-      transition:.2s ease;
-      box-shadow:0 6px 20px rgba(37,99,235,.24);
-    }
-    .quiz-next:hover{transform:scale(1.04)}
-    .quiz-next:disabled{
-      opacity:.45;
-      cursor:not-allowed;
-      transform:none;
-    }
-
-    .nav-bottom{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin:36px 0 10px;
-    }
-    .nav-bottom a{
-      display:inline-block;
-      text-decoration:none;
-      border-radius:12px;
-      padding:12px 18px;
-      font-weight:900;
-      transition:.2s ease;
-    }
-    .btn-back{
-      background:#e5e7eb;
-      color:#111827;
-    }
-    .btn-back:hover{background:#d1d5db}
-    .btn-next{
-      background:var(--blue);
-      color:#fff;
-    }
-    .btn-next:hover{background:#1d4ed8}
-    .btn-next.disabled{
-      background:#9ca3af;
+    .hero-panel::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(135deg, rgba(217,168,108,.07), transparent 28%),
+        linear-gradient(220deg, rgba(193,92,138,.08), transparent 35%);
       pointer-events:none;
-      cursor:not-allowed;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:22px;position:relative;z-index:1}
+    .eyebrow{display:inline-flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.06);border:1px solid var(--line);
+      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#f5d6ae;
+    }
+    h1,h2,h3,p{margin:0}
+    h1{margin-top:14px;font-size:clamp(34px, 6vw, 58px);line-height:1.03;max-width:11ch}
+    .lead{margin-top:16px;font-size:18px;line-height:1.75;color:var(--muted);max-width:66ch}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:800;font-size:15px;
+      border:1px solid var(--line);transition:.18s ease transform,.18s ease background;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--rose),var(--wine));color:#fff;border-color:transparent}
+    .btn-secondary{background:rgba(255,255,255,.05)}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+    .mini-card{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:18px;padding:16px}
+    .mini-card span{display:block;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .mini-card strong{font-size:22px;line-height:1.1}
+    .hero-art{display:grid;gap:14px}
+    .poster{
+      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .poster::before{
+      content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.35;filter:blur(2px)
+    }
+    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#fbe6c7}
+    .poster strong{font-size:24px;line-height:1.08;max-width:9ch}
+    .poster small{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55}
+    .poster-rock{background:linear-gradient(155deg, rgba(123,47,79,.40), rgba(26,19,38,.98))}
+    .poster-rock::before{background:radial-gradient(circle, rgba(217,168,108,.95), transparent 62%)}
+    .poster-social{background:linear-gradient(155deg, rgba(47,123,98,.34), rgba(26,19,38,.98))}
+    .poster-social::before{background:radial-gradient(circle, rgba(255,255,255,.72), transparent 62%)}
+    .section{padding:20px 0}
+    .section-title{color:#f4c894;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
+    .section h2{font-size:clamp(28px,3vw,40px);margin-bottom:10px}
+    .section-intro{color:var(--muted);line-height:1.75;font-size:17px;max-width:72ch}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+      border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)
+    }
+    .card h3{font-size:22px;margin-bottom:10px}
+    .card p,.card li{color:var(--muted);line-height:1.78;font-size:16px}
+    .card ul{padding-left:18px;margin:10px 0 0}
+    .focus-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .focus-box{border-radius:20px;padding:18px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
+    .focus-box strong{display:block;font-size:18px;margin-bottom:8px}
+    .focus-box p{color:var(--muted);line-height:1.65}
+    .feed-card{
+      border-radius:28px; overflow:hidden; border:1px solid var(--line); background:#15101f;
+      box-shadow:var(--shadow)
+    }
+    .feed-top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+    .feed-user{display:flex;align-items:center;gap:12px}
+    .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--rose));display:grid;place-items:center;font-weight:800}
+    .feed-handle strong{display:block}
+    .feed-handle span{color:var(--soft);font-size:14px}
+    .feed-media{
+      position:relative;padding:24px;min-height:230px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(217,168,108,.25), transparent 22%),
+        radial-gradient(circle at 80% 30%, rgba(109,86,201,.25), transparent 22%),
+        linear-gradient(160deg, rgba(41,93,143,.35), rgba(123,47,79,.25), rgba(23,17,34,.95));
+    }
+    .feed-badge{display:inline-flex;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16)}
+    .feed-title{font-size:32px;line-height:1.04;max-width:13ch;margin-top:16px}
+    .feed-copy{margin-top:12px;color:#f1e9ff;max-width:48ch;line-height:1.7}
+    .feed-actions{display:flex;gap:18px;padding:16px 18px;color:var(--muted);border-top:1px solid var(--line)}
+    .arrow-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:center;margin-top:14px}
+    .flow-node{padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:130px}
+    .flow-node strong{display:block;font-size:18px;margin-bottom:8px}
+    .flow-arrow{display:grid;place-items:center;color:#f4c894;font-size:26px;font-weight:900}
+    table{width:100%;border-collapse:collapse;margin-top:14px}
+    th,td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+    th{color:#f4c894;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+    td{color:var(--muted);line-height:1.6}
+    .diagram-card{padding:0;overflow:hidden}
+    .diagram-wrap{padding:20px}
+    .formula{
+      margin-top:12px;padding:16px 18px;border-radius:18px;border:1px solid rgba(217,168,108,.20);
+      background:rgba(217,168,108,.08);color:#ffe1be;font-weight:700;line-height:1.7
+    }
+    .example{margin-top:14px;padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .example h4{margin:0 0 10px;font-size:18px}
+    .example p{color:var(--muted);line-height:1.72;margin-top:10px}
+    .label{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#f5d6ae}
+    .qa{display:grid;gap:14px;margin-top:16px}
+    .q-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .q-card strong{display:block;font-size:18px;line-height:1.45}
+    .q-card p{margin-top:10px;color:var(--muted)}
+    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800}
+    summary::-webkit-details-marker{display:none}
+    details > div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
+    .practice-list{display:grid;gap:12px;margin-top:14px}
+    .practice-item{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.035)}
+    .practice-item strong{display:block;line-height:1.65}
+    .practice-item ol{margin:10px 0 0 18px;color:var(--muted);line-height:1.75}
+    .bar-chart{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:end;margin-top:18px;min-height:220px}
+    .bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:10px}
+    .bar > div{width:80%;border-radius:18px 18px 8px 8px;background:linear-gradient(180deg, rgba(193,92,138,.92), rgba(109,86,201,.88));border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;font-weight:800;color:white;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+    .bar:nth-child(2) > div{background:linear-gradient(180deg, rgba(47,123,98,.95), rgba(41,93,143,.88))}
+    .bar:nth-child(3) > div{background:linear-gradient(180deg, rgba(217,168,108,.95), rgba(180,95,47,.88))}
+    .bar span{color:var(--muted);font-size:14px;text-align:center}
+    .checklist{display:grid;gap:12px;margin-top:14px}
+    .check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .check .box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(255,255,255,.28);margin-top:2px;flex:0 0 auto}
+    .resources{display:grid;gap:12px;margin-top:14px}
+    .resource{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);text-decoration:none}
+    .resource strong{display:block;font-size:16px}
+    .resource span{display:block;color:var(--muted);line-height:1.6;margin-top:6px}
+    .resource em{font-style:normal;color:#f4c894;white-space:nowrap;align-self:center}
+    .footer-nav{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 0 42px}
+    .tiny{font-size:13px;color:var(--soft)}
+    @media (max-width: 980px){
+      .hero-grid,.grid-2,.grid-3,.focus-row,.arrow-flow{grid-template-columns:1fr}
+      .hero-meta{grid-template-columns:1fr 1fr}
+      .bar-chart{grid-template-columns:1fr}
+      .resource{flex-direction:column}
+    }
+    @media (max-width: 640px){
+      .container{width:min(100% - 18px, 100%)}
+      .hero-panel,.card{padding:18px}
+      .hero-meta{grid-template-columns:1fr}
+      .feed-title{font-size:26px}
+      h1{font-size:34px}
+    }
+  
+
+    .quiz-wrap{display:grid;gap:16px;margin-top:16px}
+    .quiz-intro{padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
+    .quiz-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .quiz-card strong{display:block;font-size:18px;line-height:1.55}
+    .quiz-card p{margin-top:10px;color:var(--muted);line-height:1.7}
+    .chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .chip{display:inline-flex;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#f1d4ac;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+    .math-visual{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:16px;align-items:stretch}
+    .visual-board{padding:20px;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .visual-note{padding:16px;border-radius:18px;border:1px solid rgba(217,168,108,.22);background:rgba(217,168,108,.08);color:#ffe4c2;line-height:1.7;margin-top:14px}
+    .legend-list{display:grid;gap:10px;margin-top:12px}
+    .legend-item{display:flex;gap:12px;align-items:center;color:var(--muted)}
+    .dot{width:14px;height:14px;border-radius:4px;display:inline-block}
+    .op-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+    .op-card{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:160px}
+    .op-card .symbol{font-size:34px;font-weight:900;color:#f5d6ae}
+    .op-card h4{margin:8px 0 8px;font-size:18px}
+    .op-card p{color:var(--muted);line-height:1.65}
+    .two-col-table td:first-child, .two-col-table th:first-child{width:34%}
+    .badge-line{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .story-card{padding:20px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(160deg, rgba(41,93,143,.2), rgba(123,47,79,.16), rgba(255,255,255,.03))}
+    .story-card h3{font-size:24px;margin-bottom:10px}
+    .story-card p{color:var(--muted);line-height:1.75}
+    .mini-svg{width:100%;height:auto;display:block}
+    @media (max-width: 980px){
+      .math-visual,.op-grid{grid-template-columns:1fr}
     }
 
-    .top-btn{
-      position:fixed;
-      right:22px;
-      bottom:22px;
-      width:50px;
-      height:50px;
-      border-radius:50%;
-      border:none;
-      background:#0d1117;
-      color:#fff;
-      font-size:20px;
-      cursor:pointer;
-      box-shadow:0 8px 20px rgba(0,0,0,.28);
-      z-index:300;
-      transition:.2s ease;
-    }
-    .top-btn:hover{
-      background:var(--blue);
-      transform:scale(1.08);
-    }
-
-    .footer{
-      background:#0d1117;
-      color:rgba(255,255,255,.6);
-      text-align:center;
-      padding:28px 20px;
-      font-size:13px;
-      font-weight:700;
-      margin-top:50px;
-    }
-
-    @media(max-width:760px){
-      .grid-2,.grid-3,.memory-grid,.quiz-options,.orbit-grid{
-        grid-template-columns:1fr;
-      }
-      .cover h1{font-size:44px}
-      .stage h2{font-size:32px}
-      .quiz-wrap{padding:22px}
-    }
   </style>
 </head>
-
 <body>
-  <div class="cover" id="top">
-    <div class="cover-grid"></div><div class="cover-glow"></div>
-    <div class="cover-icon" id="coverIcon">⚖️</div>
-    <h1 id="coverTitle">Fatos, Opiniões e Adição/Subtração</h1>
-    <p class="cover-sub" id="coverSubtitle">Dia 002 • revisão da apostila 1 • leitura crítica + operações básicas</p>
-    <div class="cover-pills">
-      <span class="pill">⏱️ 70 a 80 min</span>
-      <span class="pill">🧠 Revisão 24h</span>
-      <span class="pill">📚 Português</span>
-      <span class="pill">🧮 Matemática</span>
-      <span class="pill">✨ 10 XP</span>
-      <span class="pill">🪙 3 moedas</span>
-    </div>
-    <div class="cover-note">
-      Hoje o Eiji começa revisando a <strong>apostila 1</strong> e depois aprende a separar <strong>fatos</strong> de <strong>opiniões</strong>. No mesmo dia, ele treina quando usar <strong>adição</strong> e quando usar <strong>subtração</strong> em problemas simples. <br><br>
-      <strong>Importante:</strong> a revisão desta apostila aparecerá no início da <strong>apostila 3</strong>.
-    </div>
-  </div>
-
-  <div class="science-bar">
-    <div class="science-chip">CPA de Bruner</div>
-    <div class="science-chip">Scaffolding progressivo</div>
-    <div class="science-chip">Worked Examples</div>
-    <div class="science-chip">Prática guiada</div>
-    <div class="science-chip">Prática independente</div>
-    <div class="science-chip">Revisão de 24h</div>
-    <div class="science-chip">Desafio misto</div>
-  </div>
-
-  <nav class="nav">
-    <button onclick="go('revisao24h')">🧠 Revisão 24h</button>
-    <button onclick="go('porque')">🧪 Por que isso importa?</button>
-    <button onclick="go('nivel1')">🧱 Nível 1</button>
-    <button onclick="go('nivel2')">🖼️ Nível 2</button>
-    <button onclick="go('nivel3')">🔢 Nível 3</button>
-    <button onclick="go('worked')">🧠 Exemplos</button>
-    <button onclick="go('guided')">🧑‍🏫 Guiada</button>
-    <button onclick="go('independent')">✏️ Independente</button>
-    <button onclick="go('videos')">🎬 Vídeos</button>
-    <button onclick="go('quiz')">🎮 Quiz final</button>
-  </nav>
-
-  <div class="page" id="revisao24h">
-    <div class="stage orange">
-      <div class="stage-badge">🧠 Revisão de 24 horas</div>
-      <span class="stage-icon">🔁</span>
-      <h2>Antes de avançar, vamos lembrar o Dia 1</h2>
-      <p>Hoje o Eiji começa revisando o que aprendeu sobre <strong>ideia principal</strong>, <strong>detalhes</strong> e leitura atenta de números naturais.</p>
-      <div class="stage-tags"><span class="stage-tag">Memória</span><span class="stage-tag">Recuperação ativa</span><span class="stage-tag">Base forte</span></div>
-    </div>
-
-    <div class="card bo">
-      <h3>🕒 Revisão do Dia 001</h3>
-      <div class="info yellow">
-        Regra do jogo: tente lembrar <strong>antes</strong> de clicar na resposta.
-      </div>
-
-      <div class="memory-grid">
-        <div class="memory-card" onclick="toggleAnswer('r1')">
-          O que é ideia principal?
-          <div class="answer" id="r1" style="margin-top:10px;">É a mensagem mais importante do texto.</div>
-        </div>
-
-        <div class="memory-card" onclick="toggleAnswer('r2')">
-          O que é detalhe?
-          <div class="answer" id="r2" style="margin-top:10px;">É uma informação menor que ajuda a explicar a mensagem central.</div>
-        </div>
-
-        <div class="memory-card" onclick="toggleAnswer('r3')">
-          O que o leitor atento faz primeiro?
-          <div class="answer" id="r3" style="margin-top:10px;">Lê o texto inteiro com calma e só depois responde.</div>
-        </div>
-
-        <div class="memory-card" onclick="toggleAnswer('r4')">
-          2 dezenas e 4 unidades formam qual número?
-          <div class="answer" id="r4" style="margin-top:10px;">24.</div>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="pill">Fase 1 · Base</span>
+              <span class="pill">Semana 1</span>
+              <span class="pill">Dia 002</span>
+              <span class="pill">Com quiz no topo</span>
+            </div>
+            <h1>Matemática · valor posicional e as 4 operações</h1>
+            <p class="lead">Hoje a missão é construir base numérica sem decorar no vazio. Você vai entender <strong>o valor de cada algarismo conforme sua posição</strong>, revisar <strong>adição, subtração, multiplicação e divisão</strong> e aprender a escolher a operação certa em problemas curtos. O visual conversa com música, feed e fantasia, mas a lógica continua alinhada à prova real.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#quiz">Começar a apostila</a>
+              <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
+            </div>
+            <div class="hero-meta">
+              <div class="mini-card"><span>Meta do dia</span><strong>Entender o número antes da conta</strong></div>
+              <div class="mini-card"><span>Modelo</span><strong>Concreto → visual → abstrato</strong></div>
+              <div class="mini-card"><span>Tempo sugerido</span><strong>60–90 min</strong></div>
+            </div>
+          </div>
+          <div class="hero-art">
+            <article class="poster poster-rock">
+              <div class="tag">playlist</div>
+              <strong>Rock de largada</strong>
+              <small>Hoje a energia entra em modo contagem, organização e resolução sem pular etapa.</small>
+            </article>
+            <article class="poster poster-social">
+              <div class="tag">feed</div>
+              <strong>Número bonito não basta</strong>
+              <small>Em prova, quem olha só o resultado aparente erra. Primeiro vem a estrutura do número e a operação certa.</small>
+            </article>
+          </div>
         </div>
       </div>
-
-      <div class="info orange">
-        Muito bem. Agora o Eiji vai aprender duas coisas importantes para prova: <strong>não confundir fato com opinião</strong> e <strong>não errar a operação do problema</strong>.
-      </div>
     </div>
-  </div>
+  </header>
 
-  <div class="page" id="porque">
-    <div class="stage dark">
-      <div class="stage-badge">🧪 Por que isso importa?</div>
-      <span class="stage-icon">🧠</span>
-      <h2>Ler bem é saber separar informação e julgamento</h2>
-      <p>Em Português, muita criança erra porque trata gosto pessoal como se fosse um dado certo. Em Matemática, muita criança erra porque não percebe se a situação pede somar ou tirar.</p>
-      <div class="stage-tags"><span class="stage-tag">Leitura crítica</span><span class="stage-tag">Operações básicas</span><span class="stage-tag">Atenção</span></div>
-    </div>
-    <div class="card bp">
-      <h3>🎯 Objetivo da aula</h3>
-      <div class="info blue">
-        No final desta aula, o Eiji vai conseguir:<br>
-        • distinguir fato de opinião<br>
-        • justificar por que uma frase é fato ou opinião<br>
-        • reconhecer sinais de adição e subtração em problemas<br>
-        • resolver situações simples com mais segurança
-      </div>
-    </div>
-    <div class="card bg">
-      <h3>🌱 Growth Mindset do dia</h3>
-      <div class="info green">
-        Quando eu leio com calma, separo o que é <strong>comprovável</strong> do que é <strong>gosto pessoal</strong>. Quando eu entendo a situação, a conta certa aparece com mais facilidade.
-      </div>
-    </div>
-  </div>
+  <main class="container">
+    <section class="section" id="quiz">
+      <div class="section-title">Revisão espaçada · 24h</div>
+      <h2>Quiz rápido do Dia 001</h2>
+      <p class="section-intro">Antes de seguir para Matemática, puxe da memória os conceitos de Português de ontem. Tente responder <strong>sem abrir</strong> as respostas. Só depois confira.</p>
 
-  <div class="page" id="nivel1">
-    <div class="stage orange">
-      <div class="stage-badge">🧱 Estágio concreto</div>
-      <span class="stage-icon">🧃</span>
-      <h2>Nível 1 — Entendendo na vida real</h2>
-      <p>Antes de olhar para frases e contas, vamos observar situações do dia a dia.</p>
-      <div class="stage-tags"><span class="stage-tag">Concreto</span><span class="stage-tag">Cotidiano</span><span class="stage-tag">Sentido real</span></div>
-    </div>
+      <div class="quiz-wrap">
+        <div class="quiz-intro">
+          <strong>Como usar este bloco</strong>
+          <p>Leia cada pergunta, responda em voz alta ou no caderno e só então abra a resposta. O objetivo aqui não é “lembrar passivamente”, e sim treinar recuperação ativa.</p>
+          <div class="chip-row">
+            <span class="chip">recuperação ativa</span>
+            <span class="chip">sem cola</span>
+            <span class="chip">2 a 5 min</span>
+          </div>
+        </div>
 
-    <div class="card bc">
-      <div class="cpa-label cpa-c">🧱 Concreto</div>
-      <h3>📰 Fato ou opinião?</h3>
-      <div class="grid-2">
-        <div class="bubble-card" onclick="highlightCard(this)"><div style="font-size:32px;">🌧️</div><strong>Hoje choveu de manhã</strong><small>Fato</small></div>
-        <div class="bubble-card" onclick="highlightCard(this)"><div style="font-size:32px;">😍</div><strong>Chuva é a melhor coisa do mundo</strong><small>Opinião</small></div>
-        <div class="bubble-card" onclick="highlightCard(this)"><div style="font-size:32px;">📏</div><strong>A mesa mede 1 metro</strong><small>Fato</small></div>
-        <div class="bubble-card" onclick="highlightCard(this)"><div style="font-size:32px;">😄</div><strong>Essa mesa é linda</strong><small>Opinião</small></div>
-      </div>
-      <div class="info orange">
-        <strong>Aprendendo:</strong> fato pode ser <strong>verificado</strong>. Opinião mostra o que alguém <strong>acha, sente ou prefere</strong>.
-      </div>
-    </div>
+        <article class="quiz-card">
+          <strong>1. O que é o <em>comando</em> de uma questão?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>É o pedido da questão. Ele diz o que você deve fazer: identificar, localizar, comparar, concluir, inferir, marcar a alternativa correta.</div>
+          </details>
+        </article>
 
-    <div class="card bc">
-      <h3>🍎 Somar ou tirar?</h3>
-      <div class="grid-2">
-        <div class="info yellow"><strong>Adição</strong><br>quando junta, ganha, acrescenta</div>
-        <div class="info blue"><strong>Subtração</strong><br>quando perde, gasta, retira</div>
-      </div>
-      <div class="grid-2">
-        <div class="info orange"><strong>Exemplo:</strong><br>Tinha 4 maçãs e ganhou mais 3.<br>4 + 3 = 7</div>
-        <div class="info green"><strong>Exemplo:</strong><br>Tinha 9 balas e deu 2.<br>9 - 2 = 7</div>
-      </div>
-    </div>
+        <article class="quiz-card">
+          <strong>2. Qual é a diferença entre <em>assunto</em> e <em>ideia principal</em>?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div><strong>Assunto</strong> é o tema geral do texto. <strong>Ideia principal</strong> é a mensagem central que o texto quer destacar sobre esse tema.</div>
+          </details>
+        </article>
 
-    <div class="stars"><span>Nível 1:</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="star off" onclick="toggleStar(this)">⭐</span><span class="star off" onclick="toggleStar(this)">⭐</span></div>
-  </div>
+        <article class="quiz-card">
+          <strong>3. Em qual ordem mental você deve ler uma questão de interpretação?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div><strong>Comando → assunto → ideia principal → alternativas.</strong></div>
+          </details>
+        </article>
 
-  <div class="page" id="nivel2">
-    <div class="stage blue">
-      <div class="stage-badge">🖼️ Estágio pictórico</div>
-      <span class="stage-icon">🧩</span>
-      <h2>Nível 2 — Vendo a diferença</h2>
-      <p>Agora o Eiji organiza a informação em imagem e esquema visual.</p>
-      <div class="stage-tags"><span class="stage-tag">Pictórico</span><span class="stage-tag">Organização</span><span class="stage-tag">Comparação</span></div>
-    </div>
-
-    <div class="card bp">
-      <div class="cpa-label cpa-p">🖼️ Pictórico</div>
-      <h3>📷 Câmera x coração</h3>
-      <div class="grid-2">
-        <div class="info blue"><strong>📷 Fato</strong><br>Algo que a câmera pode registrar, contar, medir ou confirmar.</div>
-        <div class="info purple"><strong>💛 Opinião</strong><br>Algo que sai do gosto, da emoção ou do julgamento de alguém.</div>
+        <article class="quiz-card">
+          <strong>4. Quando a questão diz “segundo o texto”, você responde com base em quê?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Com base no texto, e não na sua opinião pessoal.</div>
+          </details>
+        </article>
       </div>
-      <div class="info blue">
-        Frase: <strong>“A quadra tem 2 traves.”</strong> → fato<br>
-        Frase: <strong>“A quadra é incrível.”</strong> → opinião
-      </div>
-    </div>
+    </section>
 
-    <div class="card bp">
-      <h3>📊 Barras da operação</h3>
-      <div class="sun-wrap">
-        <div class="sun-core">PROBLEMA</div>
-        <div class="orbit-grid">
-          <div class="orbit">juntou → somar</div>
-          <div class="orbit">ganhou → somar</div>
-          <div class="orbit">gastou → subtrair</div>
-          <div class="orbit">perdeu → subtrair</div>
+    <section class="section" id="missao">
+      <div class="section-title">Mapa da missão</div>
+      <h2>O que precisa sair dominado hoje</h2>
+      <p class="section-intro">Muita gente tenta fazer conta rápido demais e esquece que <strong>número tem estrutura</strong>. A aula de hoje vai do concreto ao abstrato: primeiro entender onde cada algarismo mora, depois revisar as quatro operações e por fim escolher a operação certa em problemas com cara de prova.</p>
+      <div class="focus-row">
+        <div class="focus-box">
+          <strong>1. Valor posicional</strong>
+          <p>Ler um número entendendo unidades, dezenas, centenas e milhares.</p>
+        </div>
+        <div class="focus-box">
+          <strong>2. Quatro operações</strong>
+          <p>Revisar o que cada operação faz e quando ela aparece em problemas.</p>
+        </div>
+        <div class="focus-box">
+          <strong>3. Escolha correta</strong>
+          <p>Parar de “chutar conta” e decidir a operação pela linguagem do enunciado.</p>
         </div>
       </div>
-      <div class="info green">
-        Antes de calcular, o Eiji deve perguntar: <strong>o total aumentou ou diminuiu?</strong>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Entrada concreta · CPA</div>
+      <h2>Primeiro, enxergue o número em uma cena real</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="feed-card">
+          <div class="feed-top">
+            <div class="feed-user">
+              <div class="avatar">A</div>
+              <div class="feed-handle">
+                <strong>akemy.musicclub</strong>
+                <span>@estudoscomriff</span>
+              </div>
+            </div>
+            <div class="tiny">há 4 min</div>
+          </div>
+          <div class="feed-media">
+            <span class="feed-badge">festival escolar</span>
+            <h3 class="feed-title">3.482 pulseiras entregues</h3>
+            <p class="feed-copy">Para a noite temática da escola, a equipe separou pulseiras de entrada, cartazes e kits. O número 3.482 aparece no controle geral do evento.</p>
+          </div>
+          <div class="feed-actions">
+            <span>❤ 894</span>
+            <span>💬 117</span>
+            <span>↗ salvar</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>O que esse número quer dizer de verdade?</h3>
+          <p>No número <strong>3.482</strong>, cada algarismo vale algo diferente por causa da <strong>posição</strong> que ocupa.</p>
+          <div class="formula">
+            3 milhares + 4 centenas + 8 dezenas + 2 unidades
+            <br>
+            <strong>3.482 = 3.000 + 400 + 80 + 2</strong>
+          </div>
+          <div class="example">
+            <h4>Erro comum</h4>
+            <p>Dizer que o 8 “vale 8” só porque o algarismo é 8. Nesse número, ele está na casa das dezenas. Então vale <strong>80</strong>.</p>
+          </div>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div class="stars"><span>Nível 2:</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="star off" onclick="toggleStar(this)">⭐</span><span class="star off" onclick="toggleStar(this)">⭐</span></div>
-  </div>
+    <section class="section">
+      <div class="section-title">Visualização</div>
+      <h2>Veja a estrutura do número e a lógica das operações</h2>
 
-  <div class="page" id="nivel3">
-    <div class="stage purple">
-      <div class="stage-badge">🔢 Estágio abstrato</div>
-      <span class="stage-icon">📘</span>
-      <h2>Nível 3 — Regra, método e atenção</h2>
-      <p>Agora o Eiji aprende a definição correta e um método simples para acertar mais.</p>
-      <div class="stage-tags"><span class="stage-tag">Abstrato</span><span class="stage-tag">Método</span><span class="stage-tag">Precisão</span></div>
-    </div>
+      <div class="math-visual">
+        <article class="visual-board">
+          <h3>Mapa visual do 3.482</h3>
+          <svg class="mini-svg" viewBox="0 0 780 250" role="img" aria-label="Representação visual do número 3482 em milhares, centenas, dezenas e unidades">
+            <rect x="20" y="28" width="170" height="180" rx="22" fill="rgba(109,86,201,.18)" stroke="rgba(255,255,255,.12)"/>
+            <rect x="210" y="28" width="170" height="180" rx="22" fill="rgba(193,92,138,.16)" stroke="rgba(255,255,255,.12)"/>
+            <rect x="400" y="28" width="170" height="180" rx="22" fill="rgba(47,123,98,.16)" stroke="rgba(255,255,255,.12)"/>
+            <rect x="590" y="28" width="170" height="180" rx="22" fill="rgba(217,168,108,.16)" stroke="rgba(255,255,255,.12)"/>
+            <text x="105" y="72" text-anchor="middle" fill="#f7e6c8" font-size="22" font-weight="800">Milhar</text>
+            <text x="295" y="72" text-anchor="middle" fill="#f7e6c8" font-size="22" font-weight="800">Centena</text>
+            <text x="485" y="72" text-anchor="middle" fill="#f7e6c8" font-size="22" font-weight="800">Dezena</text>
+            <text x="675" y="72" text-anchor="middle" fill="#f7e6c8" font-size="22" font-weight="800">Unidade</text>
 
-    <div class="card ba">
-      <div class="cpa-label cpa-a">🔢 Abstrato</div>
-      <h3>📖 O que é fato? O que é opinião?</h3>
-      <div class="info purple">
-        <strong>Fato</strong> é uma informação que pode ser comprovada.<br>
-        <strong>Opinião</strong> é uma ideia pessoal, um gosto, uma avaliação ou um sentimento.
+            <text x="105" y="140" text-anchor="middle" fill="white" font-size="56" font-weight="900">3</text>
+            <text x="295" y="140" text-anchor="middle" fill="white" font-size="56" font-weight="900">4</text>
+            <text x="485" y="140" text-anchor="middle" fill="white" font-size="56" font-weight="900">8</text>
+            <text x="675" y="140" text-anchor="middle" fill="white" font-size="56" font-weight="900">2</text>
+
+            <text x="105" y="184" text-anchor="middle" fill="#cfb8ff" font-size="28" font-weight="800">3000</text>
+            <text x="295" y="184" text-anchor="middle" fill="#ffc1d7" font-size="28" font-weight="800">400</text>
+            <text x="485" y="184" text-anchor="middle" fill="#bce8d9" font-size="28" font-weight="800">80</text>
+            <text x="675" y="184" text-anchor="middle" fill="#ffe7ba" font-size="28" font-weight="800">2</text>
+          </svg>
+
+          <div class="legend-list">
+            <div class="legend-item"><span class="dot" style="background:#6d56c9"></span><span>Quanto mais à esquerda, maior o valor posicional.</span></div>
+            <div class="legend-item"><span class="dot" style="background:#c15c8a"></span><span>O mesmo algarismo pode valer coisas diferentes em números diferentes.</span></div>
+            <div class="legend-item"><span class="dot" style="background:#2f7b62"></span><span>“8” pode valer 8, 80, 800 ou 8.000 dependendo da posição.</span></div>
+          </div>
+        </article>
+
+        <article class="visual-board">
+          <h3>Quando cada operação costuma aparecer</h3>
+          <div class="op-grid">
+            <div class="op-card">
+              <div class="symbol">+</div>
+              <h4>Adição</h4>
+              <p>Juntar, acrescentar, somar quantidades.</p>
+            </div>
+            <div class="op-card">
+              <div class="symbol">−</div>
+              <h4>Subtração</h4>
+              <p>Tirar, comparar diferença, saber quanto falta.</p>
+            </div>
+            <div class="op-card">
+              <div class="symbol">×</div>
+              <h4>Multiplicação</h4>
+              <p>Repetição de grupos iguais.</p>
+            </div>
+            <div class="op-card">
+              <div class="symbol">÷</div>
+              <h4>Divisão</h4>
+              <p>Repartir ou descobrir quantos grupos cabem.</p>
+            </div>
+          </div>
+          <div class="visual-note">
+            Pergunta útil antes de calcular: <strong>estou juntando, tirando, repetindo grupos ou repartindo?</strong> Isso evita fazer conta certa para uma pergunta errada.
+          </div>
+        </article>
       </div>
-    </div>
 
-    <div class="card ba">
-      <h3>🧭 Como decidir</h3>
-      <ol class="steps purple">
-        <li>Leia a frase inteira.</li>
-        <li>Pergunte: isso pode ser medido, contado ou confirmado?</li>
-        <li>Se sim, tende a ser fato.</li>
-        <li>Se mostra gosto, emoção ou julgamento, tende a ser opinião.</li>
-        <li>No problema de matemática, pergunte: aumentou ou diminuiu?</li>
-      </ol>
-    </div>
+      <div class="grid-2" style="margin-top:18px; align-items:start;">
+        <article class="card">
+          <h3>Quadro-resumo do valor posicional</h3>
+          <table class="two-col-table">
+            <thead>
+              <tr>
+                <th>Casa</th>
+                <th>Vale</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Unidade</strong></td>
+                <td>de 1 em 1</td>
+              </tr>
+              <tr>
+                <td><strong>Dezena</strong></td>
+                <td>de 10 em 10</td>
+              </tr>
+              <tr>
+                <td><strong>Centena</strong></td>
+                <td>de 100 em 100</td>
+              </tr>
+              <tr>
+                <td><strong>Unidade de milhar</strong></td>
+                <td>de 1.000 em 1.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
 
-    <div class="card bp">
-      <h3>🧮 Sinais da operação</h3>
-      <div class="grid-2">
-        <div class="info blue"><strong>Adição</strong><br>juntou • ganhou • acrescentou • chegou mais</div>
-        <div class="info orange"><strong>Subtração</strong><br>deu • gastou • perdeu • saiu • restou</div>
+        <article class="card">
+          <h3>Pistas de linguagem no enunciado</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Se o problema disser…</th>
+                <th>Pense primeiro em…</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ao todo, juntos, total</strong></td>
+                <td>Adição</td>
+              </tr>
+              <tr>
+                <td><strong>faltam, diferença, restaram</strong></td>
+                <td>Subtração</td>
+              </tr>
+              <tr>
+                <td><strong>cada, em grupos iguais, vezes</strong></td>
+                <td>Multiplicação</td>
+              </tr>
+              <tr>
+                <td><strong>dividir, repartir, por pessoa</strong></td>
+                <td>Divisão</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
       </div>
-      <div class="info green">
-        Exemplo: <strong>“Lia tinha 11 figurinhas e ganhou 5.”</strong> → 11 + 5 = 16<br>
-        Exemplo: <strong>“Lia tinha 11 figurinhas e deu 5.”</strong> → 11 - 5 = 6
+    </section>
+
+    <section class="section">
+      <div class="section-title">Abstração</div>
+      <h2>Agora formalize as regras</h2>
+      <div class="grid-3" style="margin-top:16px;">
+        <article class="card">
+          <h3>Valor posicional</h3>
+          <p>É o valor que um algarismo assume conforme a posição que ocupa no número. O algarismo é o mesmo; o valor muda conforme a casa.</p>
+        </article>
+        <article class="card">
+          <h3>Decomposição</h3>
+          <p>É escrever o número como soma de seus valores posicionais. Exemplo: 5.307 = 5.000 + 300 + 7.</p>
+        </article>
+        <article class="card">
+          <h3>Operação adequada</h3>
+          <p>Não é a conta que escolhe o problema. É o sentido do problema que escolhe a conta.</p>
+        </article>
       </div>
-    </div>
-
-    <div class="card br">
-      <h3>⚠️ Erros comuns</h3>
-      <div class="info red">
-        • achar que toda frase com palavra bonita é opinião<br>
-        • esquecer que fato pode ter número, data, medida ou quantidade<br>
-        • ver “ganhou” e fazer subtração<br>
-        • ver “gastou” e fazer adição<br>
-        • responder sem reler o enunciado
+      <div class="card" style="margin-top:18px;">
+        <h3>Regra de ouro da aula 2</h3>
+        <div class="formula">Toda vez que vir um número grande, pergunte: <strong>qual é a casa de cada algarismo?</strong> Toda vez que vir um problema, pergunte: <strong>estou juntando, tirando, repetindo ou repartindo?</strong></div>
       </div>
-    </div>
+    </section>
 
-    <div class="stars"><span>Nível 3:</span><span class="star" onclick="toggleStar(this)">⭐</span><span class="star off" onclick="toggleStar(this)">⭐</span><span class="star off" onclick="toggleStar(this)">⭐</span></div>
-  </div>
-
-  <div class="page" id="worked">
-    <div class="stage dark">
-      <div class="stage-badge">🧠 Worked examples</div>
-      <span class="stage-icon">🔍</span>
+    <section class="section">
+      <div class="section-title">Worked examples</div>
       <h2>Exemplos resolvidos</h2>
-      <p>Primeiro o Eiji observa como se faz. Depois pratica.</p>
-    </div>
+      <div class="grid-2" style="margin-top:16px;">
+        <article class="card">
+          <span class="label">Exemplo 1 · valor posicional</span>
+          <div class="example">
+            <h4>Questão</h4>
+            <p>No número <strong>7.406</strong>, quanto vale o algarismo 4?</p>
+          </div>
+          <div class="example">
+            <h4>Resolução comentada</h4>
+            <p>O 4 está na <strong>casa das centenas</strong>.</p>
+            <p>Logo, ele vale <strong>400</strong>.</p>
+            <p><strong>Decomposição:</strong> 7.406 = 7.000 + 400 + 6.</p>
+            <p><strong>Erro comum:</strong> responder 4, ignorando a posição.</p>
+          </div>
+        </article>
 
-    <div class="worked">
-      <h3 style="font-family:'Fredoka',cursive;color:var(--blue);margin-bottom:10px;">Exemplo 1 — fato ou opinião</h3>
-      <div class="info blue"><strong>Frase:</strong> “A biblioteca tem 300 livros.”</div>
-      <div class="info green"><strong>Passo 1:</strong> dá para contar ou verificar?<br>Sim.</div>
-      <div class="info purple"><strong>Resposta:</strong> É um <strong>fato</strong>.</div>
-    </div>
+        <article class="card">
+          <span class="label">Exemplo 2 · escolher a operação</span>
+          <div class="example">
+            <h4>Problema</h4>
+            <p>Uma fanpage da escola publicou 18 reels em uma semana. Na semana seguinte, publicou mais 27. Quantos reels publicou ao todo?</p>
+          </div>
+          <div class="example">
+            <h4>Resolução comentada</h4>
+            <p>A expressão <strong>“ao todo”</strong> indica <strong>adição</strong>.</p>
+            <p>18 + 27 = 45</p>
+            <p><strong>Resposta:</strong> 45 reels.</p>
+          </div>
+        </article>
 
-    <div class="worked">
-      <h3 style="font-family:'Fredoka',cursive;color:var(--blue);margin-bottom:10px;">Exemplo 2 — fato ou opinião</h3>
-      <div class="info blue"><strong>Frase:</strong> “A biblioteca é o melhor lugar da escola.”</div>
-      <div class="info green"><strong>Passo 1:</strong> dá para provar com exatidão?<br>Não. Isso depende do que a pessoa acha.</div>
-      <div class="info purple"><strong>Resposta:</strong> É uma <strong>opinião</strong>.</div>
-    </div>
+        <article class="card">
+          <span class="label">Exemplo 3 · grupos iguais</span>
+          <div class="example">
+            <h4>Problema</h4>
+            <p>Em um estande temático, foram montados 6 suportes com 4 pulseiras cada um. Quantas pulseiras havia ao todo?</p>
+          </div>
+          <div class="example">
+            <h4>Resolução comentada</h4>
+            <p>Há <strong>grupos iguais</strong>: 6 grupos com 4.</p>
+            <p>6 × 4 = 24</p>
+            <p><strong>Resposta:</strong> 24 pulseiras.</p>
+          </div>
+        </article>
 
-    <div class="worked">
-      <h3 style="font-family:'Fredoka',cursive;color:var(--blue);margin-bottom:10px;">Exemplo 3 — operação correta</h3>
-      <div class="info blue"><strong>Problema:</strong> Sofia tinha 13 lápis. Ganhou mais 4.</div>
-      <div class="info green"><strong>Passo 1:</strong> a quantidade aumentou ou diminuiu?<br>Aumentou.</div>
-      <div class="info green"><strong>Passo 2:</strong> então usamos adição.<br>13 + 4 = 17</div>
-      <div class="info purple"><strong>Resposta:</strong> Sofia ficou com <strong>17 lápis</strong>.</div>
-    </div>
-  </div>
+        <article class="card">
+          <span class="label">Exemplo 4 · repartição</span>
+          <div class="example">
+            <h4>Problema</h4>
+            <p>Um kit com 32 adesivos será dividido igualmente entre 8 alunos. Quantos adesivos cada um receberá?</p>
+          </div>
+          <div class="example">
+            <h4>Resolução comentada</h4>
+            <p>A ideia é <strong>repartir igualmente</strong>.</p>
+            <p>32 ÷ 8 = 4</p>
+            <p><strong>Resposta:</strong> 4 adesivos para cada aluno.</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-  <div class="page" id="guided">
-    <div class="stage orange">
-      <div class="stage-badge">🧑‍🏫 Prática guiada</div>
-      <span class="stage-icon">✍️</span>
-      <h2>Agora vamos fazer juntos</h2>
-      <p>Aqui o Eiji já pensa mais sozinho, mas ainda com apoio.</p>
-    </div>
+    <section class="section">
+      <div class="section-title">Prática guiada</div>
+      <h2>Agora com pistas</h2>
+      <div class="qa">
+        <article class="q-card">
+          <strong>1. No número <strong>5.219</strong>, quanto vale o algarismo 2?</strong>
+          <details>
+            <summary>Mostrar pista</summary>
+            <div>Localize a casa do 2. Ele está em unidade, dezena, centena ou milhar?</div>
+          </details>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Ele está na <strong>casa das centenas</strong>. Portanto vale <strong>200</strong>.</div>
+          </details>
+        </article>
 
-    <div class="guided">
-      <div class="question orange" onclick="toggleAnswer('g1')">
-        <strong>1.</strong> Leia as frases:<br><br>
-        a) A sala tem 28 alunos.<br>
-        b) Essa é a sala mais divertida da escola.<br><br>
-        Qual é fato e qual é opinião?<br>
-        <button class="show-btn orange" onclick="event.stopPropagation();toggleAnswer('g1')">Ver resposta</button>
-        <div class="answer" id="g1">a) Fato. b) Opinião.</div>
+        <article class="q-card">
+          <strong>2. Decomponha o número <strong>8.034</strong>.</strong>
+          <details>
+            <summary>Mostrar pista</summary>
+            <div>Pense em milhar, centena, dezena e unidade. Lembre que pode haver casa “vazia”.</div>
+          </details>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div><strong>8.034 = 8.000 + 30 + 4.</strong> A casa das centenas está vazia.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>3. Uma conta diz: “Luna comprou 13 marcadores e depois ganhou mais 9”. Qual operação combina melhor?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div><strong>Adição</strong>, porque a quantidade aumentou: 13 + 9.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>4. “Um pacote com 24 figurinhas foi dividido igualmente entre 6 amigas.” Qual operação combina melhor?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div><strong>Divisão</strong>, porque a situação pede repartição igual: 24 ÷ 6.</div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Painel visual</div>
+      <h2>Mapa mental das operações</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="story-card">
+          <h3>Fluxo de decisão</h3>
+          <div class="arrow-flow">
+            <div class="flow-node">
+              <strong>Juntou?</strong>
+              <p>Quantidades se somaram? Pense em <strong>adição</strong>.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">
+              <strong>Tirou ou comparou?</strong>
+              <p>Restou, faltou ou quer saber diferença? Pense em <strong>subtração</strong>.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">
+              <strong>Grupos iguais ou repartição?</strong>
+              <p>Se repete grupos, <strong>multiplicação</strong>. Se reparte, <strong>divisão</strong>.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Onde o erro costuma nascer</h3>
+          <p class="section-intro">O gráfico abaixo é um <strong>mapa visual didático</strong>, não estatística oficial da ETEC. Ele só ajuda a lembrar os tropeços mais comuns no início.</p>
+          <div class="bar-chart">
+            <div class="bar">
+              <div style="height:74%;">74%</div>
+              <span>Ignorar a casa do algarismo</span>
+            </div>
+            <div class="bar">
+              <div style="height:61%;">61%</div>
+              <span>Escolher operação pelo impulso</span>
+            </div>
+            <div class="bar">
+              <div style="height:47%;">47%</div>
+              <span>Fazer conta certa para pergunta errada</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Prática independente</div>
+      <h2>Treino com cara de prova</h2>
+      <div class="practice-list">
+        <article class="practice-item">
+          <strong>1. Valor posicional</strong>
+          <ol>
+            <li>No número <strong>6.581</strong>, quanto vale o algarismo 5?</li>
+            <li>No número <strong>9.207</strong>, quanto vale o algarismo 2?</li>
+            <li>Decomponha <strong>4.390</strong>.</li>
+          </ol>
+        </article>
+
+        <article class="practice-item">
+          <strong>2. Quatro operações em contexto</strong>
+          <ol>
+            <li>Uma página de estudos tinha 245 seguidores e ganhou mais 78. Quantos tem agora?</li>
+            <li>Uma turma tinha 36 cartazes, mas 11 foram usados. Quantos restaram?</li>
+            <li>Foram montadas 7 fileiras com 5 cadeiras em cada uma. Quantas cadeiras ao todo?</li>
+            <li>48 marcadores serão repartidos igualmente entre 6 caixas. Quantos marcadores em cada caixa?</li>
+          </ol>
+        </article>
+
+        <article class="practice-item">
+          <strong>3. Mistura de problemas</strong>
+          <ol>
+            <li>Explique por que, em <strong>2.345</strong>, o algarismo 3 vale 300.</li>
+            <li>Escreva uma situação curta em que a palavra <strong>diferença</strong> indique subtração.</li>
+            <li>Escreva uma situação curta em que a expressão <strong>cada um</strong> indique divisão.</li>
+          </ol>
+        </article>
+
+        <article class="practice-item">
+          <strong>4. Desafio com duas etapas</strong>
+          <p class="section-intro" style="margin-top:10px">Uma loja temática vendeu 18 camisetas de uma banda na sexta e 25 no sábado. Depois, separou igualmente todas as camisetas vendidas em 7 caixas.</p>
+          <ol>
+            <li>Quantas camisetas foram vendidas ao todo?</li>
+            <li>Se a divisão fosse exata, qual operação usaria para descobrir quantas iriam em cada caixa?</li>
+            <li>Qual é a pegadinha principal desse problema?</li>
+          </ol>
+        </article>
       </div>
 
-      <div class="question orange" onclick="toggleAnswer('g2')">
-        <strong>2.</strong> Pedro tinha 9 carrinhos e ganhou mais 6. A quantidade aumentou ou diminuiu? Qual conta resolve?<br>
-        <button class="show-btn orange" onclick="event.stopPropagation();toggleAnswer('g2')">Ver resposta</button>
-        <div class="answer" id="g2">Aumentou. A conta é 9 + 6 = 15.</div>
-      </div>
-
-      <div class="question orange" onclick="toggleAnswer('g3')">
-        <strong>3.</strong> A frase “Esse bolo está maravilhoso” mostra dado comprovável ou julgamento pessoal?<br>
-        <button class="show-btn orange" onclick="event.stopPropagation();toggleAnswer('g3')">Ver resposta</button>
-        <div class="answer" id="g3">Julgamento pessoal. Portanto, é opinião.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="page" id="independent">
-    <div class="stage green">
-      <div class="stage-badge">✏️ Prática independente</div>
-      <span class="stage-icon">🚀</span>
-      <h2>Agora é com o Eiji</h2>
-      <p>Aqui ele tenta sozinho. Depois confere.</p>
-    </div>
-
-    <div class="independent">
-      <div class="question green" onclick="toggleAnswer('i1')">
-        <strong>1.</strong> Leia: “A excursão aconteceu na sexta-feira.” Isso é fato ou opinião?<br>
-        <button class="show-btn green" onclick="event.stopPropagation();toggleAnswer('i1')">Ver resposta</button>
-        <div class="answer" id="i1">Fato, porque informa um dado que pode ser confirmado.</div>
-      </div>
-
-      <div class="question green" onclick="toggleAnswer('i2')">
-        <strong>2.</strong> Leia: “A excursão foi incrível.” Isso é fato ou opinião?<br>
-        <button class="show-btn green" onclick="event.stopPropagation();toggleAnswer('i2')">Ver resposta</button>
-        <div class="answer" id="i2">Opinião, porque expressa julgamento pessoal.</div>
-      </div>
-
-      <div class="question green" onclick="toggleAnswer('i3')">
-        <strong>3.</strong> Júlia tinha 14 figurinhas e perdeu 5. Qual conta resolve? Qual é a resposta?<br>
-        <button class="show-btn green" onclick="event.stopPropagation();toggleAnswer('i3')">Ver resposta</button>
-        <div class="answer" id="i3">A conta é 14 - 5. A resposta é 9.</div>
-      </div>
-
-      <div class="question green" onclick="toggleAnswer('i4')">
-        <strong>4.</strong> O que faz uma frase ser opinião?<br>
-        <button class="show-btn green" onclick="event.stopPropagation();toggleAnswer('i4')">Ver resposta</button>
-        <div class="answer" id="i4">Ela mostra o que alguém acha, sente ou prefere.</div>
-      </div>
-
-      <div class="question green" onclick="toggleAnswer('i5')">
-        <strong>5.</strong> Uma caixa tinha 18 lápis. O professor colocou mais 7. Com quantos lápis a caixa ficou?<br>
-        <button class="show-btn green" onclick="event.stopPropagation();toggleAnswer('i5')">Ver resposta</button>
-        <div class="answer" id="i5">18 + 7 = 25 lápis.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="page" id="videos">
-    <div class="stage blue">
-      <div class="stage-badge">🎬 Videoaulas de apoio</div>
-      <span class="stage-icon">📺</span>
-      <h2>Vídeos para revisar o tema do dia</h2>
-      <p>Antes do bloco final de 20 questões, o Eiji pode assistir <strong>1 vídeo de Português</strong> e <strong>1 vídeo de Matemática</strong> para reforçar a aula.</p>
-      <div class="stage-tags"><span class="stage-tag">Fato x opinião</span><span class="stage-tag">Adição e subtração</span><span class="stage-tag">Reforço rápido</span></div>
-    </div>
-
-    <div class="card bp">
-      <h3>🎥 Escolha os vídeos</h3>
-      <div class="grid-2">
-        <div class="info blue">
-          <strong>Português 1</strong><br>
-          Fato ou opinião | Rioeduca na TV – De olho na leitura - 5º Ano<br><br>
-          <a class="btn-next" href="https://www.youtube.com/watch?v=INuuziGj6AM" target="_blank" rel="noopener noreferrer">Assistir vídeo</a>
+      <details>
+        <summary>Mostrar gabarito comentado</summary>
+        <div>
+          <p><strong>1.</strong> Em 6.581, o 5 vale <strong>500</strong>. Em 9.207, o 2 vale <strong>200</strong>. 4.390 = <strong>4.000 + 300 + 90</strong>.</p>
+          <p><strong>2.</strong> 245 + 78 = <strong>323</strong>. 36 − 11 = <strong>25</strong>. 7 × 5 = <strong>35</strong>. 48 ÷ 6 = <strong>8</strong>.</p>
+          <p><strong>3.</strong> O 3 vale 300 porque está na <strong>casa das centenas</strong>. Situações curtas variam, mas precisam combinar o verbo com a operação.</p>
+          <p><strong>4.</strong> Primeiro: 18 + 25 = <strong>43</strong>. Depois, a operação para repartir igualmente seria <strong>divisão</strong>. A pegadinha é perceber que há <strong>duas etapas</strong>, não só uma.</p>
         </div>
+      </details>
+    </section>
 
-        <div class="info purple">
-          <strong>Português 2</strong><br>
-          Fato e opinião | Rioeduca na TV – 5º Ano<br><br>
-          <a class="btn-next" href="https://www.youtube.com/watch?v=MzwsPkN3A3Q" target="_blank" rel="noopener noreferrer">Assistir vídeo</a>
-        </div>
+    <section class="section">
+      <div class="section-title">Fechamento</div>
+      <h2>Checklist de saída</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>O que precisa estar claro agora</h3>
+          <div class="checklist">
+            <div class="check"><div class="box"></div><div>Consigo dizer quanto vale um algarismo pela posição que ocupa.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo decompor um número em milhares, centenas, dezenas e unidades.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo escolher a operação olhando o sentido do enunciado.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo resolver sem sair fazendo conta por impulso.</div></div>
+          </div>
+        </article>
 
-        <div class="info green">
-          <strong>Matemática 1</strong><br>
-          10 problemas de adição e subtração (5° e 6° ano)<br><br>
-          <a class="btn-next" href="https://www.youtube.com/watch?v=uh1DmYqmaCw" target="_blank" rel="noopener noreferrer">Assistir vídeo</a>
-        </div>
-
-        <div class="info orange">
-          <strong>Matemática 2</strong><br>
-          5º Ano - Matemática - Situações Problema +/-<br><br>
-          <a class="btn-next" href="https://www.youtube.com/watch?v=EWxl0gO6wLA" target="_blank" rel="noopener noreferrer">Assistir vídeo</a>
-        </div>
+        <article class="card">
+          <h3>Caderno de erros</h3>
+          <p>Hoje, não anote só “errei a 3”. Registre <strong>o mecanismo do erro</strong>:</p>
+          <ul>
+            <li>ignorei a casa do algarismo;</li>
+            <li>confundi “ao todo” com “diferença”;</li>
+            <li>vi o número, mas não decomponho com segurança;</li>
+            <li>acertei a conta, mas escolhi a operação errada no começo.</li>
+          </ul>
+          <div class="formula">Matemática melhora muito quando você descobre em qual etapa errou: leitura, escolha da operação ou cálculo.</div>
+        </article>
       </div>
-      <div class="info yellow">
-        Dica: não precisa assistir tudo. Veja <strong>um vídeo de cada matéria</strong> e depois volte para as 20 questões.
+    </section>
+
+    <section class="section">
+      <div class="section-title">Vídeo-aulas</div>
+      <h2>Apoio para reforçar o mesmo assunto</h2>
+      <div class="resources">
+        <a class="resource" href="https://www.youtube.com/watch?v=q0F8_P8QnTA" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Valor posicional dos números</strong>
+            <span>Boa para revisar leitura de unidades, dezenas, centenas e milhares.</span>
+          </div>
+          <em>abrir aula</em>
+        </a>
+        <a class="resource" href="https://pt.khanacademy.org/math/arithmetic" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Khan Academy · aritmética</strong>
+            <span>Trilha com revisão de valor posicional e operações básicas.</span>
+          </div>
+          <em>abrir aula</em>
+        </a>
+        <a class="resource" href="https://www.youtube.com/watch?v=4PqECm1OA7U" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Problemas envolvendo as quatro operações</strong>
+            <span>Ajuda a ligar palavras do enunciado à operação adequada.</span>
+          </div>
+          <em>abrir aula</em>
+        </a>
       </div>
+    </section>
+
+    <div class="footer-nav">
+      <a class="btn btn-secondary" href="../index.html">← Voltar para o cronograma</a>
+      <a class="btn btn-primary" href="dia-003.html">Próxima apostila →</a>
     </div>
-  </div>
-
-  <div class="page" id="quiz">
-    <div class="stage dark">
-      <div class="stage-badge">🎮 Quiz final</div>
-      <span class="stage-icon">🏆</span>
-      <h2>Quiz final — 20 questões</h2>
-      <p>Agora vamos ver o que o Eiji aprendeu hoje.</p>
-    </div>
-    <div class="quiz-wrap">
-      <h3>Eiji vs Fatos, Opiniões e Operações</h3>
-      <div class="quiz-bar-wrap"><div class="quiz-bar" id="quizBar"></div></div>
-      <div class="quiz-score" id="quizScore">Questão 1 de 20</div>
-      <div class="quiz-question" id="quizQuestion">Carregando...</div>
-      <div class="quiz-options" id="quizOptions"></div>
-      <div class="quiz-feedback" id="quizFeedback"></div>
-      <button class="quiz-next" id="quizNext" onclick="nextQuiz()" disabled>Próxima ➡️</button>
-    </div>
-
-    <div class="nav-bottom">
-      <a class="btn-back" href="../index.html">← Voltar para o cronograma</a>
-      <a class="btn-next" id="btnProximaApostila" href="#">Próxima apostila →</a>
-    </div>
-  </div>
-
-  <button class="top-btn" onclick="go('top')">⬆️</button>
-
-  <footer class="footer" id="footerInfo">
-    Dia 002 — Fatos, Opiniões e Adição/Subtração • Projeto Eiji • Português + Matemática • Estrutura: revisão 24h + CPA + Scaffolding + Quiz Final
-  </footer>
-
-  <script>
-    function go(id){
-      const el = document.getElementById(id);
-      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-
-    function toggleAnswer(id){
-      const el = document.getElementById(id);
-      if(el) el.classList.toggle('show');
-    }
-
-    function toggleStar(el){
-      const group = el.parentElement.querySelectorAll('.star');
-      const idx = Array.from(group).indexOf(el);
-      group.forEach((star, i) => {
-        if(i <= idx){
-          star.classList.remove('off');
-        }else{
-          star.classList.add('off');
-        }
-      });
-    }
-
-    function highlightCard(el){
-      const cards = el.parentElement.querySelectorAll('.bubble-card');
-      cards.forEach(card => {
-        card.style.borderColor = '';
-        card.style.background = '';
-      });
-      el.style.borderColor = '#2563eb';
-      el.style.background = '#eff6ff';
-    }
-
-    const quizData = [
-      {
-            "q": "Qual frase mostra um fato?",
-            "opts": [
-                  "Este livro é o mais legal do mundo.",
-                  "O livro tem 120 páginas.",
-                  "Ler é muito chato.",
-                  "Azul é a cor mais bonita."
-            ],
-            "a": 1
-      },
-      {
-            "q": "Qual frase mostra uma opinião?",
-            "opts": [
-                  "A aula começou às 7 horas.",
-                  "O cachorro pesa 8 kg.",
-                  "Esse filme é emocionante.",
-                  "Hoje é terça-feira."
-            ],
-            "a": 2
-      },
-      {
-            "q": "Fato é uma informação que:",
-            "opts": [
-                  "pode ser comprovada",
-                  "mostra gosto pessoal",
-                  "sempre exagera",
-                  "não tem resposta certa"
-            ],
-            "a": 0
-      },
-      {
-            "q": "Opinião é uma informação que:",
-            "opts": [
-                  "traz dado exato",
-                  "mostra o que alguém pensa",
-                  "pode ser medida com régua",
-                  "sempre usa número"
-            ],
-            "a": 1
-      },
-      {
-            "q": "Na frase 'A cantina vendeu 35 salgados', temos:",
-            "opts": [
-                  "opinião",
-                  "fato"
-            ],
-            "a": 1
-      },
-      {
-            "q": "Na frase 'O lanche da cantina é delicioso', temos:",
-            "opts": [
-                  "fato",
-                  "opinião"
-            ],
-            "a": 1
-      },
-      {
-            "q": "Qual palavra costuma aparecer em uma opinião?",
-            "opts": [
-                  "melhor",
-                  "metro",
-                  "ontem",
-                  "sete"
-            ],
-            "a": 0
-      },
-      {
-            "q": "3 + 4 é igual a:",
-            "opts": [
-                  "5",
-                  "6",
-                  "7",
-                  "8"
-            ],
-            "a": 2
-      },
-      {
-            "q": "9 - 2 é igual a:",
-            "opts": [
-                  "11",
-                  "7",
-                  "6",
-                  "5"
-            ],
-            "a": 1
-      },
-      {
-            "q": "Para resolver 12 + 5, o resultado é:",
-            "opts": [
-                  "15",
-                  "16",
-                  "17",
-                  "18"
-            ],
-            "a": 2
-      },
-      {
-            "q": "Para resolver 15 - 6, o resultado é:",
-            "opts": [
-                  "8",
-                  "9",
-                  "10",
-                  "11"
-            ],
-            "a": 1
-      },
-      {
-            "q": "Em 'Marina tinha 8 figurinhas e ganhou mais 3', a conta correta é:",
-            "opts": [
-                  "8 - 3",
-                  "8 + 3",
-                  "3 - 8",
-                  "8 x 3"
-            ],
-            "a": 1
-      },
-      {
-            "q": "Em 'Pedro tinha 10 balas e deu 4 ao irmão', a conta correta é:",
-            "opts": [
-                  "10 + 4",
-                  "4 - 10",
-                  "10 - 4",
-                  "10 x 4"
-            ],
-            "a": 2
-      },
-      {
-            "q": "Qual alternativa mistura fato e opinião corretamente?",
-            "opts": [
-                  "'Hoje choveu' é opinião e 'a chuva foi forte' é fato.",
-                  "'A turma tem 28 alunos' é fato e 'a turma é animada' é opinião.",
-                  "'O jogo começou às 9h' é opinião e 'foi ótimo' é fato.",
-                  "'A caixa pesa 2 kg' é opinião e 'é pesada' é fato."
-            ],
-            "a": 1
-      },
-      {
-            "q": "Se Ana tinha 20 reais e gastou 7, ficou com:",
-            "opts": [
-                  "11",
-                  "12",
-                  "13",
-                  "14"
-            ],
-            "a": 2
-      },
-      {
-            "q": "Se a classe arrecadou 18 livros e depois mais 6, o total foi:",
-            "opts": [
-                  "22",
-                  "23",
-                  "24",
-                  "25"
-            ],
-            "a": 2
-      },
-      {
-            "q": "Uma resposta com 'na minha opinião' geralmente indica:",
-            "opts": [
-                  "fato",
-                  "opinião"
-            ],
-            "a": 1
-      },
-      {
-            "q": "Se uma informação pode ser contada, medida ou verificada, ela tende a ser:",
-            "opts": [
-                  "fato",
-                  "opinião"
-            ],
-            "a": 0
-      },
-      {
-            "q": "Qual conta resolve: 'Eu tinha 14 adesivos, perdi 5 e depois ganhei 2'?",
-            "opts": [
-                  "14 - 5 + 2",
-                  "14 + 5 - 2",
-                  "14 + 5 + 2",
-                  "14 - 5 - 2"
-            ],
-            "a": 0
-      },
-      {
-            "q": "Para ir bem nesta missão, o Eiji precisa:",
-            "opts": [
-                  "chutar rápido",
-                  "separar fato de opinião e escolher a operação certa",
-                  "ler só metade",
-                  "ignorar os números"
-            ],
-            "a": 1
-      }
-];
-
-    let quizIndex = 0;
-    let quizScore = 0;
-    let answered = false;
-
-    function initQuiz(){
-      quizIndex = 0;
-      quizScore = 0;
-      renderQuiz();
-    }
-
-    function renderQuiz(){
-      answered = false;
-      const item = quizData[quizIndex];
-
-      document.getElementById('quizQuestion').textContent = item.q;
-      document.getElementById('quizScore').textContent = `Questão ${quizIndex + 1} de ${quizData.length}`;
-      document.getElementById('quizBar').style.width = `${(quizIndex / quizData.length) * 100}%`;
-      document.getElementById('quizFeedback').textContent = '';
-      document.getElementById('quizFeedback').style.color = '#fff';
-      document.getElementById('quizNext').disabled = true;
-
-      const opts = document.getElementById('quizOptions');
-      opts.innerHTML = '';
-
-      item.opts.forEach((opt, i) => {
-        const button = document.createElement('button');
-        button.className = 'quiz-option';
-        button.textContent = opt;
-        button.onclick = () => answerQuiz(i);
-        opts.appendChild(button);
-      });
-    }
-
-    function answerQuiz(selected){
-      if(answered) return;
-      answered = true;
-
-      const item = quizData[quizIndex];
-      const buttons = document.querySelectorAll('.quiz-option');
-      buttons.forEach(btn => btn.disabled = true);
-
-      buttons[item.a].classList.add('correct');
-
-      if(selected === item.a){
-        quizScore++;
-        document.getElementById('quizFeedback').textContent = '🎉 Correto!';
-        document.getElementById('quizFeedback').style.color = '#4ade80';
-      }else{
-        buttons[selected].classList.add('wrong');
-        document.getElementById('quizFeedback').textContent = '❌ A correta está em verde.';
-        document.getElementById('quizFeedback').style.color = '#f87171';
-      }
-
-      document.getElementById('quizNext').disabled = false;
-    }
-
-    function nextQuiz(){
-      quizIndex++;
-      if(quizIndex >= quizData.length){
-        finishQuiz();
-      }else{
-        renderQuiz();
-      }
-    }
-
-    function finishQuiz(){
-      const percent = Math.round((quizScore / quizData.length) * 100);
-      const question = document.getElementById('quizQuestion');
-      const options = document.getElementById('quizOptions');
-      const feedback = document.getElementById('quizFeedback');
-      const score = document.getElementById('quizScore');
-      const next = document.getElementById('quizNext');
-
-      document.getElementById('quizBar').style.width = '100%';
-
-      question.textContent = '🏆 Quiz concluído!';
-      options.innerHTML = '';
-      score.textContent = `Eiji acertou ${quizScore} de ${quizData.length} (${percent}%)`;
-
-      let msg = '';
-      if(percent >= 85){
-        msg = '🥇 Excelente. O Eiji separou muito bem fatos de opiniões e escolheu as operações com segurança.';
-      }else if(percent >= 65){
-        msg = '🥈 Muito bom. Mais uma revisão e a base fica ainda mais firme.';
-      }else{
-        msg = '💪 Bom começo. Agora é revisar com calma e tentar de novo.';
-      }
-
-      feedback.textContent = msg;
-      feedback.style.color = '#fde68a';
-
-      next.textContent = '🔄 Tentar novamente';
-      next.disabled = false;
-      next.onclick = () => {
-        next.textContent = 'Próxima ➡️';
-        next.onclick = nextQuiz;
-        initQuiz();
-      };
-    }
-
-    (function(){
-      const btn = document.getElementById('btnProximaApostila');
-      if(!btn) return;
-      btn.href = 'dia-003.html';
-    })();
-
-    initQuiz();
-  </script>
+  </main>
 </body>
-
 </html>
