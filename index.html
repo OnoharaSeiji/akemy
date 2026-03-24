@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cronograma de Estudos - Akemy</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div class="hero__content">
+        <span class="badge">Plano de Estudos</span>
+        <h1 id="studentName">Akemy</h1>
+        <p id="scheduleInfo">Carregando cronograma...</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Cronograma</h2>
+            <p id="monthRangeText">Calendário mensal</p>
+          </div>
+
+          <div class="month-controls">
+            <button id="prevMonthBtn" type="button" class="btn btn--ghost">Mês anterior</button>
+            <button id="todayBtn" type="button" class="btn btn--ghost">Hoje</button>
+            <button id="nextMonthBtn" type="button" class="btn btn--ghost">Próximo mês</button>
+          </div>
+        </div>
+
+        <div id="calendarContainer" class="calendar-grid"></div>
+      </section>
+
+      <section class="card">
+        <h2>Seu progresso</h2>
+
+        <div class="progress-box">
+          <div class="progress-meta">
+            <span id="progressLabel">0%</span>
+            <span id="progressDetails">0 de 0 dias concluídos</span>
+          </div>
+
+          <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+
+          <p id="progressText" class="progress-text">Você concluiu 0% do cronograma.</p>
+        </div>
+
+        <div class="actions">
+          <button id="exportBtn" type="button" class="btn">Exportar progresso</button>
+          <button id="importBtn" type="button" class="btn btn--secondary">Importar progresso</button>
+          <input id="importFile" type="file" accept=".json,application/json" hidden />
+        </div>
+
+        <div class="tips">
+          <p><strong>Como usar:</strong> clique em uma data liberada para abrir a apostila do dia.</p>
+          <p><strong>Quando terminar um dia:</strong> abra a apostila e marque como concluída.</p>
+          <p><strong>Para continuar o trabalho no GPT:</strong> exporte o JSON e me envie aqui.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./config.js"></script>
+  <script>
+    (function () {
+      const STORAGE_KEY = 'study_progress_' + (window.APP_CONFIG?.memberSlug || 'aluno');
+
+      const config = window.APP_CONFIG || {
+        memberName: 'Akemy',
+        memberSlug: 'akemy',
+        startDate: '2026-03-23',
+        totalDays: 1,
+        unlockedDays: 1,
+        apostilaPath: './apostilas',
+        apostilaPrefix: 'dia-'
+      };
+
+      const monthNames = [
+        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+      ];
+
+      const weekNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+
+      const state = {
+        currentMonthDate: parseISODate(config.startDate),
+        progress: loadProgress()
+      };
+
+      const studentName = document.getElementById('studentName');
+      const scheduleInfo = document.getElementById('scheduleInfo');
+      const monthRangeText = document.getElementById('monthRangeText');
+      const calendarContainer = document.getElementById('calendarContainer');
+      const progressLabel = document.getElementById('progressLabel');
+      const progressDetails = document.getElementById('progressDetails');
+      const progressText = document.getElementById('progressText');
+      const progressFill = document.getElementById('progressFill');
+      const exportBtn = document.getElementById('exportBtn');
+      const importBtn = document.getElementById('importBtn');
+      const importFile = document.getElementById('importFile');
+      const prevMonthBtn = document.getElementById('prevMonthBtn');
+      const nextMonthBtn = document.getElementById('nextMonthBtn');
+      const todayBtn = document.getElementById('todayBtn');
+
+      init();
+
+      function init() {
+        studentName.textContent = config.memberName;
+
+        const start = parseISODate(config.startDate);
+        const end = addDays(start, config.totalDays - 1);
+
+        scheduleInfo.textContent =
+          'Início em ' + formatDateBR(start) +
+          ' • ' + config.totalDays + ' dias no total';
+
+        renderCalendar();
+        renderProgress();
+
+        prevMonthBtn.addEventListener('click', () => {
+          state.currentMonthDate = new Date(state.currentMonthDate.getFullYear(), state.currentMonthDate.getMonth() - 1, 1);
+          renderCalendar();
+        });
+
+        nextMonthBtn.addEventListener('click', () => {
+          state.currentMonthDate = new Date(state.currentMonthDate.getFullYear(), state.currentMonthDate.getMonth() + 1, 1);
+          renderCalendar();
+        });
+
+        todayBtn.addEventListener('click', () => {
+          const today = new Date();
+          state.currentMonthDate = new Date(today.getFullYear(), today.getMonth(), 1);
+          renderCalendar();
+        });
+
+        exportBtn.addEventListener('click', exportProgress);
+
+        importBtn.addEventListener('click', () => {
+          importFile.click();
+        });
+
+        importFile.addEventListener('change', handleImport);
+      }
+
+      function loadProgress() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) {
+            return createEmptyProgress();
+          }
+          const parsed = JSON.parse(raw);
+
+          if (!Array.isArray(parsed.completedDays)) {
+            parsed.completedDays = [];
+          }
+
+          return {
+            member: config.memberName,
+            memberSlug: config.memberSlug,
+            startDate: config.startDate,
+            totalDays: config.totalDays,
+            completedDays: parsed.completedDays,
+            updatedAt: parsed.updatedAt || new Date().toISOString()
+          };
+        } catch (error) {
+          return createEmptyProgress();
+        }
+      }
+
+      function createEmptyProgress() {
+        return {
+          member: config.memberName,
+          memberSlug: config.memberSlug,
+          startDate: config.startDate,
+          totalDays: config.totalDays,
+          completedDays: [],
+          updatedAt: new Date().toISOString()
+        };
+      }
+
+      function saveProgress() {
+        state.progress.updatedAt = new Date().toISOString();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
+      }
+
+      function renderCalendar() {
+        const year = state.currentMonthDate.getFullYear();
+        const month = state.currentMonthDate.getMonth();
+
+        monthRangeText.textContent = monthNames[month] + ' de ' + year;
+
+        const firstDayOfMonth = new Date(year, month, 1);
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+        const startWeekDay = firstDayOfMonth.getDay();
+        const totalCells = Math.ceil((startWeekDay + lastDayOfMonth.getDate()) / 7) * 7;
+
+        let html = '';
+
+        for (const weekName of weekNames) {
+          html += '<div class="weekday">' + weekName + '</div>';
+        }
+
+        for (let cell = 0; cell < totalCells; cell++) {
+          const dayNumber = cell - startWeekDay + 1;
+          const isCurrentMonth = dayNumber >= 1 && dayNumber <= lastDayOfMonth.getDate();
+
+          if (!isCurrentMonth) {
+            html += '<div class="day day--empty"></div>';
+            continue;
+          }
+
+          const currentDate = new Date(year, month, dayNumber);
+          const studyDayNumber = getStudyDayNumber(currentDate);
+          const isInsideSchedule = studyDayNumber >= 1 && studyDayNumber <= config.totalDays;
+          const isUnlocked = isInsideSchedule && studyDayNumber <= config.unlockedDays;
+          const isCompleted = state.progress.completedDays.includes(studyDayNumber);
+          const isToday = isSameDate(currentDate, new Date());
+
+          let classes = 'day';
+          if (!isInsideSchedule) classes += ' day--outside-schedule';
+          if (isUnlocked) classes += ' day--unlocked';
+          if (isCompleted) classes += ' day--completed';
+          if (isToday) classes += ' day--today';
+
+          const dateLabel = formatDateBR(currentDate);
+
+          if (isUnlocked) {
+            const fileName = buildApostilaFileName(studyDayNumber);
+            html += `
+              <a class="${classes}" href="${config.apostilaPath}/${fileName}" title="Abrir apostila do dia ${studyDayNumber}">
+                <span class="day__date">${dayNumber}</span>
+                <span class="day__info">Dia ${studyDayNumber}</span>
+              </a>
+            `;
+          } else if (isInsideSchedule) {
+            html += `
+              <div class="${classes}" title="Data bloqueada">
+                <span class="day__date">${dayNumber}</span>
+                <span class="day__info">Dia ${studyDayNumber}</span>
+              </div>
+            `;
+          } else {
+            html += `
+              <div class="${classes}" title="${dateLabel}">
+                <span class="day__date">${dayNumber}</span>
+                <span class="day__info">—</span>
+              </div>
+            `;
+          }
+        }
+
+        calendarContainer.innerHTML = html;
+      }
+
+      function renderProgress() {
+        const completedCount = state.progress.completedDays.length;
+        const percent = config.totalDays > 0
+          ? Math.round((completedCount / config.totalDays) * 100)
+          : 0;
+
+        progressLabel.textContent = percent + '%';
+        progressDetails.textContent = completedCount + ' de ' + config.totalDays + ' dias concluídos';
+        progressText.textContent = 'Você concluiu ' + percent + '% do cronograma.';
+        progressFill.style.width = percent + '%';
+      }
+
+      function exportProgress() {
+        const payload = {
+          member: config.memberName,
+          memberSlug: config.memberSlug,
+          startDate: config.startDate,
+          totalDays: config.totalDays,
+          unlockedDays: config.unlockedDays,
+          completedDays: [...state.progress.completedDays].sort((a, b) => a - b),
+          exportedAt: new Date().toISOString()
+        };
+
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'progresso_' + config.memberSlug + '_' + new Date().toISOString().slice(0, 10) + '.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function handleImport(event) {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          try {
+            const data = JSON.parse(e.target.result);
+
+            if (data.memberSlug && data.memberSlug !== config.memberSlug) {
+              alert('Este arquivo de progresso não pertence à ' + config.memberName + '.');
+              return;
+            }
+
+            state.progress = {
+              member: config.memberName,
+              memberSlug: config.memberSlug,
+              startDate: config.startDate,
+              totalDays: config.totalDays,
+              completedDays: Array.isArray(data.completedDays) ? data.completedDays : [],
+              updatedAt: new Date().toISOString()
+            };
+
+            saveProgress();
+            renderCalendar();
+            renderProgress();
+            alert('Progresso importado com sucesso.');
+          } catch (error) {
+            alert('Arquivo inválido. Verifique o JSON e tente novamente.');
+          } finally {
+            importFile.value = '';
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      function parseISODate(value) {
+        const [year, month, day] = value.split('-').map(Number);
+        return new Date(year, month - 1, day);
+      }
+
+      function formatDateBR(date) {
+        const dd = String(date.getDate()).padStart(2, '0');
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const yyyy = date.getFullYear();
+        return dd + '/' + mm + '/' + yyyy;
+      }
+
+      function addDays(date, days) {
+        const d = new Date(date);
+        d.setDate(d.getDate() + days);
+        return d;
+      }
+
+      function getStudyDayNumber(date) {
+        const start = parseISODate(config.startDate);
+        const msPerDay = 24 * 60 * 60 * 1000;
+        const utc1 = Date.UTC(start.getFullYear(), start.getMonth(), start.getDate());
+        const utc2 = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+        return Math.floor((utc2 - utc1) / msPerDay) + 1;
+      }
+
+      function buildApostilaFileName(dayNumber) {
+        return config.apostilaPrefix + String(dayNumber).padStart(3, '0') + '.html';
+      }
+
+      function isSameDate(a, b) {
+        return a.getFullYear() === b.getFullYear()
+          && a.getMonth() === b.getMonth()
+          && a.getDate() === b.getDate();
+      }
+    })();
+  </script>
+</body>
+</html>
