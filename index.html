@@ -1,671 +1,423 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akemy Estudos | Vestibulinho ETEC 2026</title>
-  <meta name="description" content="Cronograma completo de estudos da Akemy para o Vestibulinho ETEC 2026." />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akemy Estudos — Cronograma Vestibulinho ETEC 2026</title>
+  <meta name="description" content="Cronograma dinâmico de estudos da Akemy para o Vestibulinho ETEC 2026, com calendário, progresso e acesso às apostilas.">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="hero">
     <div class="container">
-      <div class="hero__top">
-        <div>
-          <p class="eyebrow">Projeto de Estudos</p>
-          <h1 id="projectTitle">Akemy Estudos</h1>
-          <p class="hero__subtitle" id="examTitle">Vestibulinho ETEC 2026</p>
-          <p class="hero__description">
-            Cronograma completo com calendário dinâmico, apostilas diárias, controle de progresso,
-            revisão acumulativa e simulados até a prova.
-          </p>
-        </div>
-
-        <div class="countdown-card">
-          <p class="countdown-card__label">Contagem regressiva</p>
-          <div class="countdown" id="countdown">
-            <div class="countdown__item">
-              <strong id="cdDays">--</strong>
-              <span>dias</span>
-            </div>
-            <div class="countdown__item">
-              <strong id="cdHours">--</strong>
-              <span>horas</span>
-            </div>
-            <div class="countdown__item">
-              <strong id="cdMinutes">--</strong>
-              <span>min</span>
-            </div>
-            <div class="countdown__item">
-              <strong id="cdSeconds">--</strong>
-              <span>seg</span>
+      <div class="hero-box">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Akemy Estudos · Projeto ETEC</div>
+            <h1>Cronograma completo com acesso direto às apostilas</h1>
+            <p>Esta página funciona como centro do projeto: calendário dinâmico, progresso salvo no navegador, exportação/importação e links diretos para cada apostila publicada na pasta <strong>apostilas/</strong>.</p>
+            <div class="hero-actions">
+              <a href="#cronograma" class="btn btn-primary">Ver cronograma</a>
+              <a href="#calendario" class="btn btn-outline">Abrir calendário</a>
             </div>
           </div>
-          <p class="countdown-card__date" id="examDateLabel"></p>
-        </div>
-      </div>
-
-      <div class="hero__stats">
-        <div class="stat-card">
-          <span class="stat-card__label">Início da preparação</span>
-          <strong id="studyStartLabel">--</strong>
-        </div>
-        <div class="stat-card">
-          <span class="stat-card__label">Fim da preparação</span>
-          <strong id="studyEndLabel">--</strong>
-        </div>
-        <div class="stat-card">
-          <span class="stat-card__label">Dias totais</span>
-          <strong id="totalDaysLabel">--</strong>
-        </div>
-        <div class="stat-card">
-          <span class="stat-card__label">Apostilas publicadas</span>
-          <strong id="publishedCountLabel">--</strong>
+          <div class="hero-side">
+            <div class="metric">
+              <span class="metric-label">Prova</span>
+              <strong>30/11/2026</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Dias de estudo</span>
+              <strong id="metric-total-days">255</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Apostilas publicadas</span>
+              <strong id="metric-published">255</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Contagem regressiva</span>
+              <strong id="countdown">—</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="container main-layout">
-    <section class="panel panel--highlight">
-      <div class="panel__header">
-        <div>
-          <p class="eyebrow">Progresso</p>
-          <h2>Seu avanço no cronograma</h2>
-        </div>
-        <div class="progress-actions">
-          <button class="btn btn--ghost" id="exportProgressBtn" type="button">Exportar progresso</button>
-          <label class="btn btn--ghost btn--file" for="importProgressInput">Importar progresso</label>
-          <input id="importProgressInput" type="file" accept=".json" hidden />
-          <button class="btn btn--danger" id="resetProgressBtn" type="button">Zerar progresso</button>
-        </div>
-      </div>
-
-      <div class="progress-wrap">
-        <div class="progress-meta">
-          <div>
-            <strong id="progressPercent">0%</strong>
-            <span>concluído</span>
+  <main class="container">
+    <section class="section">
+      <h2>Visão geral</h2>
+      <p class="lead">A estrutura foi preparada para GitHub Pages com HTML/CSS/JS puro. O estudo vai de <strong>20/03/2026</strong> até <strong>29/11/2026</strong>, deixando a prova em <strong>30/11/2026</strong> separada da rotina de preparação.</p>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Progresso do aluno</h3>
+          <div class="progress-meta">
+            <span id="progress-text">0 de 255 apostilas publicadas concluídas</span>
+            <strong id="progress-percent">0%</strong>
           </div>
-          <div>
-            <strong id="progressCount">0 / 255</strong>
-            <span>dias concluídos</span>
+          <div class="progress-bar" aria-label="Barra de progresso">
+            <div class="progress-fill" id="progress-fill"></div>
           </div>
-        </div>
-        <div class="progress-bar" aria-label="Barra de progresso">
-          <div class="progress-bar__fill" id="progressFill"></div>
-        </div>
+          <p class="note" style="margin-top:12px">O progresso é salvo no navegador via <code>localStorage</code>. Você pode exportar o JSON e depois importar no mesmo ou em outro dispositivo.</p>
+          <div class="toolbar">
+            <button class="btn" id="btn-export">Exportar progresso</button>
+            <label class="btn" for="import-file">Importar progresso</label>
+            <input id="import-file" type="file" accept="application/json" class="hidden">
+            <button class="btn" id="btn-reset">Zerar progresso</button>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Fases do plano</h3>
+          <div class="phase-list" id="phase-list"></div>
+        </article>
       </div>
-
-      <div class="progress-summary" id="progressSummary"></div>
     </section>
 
-    <section class="grid-two">
-      <article class="panel">
-        <div class="panel__header">
-          <div>
-            <p class="eyebrow">Fases</p>
-            <h2>Arquitetura do plano</h2>
-          </div>
+    <section class="section" id="calendario">
+      <h2>Calendário dinâmico</h2>
+      <p class="lead">Clique nos dias que já têm apostila publicada. Os demais continuam no planejamento, mas aparecem como <strong>Em breve</strong> até a geração do conteúdo.</p>
+      <div class="card">
+        <div class="month-nav">
+          <button class="btn" id="prev-month" aria-label="Mês anterior">◀</button>
+          <div class="month-title" id="month-title">—</div>
+          <button class="btn" id="next-month" aria-label="Próximo mês">▶</button>
         </div>
-        <div class="phase-list" id="phaseList"></div>
-      </article>
-
-      <article class="panel">
-        <div class="panel__header">
-          <div>
-            <p class="eyebrow">Execução</p>
-            <h2>Regras fixas da semana</h2>
-          </div>
-        </div>
-        <ul class="rule-list" id="fixedRulesList"></ul>
-      </article>
+        <div class="calendar" id="calendar-grid"></div>
+      </div>
     </section>
 
-    <section class="grid-two">
-      <article class="panel">
-        <div class="panel__header">
-          <div>
-            <p class="eyebrow">Método</p>
-            <h2>Rotina semanal ideal</h2>
-          </div>
-        </div>
-        <div class="routine-list" id="weeklyRoutineList"></div>
-      </article>
-
-      <article class="panel">
-        <div class="panel__header">
-          <div>
-            <p class="eyebrow">Leitura rápida</p>
-            <h2>Como usar esta página</h2>
-          </div>
-        </div>
-        <div class="how-to-use">
-          <div class="how-to-use__item">
-            <strong>1.</strong>
-            <span>Use o calendário para abrir a apostila do dia quando ela estiver publicada.</span>
-          </div>
-          <div class="how-to-use__item">
-            <strong>2.</strong>
-            <span>Marque o dia como concluído ao terminar a apostila e os exercícios.</span>
-          </div>
-          <div class="how-to-use__item">
-            <strong>3.</strong>
-            <span>Faça a revisão acumulativa semanal e registre erros importantes.</span>
-          </div>
-          <div class="how-to-use__item">
-            <strong>4.</strong>
-            <span>Use exportar/importar para manter o progresso sincronizado entre versões.</span>
-          </div>
-        </div>
-      </article>
+    <section class="section" id="cronograma">
+      <h2>Cronograma detalhado</h2>
+      <p class="lead">Cada linha representa uma semana do planejamento. Quando a apostila daquela faixa já foi publicada, o link abre a página correspondente em <span class="kbd">apostilas/dia-XXX.html</span>.</p>
+      <div class="card table-wrap">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Semana</th>
+              <th>Período</th>
+              <th>Fase</th>
+              <th>Foco</th>
+              <th>Apostilas</th>
+            </tr>
+          </thead>
+          <tbody id="schedule-body"></tbody>
+        </table>
+      </div>
     </section>
 
-    <section class="panel">
-      <div class="panel__header">
-        <div>
-          <p class="eyebrow">Calendário</p>
-          <h2>Calendário dinâmico mês a mês</h2>
-        </div>
-        <div class="calendar-controls">
-          <button class="btn btn--ghost" id="prevMonthBtn" type="button">← Mês anterior</button>
-          <strong id="calendarTitle"></strong>
-          <button class="btn btn--ghost" id="nextMonthBtn" type="button">Próximo mês →</button>
-        </div>
-      </div>
-
-      <div class="calendar-legend">
-        <span><i class="dot dot--available"></i> Apostila publicada</span>
-        <span><i class="dot dot--future"></i> Em breve</span>
-        <span><i class="dot dot--done"></i> Concluído</span>
-        <span><i class="dot dot--today"></i> Hoje</span>
-      </div>
-
-      <div class="calendar-grid" id="calendarGrid"></div>
-    </section>
-
-    <section class="panel">
-      <div class="panel__header">
-        <div>
-          <p class="eyebrow">Plano principal</p>
-          <h2>Cronograma excelente — 37 semanas</h2>
-        </div>
-      </div>
-
-      <div class="schedule-list" id="scheduleList"></div>
+    <section class="section">
+      <h2>Acesso rápido às apostilas publicadas</h2>
+      <p class="lead">Use esta lista quando quiser abrir o material sem passar pela tabela semanal ou pelo calendário.</p>
+      <div class="grid grid-3" id="quick-links"></div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container site-footer__inner">
-      <div>
-        <strong>Akemy Estudos</strong>
-        <p id="footerExamLabel">Vestibulinho ETEC 2026</p>
-      </div>
-      <p>Planejamento com calendário, apostilas, revisão acumulativa e simulados até a prova.</p>
-    </div>
+  <footer class="footer container">
+    <p>Estrutura do repositório: <strong>index.html</strong>, <strong>style.css</strong>, <strong>config.js</strong>, <strong>.nojekyll</strong>, <strong>404.html</strong> e pasta <strong>apostilas/</strong>. Feito para publicação estática simples no GitHub Pages.</p>
   </footer>
 
   <script src="config.js"></script>
   <script>
-    (function () {
-      const config = window.AKEMY_CONFIG;
-      const helpers = window.AKEMY_HELPERS;
+    const cfg = window.AKEMY_CONFIG;
+    const helpers = window.AKEMY_HELPERS;
+    const studyDays = helpers.generateStudyDays();
+    const publishedSet = new Set(cfg.availableApostilas);
+    const STORAGE_KEY = 'akemy_etec_progress_v1';
+    const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const weekdayNames = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 
-      if (!config || !helpers) {
-        document.body.innerHTML = '<main class="container" style="padding:40px 20px;"><h1>Erro ao carregar config.js</h1><p>Verifique se o arquivo config.js foi publicado corretamente no GitHub.</p></main>';
+    let state = {
+      currentMonth: 2,
+      currentYear: 2026,
+      completed: loadProgress()
+    };
+
+    function loadProgress() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed.completed)
+          ? parsed.completed.filter(n => publishedSet.has(Number(n))).map(Number)
+          : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveProgress() {
+      const payload = { completed: [...new Set(state.completed)].sort((a, b) => a - b) };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      updateProgressUI();
+    }
+
+    function toggleCompleted(dayNumber) {
+      if (!publishedSet.has(dayNumber)) return;
+
+      if (state.completed.includes(dayNumber)) {
+        state.completed = state.completed.filter(n => n !== dayNumber);
+      } else {
+        state.completed = [...state.completed, dayNumber];
+      }
+
+      saveProgress();
+      renderQuickLinks();
+      renderSchedule();
+      renderCalendar();
+    }
+
+    function updateProgressUI() {
+      const total = cfg.availableApostilas.length;
+      const done = state.completed.length;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+
+      document.getElementById('progress-text').textContent = `${done} de ${total} apostilas publicadas concluídas`;
+      document.getElementById('progress-percent').textContent = `${pct}%`;
+      document.getElementById('progress-fill').style.width = `${pct}%`;
+      document.getElementById('metric-published').textContent = String(total);
+      document.getElementById('metric-total-days').textContent = String(cfg.totalStudyDays);
+    }
+
+    function renderPhases() {
+      const wrap = document.getElementById('phase-list');
+      wrap.innerHTML = '';
+
+      cfg.phases.forEach(phase => {
+        const div = document.createElement('div');
+        div.className = 'phase-item';
+        div.innerHTML = `
+          <span class="tag" style="background:${phase.color}">${phase.name.replace('Fase ','').split(' — ')[0]}</span>
+          <h4 style="margin:10px 0 6px">${phase.name}</h4>
+          <div class="small">${formatDateBR(phase.start)} → ${formatDateBR(phase.end)}</div>
+          <div class="small" style="margin-top:4px">Carga sugerida: ${phase.daily}</div>
+        `;
+        wrap.appendChild(div);
+      });
+    }
+
+    function renderQuickLinks() {
+      const wrap = document.getElementById('quick-links');
+      wrap.innerHTML = '';
+
+      studyDays.filter(d => d.available).forEach(day => {
+        const done = state.completed.includes(day.number);
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="small">Apostila ${helpers.formatDayNumber(day.number)} · ${formatDateBR(day.date)}</div>
+          <h3 style="margin:6px 0 8px">${day.title}</h3>
+          <div class="toolbar" style="margin-top:14px">
+            <a class="btn btn-dark" href="${day.href}">Abrir apostila</a>
+            <button class="btn" data-complete="${day.number}">${done ? 'Concluída' : 'Marcar como concluída'}</button>
+          </div>
+        `;
+        wrap.appendChild(card);
+      });
+
+      wrap.querySelectorAll('[data-complete]').forEach(btn => {
+        btn.addEventListener('click', () => toggleCompleted(Number(btn.dataset.complete)));
+      });
+    }
+
+    function renderSchedule() {
+      const tbody = document.getElementById('schedule-body');
+      tbody.innerHTML = '';
+
+      cfg.weeks.forEach(week => {
+        const start = new Date(week.start + 'T12:00:00');
+        const end = new Date(week.end + 'T12:00:00');
+        const weekDays = studyDays.filter(d => {
+          const current = new Date(d.date + 'T12:00:00');
+          return current >= start && current <= end;
+        });
+
+        const firstPhase = helpers.getPhaseByDate(week.start);
+
+        const apostilasHTML = weekDays.map(day => {
+          const done = state.completed.includes(day.number);
+          const label = `Apostila ${helpers.formatDayNumber(day.number)}`;
+
+          if (day.available) {
+            return `<a class="link-pill" href="${day.href}" title="${day.title}">${label}${done ? ' ✓' : ''}</a>`;
+          }
+
+          return `<span class="link-pill muted" title="Ainda não publicada">${label}</span>`;
+        }).join(' ');
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>Semana ${String(week.number).padStart(2, '0')}</strong></td>
+          <td>${formatDateBR(week.start)} → ${formatDateBR(week.end)}</td>
+          <td><span class="pill">${firstPhase ? firstPhase.name : 'Planejamento'}</span></td>
+          <td>${week.theme}</td>
+          <td>${apostilasHTML}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderCalendar() {
+      const grid = document.getElementById('calendar-grid');
+      grid.innerHTML = '';
+
+      weekdayNames.forEach(name => {
+        const el = document.createElement('div');
+        el.className = 'weekday';
+        el.textContent = name;
+        grid.appendChild(el);
+      });
+
+      const firstDay = new Date(state.currentYear, state.currentMonth, 1);
+      const lastDay = new Date(state.currentYear, state.currentMonth + 1, 0);
+      const offset = firstDay.getDay();
+
+      document.getElementById('month-title').textContent = `${monthNames[state.currentMonth]} de ${state.currentYear}`;
+
+      for (let i = 0; i < offset; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'day-cell empty';
+        grid.appendChild(empty);
+      }
+
+      for (let day = 1; day <= lastDay.getDate(); day++) {
+        const current = new Date(state.currentYear, state.currentMonth, day);
+        const iso = current.toISOString().slice(0, 10);
+        const study = studyDays.find(d => d.date === iso);
+        const cell = document.createElement('div');
+        cell.className = 'day-cell';
+
+        if (!study) {
+          cell.innerHTML = `<div class="day-number">${day}</div><div class="day-study">Fora do período de estudo</div>`;
+          grid.appendChild(cell);
+          continue;
+        }
+
+        const phase = helpers.getPhaseByDate(iso);
+        const done = state.completed.includes(study.number);
+        const badgeColor = phase ? phase.color : '#6f6457';
+
+        cell.innerHTML = `
+          <div class="day-number">${day}</div>
+          <div class="day-badge" style="background:${badgeColor}">${helpers.formatDayNumber(study.number)}</div>
+          <div class="day-study">${study.title}</div>
+          ${study.available
+            ? `<a class="day-link" href="${study.href}">Abrir apostila</a>`
+            : `<span class="day-link disabled">Em breve</span>`}
+          ${study.available
+            ? `<div class="small" style="margin-top:8px"><label><input type="checkbox" data-complete-day="${study.number}" ${done ? 'checked' : ''}> concluída</label></div>`
+            : ''}
+        `;
+
+        grid.appendChild(cell);
+      }
+
+      grid.querySelectorAll('[data-complete-day]').forEach(input => {
+        input.addEventListener('change', () => toggleCompleted(Number(input.dataset.completeDay)));
+      });
+    }
+
+    function formatDateBR(iso) {
+      const [y, m, d] = iso.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const exam = new Date(cfg.examDateTime);
+      const diff = exam - now;
+      const el = document.getElementById('countdown');
+
+      if (diff <= 0) {
+        el.textContent = 'Hoje';
         return;
       }
 
-      const STORAGE_KEY = "akemy_progress_v1";
-      const calendarState = {
-        currentMonth: null
-      };
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      el.textContent = `${days}d ${hours}h`;
+    }
 
-      const studyDays = helpers.generateStudyDays();
-      const studyDaysByDate = new Map(studyDays.map((day) => [day.date, day]));
-      let progress = loadProgress();
+    function changeMonth(step) {
+      const minMonth = 2;
+      const maxMonth = 10;
+      let nextMonth = state.currentMonth + step;
+      let nextYear = state.currentYear;
 
-      const el = {
-        projectTitle: document.getElementById("projectTitle"),
-        examTitle: document.getElementById("examTitle"),
-        examDateLabel: document.getElementById("examDateLabel"),
-        studyStartLabel: document.getElementById("studyStartLabel"),
-        studyEndLabel: document.getElementById("studyEndLabel"),
-        totalDaysLabel: document.getElementById("totalDaysLabel"),
-        publishedCountLabel: document.getElementById("publishedCountLabel"),
-        phaseList: document.getElementById("phaseList"),
-        fixedRulesList: document.getElementById("fixedRulesList"),
-        weeklyRoutineList: document.getElementById("weeklyRoutineList"),
-        calendarTitle: document.getElementById("calendarTitle"),
-        calendarGrid: document.getElementById("calendarGrid"),
-        scheduleList: document.getElementById("scheduleList"),
-        progressPercent: document.getElementById("progressPercent"),
-        progressCount: document.getElementById("progressCount"),
-        progressFill: document.getElementById("progressFill"),
-        progressSummary: document.getElementById("progressSummary"),
-        exportProgressBtn: document.getElementById("exportProgressBtn"),
-        importProgressInput: document.getElementById("importProgressInput"),
-        resetProgressBtn: document.getElementById("resetProgressBtn"),
-        prevMonthBtn: document.getElementById("prevMonthBtn"),
-        nextMonthBtn: document.getElementById("nextMonthBtn"),
-        footerExamLabel: document.getElementById("footerExamLabel"),
-        cdDays: document.getElementById("cdDays"),
-        cdHours: document.getElementById("cdHours"),
-        cdMinutes: document.getElementById("cdMinutes"),
-        cdSeconds: document.getElementById("cdSeconds")
-      };
+      if (nextMonth < 0) {
+        nextMonth = 11;
+        nextYear--;
+      }
 
-      function init() {
-        fillStaticLabels();
-        renderPhases();
-        renderFixedRules();
-        renderWeeklyRoutine();
+      if (nextMonth > 11) {
+        nextMonth = 0;
+        nextYear++;
+      }
+
+      if (nextYear < 2026 || nextYear > 2026) return;
+      if (nextMonth < minMonth || nextMonth > maxMonth) return;
+
+      state.currentMonth = nextMonth;
+      state.currentYear = nextYear;
+      renderCalendar();
+    }
+
+    document.getElementById('prev-month').addEventListener('click', () => changeMonth(-1));
+    document.getElementById('next-month').addEventListener('click', () => changeMonth(1));
+
+    document.getElementById('btn-export').addEventListener('click', () => {
+      const data = JSON.stringify({ completed: state.completed }, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'akemy-progresso.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('import-file').addEventListener('change', async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+
+      try {
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+
+        if (!Array.isArray(parsed.completed)) {
+          throw new Error('Formato inválido');
+        }
+
+        state.completed = parsed.completed
+          .filter(n => publishedSet.has(Number(n)))
+          .map(Number);
+
+        saveProgress();
+        renderQuickLinks();
         renderSchedule();
-        setInitialCalendarMonth();
         renderCalendar();
-        renderProgress();
-        startCountdown();
-        bindEvents();
+      } catch (err) {
+        alert('Não foi possível importar o progresso. Verifique se o arquivo JSON está correto.');
+      } finally {
+        e.target.value = '';
       }
+    });
 
-      function fillStaticLabels() {
-        el.projectTitle.textContent = config.projectName;
-        el.examTitle.textContent = config.examTitle;
-        el.footerExamLabel.textContent = config.examTitle;
-        el.examDateLabel.textContent = "Prova: " + formatDateTimeBR(config.examDateTime);
-        el.studyStartLabel.textContent = formatDateBR(config.studyStart);
-        el.studyEndLabel.textContent = formatDateBR(config.studyEnd);
-        el.totalDaysLabel.textContent = String(config.totalStudyDays);
-        el.publishedCountLabel.textContent = String(config.availableApostilas.length);
-      }
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      if (!confirm('Zerar todo o progresso salvo neste navegador?')) return;
+      state.completed = [];
+      saveProgress();
+      renderQuickLinks();
+      renderSchedule();
+      renderCalendar();
+    });
 
-      function renderPhases() {
-        el.phaseList.innerHTML = config.phases.map((phase) => `
-          <article class="phase-card" style="--phase-color:${escapeHtml(phase.color)}">
-            <div class="phase-card__bar"></div>
-            <div class="phase-card__content">
-              <h3>${escapeHtml(phase.name)}</h3>
-              <p>${formatDateBR(phase.start)} → ${formatDateBR(phase.end)}</p>
-              <span>${escapeHtml(phase.daily)} por dia</span>
-            </div>
-          </article>
-        `).join("");
-      }
-
-      function renderFixedRules() {
-        el.fixedRulesList.innerHTML = config.fixedRules.map((rule) => `
-          <li>${escapeHtml(rule)}</li>
-        `).join("");
-      }
-
-      function renderWeeklyRoutine() {
-        el.weeklyRoutineList.innerHTML = config.weeklyRoutine.map((item) => `
-          <div class="routine-item">
-            <strong>${escapeHtml(item.day)}</strong>
-            <span>${escapeHtml(item.task)}</span>
-          </div>
-        `).join("");
-      }
-
-      function renderSchedule() {
-        el.scheduleList.innerHTML = config.weeks.map((week) => {
-          const phase = helpers.getPhaseByDate(week.start);
-          const apostilasInWeek = getApostilasForWeek(week.start, week.end);
-          const publishedInWeek = apostilasInWeek.filter((item) => item.available);
-
-          return `
-            <article class="schedule-card" id="semana-${week.number}">
-              <div class="schedule-card__header">
-                <div>
-                  <p class="schedule-card__week">Semana ${String(week.number).padStart(2, "0")}</p>
-                  <h3>${escapeHtml(week.theme)}</h3>
-                </div>
-                <div class="schedule-card__meta">
-                  <span class="badge">${escapeHtml(phase ? phase.name : "Sem fase")}</span>
-                  <span class="badge badge--light">${formatDateBR(week.start)} → ${formatDateBR(week.end)}</span>
-                </div>
-              </div>
-
-              <div class="schedule-card__body">
-                <div class="schedule-card__block">
-                  <strong>Apostilas publicadas nesta semana</strong>
-                  ${
-                    publishedInWeek.length
-                      ? `<div class="apostila-chip-list">
-                          ${publishedInWeek.map((day) => `
-                            <a class="apostila-chip" href="${escapeHtml(day.href)}">
-                              Dia ${helpers.formatDayNumber(day.number)}
-                            </a>
-                          `).join("")}
-                        </div>`
-                      : `<p class="muted">Ainda não há apostilas publicadas para esta faixa do cronograma.</p>`
-                  }
-                </div>
-
-                <div class="schedule-card__block">
-                  <strong>Checklist da semana</strong>
-                  <ul class="week-checklist">
-                    <li>Teoria principal + exemplos resolvidos</li>
-                    <li>Exercícios guiados e independentes</li>
-                    <li>Revisão acumulativa de 20–30 min</li>
-                    <li>Mini-lista mista com 6 a 10 questões</li>
-                    <li>Registro no caderno de erros</li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-          `;
-        }).join("");
-      }
-
-      function getApostilasForWeek(startStr, endStr) {
-        const start = new Date(startStr + "T12:00:00");
-        const end = new Date(endStr + "T12:00:00");
-        return studyDays.filter((day) => {
-          const current = new Date(day.date + "T12:00:00");
-          return current >= start && current <= end;
-        });
-      }
-
-      function setInitialCalendarMonth() {
-        const today = new Date();
-        const todayISO = toISODate(today);
-        const inRange = studyDaysByDate.has(todayISO);
-        if (inRange) {
-          calendarState.currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-          return;
-        }
-        const start = new Date(config.studyStart + "T12:00:00");
-        calendarState.currentMonth = new Date(start.getFullYear(), start.getMonth(), 1);
-      }
-
-      function renderCalendar() {
-        const currentMonth = calendarState.currentMonth;
-        const year = currentMonth.getFullYear();
-        const month = currentMonth.getMonth();
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
-
-        el.calendarTitle.textContent = firstDay.toLocaleDateString("pt-BR", {
-          month: "long",
-          year: "numeric"
-        });
-
-        const weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
-        const weekdayHeader = weekDays.map((name) => `<div class="calendar-cell calendar-cell--head">${name}</div>`).join("");
-
-        const cells = [];
-        const startOffset = firstDay.getDay();
-
-        for (let i = 0; i < startOffset; i++) {
-          cells.push('<div class="calendar-cell calendar-cell--empty"></div>');
-        }
-
-        for (let dayNumber = 1; dayNumber <= lastDay.getDate(); dayNumber++) {
-          const date = new Date(year, month, dayNumber);
-          const iso = toISODate(date);
-          const studyDay = studyDaysByDate.get(iso);
-          const isToday = iso === toISODate(new Date());
-          const isCompleted = studyDay ? !!progress.completed[studyDay.number] : false;
-
-          if (!studyDay) {
-            cells.push(`
-              <div class="calendar-cell calendar-cell--outside">
-                <span class="calendar-day-number">${dayNumber}</span>
-              </div>
-            `);
-            continue;
-          }
-
-          const classes = [
-            "calendar-cell",
-            studyDay.available ? "calendar-cell--available" : "calendar-cell--future",
-            isCompleted ? "calendar-cell--done" : "",
-            isToday ? "calendar-cell--today" : ""
-          ].filter(Boolean).join(" ");
-
-          const actionHtml = studyDay.available
-            ? `<a class="calendar-link" href="${escapeHtml(studyDay.href)}">Abrir apostila</a>`
-            : `<span class="calendar-soon">Em breve</span>`;
-
-          cells.push(`
-            <div class="${classes}">
-              <div class="calendar-cell__top">
-                <span class="calendar-day-number">${dayNumber}</span>
-                <label class="calendar-check">
-                  <input type="checkbox" data-day="${studyDay.number}" ${isCompleted ? "checked" : ""} />
-                  <span>Feito</span>
-                </label>
-              </div>
-              <div class="calendar-cell__content">
-                <small>Dia ${helpers.formatDayNumber(studyDay.number)}</small>
-                <strong>${escapeHtml(shortTitle(studyDay.title))}</strong>
-                ${actionHtml}
-              </div>
-            </div>
-          `);
-        }
-
-        el.calendarGrid.innerHTML = weekdayHeader + cells.join("");
-
-        el.prevMonthBtn.disabled = !canGoToPrevMonth();
-        el.nextMonthBtn.disabled = !canGoToNextMonth();
-      }
-
-      function canGoToPrevMonth() {
-        const current = calendarState.currentMonth;
-        const start = new Date(config.studyStart + "T12:00:00");
-        return current > new Date(start.getFullYear(), start.getMonth(), 1);
-      }
-
-      function canGoToNextMonth() {
-        const current = calendarState.currentMonth;
-        const end = new Date(config.studyEnd + "T12:00:00");
-        return current < new Date(end.getFullYear(), end.getMonth(), 1);
-      }
-
-      function renderProgress() {
-        const completedNumbers = Object.keys(progress.completed)
-          .map(Number)
-          .filter((n) => progress.completed[n]);
-
-        const percent = Math.round((completedNumbers.length / config.totalStudyDays) * 100);
-        el.progressPercent.textContent = percent + "%";
-        el.progressCount.textContent = completedNumbers.length + " / " + config.totalStudyDays;
-        el.progressFill.style.width = percent + "%";
-
-        const publishedCompleted = completedNumbers.filter((n) => config.availableApostilas.includes(n)).length;
-        const nextPending = studyDays.find((d) => !progress.completed[d.number]);
-
-        el.progressSummary.innerHTML = `
-          <div class="summary-chip">
-            <strong>${publishedCompleted}</strong>
-            <span>apostilas publicadas concluídas</span>
-          </div>
-          <div class="summary-chip">
-            <strong>${config.availableApostilas.length}</strong>
-            <span>apostilas liberadas até agora</span>
-          </div>
-          <div class="summary-chip">
-            <strong>${nextPending ? "Dia " + helpers.formatDayNumber(nextPending.number) : "Concluído"}</strong>
-            <span>próximo passo</span>
-          </div>
-        `;
-      }
-
-      function bindEvents() {
-        document.addEventListener("change", (event) => {
-          const checkbox = event.target;
-          if (!(checkbox instanceof HTMLInputElement)) return;
-          if (!checkbox.matches('input[type="checkbox"][data-day]')) return;
-
-          const number = Number(checkbox.dataset.day);
-          progress.completed[number] = checkbox.checked;
-          saveProgress();
-          renderProgress();
-          renderCalendar();
-        });
-
-        el.prevMonthBtn.addEventListener("click", () => {
-          calendarState.currentMonth = new Date(
-            calendarState.currentMonth.getFullYear(),
-            calendarState.currentMonth.getMonth() - 1,
-            1
-          );
-          renderCalendar();
-        });
-
-        el.nextMonthBtn.addEventListener("click", () => {
-          calendarState.currentMonth = new Date(
-            calendarState.currentMonth.getFullYear(),
-            calendarState.currentMonth.getMonth() + 1,
-            1
-          );
-          renderCalendar();
-        });
-
-        el.exportProgressBtn.addEventListener("click", exportProgress);
-
-        el.importProgressInput.addEventListener("change", importProgress);
-
-        el.resetProgressBtn.addEventListener("click", () => {
-          const confirmed = window.confirm("Tem certeza que deseja zerar todo o progresso?");
-          if (!confirmed) return;
-
-          progress = { completed: {} };
-          saveProgress();
-          renderProgress();
-          renderCalendar();
-        });
-      }
-
-      function exportProgress() {
-        const payload = {
-          project: config.projectName,
-          exam: config.examTitle,
-          exportedAt: new Date().toISOString(),
-          progress
-        };
-
-        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "akemy-progresso.json";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-      }
-
-      function importProgress(event) {
-        const file = event.target.files && event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          try {
-            const parsed = JSON.parse(e.target.result);
-            if (!parsed.progress || typeof parsed.progress !== "object") {
-              throw new Error("Arquivo inválido");
-            }
-            progress = {
-              completed: parsed.progress.completed || {}
-            };
-            saveProgress();
-            renderProgress();
-            renderCalendar();
-            alert("Progresso importado com sucesso.");
-          } catch (error) {
-            alert("Não foi possível importar este arquivo.");
-          } finally {
-            event.target.value = "";
-          }
-        };
-        reader.readAsText(file);
-      }
-
-      function loadProgress() {
-        try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return { completed: {} };
-          const parsed = JSON.parse(raw);
-          return {
-            completed: parsed.completed || {}
-          };
-        } catch (error) {
-          return { completed: {} };
-        }
-      }
-
-      function saveProgress() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-      }
-
-      function startCountdown() {
-        function tick() {
-          const now = new Date().getTime();
-          const target = new Date(config.examDateTime).getTime();
-          const diff = target - now;
-
-          if (diff <= 0) {
-            el.cdDays.textContent = "00";
-            el.cdHours.textContent = "00";
-            el.cdMinutes.textContent = "00";
-            el.cdSeconds.textContent = "00";
-            return;
-          }
-
-          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-          const minutes = Math.floor((diff / (1000 * 60)) % 60);
-          const seconds = Math.floor((diff / 1000) % 60);
-
-          el.cdDays.textContent = String(days).padStart(2, "0");
-          el.cdHours.textContent = String(hours).padStart(2, "0");
-          el.cdMinutes.textContent = String(minutes).padStart(2, "0");
-          el.cdSeconds.textContent = String(seconds).padStart(2, "0");
-        }
-
-        tick();
-        setInterval(tick, 1000);
-      }
-
-      function shortTitle(title) {
-        if (title.length <= 42) return title;
-        return title.slice(0, 39).trim() + "...";
-      }
-
-      function formatDateBR(isoDate) {
-        return new Date(isoDate + "T12:00:00").toLocaleDateString("pt-BR");
-      }
-
-      function formatDateTimeBR(isoDateTime) {
-        return new Date(isoDateTime).toLocaleString("pt-BR", {
-          dateStyle: "short",
-          timeStyle: "short"
-        });
-      }
-
-      function toISODate(date) {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
-        return `${year}-${month}-${day}`;
-      }
-
-      function escapeHtml(value) {
-        return String(value)
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-      }
-
-      init();
-    })();
+    renderPhases();
+    renderQuickLinks();
+    renderSchedule();
+    renderCalendar();
+    updateProgressUI();
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
   </script>
 </body>
 </html>
