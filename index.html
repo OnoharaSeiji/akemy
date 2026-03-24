@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akemy Estudos · ETEC 2026</title>
+  <meta name="description" content="Akemy Estudos · feito no seu ritmo. Um cronograma pensado para te ajudar a ganhar confiança, criar constância e chegar na prova mais preparada.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="hero-copy">
+          <div class="eyebrow">Akemy Estudos · feito no seu ritmo</div>
+          <h1>Este não é só um cronograma de estudos.</h1>
+          <p class="lead">É um caminho pensado para te ajudar a ganhar confiança, criar constância e chegar na prova mais preparada, sem transformar o estudo em algo pesado ou sem graça.</p>
+          <p class="hero-extra">De segunda a quinta, você avança no conteúdo com clareza e progressão. Na sexta, revisa o que aprendeu. No sábado, testa o que realmente ficou. No domingo, descansa para voltar melhor.</p>
+          <p class="hero-extra">Tudo aqui foi pensado para combinar com o seu jeito de aprender: mais visual, mais envolvente e mais conectado com coisas que você gosta, sem perder o foco no que realmente importa para a prova.</p>
+
+          <div class="hero-actions">
+            <a href="#cadencia" class="btn btn-primary">Ver cadência</a>
+            <a href="#cronograma" class="btn btn-secondary">Abrir cronograma</a>
+          </div>
+
+          <div class="hero-metrics">
+            <article class="metric">
+              <span class="metric-label">Semanas</span>
+              <strong>36</strong>
+            </article>
+            <article class="metric">
+              <span class="metric-label">Dias de estudo</span>
+              <strong id="metric-total-days">216</strong>
+            </article>
+            <article class="metric">
+              <span class="metric-label">Revisões semanais</span>
+              <strong>36</strong>
+            </article>
+            <article class="metric">
+              <span class="metric-label">Mini simulados</span>
+              <strong>36</strong>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="poster poster-rock">
+            <span class="poster-tag">playlist</span>
+            <strong>rock + foco</strong>
+            <small>energia sem bagunça</small>
+          </div>
+          <div class="poster poster-magic">
+            <span class="poster-tag">saga</span>
+            <strong>fantasia + lógica</strong>
+            <small>mistério com método</small>
+          </div>
+          <div class="poster poster-cinema">
+            <span class="poster-tag">cinema</span>
+            <strong>narrativa + imagem</strong>
+            <small>ler pistas e cenas</small>
+          </div>
+          <div class="poster poster-social">
+            <span class="poster-tag">feed</span>
+            <strong>visual + ritmo</strong>
+            <small>cards, mapas e gráficos</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section section-grid" id="cadencia">
+      <div>
+        <div class="section-title">Cadência semanal</div>
+        <h2>O ritmo agora é previsível e inteligente</h2>
+        <p class="section-text">Você não precisa atravessar a semana no automático. Cada bloco tem uma função clara: aprender, consolidar, testar e recuperar energia.</p>
+      </div>
+
+      <div class="cadence-grid" id="cadence-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Base pedagógica</div>
+      <h2>Como isso entra no cronograma e nas apostilas</h2>
+      <div class="science-grid">
+        <article class="glass-card">
+          <h3>CPA de Bruner</h3>
+          <p>Todo tema novo deve sair do <strong>concreto</strong>, passar pelo <strong>pictórico</strong> e só então chegar ao <strong>abstrato</strong>. Em matemática isso evita decorar sem entender.</p>
+        </article>
+        <article class="glass-card">
+          <h3>Revisão espaçada</h3>
+          <p>A partir da apostila 2, cada material abre com um <strong>quiz curto da aula anterior</strong>, com resposta oculta. Isso força recuperação ativa antes do conteúdo novo.</p>
+        </article>
+        <article class="glass-card">
+          <h3>Scaffolding progressivo</h3>
+          <p>O apoio começa alto e vai diminuindo. Primeiro modelo resolvido, depois prática guiada, depois autonomia. A ajuda cai conforme o domínio sobe.</p>
+        </article>
+        <article class="glass-card">
+          <h3>Interleaving</h3>
+          <p>Os dias de revisão e mini simulado misturam tipos de questão. Você aprende não só a resolver, mas a <strong>escolher a estratégia certa</strong>.</p>
+        </article>
+        <article class="glass-card">
+          <h3>Growth mindset</h3>
+          <p>Erro não entra como “falha final”. Entra como dado de treino. O foco é: <strong>o que eu ainda não domino e qual o próximo passo</strong>.</p>
+        </article>
+        <article class="glass-card">
+          <h3>Worked examples</h3>
+          <p>O padrão das apostilas será sempre: <strong>exemplo resolvido → prática guiada → prática independente</strong>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-grid">
+      <div>
+        <div class="section-title">Padrão visual</div>
+        <h2>Personalizado sem infantilizar</h2>
+        <p class="section-text">A estética combina vinho, ameixa, azul-noturno e dourado queimado. A ideia é te colocar num clima de <strong>playlist rock</strong>, <strong>fantasia noturna</strong>, <strong>cinema romântico/fantástico</strong> e <strong>cards de rede social</strong>, mas com leitura limpa e foco real na prova.</p>
+        <ul class="feature-list">
+          <li>quadros-resumo em formato de card</li>
+          <li>mapas mentais visuais e mini diagramas</li>
+          <li>gráficos simples quando ajudarem</li>
+          <li>questões com aparência mais próxima da prova</li>
+          <li>bloco de vídeo-aulas no fim da página</li>
+        </ul>
+      </div>
+
+      <div class="vibe-board">
+        <div class="vibe-card">
+          <span>Playlist</span>
+          <strong>rock, emoção e energia</strong>
+        </div>
+        <div class="vibe-card">
+          <span>Saga</span>
+          <strong>mistério, magia e progressão</strong>
+        </div>
+        <div class="vibe-card">
+          <span>Cinema</span>
+          <strong>narrativa, imagem e cena</strong>
+        </div>
+        <div class="vibe-card">
+          <span>Feed</span>
+          <strong>cards, ritmo e clareza visual</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calendario">
+      <div class="section-title">Calendário</div>
+      <h2>Visão mensal do ciclo</h2>
+      <div class="calendar-shell">
+        <div class="month-nav">
+          <button class="btn btn-ghost" id="prev-month">◀</button>
+          <div class="month-title" id="month-title">—</div>
+          <button class="btn btn-ghost" id="next-month">▶</button>
+        </div>
+        <div class="calendar-grid" id="calendar-grid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Progresso</div>
+      <h2>Acompanhamento simples e exportável</h2>
+      <div class="progress-layout">
+        <article class="progress-card">
+          <div class="progress-meta">
+            <div>
+              <span class="small-label">Apostilas concluídas</span>
+              <strong id="progress-text">0 de 0 publicadas</strong>
+            </div>
+            <strong id="progress-percent">0%</strong>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <p class="muted">Conforme as apostilas forem sendo recriadas, elas entram automaticamente como publicadas. Seu progresso fica salvo no navegador e pode ser exportado em JSON.</p>
+          <div class="toolbar">
+            <button class="btn btn-ghost" id="btn-export">Exportar progresso</button>
+            <label class="btn btn-ghost" for="import-file">Importar progresso</label>
+            <input id="import-file" type="file" accept="application/json" class="hidden">
+            <button class="btn btn-ghost" id="btn-reset">Zerar</button>
+          </div>
+        </article>
+
+        <article class="progress-card">
+          <span class="small-label">Contagem regressiva</span>
+          <strong class="countdown" id="countdown">—</strong>
+          <p class="muted">A prova continua sendo o ponto de chegada. O cronograma termina no dia anterior para deixar a reta final mais organizada.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="cronograma">
+      <div class="section-title">Cronograma detalhado</div>
+      <h2>As 36 semanas, já no novo padrão</h2>
+      <div class="schedule-grid" id="schedule-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Padrão das apostilas</div>
+      <h2>Como cada nova página deve nascer</h2>
+      <div class="apostila-blueprint">
+        <div class="blueprint-step">
+          <span>01</span>
+          <div>
+            <strong>Quiz de revisão no topo</strong>
+            <p>Somente a partir da apostila 2. Perguntas curtas sobre a aula anterior, com resposta oculta.</p>
+          </div>
+        </div>
+        <div class="blueprint-step">
+          <span>02</span>
+          <div>
+            <strong>Entrada concreta</strong>
+            <p>Exemplo do cotidiano, imagem, analogia ou objeto visual para destravar o tema.</p>
+          </div>
+        </div>
+        <div class="blueprint-step">
+          <span>03</span>
+          <div>
+            <strong>Explicação pictórica</strong>
+            <p>Diagramas, quadros, setas, blocos visuais, barras, linhas do tempo ou mapas.</p>
+          </div>
+        </div>
+        <div class="blueprint-step">
+          <span>04</span>
+          <div>
+            <strong>Formalização abstrata</strong>
+            <p>Regra, conceito, estrutura, fórmula ou linguagem de prova.</p>
+          </div>
+        </div>
+        <div class="blueprint-step">
+          <span>05</span>
+          <div>
+            <strong>Exemplo resolvido → guiado → independente</strong>
+            <p>Sem pular etapa. A autonomia vem depois do modelo.</p>
+          </div>
+        </div>
+        <div class="blueprint-step">
+          <span>06</span>
+          <div>
+            <strong>Fechamento com vídeo e próxima missão</strong>
+            <p>Encerrar com checklist rápido, vídeo-aulas e botões de navegação.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p>Arquivos-base desta reconstrução: <strong>index.html</strong>, <strong>style.css</strong>, <strong>config.js</strong>, <strong>404.html</strong>, <strong>.nojekyll</strong> e pasta <strong>apostilas/</strong>.</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    const cfg = window.AKEMY_CONFIG;
+    const helpers = window.AKEMY_HELPERS;
+    const STORAGE_KEY = 'akemy_etec_progress_v2';
+    const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const weekdayNames = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+    let state = {
+      currentMonth: 2,
+      currentYear: 2026,
+      completed: loadProgress()
+    };
+
+    function loadProgress() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed.completed) ? parsed.completed.map(Number) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function isAvailable(dayNumber) {
+      return cfg.availableApostilas.includes(dayNumber);
+    }
+
+    async function resourceExists(path) {
+      try {
+        const head = await fetch(`${path}?v=${Date.now()}`, { method: 'HEAD', cache: 'no-store' });
+        if (head.ok) return true;
+      } catch (e) {}
+
+      try {
+        const get = await fetch(`${path}?v=${Date.now()}`, { cache: 'no-store' });
+        return get.ok;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    async function detectAvailableApostilas() {
+      if (!cfg.autoDetectApostilas) {
+        cfg.availableApostilas = Array.isArray(cfg.availableApostilas) ? cfg.availableApostilas : [];
+        return;
+      }
+
+      const published = [];
+      const orderedDays = cfg.studyDays
+        .filter(day => day.mode !== 'descanso')
+        .sort((a, b) => a.number - b.number);
+
+      for (const day of orderedDays) {
+        const exists = await resourceExists(day.href);
+        if (!exists) break;
+        published.push(day.number);
+      }
+
+      cfg.availableApostilas = published;
+    }
+
+    function saveProgress() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ completed: [...new Set(state.completed)].sort((a,b)=>a-b) }));
+      renderProgress();
+    }
+
+    function toggleCompleted(dayNumber) {
+      if (!isAvailable(dayNumber)) return;
+      if (state.completed.includes(dayNumber)) {
+        state.completed = state.completed.filter(n => n !== dayNumber);
+      } else {
+        state.completed.push(dayNumber);
+      }
+      saveProgress();
+      renderCalendar();
+      renderSchedule();
+    }
+
+    function formatDateBR(iso) {
+      const [y,m,d] = iso.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    function renderCadence() {
+      const wrap = document.getElementById('cadence-grid');
+      wrap.innerHTML = '';
+      const cards = [
+        { day:'Segunda', mode:'Conteúdo', text:'Entrada forte com tema novo, exemplos e base teórica.'},
+        { day:'Terça', mode:'Conteúdo', text:'Continuidade com treino guiado e mais uma frente de disciplina.'},
+        { day:'Quarta', mode:'Conteúdo', text:'Terceiro bloco da semana com alternância de área e formato.'},
+        { day:'Quinta', mode:'Conteúdo', text:'Fechamento do conteúdo novo com mistura leve e aplicação.'},
+        { day:'Sexta', mode:'Revisão', text:'Retomada da semana, correção de erros e recuperação ativa.'},
+        { day:'Sábado', mode:'Mini simulado', text:'Teste curto, ritmo de prova, leitura de comando e autocorreção.'},
+        { day:'Domingo', mode:'Descanso', text:'Pausa real para consolidar memória e evitar desgaste.'}
+      ];
+      cards.forEach((item, index) => {
+        const article = document.createElement('article');
+        article.className = 'cadence-card';
+        article.innerHTML = `
+          <span class="cadence-day">${item.day}</span>
+          <h3>${item.mode}</h3>
+          <p>${item.text}</p>
+        `;
+        wrap.appendChild(article);
+      });
+    }
+
+    function renderProgress() {
+      const total = cfg.availableApostilas.length;
+      const done = state.completed.filter(n => isAvailable(n)).length;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+
+      document.getElementById('progress-text').textContent = `${done} de ${total} publicadas`;
+      document.getElementById('progress-percent').textContent = `${pct}%`;
+      document.getElementById('progress-fill').style.width = `${pct}%`;
+      document.getElementById('metric-total-days').textContent = String(cfg.totalStudyDays);
+    }
+
+    function renderCalendar() {
+      const grid = document.getElementById('calendar-grid');
+      grid.innerHTML = '';
+
+      weekdayNames.forEach(name => {
+        const el = document.createElement('div');
+        el.className = 'weekday';
+        el.textContent = name;
+        grid.appendChild(el);
+      });
+
+      const firstDay = new Date(state.currentYear, state.currentMonth, 1);
+      const lastDay = new Date(state.currentYear, state.currentMonth + 1, 0);
+      const offset = firstDay.getDay();
+      document.getElementById('month-title').textContent = `${monthNames[state.currentMonth]} de ${state.currentYear}`;
+
+      for (let i = 0; i < offset; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'day-cell empty';
+        grid.appendChild(empty);
+      }
+
+      for (let day = 1; day <= lastDay.getDate(); day++) {
+        const current = new Date(state.currentYear, state.currentMonth, day);
+        const iso = current.toISOString().slice(0, 10);
+        const study = helpers.getStudyDayByIso(iso);
+        const cell = document.createElement('div');
+        cell.className = 'day-cell';
+
+        if (!study) {
+          cell.innerHTML = `<div class="day-number">${day}</div><div class="day-study muted">fora do plano</div>`;
+          grid.appendChild(cell);
+          continue;
+        }
+
+        const statusClass = `mode-${study.mode}`;
+        const available = isAvailable(study.number);
+        const done = state.completed.includes(study.number);
+
+        cell.classList.add(statusClass);
+        cell.innerHTML = `
+          <div class="day-topline">
+            <div class="day-number">${day}</div>
+            <div class="day-badge">${study.mode.replace('_',' ')}</div>
+          </div>
+          <div class="day-study">${study.mode === 'descanso' ? study.title : `#${helpers.formatDayNumber(study.number)} · ${study.title}`}</div>
+          <div class="day-theme">${study.theme}</div>
+          ${available ? `<a class="day-link" href="${study.href}">abrir apostila</a>` : `<span class="day-link disabled">${study.mode === 'descanso' ? 'pausa' : 'em breve'}</span>`}
+          ${available ? `<label class="tiny-check"><input type="checkbox" data-day="${study.number}" ${done ? 'checked' : ''}> concluída</label>` : ''}
+        `;
+        grid.appendChild(cell);
+      }
+
+      grid.querySelectorAll('[data-day]').forEach(input => {
+        input.addEventListener('change', () => toggleCompleted(Number(input.dataset.day)));
+      });
+    }
+
+    function renderSchedule() {
+      const wrap = document.getElementById('schedule-grid');
+      wrap.innerHTML = '';
+      cfg.weeks.forEach(week => {
+        const weekDays = cfg.studyDays.filter(day => day.week === week.number);
+        const weekCard = document.createElement('article');
+        weekCard.className = 'week-card';
+        weekCard.innerHTML = `
+          <div class="week-head">
+            <div>
+              <span class="week-index">Semana ${String(week.number).padStart(2, '0')}</span>
+              <h3>${week.theme}</h3>
+              <p>${week.arc} · ${formatDateBR(week.start)} → ${formatDateBR(week.end)} · vibe: ${week.playlist}</p>
+            </div>
+            <span class="week-pill">${week.playlist}</span>
+          </div>
+          <div class="week-days">
+            ${weekDays.map(day => {
+              if (day.mode === 'descanso') {
+                return `<div class="week-day restful"><strong>Dom</strong><span>Descanso</span><small>respira, alonga e dorme bem</small></div>`;
+              }
+
+              const available = isAvailable(day.number);
+              const done = state.completed.includes(day.number);
+              return `
+                <div class="week-day ${day.mode}">
+                  <strong>${['Seg','Ter','Qua','Qui','Sex','Sáb'][day.weekday]}</strong>
+                  <span>${day.title}</span>
+                  <small>${day.mode === 'conteudo' ? 'conteúdo' : day.mode === 'revisao' ? 'revisão' : 'mini simulado'}</small>
+                  ${available ? `<a href="${day.href}">Abrir #${helpers.formatDayNumber(day.number)}${done ? ' ✓' : ''}</a>` : `<em>${day.mode === 'revisao' || day.mode === 'mini_simulado' || day.mode === 'conteudo' ? `#${helpers.formatDayNumber(day.number)} · em breve` : '—'}</em>`}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+        wrap.appendChild(weekCard);
+      });
+    }
+
+    function updateCountdown() {
+      const el = document.getElementById('countdown');
+      const now = new Date();
+      const exam = new Date(cfg.examDateTime);
+      const diff = exam - now;
+      if (diff <= 0) {
+        el.textContent = 'Hoje';
+        return;
+      }
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      el.textContent = `${days} dias e ${hours}h`;
+    }
+
+    function changeMonth(step) {
+      let nextMonth = state.currentMonth + step;
+      let nextYear = state.currentYear;
+      if (nextMonth < 0) { nextMonth = 11; nextYear--; }
+      if (nextMonth > 11) { nextMonth = 0; nextYear++; }
+      if (nextYear !== 2026) return;
+      if (nextMonth < 2 || nextMonth > 10) return;
+      state.currentMonth = nextMonth;
+      state.currentYear = nextYear;
+      renderCalendar();
+    }
+
+    document.getElementById('prev-month').addEventListener('click', () => changeMonth(-1));
+    document.getElementById('next-month').addEventListener('click', () => changeMonth(1));
+
+    document.getElementById('btn-export').addEventListener('click', () => {
+      const data = JSON.stringify({ completed: state.completed }, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'akemy-progresso-v2.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('import-file').addEventListener('change', async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      try {
+        const parsed = JSON.parse(await file.text());
+        if (!Array.isArray(parsed.completed)) throw new Error('Formato inválido');
+        state.completed = parsed.completed.map(Number);
+        saveProgress();
+        renderSchedule();
+        renderCalendar();
+      } catch (err) {
+        alert('Não foi possível importar o arquivo.');
+      } finally {
+        e.target.value = '';
+      }
+    });
+
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      if (!confirm('Zerar o progresso salvo neste navegador?')) return;
+      state.completed = [];
+      saveProgress();
+      renderSchedule();
+      renderCalendar();
+    });
+
+    async function bootstrap() {
+      await detectAvailableApostilas();
+      renderCadence();
+      renderProgress();
+      renderCalendar();
+      renderSchedule();
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+    }
+
+    bootstrap();
+  </script>
+</body>
+</html>
