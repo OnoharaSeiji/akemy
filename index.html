@@ -456,13 +456,13 @@
       function canGoToPrevMonth() {
         const current = calendarState.currentMonth;
         const start = new Date(config.studyStart + "T12:00:00");
-        return current.getFullYear() > start.getFullYear() || current.getMonth() > start.getMonth() || current.getFullYear() > start.getFullYear();
+        return current > new Date(start.getFullYear(), start.getMonth(), 1);
       }
 
       function canGoToNextMonth() {
         const current = calendarState.currentMonth;
         const end = new Date(config.studyEnd + "T12:00:00");
-        return current.getFullYear() < end.getFullYear() || current.getMonth() < end.getMonth() || current.getFullYear() < end.getFullYear();
+        return current < new Date(end.getFullYear(), end.getMonth(), 1);
       }
 
       function renderProgress() {
