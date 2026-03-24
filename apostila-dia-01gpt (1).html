@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apostila 01 — Vestibulinho ETEC 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f2ea;
+  --bg2:#efe6d7;
+  --card:#fffdf9;
+  --line:#e8dcc9;
+  --ink:#221c15;
+  --muted:#6d6257;
+  --dark:#1f1a14;
+  --gold:#c78633;
+  --gold2:#ebb15d;
+  --green:#2f7a50;
+  --blue:#1f5d90;
+  --red:#b64646;
+  --violet:#6d43a4;
+  --shadow:0 14px 38px rgba(34,28,21,.08);
+  --r:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:'Outfit',system-ui,-apple-system,sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(235,177,93,.12), transparent 24%),
+    linear-gradient(180deg, #faf6ef 0%, var(--bg) 100%);
+  color:var(--ink);
+  line-height:1.78;
+}
+a{text-decoration:none}
+.hero{
+  background:linear-gradient(180deg,#1d1813 0%, #262019 100%);
+  color:#f7f1e8;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(235,177,93,.16), transparent 20%),
+    radial-gradient(circle at 10% 90%, rgba(31,93,144,.14), transparent 24%);
+}
+.hero-inner{
+  position:relative;
+  max-width:1180px;
+  margin:0 auto;
+  padding:56px 28px 46px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:24px;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  font:700 12px 'Fira Mono',monospace;
+  letter-spacing:2px;text-transform:uppercase;color:var(--gold2)
+}
+.badge::before{content:'';width:28px;height:1px;background:var(--gold2)}
+h1{
+  font:700 clamp(30px,5vw,58px)/1.03 'Lora',serif;
+  margin:16px 0 10px;
+  letter-spacing:-.02em;
+}
+.hero-sub{max-width:760px;color:rgba(247,241,232,.82);font-size:16px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:8px 12px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  color:#f1e7d8;font-size:12px;font-weight:700
+}
+.hero-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;padding:22px;
+  align-self:start;backdrop-filter:blur(6px)
+}
+.hero-card h3{margin:0 0 10px;font-size:18px}
+.hero-card p:last-child,.hero-card ul:last-child{margin-bottom:0}
+.topnav{
+  position:sticky;top:0;z-index:30;
+  background:rgba(29,24,19,.96);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(235,177,93,.22)
+}
+.topnav-inner{
+  max-width:1180px;margin:0 auto;padding:12px 28px;
+  display:flex;flex-wrap:wrap;gap:10px
+}
+.topnav a{
+  color:#eadfce;font-size:13px;padding:8px 12px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.08)
+}
+.topnav a:hover{background:rgba(255,255,255,.06)}
+main{max-width:1180px;margin:0 auto;padding:30px 28px 34px}
+.section{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  margin:0 0 24px;
+}
+.section-head{
+  padding:26px 28px 14px;
+  background:linear-gradient(180deg,#fffdf9 0%, #faf3e8 100%);
+  border-bottom:1px solid #f0e3d2
+}
+.kicker{
+  font:700 11px 'Fira Mono',monospace;
+  letter-spacing:1.8px;text-transform:uppercase;color:var(--gold)
+}
+.section h2{
+  margin:8px 0 0;
+  font:700 clamp(24px,3vw,36px)/1.12 'Lora',serif
+}
+.section-sub{margin-top:10px;color:var(--muted)}
+.section-body{padding:24px 28px 30px}
+.grid-2,.grid-3{
+  display:grid;gap:16px
+}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{
+  background:#fff;
+  border:1px solid #ecdfcd;
+  border-radius:16px;
+  padding:18px 18px 16px;
+}
+.card h3,.card h4{margin:0 0 10px}
+.card p:last-child,.card ul:last-child,.card ol:last-child{margin-bottom:0}
+.note{
+  border-left:4px solid var(--gold);
+  background:#fff6e7;
+  padding:14px 16px;
+  border-radius:12px;
+  margin:14px 0;
+}
+.note.blue{background:#eef6ff;border-left-color:var(--blue)}
+.note.green{background:#eef9f1;border-left-color:var(--green)}
+.note.red{background:#fff1f1;border-left-color:var(--red)}
+.note.violet{background:#f6f0ff;border-left-color:var(--violet)}
+table{
+  width:100%;border-collapse:collapse;
+  margin-top:14px;background:#fff;overflow:hidden;border-radius:14px
+}
+th,td{
+  padding:12px 14px;border:1px solid #eadfce;text-align:left;vertical-align:top
+}
+th{background:#fbf3e7}
+ul,ol{padding-left:20px}
+.exercise{
+  border:1px solid #e8dccb;
+  border-radius:16px;padding:18px;background:#fff;margin:16px 0
+}
+.exercise .tag{
+  display:inline-flex;padding:5px 10px;border-radius:999px;background:#f6efe3;
+  color:#7a674f;font-size:12px;font-weight:700;margin-bottom:8px
+}
+.exercise h4{margin:0 0 10px;font-size:18px}
+.options{display:grid;gap:10px;margin-top:14px}
+.option{
+  border:1px solid #e6d9c5;background:#fff;border-radius:12px;padding:12px 14px;text-align:left;
+  cursor:pointer;font:500 15px 'Outfit',sans-serif;color:var(--ink);transition:.15s ease
+}
+.option:hover{transform:translateY(-1px);border-color:#d5b98b}
+.option.correct{background:#eef9f1;border-color:#90c7a6}
+.option.wrong{background:#fff1f1;border-color:#e2a0a0}
+.feedback{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:14px}
+.feedback.ok{display:block;background:#eef9f1;color:#245439;border:1px solid #b6ddc2}
+.feedback.bad{display:block;background:#fff1f1;color:#7e2c2c;border:1px solid #e4b1b1}
+.checklist{display:grid;gap:10px;margin-top:10px}
+.ck{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:12px 14px;background:#fff;border:1px solid #eadfce;border-radius:12px
+}
+.ck input{margin-top:4px;transform:scale(1.15)}
+.steps{
+  display:grid;gap:14px;margin-top:14px
+}
+.step{
+  display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start;
+  padding:14px;border:1px solid #eadfce;border-radius:16px;background:#fff
+}
+.step-num{
+  width:54px;height:54px;border-radius:14px;background:#f8efe0;
+  display:flex;align-items:center;justify-content:center;
+  font:700 22px 'Lora',serif;color:#7d5a26;border:1px solid #ead7c4
+}
+.footer{background:#1d1915;color:#f4ede1;margin-top:30px}
+.footer-inner{max-width:1180px;margin:0 auto;padding:28px}
+.back-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 20px;border-radius:14px;background:linear-gradient(90deg,var(--gold),var(--gold2));
+  color:#211b14;font-weight:800;letter-spacing:.3px
+}
+.back-btn:hover{filter:brightness(1.03)}
+.footer-grid{
+  display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap
+}
+.footer-meta{color:rgba(244,237,225,.74);font-size:14px}
+.small{font-size:13px;color:var(--muted)}
+blockquote.example{
+  margin:14px 0;padding:14px 16px;border-left:4px solid var(--blue);background:#f4f8fc;border-radius:12px
+}
+@media (max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  main,.topnav-inner,.hero-inner,.footer-inner,.section-head,.section-body{padding-left:18px;padding-right:18px}
+}
+</style>
+</head>
+<body data-page="apostila-01">
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge">Projeto Akemy · Vestibulinho ETEC</div>
+      <h1>Apostila 01<span style="display:block;color:var(--gold2);font-size:.62em;margin-top:8px">Como funciona a prova e como estudar com método</span></h1>
+      <p class="hero-sub">Abertura do projeto Akemy: entender o jogo, montar uma rotina estável e aprender um jeito de estudar que gera retenção em vez de falsa sensação de domínio.</p>
+      <div class="hero-meta"><span class="chip">60–90 min</span><span class="chip">Estratégia de estudo</span><span class="chip">Leitura de enunciado</span><span class="chip">Caderno de erros</span></div>
+    </div>
+    <div class="hero-card"><h3>Meta da apostila</h3><p>Ao final, a estudante deve saber organizar uma sessão de estudo, distinguir releitura de aprendizagem real, ler o comando de uma questão com precisão e registrar erros de forma útil para revisar depois.</p></div>
+  </div>
+</header>
+<nav class="topnav"><div class="topnav-inner"><a href="#mapa">Mapa da sessão</a><a href="#prova">Como a prova pensa</a><a href="#metodo">Método de estudo</a><a href="#leitura">Leitura de enunciado</a><a href="#modelagem">Exemplos guiados</a><a href="#exercicios">Prática</a><a href="#checklist">Checklist</a></div></nav>
+<main>
+<section class="section" id="mapa"><div class="section-head"><div class="kicker">Apostila 01</div><h2>Mapa da sessão</h2><div class="section-sub">Esta apostila foi desenhada para ocupar um bloco de estudo real, e não apenas uma leitura rápida.</div></div><div class="section-body">
+        <div class="grid-3">
+          <div class="card"><h3>Bloco 1 · Ativação (10 min)</h3><p>Antes de começar, feche o material e tente responder de memória: o que você já sabe sobre o Vestibulinho? O que costuma te fazer errar? Esse esforço inicial prepara o cérebro para aprender porque mostra o que já está sólido e o que ainda está frágil.</p></div><div class="card"><h3>Bloco 2 · Estudo profundo (35–45 min)</h3><p>Leia a teoria com lápis na mão. Marque verbos de comando, palavras limitadoras e pontos que você não entendeu de primeira. O objetivo não é correr; é construir um modelo mental claro do que a prova exige.</p></div><div class="card"><h3>Bloco 3 · Recuperação e revisão (20–30 min)</h3><p>Resolva as questões sem consultar a teoria. Depois, anote no caderno de erros: <strong>onde errei</strong>, <strong>por que errei</strong> e <strong>qual pista eu deveria ter visto</strong>. Amanhã, revise em cinco minutos.</p></div></div><table><tr><th>Etapa</th><th>O que fazer</th><th>Tempo</th><th>Sinal de que funcionou</th></tr><tr><td>Ativação</td><td>Fazer 3 perguntas de memória antes de ler.</td><td>8–10 min</td><td>Você percebe o que sabe e o que não sabe.</td></tr><tr><td>Teoria</td><td>Ler em blocos curtos, resumir com suas palavras.</td><td>20–25 min</td><td>Consegue explicar sem copiar.</td></tr><tr><td>Exemplo guiado</td><td>Seguir passo a passo e justificar cada decisão.</td><td>15–20 min</td><td>Entende o porquê de cada passo.</td></tr><tr><td>Prática independente</td><td>Resolver sem olhar a resposta.</td><td>15–20 min</td><td>Consegue aplicar sozinha.</td></tr><tr><td>Revisão</td><td>Registrar erros e programar retomada.</td><td>8–10 min</td><td>Os erros viram material de estudo.</td></tr></table><div class="note blue"><strong>Estrutura de 60–90 minutos:</strong> ativação → teoria → exemplo resolvido → prática → revisão curta. Essa ordem reduz a chance de estudar passivamente.</div></div></section><section class="section" id="prova"><div class="section-head"><div class="kicker">Apostila 01</div><h2>Como a prova pensa</h2><div class="section-sub">A prova não premia apenas memória. Ela cobra leitura de comando, reconhecimento de padrão, comparação, inferência e cálculo aplicado.</div></div><div class="section-body">
+        <div class="grid-2">
+        <div class="card"><h3>O que costuma derrubar o aluno</h3><ul><li>Ler rápido e responder pelo assunto geral, não pelo comando.</li><li>Confundir alternativa plausível com alternativa correta.</li><li>Parar na primeira impressão e não verificar a evidência.</li><li>Não perceber palavras decisivas como <em>principalmente</em>, <em>incorreta</em>, <em>de acordo com o texto</em>, <em>melhor explica</em>.</li></ul><p>Em provas objetivas, pequenos detalhes mudam a direção inteira da resposta. O aluno que olha esses detalhes com calma acerta mais mesmo sem ser o “mais inteligente da sala”.</p></div><div class="card"><h3>O que um bom candidato faz</h3><ol><li>Descobre o verbo principal da questão.</li><li>Identifica o foco exato do pedido.</li><li>Procura a evidência no texto, gráfico, enunciado ou cálculo.</li><li>Só então compara as alternativas.</li><li>Elimina as claramente incompatíveis antes de escolher.</li></ol><p>Essa rotina parece lenta no começo, mas depois vira hábito e economiza tempo porque reduz retrabalho e arrependimento.</p></div></div><table><tr><th>Palavra do enunciado</th><th>O que pede</th><th>Erro comum</th></tr><tr><td>inferir</td><td>Concluir a partir de pistas</td><td>responder com opinião pessoal</td></tr><tr><td>identificar</td><td>Localizar informação ou característica</td><td>inventar algo não sustentado</td></tr><tr><td>comparar</td><td>colocar elementos lado a lado</td><td>falar de um só elemento</td></tr><tr><td>justificar</td><td>dar motivo, prova ou evidência</td><td>repetir a resposta sem provar</td></tr><tr><td>incorreta</td><td>marcar a errada</td><td>esquecer a negação e marcar a certa</td></tr></table><blockquote class="example"><strong>Exemplo de armadilha:</strong> se a questão pede a alternativa <em>incorreta</em>, não basta achar uma opção verdadeira. É preciso encontrar a única que contradiz o texto, o conceito ou o cálculo.</blockquote></div></section><section class="section" id="metodo"><div class="section-head"><div class="kicker">Apostila 01</div><h2>Método de estudo que vamos usar</h2><div class="section-sub">Não basta “estudar bastante”. É preciso estudar de um modo que favoreça retenção, transferência e correção de erro.</div></div><div class="section-body">
+        <div class="steps">
+        <div class="step"><div class="step-num">1</div><div><h3>Recuperar antes de reler</h3><p>Antes de abrir a teoria, tente recordar o que já sabe. Esse pequeno esforço de puxar da memória já começa a treinar a lembrança. Mesmo quando você percebe que não lembra, esse choque é útil: ele mostra exatamente onde a revisão precisa agir.</p></div></div><div class="step"><div class="step-num">2</div><div><h3>Estudar com exemplos resolvidos</h3><p>Em conteúdos novos, ver um raciocínio completo bem explicado costuma funcionar melhor do que jogar a estudante direto em muitos exercícios. Primeiro entende-se a lógica; depois pratica-se sozinha. Em matemática isso é decisivo.</p></div></div><div class="step"><div class="step-num">3</div><div><h3>Alternar explicação e produção</h3><p>Depois de cada bloco de teoria, pare e produza algo: um resumo em voz alta, uma resposta curta, uma conta, uma classificação. Produzir obriga o cérebro a organizar a informação, e não apenas reconhecê-la na página.</p></div></div><div class="step"><div class="step-num">4</div><div><h3>Revisar em vez de confiar na sensação</h3><p>Entender hoje não significa lembrar amanhã. Por isso, toda apostila termina com revisão curta e um checklist. A meta não é “parece familiar”; a meta é “consigo explicar e usar”.</p></div></div></div><div class="note green"><strong>Caderno de erros:</strong> toda vez que errar, anote em três linhas: 1) qual foi o erro, 2) qual pista eu ignorei, 3) como evitar repetir. Errar sem registrar desperdiça o erro.</div><table><tr><th>Ferramenta</th><th>Como usar</th><th>Quando usar</th></tr><tr><td>Resumo oral</td><td>explicar com as próprias palavras por 1 minuto</td><td>após cada seção</td></tr><tr><td>Flash de memória</td><td>fechar a apostila e listar 3 ideias-chave</td><td>no fim da sessão</td></tr><tr><td>Caderno de erros</td><td>registrar erro, causa e correção</td><td>após exercícios</td></tr><tr><td>Revisão curta</td><td>retomar a apostila no dia seguinte</td><td>24h depois</td></tr></table></div></section><section class="section" id="leitura"><div class="section-head"><div class="kicker">Apostila 01</div><h2>Como ler um enunciado sem cair em armadilha</h2><div class="section-sub">Toda questão pode ser desmontada em partes menores. Fazer isso conscientemente no começo economiza muitos erros depois.</div></div><div class="section-body">
+        <div class="grid-2">
+        <div class="card"><h3>Quatro perguntas obrigatórias</h3><ol><li><strong>O que a questão quer que eu faça?</strong> Procure o verbo.</li><li><strong>Sobre o quê?</strong> Descubra o tema imediato.</li><li><strong>Com base em quê?</strong> Texto, imagem, regra, dado, gráfico ou conta.</li><li><strong>Existe alguma restrição?</strong> Incorreta, principal, melhor, apenas, segundo o autor.</li></ol></div><div class="card"><h3>Palavras que mudam tudo</h3><p><strong>Apenas</strong> limita. <strong>Principalmente</strong> pede a ideia central. <strong>Segundo o texto</strong> corta a opinião pessoal. <strong>Exceto</strong> inverte a direção. <strong>Melhor explica</strong> exige a opção mais completa, não apenas uma parcialmente verdadeira.</p><p>Treinar isso é treinar atenção seletiva.</p></div></div><div class="note red"><strong>Regra prática:</strong> se você consegue escolher uma alternativa sem sublinhar o verbo do enunciado, provavelmente está respondendo com pressa demais.</div><table><tr><th>Enunciado resumido</th><th>Primeira ação correta</th></tr><tr><td>De acordo com o texto, infere-se que...</td><td>procurar pistas, não frases literais</td></tr><tr><td>Assinale a alternativa incorreta.</td><td>marcar a negação antes de ler opções</td></tr><tr><td>O gráfico permite concluir que...</td><td>ler eixo, unidade e tendência antes das alternativas</td></tr><tr><td>A melhor explicação para o fenômeno é...</td><td>comparar alternativas por completude e precisão</td></tr></table></div></section><section class="section" id="modelagem"><div class="section-head"><div class="kicker">Apostila 01</div><h2>Exemplos guiados de raciocínio</h2><div class="section-sub">Agora vamos ver o método funcionando em situações típicas.</div></div><div class="section-body">
+        <div class="card"><h3>Exemplo 1 · Texto</h3><p><strong>Enunciado:</strong> “De acordo com o texto, a personagem muda de atitude porque...”</p><p><strong>Passo 1:</strong> o verbo é “muda”; então preciso observar transformação.</p><p><strong>Passo 2:</strong> a expressão “de acordo com o texto” proíbe usar opinião pessoal.</p><p><strong>Passo 3:</strong> procuro no texto o momento em que a personagem age de forma diferente.</p><p><strong>Passo 4:</strong> comparo as alternativas e elimino as que trazem motivos que o texto não sustenta.</p><p><strong>Conclusão:</strong> a melhor resposta não é a mais bonita, e sim a mais apoiada pelas pistas do texto.</p></div>
+        <div class="card" style="margin-top:16px"><h3>Exemplo 2 · Questão objetiva com negação</h3><p><strong>Enunciado:</strong> “Assinale a alternativa incorreta sobre os biomas brasileiros.”</p><p>Se eu esqueço a palavra <em>incorreta</em>, posso fazer toda a análise certa e ainda marcar errado no fim. Por isso, em questões negativas, vale fazer uma marca visual na palavra que inverte a tarefa.</p><p>Depois, comparo conceito por conceito. A incorreta é a única incompatível com a definição estudada.</p></div>
+        <div class="note violet"><strong>Autoexplicação:</strong> depois de ler um exemplo resolvido, feche a tela por 30 segundos e responda: “por que a resposta certa é certa e por que as outras não são?”. Esse pequeno ritual aprofunda muito a compreensão.</div>
+        </div></section><section class="section" id="exercicios"><div class="section-head"><div class="kicker">Apostila 01</div><h2>Prática independente</h2><div class="section-sub">Agora é sua vez. Responda sem voltar na teoria. Só consulte depois de tentar.</div></div><div class="section-body"><div class="exercise"><div class="tag">Questão 1</div><h4>Qual atitude mais aumenta a chance de aprender de verdade ao estudar uma apostila?</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Familiaridade não garante lembrança nem aplicação.">A) Ler rapidamente várias vezes até o conteúdo parecer familiar.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Sem produção e sem teste, a aprendizagem fica superficial.">B) Grifar quase tudo e pular os exercícios.</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa sequência combina recuperação, compreensão e correção.">C) Tentar lembrar o conteúdo, estudar a teoria, praticar e revisar os erros.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Isso costuma aumentar cansaço e reduzir retenção duradoura.">D) Estudar tudo em um único bloco grande na véspera.</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 2</div><h4>Em uma questão com a frase “assinale a alternativa incorreta”, o primeiro cuidado é:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Antes disso, é preciso perceber a inversão do pedido.">A) escolher a alternativa mais completa.</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Marcar a negação evita errar por distração.">B) sublinhar a palavra que inverte a tarefa.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="A tarefa continua sendo comparar alternativas.">C) ignorar as alternativas e responder de cabeça.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Quantidade de texto não define correção.">D) procurar a opção com mais palavras.</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 3</div><h4>Qual frase resume melhor o papel do caderno de erros?</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="O foco é aprender com o que falhou.">A) guardar só as questões que você acertou com facilidade.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Copiar gabarito não explica o erro.">B) servir apenas para copiar gabaritos.</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa é a função correta.">C) transformar cada erro em pista para a próxima revisão.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Ele ajuda a revisar; não substitui.">D) substituir totalmente a necessidade de revisar.</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 4</div><h4>Numa leitura de enunciado, a ordem mais segura é:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="É a ordem que mais gera indução.">A) alternativa → resposta → comando → texto.</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Essa ordem organiza o raciocínio.">B) comando → foco → evidência → alternativas.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Falta método e checagem.">C) texto → chute → alternativa → revisão.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="A resposta vem por último.">D) resposta → justificativa → tema → comando.</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 5</div><h4>Qual situação mostra aprendizagem passiva?</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Isso já é produção ativa.">A) explicar com suas palavras depois de estudar.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Isso é prática útil.">B) resolver sem consulta e depois corrigir o raciocínio.</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="Reconhecimento sem lembrança é típico de estudo passivo.">C) reconhecer o conteúdo quando vê, mas não conseguir explicar sem olhar.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Isso fortalece retenção.">D) revisar os erros no dia seguinte.</button></div><div class="feedback"></div></div><div class="exercise"><div class="tag">Questão 6</div><h4>Se uma alternativa parece bonita, mas não está sustentada pelo texto, ela deve ser:</h4><div class="options"><button class="option" onclick="answer(this)" data-correct="false" data-exp="Plausibilidade sem evidência não basta.">A) escolhida, porque parece fazer sentido.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Sem evidência, deve perder força.">B) mantida como preferida até o final.</button><button class="option" onclick="answer(this)" data-correct="true" data-exp="A prova cobra sustentação, não intuição solta.">C) eliminada ou ao menos tratada com desconfiança.</button><button class="option" onclick="answer(this)" data-correct="false" data-exp="Tamanho não é critério.">D) comparada só pelo tamanho.</button></div><div class="feedback"></div></div></div></section><section class="section" id="checklist"><div class="section-head"><div class="kicker">Apostila 01</div><h2>Checklist da apostila</h2><div class="section-sub">Marque quando estiver realmente conseguindo fazer, e não apenas quando tiver lido.</div></div><div class="section-body">
+        <div class="checklist">
+          <label class="ck"><input type="checkbox"><span>Consigo descrever uma sessão de estudo de 60–90 minutos com começo, meio e fim.</span></label>
+          <label class="ck"><input type="checkbox"><span>Entendi a diferença entre familiaridade e aprendizagem real.</span></label>
+          <label class="ck"><input type="checkbox"><span>Consigo localizar o verbo e a restrição principal de um enunciado.</span></label>
+          <label class="ck"><input type="checkbox"><span>Vou registrar erros por causa e correção, não só por gabarito.</span></label>
+        </div>
+        <div class="note blue"><strong>Revisão de 24 horas:</strong> amanhã, sem reler tudo, tente listar 5 ideias desta apostila e resolver novamente 2 questões. Só depois confira.</div>
+        </div></section>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <a class="back-btn" href="cronograma-etec-2026.html">← VOLTAR PARA O CRONOGRAMA</a>
+      <div class="footer-meta">
+        <div><strong>Apostila 01</strong> · Projeto Akemy · Vestibulinho ETEC 2026</div>
+        <div>Estudo guiado para sessão de 60–90 minutos · teoria + exemplos + prática + revisão</div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+function answer(btn){
+  const ex=btn.closest('.exercise');
+  ex.querySelectorAll('.option').forEach(b=>b.classList.remove('correct','wrong'));
+  const ok=btn.dataset.correct==='true';
+  btn.classList.add(ok?'correct':'wrong');
+  ex.querySelectorAll('.option').forEach(b=>{if(b!==btn&&b.dataset.correct==='true')b.classList.add('correct')});
+  const fb=ex.querySelector('.feedback');
+  fb.className='feedback '+(ok?'ok':'bad');
+  fb.innerHTML='<strong>'+(ok?'Acertou.':'Errou.')+'</strong> '+btn.dataset.exp;
+  fb.style.display='block';
+}
+(function(){
+  const key='akemy-'+document.body.dataset.page;
+  const boxes=document.querySelectorAll('.ck input[type="checkbox"]');
+  const saved=JSON.parse(localStorage.getItem(key)||'[]');
+  boxes.forEach((b,i)=>{
+    b.checked=!!saved[i];
+    b.addEventListener('change',()=>{localStorage.setItem(key,JSON.stringify([...boxes].map(x=>x.checked)))});
+  });
+})();
+</script>
+</body>
+</html>
