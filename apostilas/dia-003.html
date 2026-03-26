@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akemy Estudos · Dia 003</title>
+  <meta name="description" content="Apostila AKEMY Dia 003: Humanas com tempo histórico, século e linha do tempo, com quiz de revisão do dia 2, exemplos visuais, prática guiada e treino independente." />
+  <style>
+    :root{
+      --bg:#0f0b16;
+      --bg2:#171122;
+      --panel:#1a1326;
+      --panel2:#211730;
+      --line:rgba(255,255,255,.08);
+      --text:#f7f2ff;
+      --muted:#c8bfd8;
+      --soft:#9e92b2;
+      --rose:#c15c8a;
+      --wine:#7b2f4f;
+      --violet:#6d56c9;
+      --blue:#295d8f;
+      --gold:#d9a86c;
+      --mint:#2f7b62;
+      --danger:#ba5c5c;
+      --ok:#58b383;
+      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(193,92,138,.12), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(109,86,201,.10), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(41,93,143,.12), transparent 28%),
+        linear-gradient(180deg, #0f0b16 0%, #120d19 100%);
+    }
+    a{color:inherit}
+    .container{width:min(1180px, calc(100% - 28px));margin:0 auto}
+    .hero{padding:26px 0 14px}
+    .hero-panel{
+      background:linear-gradient(180deg, rgba(26,19,38,.96), rgba(18,13,25,.92));
+      border:1px solid var(--line);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:28px;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(135deg, rgba(217,168,108,.07), transparent 28%),
+        linear-gradient(220deg, rgba(193,92,138,.08), transparent 35%);
+      pointer-events:none;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:22px;position:relative;z-index:1}
+    .eyebrow{display:inline-flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.06);border:1px solid var(--line);
+      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#f5d6ae;
+    }
+    h1,h2,h3,p{margin:0}
+    h1{margin-top:14px;font-size:clamp(34px, 6vw, 58px);line-height:1.03;max-width:11ch}
+    .lead{margin-top:16px;font-size:18px;line-height:1.75;color:var(--muted);max-width:66ch}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:800;font-size:15px;
+      border:1px solid var(--line);transition:.18s ease transform,.18s ease background;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--rose),var(--wine));color:#fff;border-color:transparent}
+    .btn-secondary{background:rgba(255,255,255,.05)}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+    .mini-card{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:18px;padding:16px}
+    .mini-card span{display:block;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .mini-card strong{font-size:22px;line-height:1.1}
+    .hero-art{display:grid;gap:14px}
+    .poster{
+      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .poster::before{
+      content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.35;filter:blur(2px)
+    }
+    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#fbe6c7}
+    .poster strong{font-size:24px;line-height:1.08;max-width:9ch}
+    .poster small{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55}
+    .poster-rock{background:linear-gradient(155deg, rgba(123,47,79,.40), rgba(26,19,38,.98))}
+    .poster-rock::before{background:radial-gradient(circle, rgba(217,168,108,.95), transparent 62%)}
+    .poster-social{background:linear-gradient(155deg, rgba(47,123,98,.34), rgba(26,19,38,.98))}
+    .poster-social::before{background:radial-gradient(circle, rgba(255,255,255,.72), transparent 62%)}
+    .section{padding:20px 0}
+    .section-title{color:#f4c894;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
+    .section h2{font-size:clamp(28px,3vw,40px);margin-bottom:10px}
+    .section-intro{color:var(--muted);line-height:1.75;font-size:17px;max-width:72ch}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+      border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)
+    }
+    .card h3{font-size:22px;margin-bottom:10px}
+    .card p,.card li{color:var(--muted);line-height:1.78;font-size:16px}
+    .card ul{padding-left:18px;margin:10px 0 0}
+    .focus-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .focus-box{border-radius:20px;padding:18px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
+    .focus-box strong{display:block;font-size:18px;margin-bottom:8px}
+    .focus-box p{color:var(--muted);line-height:1.65}
+    .feed-card{
+      border-radius:28px; overflow:hidden; border:1px solid var(--line); background:#15101f;
+      box-shadow:var(--shadow)
+    }
+    .feed-top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+    .feed-user{display:flex;align-items:center;gap:12px}
+    .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--rose));display:grid;place-items:center;font-weight:800}
+    .feed-handle strong{display:block}
+    .feed-handle span{color:var(--soft);font-size:14px}
+    .feed-media{
+      position:relative;padding:24px;min-height:230px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(217,168,108,.25), transparent 22%),
+        radial-gradient(circle at 80% 30%, rgba(109,86,201,.25), transparent 22%),
+        linear-gradient(160deg, rgba(41,93,143,.35), rgba(123,47,79,.25), rgba(23,17,34,.95));
+    }
+    .feed-badge{display:inline-flex;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16)}
+    .feed-title{font-size:32px;line-height:1.04;max-width:13ch;margin-top:16px}
+    .feed-copy{margin-top:12px;color:#f1e9ff;max-width:48ch;line-height:1.7}
+    .feed-actions{display:flex;gap:18px;padding:16px 18px;color:var(--muted);border-top:1px solid var(--line)}
+    .arrow-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:center;margin-top:14px}
+    .flow-node{padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:130px}
+    .flow-node strong{display:block;font-size:18px;margin-bottom:8px}
+    .flow-arrow{display:grid;place-items:center;color:#f4c894;font-size:26px;font-weight:900}
+    table{width:100%;border-collapse:collapse;margin-top:14px}
+    th,td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+    th{color:#f4c894;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+    td{color:var(--muted);line-height:1.6}
+    .diagram-card{padding:0;overflow:hidden}
+    .diagram-wrap{padding:20px}
+    .formula{
+      margin-top:12px;padding:16px 18px;border-radius:18px;border:1px solid rgba(217,168,108,.20);
+      background:rgba(217,168,108,.08);color:#ffe1be;font-weight:700;line-height:1.7
+    }
+    .example{margin-top:14px;padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .example h4{margin:0 0 10px;font-size:18px}
+    .example p{color:var(--muted);line-height:1.72;margin-top:10px}
+    .label{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#f5d6ae}
+    .qa{display:grid;gap:14px;margin-top:16px}
+    .q-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .q-card strong{display:block;font-size:18px;line-height:1.45}
+    .q-card p{margin-top:10px;color:var(--muted)}
+    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800}
+    summary::-webkit-details-marker{display:none}
+    details > div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
+    .practice-list{display:grid;gap:12px;margin-top:14px}
+    .practice-item{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.035)}
+    .practice-item strong{display:block;line-height:1.65}
+    .practice-item ol{margin:10px 0 0 18px;color:var(--muted);line-height:1.75}
+    .bar-chart{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:end;margin-top:18px;min-height:220px}
+    .bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:10px}
+    .bar > div{width:80%;border-radius:18px 18px 8px 8px;background:linear-gradient(180deg, rgba(193,92,138,.92), rgba(109,86,201,.88));border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;font-weight:800;color:white;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+    .bar:nth-child(2) > div{background:linear-gradient(180deg, rgba(47,123,98,.95), rgba(41,93,143,.88))}
+    .bar:nth-child(3) > div{background:linear-gradient(180deg, rgba(217,168,108,.95), rgba(180,95,47,.88))}
+    .bar span{color:var(--muted);font-size:14px;text-align:center}
+    .checklist{display:grid;gap:12px;margin-top:14px}
+    .check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .check .box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(255,255,255,.28);margin-top:2px;flex:0 0 auto}
+    .resources{display:grid;gap:12px;margin-top:14px}
+    .resource{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);text-decoration:none}
+    .resource strong{display:block;font-size:16px}
+    .resource span{display:block;color:var(--muted);line-height:1.6;margin-top:6px}
+    .resource em{font-style:normal;color:#f4c894;white-space:nowrap;align-self:center}
+    .footer-nav{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 0 42px}
+    .tiny{font-size:13px;color:var(--soft)}
+    @media (max-width: 980px){
+      .hero-grid,.grid-2,.grid-3,.focus-row,.arrow-flow{grid-template-columns:1fr}
+      .hero-meta{grid-template-columns:1fr 1fr}
+      .bar-chart{grid-template-columns:1fr}
+      .resource{flex-direction:column}
+    }
+    @media (max-width: 640px){
+      .container{width:min(100% - 18px, 100%)}
+      .hero-panel,.card{padding:18px}
+      .hero-meta{grid-template-columns:1fr}
+      .feed-title{font-size:26px}
+      h1{font-size:34px}
+    }
+  
+
+    .quiz-wrap{display:grid;gap:16px;margin-top:16px}
+    .quiz-intro{padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
+    .quiz-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .quiz-card strong{display:block;font-size:18px;line-height:1.55}
+    .quiz-card p{margin-top:10px;color:var(--muted);line-height:1.7}
+    .chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .chip{display:inline-flex;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#f1d4ac;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+    .math-visual{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:16px;align-items:stretch}
+    .visual-board{padding:20px;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .visual-note{padding:16px;border-radius:18px;border:1px solid rgba(217,168,108,.22);background:rgba(217,168,108,.08);color:#ffe4c2;line-height:1.7;margin-top:14px}
+    .legend-list{display:grid;gap:10px;margin-top:12px}
+    .legend-item{display:flex;gap:12px;align-items:center;color:var(--muted)}
+    .dot{width:14px;height:14px;border-radius:4px;display:inline-block}
+    .op-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+    .op-card{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:160px}
+    .op-card .symbol{font-size:34px;font-weight:900;color:#f5d6ae}
+    .op-card h4{margin:8px 0 8px;font-size:18px}
+    .op-card p{color:var(--muted);line-height:1.65}
+    .two-col-table td:first-child, .two-col-table th:first-child{width:34%}
+    .badge-line{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .story-card{padding:20px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(160deg, rgba(41,93,143,.2), rgba(123,47,79,.16), rgba(255,255,255,.03))}
+    .story-card h3{font-size:24px;margin-bottom:10px}
+    .story-card p{color:var(--muted);line-height:1.75}
+    .mini-svg{width:100%;height:auto;display:block}
+    @media (max-width: 980px){
+      .math-visual,.op-grid{grid-template-columns:1fr}
+    }
+
+  
+    .timeline-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:16px}
+    .time-chip{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:126px}
+    .time-chip .year{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#f5d6ae}
+    .time-chip strong{display:block;font-size:18px;margin-top:12px}
+    .time-chip p{margin-top:8px;color:var(--muted);line-height:1.62}
+    .history-visual{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:16px;align-items:start}
+    .era-bands{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+    .era{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .era strong{display:block;font-size:17px;margin-bottom:8px}
+    .era p{color:var(--muted);line-height:1.62;font-size:15px}
+    .century-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .century-box{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .century-box strong{display:block;font-size:18px;margin-bottom:8px}
+    .century-box p{color:var(--muted);line-height:1.62}
+    .memory-note{padding:16px 18px;border-radius:18px;border:1px solid rgba(217,168,108,.2);background:rgba(217,168,108,.08);color:#ffe1be;line-height:1.7;margin-top:14px}
+    .mix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+    .mix-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .mix-card strong{display:block;font-size:18px;margin-bottom:8px}
+    .mix-card p,.mix-card li{color:var(--muted);line-height:1.7}
+    .mix-card ol,.mix-card ul{margin:10px 0 0 18px}
+    @media (max-width: 980px){
+      .timeline-strip,.history-visual,.era-bands,.century-grid,.mix-grid{grid-template-columns:1fr}
+    }
+
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="pill">Fase 1 · Base</span>
+              <span class="pill">Semana 1</span>
+              <span class="pill">Dia 003</span>
+              <span class="pill">Com quiz no topo</span>
+            </div>
+            <h1>Humanas · tempo histórico, século e linha do tempo</h1>
+            <p class="lead">Hoje você vai aprender a <strong>se localizar no tempo</strong> sem decorar datas soltas. A missão é diferenciar <strong>tempo cronológico</strong> de <strong>tempo histórico</strong>, entender <strong>como descobrir o século</strong> de uma data e ler uma <strong>linha do tempo</strong> com segurança. O clima visual conversa com playlist, saga e feed, mas o foco continua totalmente voltado para a prova.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#quiz">Começar a apostila</a>
+              <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
+            </div>
+            <div class="hero-meta">
+              <div class="mini-card"><span>Meta do dia</span><strong>Parar de se perder nas datas</strong></div>
+              <div class="mini-card"><span>Modelo</span><strong>Concreto → visual → abstrato</strong></div>
+              <div class="mini-card"><span>Tempo sugerido</span><strong>60–90 min</strong></div>
+            </div>
+          </div>
+          <div class="hero-art">
+            <article class="poster poster-rock">
+              <div class="tag">saga</div>
+              <strong>Sem ordem, tudo vira caos</strong>
+              <small>Em História, entender a sequência dos acontecimentos muda completamente o sentido do que você lê.</small>
+            </article>
+            <article class="poster poster-social">
+              <div class="tag">feed</div>
+              <strong>Data isolada não basta</strong>
+              <small>A prova costuma cobrar relação entre antes, durante e depois — e não só memorização seca.</small>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section" id="quiz">
+      <div class="section-title">Revisão espaçada · 24h</div>
+      <h2>Quiz rápido do Dia 002</h2>
+      <p class="section-intro">Antes de entrar em Humanas, puxe da memória os conceitos de Matemática de ontem. Tente responder <strong>sem abrir</strong> as respostas. Só depois confira.</p>
+
+      <div class="quiz-wrap">
+        <div class="quiz-intro">
+          <strong>Como usar este bloco</strong>
+          <p>Leia, responda em voz alta ou no caderno e só então abra. O objetivo é fortalecer a lembrança, não “reconhecer” a resposta depois de vê-la.</p>
+          <div class="chip-row">
+            <span class="chip">recuperação ativa</span>
+            <span class="chip">2 a 5 min</span>
+            <span class="chip">sem cola</span>
+          </div>
+        </div>
+
+        <article class="quiz-card">
+          <strong>1. Em um número, o que determina o valor de cada algarismo?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>A <strong>posição</strong> que ele ocupa. O mesmo algarismo pode valer 8, 80, 800 ou 8.000 dependendo da casa em que está.</div>
+          </details>
+        </article>
+
+        <article class="quiz-card">
+          <strong>2. Como você decompõe o número 4.307?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div><strong>4.000 + 300 + 7</strong>. Não há dezenas nesse número, então a casa das dezenas vale zero.</div>
+          </details>
+        </article>
+
+        <article class="quiz-card">
+          <strong>3. Quando um enunciado indica juntar quantidades, qual operação costuma aparecer?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div><strong>Adição.</strong> Palavras como “ao todo”, “somando”, “juntando” geralmente apontam para soma.</div>
+          </details>
+        </article>
+
+        <article class="quiz-card">
+          <strong>4. Antes de sair fazendo conta, qual é a etapa mais importante?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div><strong>Ler o enunciado e decidir a operação certa.</strong> Muita gente erra não por cálculo, mas por começar pela conta errada.</div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="missao">
+      <div class="section-title">Mapa da missão</div>
+      <h2>O que precisa sair dominado hoje</h2>
+      <p class="section-intro">A prova gosta de misturar textos, linhas do tempo, datas e noções simples de História. O objetivo do dia é aprender a se localizar sem pânico.</p>
+      <div class="focus-row">
+        <div class="focus-box">
+          <strong>1. Tipos de tempo</strong>
+          <p>Diferenciar <strong>tempo cronológico</strong> de <strong>tempo histórico</strong>.</p>
+        </div>
+        <div class="focus-box">
+          <strong>2. Séculos</strong>
+          <p>Descobrir em qual século uma data está sem decorar fórmulas confusas.</p>
+        </div>
+        <div class="focus-box">
+          <strong>3. Linha do tempo</strong>
+          <p>Ordenar acontecimentos e perceber relações de antes, durante e depois.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Entrada concreta · CPA</div>
+      <h2>Primeiro, pense no tempo como sequência e transformação</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="feed-card">
+          <div class="feed-top">
+            <div class="feed-user">
+              <div class="avatar">A</div>
+              <div class="feed-handle">
+                <strong>akemy.timeline</strong>
+                <span>@ordemfazsentido</span>
+              </div>
+            </div>
+            <div class="tiny">agora</div>
+          </div>
+          <div class="feed-media">
+            <span class="feed-badge">maratona de saga</span>
+            <h3 class="feed-title">Você não entende a história fora da ordem</h3>
+            <p class="feed-copy">Assistir a cena final antes do começo confunde tudo. Em História acontece algo parecido: sem ordem e sem contexto, a informação perde sentido.</p>
+          </div>
+          <div class="feed-actions">
+            <span>❤ 1,2 mil</span>
+            <span>💬 206</span>
+            <span>↗ salvar</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>O que isso tem a ver com História?</h3>
+          <p><strong>Tempo cronológico</strong> organiza a sequência por datas, horas, meses, anos e séculos. <strong>Tempo histórico</strong> observa as <strong>mudanças</strong>, as <strong>permanências</strong> e o sentido dos acontecimentos para a vida das pessoas.</p>
+          <div class="formula">
+            Tempo cronológico = ordem e marcação do tempo
+            <br>
+            <strong>Tempo histórico = interpretação do que mudou, permaneceu ou causou impacto</strong>
+          </div>
+          <div class="example">
+            <h4>Exemplo simples</h4>
+            <p>Dizer que algo aconteceu em <strong>1888</strong> é tempo cronológico. Explicar por que esse acontecimento mudou relações sociais e políticas é trabalhar com <strong>tempo histórico</strong>.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Visualização</div>
+      <h2>Veja a lógica do tempo com os olhos</h2>
+      <div class="history-visual">
+        <article class="visual-board">
+          <h3>Linha do tempo: antes, durante e depois</h3>
+          <svg class="mini-svg" viewBox="0 0 920 260" role="img" aria-label="Linha do tempo com cinco acontecimentos em ordem cronológica">
+            <line x1="70" y1="140" x2="850" y2="140" stroke="rgba(255,255,255,.16)" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="110" cy="140" r="18" fill="#d9a86c"/>
+            <circle cx="290" cy="140" r="18" fill="#6d56c9"/>
+            <circle cx="470" cy="140" r="18" fill="#c15c8a"/>
+            <circle cx="650" cy="140" r="18" fill="#2f7b62"/>
+            <circle cx="830" cy="140" r="18" fill="#295d8f"/>
+            <text x="110" y="78" text-anchor="middle" fill="#f7e6c8" font-size="24" font-weight="800">1500</text>
+            <text x="290" y="78" text-anchor="middle" fill="#f7e6c8" font-size="24" font-weight="800">1822</text>
+            <text x="470" y="78" text-anchor="middle" fill="#f7e6c8" font-size="24" font-weight="800">1888</text>
+            <text x="650" y="78" text-anchor="middle" fill="#f7e6c8" font-size="24" font-weight="800">1889</text>
+            <text x="830" y="78" text-anchor="middle" fill="#f7e6c8" font-size="24" font-weight="800">1988</text>
+            <text x="110" y="198" text-anchor="middle" fill="white" font-size="20" font-weight="700">marco A</text>
+            <text x="290" y="198" text-anchor="middle" fill="white" font-size="20" font-weight="700">marco B</text>
+            <text x="470" y="198" text-anchor="middle" fill="white" font-size="20" font-weight="700">marco C</text>
+            <text x="650" y="198" text-anchor="middle" fill="white" font-size="20" font-weight="700">marco D</text>
+            <text x="830" y="198" text-anchor="middle" fill="white" font-size="20" font-weight="700">marco E</text>
+            <text x="460" y="236" text-anchor="middle" fill="#c8bfd8" font-size="18">A linha do tempo serve para localizar e ordenar acontecimentos</text>
+          </svg>
+          <div class="legend-list">
+            <div class="legend-item"><span class="dot" style="background:#d9a86c"></span><span>Quanto mais à esquerda, mais antigo.</span></div>
+            <div class="legend-item"><span class="dot" style="background:#6d56c9"></span><span>Quanto mais à direita, mais recente.</span></div>
+            <div class="legend-item"><span class="dot" style="background:#c15c8a"></span><span>Ela ajuda a comparar sequência, duração e proximidade entre fatos.</span></div>
+          </div>
+        </article>
+
+        <article class="visual-board">
+          <h3>Séculos sem mistério</h3>
+          <div class="timeline-strip">
+            <div class="time-chip"><span class="year">1 a 100</span><strong>Século I</strong><p>Os cem primeiros anos formam o primeiro século.</p></div>
+            <div class="time-chip"><span class="year">101 a 200</span><strong>Século II</strong><p>O século seguinte começa no 101, não no 100.</p></div>
+            <div class="time-chip"><span class="year">1701 a 1800</span><strong>Século XVIII</strong><p>Repare que o número do século fica “um a mais”.</p></div>
+            <div class="time-chip"><span class="year">1801 a 1900</span><strong>Século XIX</strong><p>Por isso 1822 está no século XIX.</p></div>
+            <div class="time-chip"><span class="year">1901 a 2000</span><strong>Século XX</strong><p>E 1999 ainda pertence ao século XX.</p></div>
+          </div>
+          <div class="memory-note"><strong>Atalho mental:</strong> se o ano termina em <strong>00</strong>, ele fecha o século. Se não termina em 00, o século é o número das centenas <strong>+ 1</strong>.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Conceito central</div>
+      <h2>Tempo cronológico x tempo histórico</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card diagram-card">
+          <div class="diagram-wrap">
+            <h3>Comparando os dois</h3>
+            <table class="two-col-table">
+              <thead>
+                <tr><th>Tempo cronológico</th><th>Tempo histórico</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Mede e organiza o tempo.</td><td>Interpreta o significado dos acontecimentos.</td></tr>
+                <tr><td>Usa horas, dias, meses, anos, séculos.</td><td>Usa ideias de mudança, permanência, causa e consequência.</td></tr>
+                <tr><td>Ajuda a saber <strong>quando</strong> algo ocorreu.</td><td>Ajuda a entender <strong>por que</strong> isso importa.</td></tr>
+                <tr><td>É mais quantitativo.</td><td>É mais explicativo e relacional.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Dois erros muito comuns</h3>
+          <ul>
+            <li>achar que História é só decorar data;</li>
+            <li>achar que basta saber a ordem sem entender as mudanças;</li>
+            <li>confundir o século com os dois primeiros números do ano;</li>
+            <li>achar que 1900 pertence ao século XX.</li>
+          </ul>
+          <div class="formula">Lembre: <strong>1900</strong> fecha o século XIX. O século XX só começa em <strong>1901</strong>.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Worked examples</div>
+      <h2>Exemplo resolvido → prática guiada</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <span class="label">Exemplo resolvido</span>
+          <h3 style="margin-top:12px">Em que século está o ano 1822?</h3>
+          <div class="example">
+            <h4>Passo a passo</h4>
+            <p><strong>1.</strong> O ano 1822 não termina em 00.</p>
+            <p><strong>2.</strong> Então pegamos a centena e somamos 1.</p>
+            <p><strong>3.</strong> 18 + 1 = 19.</p>
+            <p><strong>Conclusão:</strong> 1822 está no <strong>século XIX</strong>.</p>
+          </div>
+          <div class="example">
+            <h4>Outro exemplo rápido</h4>
+            <p><strong>1500</strong> termina em 00, então ele fecha o século. Logo, está no <strong>século XV</strong>.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="label">Prática guiada</span>
+          <h3 style="margin-top:12px">Faça comigo</h3>
+          <div class="qa">
+            <div class="q-card">
+              <strong>1. Em que século está o ano 1889?</strong>
+              <p>Dica: não termina em 00.</p>
+              <details>
+                <summary>Ver resolução</summary>
+                <div>18 + 1 = <strong>19</strong>. Portanto, 1889 está no <strong>século XIX</strong>.</div>
+              </details>
+            </div>
+            <div class="q-card">
+              <strong>2. Em que século está o ano 2000?</strong>
+              <p>Dica: anos terminados em 00 fecham o século.</p>
+              <details>
+                <summary>Ver resolução</summary>
+                <div>2000 fecha o século XX. Então ele está no <strong>século XX</strong>, não no XXI.</div>
+              </details>
+            </div>
+            <div class="q-card">
+              <strong>3. O que a linha do tempo mostra melhor: opinião pessoal ou sequência de acontecimentos?</strong>
+              <p>Dica: pense na função principal desse recurso.</p>
+              <details>
+                <summary>Ver resolução</summary>
+                <div>Ela mostra principalmente a <strong>sequência dos acontecimentos</strong>, ajudando a localizar o que veio antes, durante e depois.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Interleaving</div>
+      <h2>Misture os tipos de raciocínio</h2>
+      <p class="section-intro">Aqui a ideia é não treinar sempre no mesmo formato. A prova mistura leitura, noção de tempo e interpretação de linha do tempo.</p>
+      <div class="mix-grid">
+        <article class="mix-card">
+          <strong>Bloco A · ordenar</strong>
+          <ol>
+            <li>Coloque em ordem cronológica: 1888, 1500, 1822, 1988.</li>
+            <li>Qual desses acontecimentos é o mais antigo?</li>
+            <li>Qual está mais próximo do presente?</li>
+          </ol>
+        </article>
+        <article class="mix-card">
+          <strong>Bloco B · interpretar</strong>
+          <ol>
+            <li>Uma questão diz: “marque o acontecimento posterior a 1822”. O que a palavra <strong>posterior</strong> quer dizer?</li>
+            <li>Se duas datas estão muito próximas numa linha do tempo, isso garante que elas tenham a mesma causa? Por quê?</li>
+            <li>Qual é a diferença entre localizar um fato no tempo e explicar seu impacto?</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Prática independente</div>
+      <h2>Agora é com você</h2>
+      <div class="practice-list">
+        <article class="practice-item">
+          <strong>1. Diferencie, com suas palavras, tempo cronológico e tempo histórico.</strong>
+        </article>
+        <article class="practice-item">
+          <strong>2. Em que século estão os anos 1500, 1822, 1888, 1901 e 2026?</strong>
+        </article>
+        <article class="practice-item">
+          <strong>3. Ordene do mais antigo para o mais recente: 2000, 1500, 1889, 1988, 1822.</strong>
+        </article>
+        <article class="practice-item">
+          <strong>4. Explique por que 1999 está no século XX e 2001 está no século XXI.</strong>
+        </article>
+        <article class="practice-item">
+          <strong>5. Uma questão mostra uma linha do tempo com quatro fatos. O primeiro ocorreu em 1930 e o último em 1988. O que a linha do tempo permite comparar com facilidade?</strong>
+        </article>
+        <article class="practice-item">
+          <strong>6. Escreva um exemplo em que saber só a data não basta para entender o fato histórico.</strong>
+        </article>
+      </div>
+
+      <details>
+        <summary>Mostrar gabarito comentado</summary>
+        <div>
+          <p><strong>1.</strong> Tempo cronológico organiza a data e a sequência. Tempo histórico interpreta mudanças, permanências e impactos.</p>
+          <p><strong>2.</strong> 1500 = <strong>século XV</strong>; 1822 = <strong>século XIX</strong>; 1888 = <strong>século XIX</strong>; 1901 = <strong>século XX</strong>; 2026 = <strong>século XXI</strong>.</p>
+          <p><strong>3.</strong> 1500 → 1822 → 1889 → 1988 → 2000.</p>
+          <p><strong>4.</strong> Porque o século XX vai de <strong>1901 a 2000</strong>, e o XXI começa em <strong>2001</strong>.</p>
+          <p><strong>5.</strong> Sequência, anterioridade/posterioridade e distância temporal entre os fatos.</p>
+          <p><strong>6.</strong> Resposta pessoal, desde que mostre que <strong>entender o impacto</strong> exige mais do que só saber o ano.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Fechamento</div>
+      <h2>Checklist de saída</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>O que precisa estar claro agora</h3>
+          <div class="checklist">
+            <div class="check"><div class="box"></div><div>Consigo diferenciar tempo cronológico e tempo histórico.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo descobrir o século de uma data comum.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo ordenar fatos em uma linha do tempo.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo evitar a confusão entre 1900/século XIX e 1901/século XX.</div></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Caderno de erros</h3>
+          <p>Hoje, registre <strong>onde</strong> você tropeçou:</p>
+          <ul>
+            <li>confundi sequência com explicação histórica;</li>
+            <li>errei o cálculo do século;</li>
+            <li>li a linha do tempo rápido demais;</li>
+            <li>não percebi a diferença entre anterior e posterior.</li>
+          </ul>
+          <div class="formula">Em Humanas, muito erro parece “falta de memorização”, mas na verdade é erro de leitura e localização no tempo.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Vídeo-aulas</div>
+      <h2>Apoio para reforçar o mesmo assunto</h2>
+      <div class="resources">
+        <a class="resource" href="https://www.youtube.com/watch?v=YTvNeDRzagM" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Tempo histórico · conceitos históricos</strong>
+            <span>Bom para revisar a diferença entre tempo cronológico e tempo histórico.</span>
+          </div>
+          <em>abrir aula</em>
+        </a>
+        <a class="resource" href="https://www.youtube.com/watch?v=87MNSOajn6o" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Como calcular séculos em História</strong>
+            <span>Explica a lógica do século e evita a confusão com anos terminados em 00.</span>
+          </div>
+          <em>abrir aula</em>
+        </a>
+        <a class="resource" href="https://www.youtube.com/watch?v=f9IBOWqTDCI" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Linha do tempo da História</strong>
+            <span>Ajuda a visualizar a sequência histórica e a organização dos períodos.</span>
+          </div>
+          <em>abrir aula</em>
+        </a>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a class="btn btn-secondary" href="../index.html">← Voltar para o cronograma</a>
+      <a class="btn btn-primary" href="dia-004.html">Próxima apostila →</a>
+    </div>
+  </main>
+</body>
+</html>

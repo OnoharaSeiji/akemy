@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akemy Estudos · Dia 004</title>
+  <meta name="description" content="Apostila AKEMY Dia 004: Ciências com observação, hipótese e leitura de tabelas, com quiz de revisão do dia 3, exemplos visuais, prática guiada e treino independente." />
+  <style>
+    :root{
+      --bg:#0f0b16;
+      --bg2:#171122;
+      --panel:#1a1326;
+      --panel2:#211730;
+      --line:rgba(255,255,255,.08);
+      --text:#f7f2ff;
+      --muted:#c8bfd8;
+      --soft:#9e92b2;
+      --rose:#c15c8a;
+      --wine:#7b2f4f;
+      --violet:#6d56c9;
+      --blue:#295d8f;
+      --gold:#d9a86c;
+      --mint:#2f7b62;
+      --danger:#ba5c5c;
+      --ok:#58b383;
+      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(193,92,138,.12), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(109,86,201,.10), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(41,93,143,.12), transparent 28%),
+        linear-gradient(180deg, #0f0b16 0%, #120d19 100%);
+    }
+    a{color:inherit}
+    .container{width:min(1180px, calc(100% - 28px));margin:0 auto}
+    .hero{padding:26px 0 14px}
+    .hero-panel{
+      background:linear-gradient(180deg, rgba(26,19,38,.96), rgba(18,13,25,.92));
+      border:1px solid var(--line);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:28px;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(135deg, rgba(217,168,108,.07), transparent 28%),
+        linear-gradient(220deg, rgba(193,92,138,.08), transparent 35%);
+      pointer-events:none;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:22px;position:relative;z-index:1}
+    .eyebrow{display:inline-flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.06);border:1px solid var(--line);
+      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#f5d6ae;
+    }
+    h1,h2,h3,p{margin:0}
+    h1{margin-top:14px;font-size:clamp(34px, 6vw, 58px);line-height:1.03;max-width:12ch}
+    .lead{margin-top:16px;font-size:18px;line-height:1.75;color:var(--muted);max-width:66ch}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:800;font-size:15px;
+      border:1px solid var(--line);transition:.18s ease transform,.18s ease background;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--rose),var(--wine));color:#fff;border-color:transparent}
+    .btn-secondary{background:rgba(255,255,255,.05)}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+    .mini-card{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:18px;padding:16px}
+    .mini-card span{display:block;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .mini-card strong{font-size:22px;line-height:1.1}
+    .hero-art{display:grid;gap:14px}
+    .poster{
+      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .poster::before{
+      content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.35;filter:blur(2px)
+    }
+    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#fbe6c7}
+    .poster strong{font-size:24px;line-height:1.08;max-width:10ch}
+    .poster small{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55}
+    .poster-rock{background:linear-gradient(155deg, rgba(123,47,79,.40), rgba(26,19,38,.98))}
+    .poster-rock::before{background:radial-gradient(circle, rgba(217,168,108,.95), transparent 62%)}
+    .poster-social{background:linear-gradient(155deg, rgba(47,123,98,.34), rgba(26,19,38,.98))}
+    .poster-social::before{background:radial-gradient(circle, rgba(255,255,255,.72), transparent 62%)}
+    .section{padding:20px 0}
+    .section-title{color:#f4c894;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
+    .section h2{font-size:clamp(28px,3vw,40px);margin-bottom:10px}
+    .section-intro{color:var(--muted);line-height:1.75;font-size:17px;max-width:72ch}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+      border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)
+    }
+    .card h3{font-size:22px;margin-bottom:10px}
+    .card p,.card li{color:var(--muted);line-height:1.78;font-size:16px}
+    .card ul{padding-left:18px;margin:10px 0 0}
+    .focus-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .focus-box{border-radius:20px;padding:18px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
+    .focus-box strong{display:block;font-size:18px;margin-bottom:8px}
+    .focus-box p{color:var(--muted);line-height:1.65}
+    .feed-card{border-radius:28px; overflow:hidden; border:1px solid var(--line); background:#15101f; box-shadow:var(--shadow)}
+    .feed-top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+    .feed-user{display:flex;align-items:center;gap:12px}
+    .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--rose));display:grid;place-items:center;font-weight:800}
+    .feed-handle strong{display:block}
+    .feed-handle span{color:var(--soft);font-size:14px}
+    .feed-media{
+      position:relative;padding:24px;min-height:230px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(217,168,108,.25), transparent 22%),
+        radial-gradient(circle at 80% 30%, rgba(109,86,201,.25), transparent 22%),
+        linear-gradient(160deg, rgba(41,93,143,.35), rgba(123,47,79,.25), rgba(23,17,34,.95));
+    }
+    .feed-badge{display:inline-flex;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16)}
+    .feed-title{font-size:32px;line-height:1.04;max-width:13ch;margin-top:16px}
+    .feed-copy{margin-top:12px;color:#f1e9ff;max-width:48ch;line-height:1.7}
+    .feed-actions{display:flex;gap:18px;padding:16px 18px;color:var(--muted);border-top:1px solid var(--line)}
+    .arrow-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;align-items:center;margin-top:14px}
+    .flow-node{padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:132px}
+    .flow-node strong{display:block;font-size:18px;margin-bottom:8px}
+    .flow-arrow{display:grid;place-items:center;color:#f4c894;font-size:26px;font-weight:900}
+    table{width:100%;border-collapse:collapse;margin-top:14px}
+    th,td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+    th{color:#f4c894;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+    td{color:var(--muted);line-height:1.6}
+    .example{margin-top:14px;padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .example h4{margin:0 0 10px;font-size:18px}
+    .example p{color:var(--muted);line-height:1.72;margin-top:10px}
+    .label{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#f5d6ae}
+    .qa{display:grid;gap:14px;margin-top:16px}
+    .q-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .q-card strong{display:block;font-size:18px;line-height:1.45}
+    .q-card p{margin-top:10px;color:var(--muted)}
+    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800}
+    summary::-webkit-details-marker{display:none}
+    details > div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
+    .practice-list{display:grid;gap:12px;margin-top:14px}
+    .practice-item{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.035)}
+    .practice-item strong{display:block;line-height:1.65}
+    .practice-item ol{margin:10px 0 0 18px;color:var(--muted);line-height:1.75}
+    .checklist{display:grid;gap:12px;margin-top:14px}
+    .check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .check .box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(255,255,255,.28);margin-top:2px;flex:0 0 auto}
+    .resources{display:grid;gap:12px;margin-top:14px}
+    .resource{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);text-decoration:none}
+    .resource strong{display:block;font-size:16px}
+    .resource span{display:block;color:var(--muted);line-height:1.6;margin-top:6px}
+    .resource em{font-style:normal;color:#f4c894;white-space:nowrap;align-self:center}
+    .footer-nav{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 0 42px}
+    .tiny{font-size:13px;color:var(--soft)}
+
+    .quiz-wrap{display:grid;gap:16px;margin-top:16px}
+    .quiz-intro{padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
+    .quiz-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .quiz-card strong{display:block;font-size:18px;line-height:1.55}
+    .quiz-card p{margin-top:10px;color:var(--muted);line-height:1.7}
+    .chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .chip{display:inline-flex;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#f1d4ac;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+
+    .science-board{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:16px;align-items:start}
+    .visual-board{padding:20px;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .visual-note{padding:16px;border-radius:18px;border:1px solid rgba(217,168,108,.22);background:rgba(217,168,108,.08);color:#ffe4c2;line-height:1.7;margin-top:14px}
+    .legend-list{display:grid;gap:10px;margin-top:12px}
+    .legend-item{display:flex;gap:12px;align-items:center;color:var(--muted)}
+    .dot{width:14px;height:14px;border-radius:4px;display:inline-block}
+    .science-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+    .science-card{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:170px}
+    .science-card .symbol{font-size:34px;font-weight:900;color:#f5d6ae}
+    .science-card h4{margin:8px 0 8px;font-size:18px}
+    .science-card p{color:var(--muted);line-height:1.65}
+    .badge-line{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .story-card{padding:20px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(160deg, rgba(41,93,143,.2), rgba(123,47,79,.16), rgba(255,255,255,.03))}
+    .story-card h3{font-size:24px;margin-bottom:10px}
+    .story-card p{color:var(--muted);line-height:1.75}
+    .mini-svg{width:100%;height:auto;display:block}
+
+    .data-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:16px}
+    .table-card{padding:0;overflow:hidden}
+    .table-head{padding:18px 20px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.03)}
+    .table-wrap{padding:8px 18px 18px}
+    .bar-chart{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:end;margin-top:18px;min-height:250px}
+    .bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:10px}
+    .bar > div{width:80%;border-radius:18px 18px 8px 8px;background:linear-gradient(180deg, rgba(193,92,138,.92), rgba(109,86,201,.88));border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;font-weight:800;color:white;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+    .bar:nth-child(2) > div{background:linear-gradient(180deg, rgba(47,123,98,.95), rgba(41,93,143,.88))}
+    .bar:nth-child(3) > div{background:linear-gradient(180deg, rgba(217,168,108,.95), rgba(180,95,47,.88))}
+    .bar:nth-child(4) > div{background:linear-gradient(180deg, rgba(88,179,131,.95), rgba(41,93,143,.88))}
+    .bar span{color:var(--muted);font-size:14px;text-align:center}
+    .mistake-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+    .mistake-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .mistake-card strong{display:block;font-size:18px;margin-bottom:8px}
+    .mistake-card p,.mistake-card li{color:var(--muted);line-height:1.7}
+    .mistake-card ul{margin:10px 0 0 18px}
+
+    @media (max-width: 980px){
+      .hero-grid,.grid-2,.grid-3,.focus-row,.science-board,.science-grid,.arrow-flow,.data-grid,.mistake-grid{grid-template-columns:1fr}
+      .hero-meta{grid-template-columns:1fr 1fr}
+      .bar-chart{grid-template-columns:1fr}
+      .resource{flex-direction:column}
+    }
+    @media (max-width: 640px){
+      .container{width:min(100% - 18px, 100%)}
+      .hero-panel,.card{padding:18px}
+      .hero-meta{grid-template-columns:1fr}
+      .feed-title{font-size:26px}
+      h1{font-size:34px}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="pill">Fase 1 · Base</span>
+              <span class="pill">Semana 1</span>
+              <span class="pill">Dia 004</span>
+              <span class="pill">Quiz no topo</span>
+            </div>
+            <h1>Ciências · observação, hipótese e leitura de tabelas</h1>
+            <p class="lead">Hoje você entra no modo <strong>detetive do laboratório</strong>. A ideia é aprender a olhar um fenômeno, separar o que foi realmente observado do que é suposição, formular uma <strong>hipótese testável</strong> e ler uma <strong>tabela sem se perder</strong>. O visual continua jovem e envolvente, mas o foco segue no que a prova costuma cobrar: atenção, lógica e interpretação.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#quiz">Começar a apostila</a>
+              <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
+            </div>
+            <div class="hero-meta">
+              <div class="mini-card"><span>Meta do dia</span><strong>Ver, pensar e provar</strong></div>
+              <div class="mini-card"><span>Modelo</span><strong>Concreto → visual → abstrato</strong></div>
+              <div class="mini-card"><span>Tempo sugerido</span><strong>60–90 min</strong></div>
+            </div>
+          </div>
+          <div class="hero-art">
+            <article class="poster poster-rock">
+              <div class="tag">playlist</div>
+              <strong>Laboratório em ritmo de palco</strong>
+              <small>Em ciência, não vence quem chuta melhor. Vence quem observa melhor e testa com calma.</small>
+            </article>
+            <article class="poster poster-social">
+              <div class="tag">feed</div>
+              <strong>Olho clínico de detetive</strong>
+              <small>Pare de aceitar qualquer impressão como verdade. Hoje você aprende a checar pistas e dados.</small>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="quiz" class="section">
+      <div class="section-title">Revisão espaçada · 24 horas</div>
+      <h2>Quiz rápido para puxar da memória o Dia 003</h2>
+      <p class="section-intro">Antes de começar Ciências, teste se o conteúdo de Humanas ainda está vivo na sua cabeça. Pense primeiro. Só depois abra a resposta para conferir.</p>
+
+      <div class="quiz-wrap">
+        <div class="quiz-intro">
+          <strong>Como usar esse bloco</strong>
+          <p>Responda mentalmente ou em voz alta. A meta aqui não é acertar tudo de primeira. A meta é <strong>forçar o cérebro a recuperar</strong> a informação. Isso fortalece a memória e mostra exatamente onde você ainda trava.</p>
+          <div class="chip-row">
+            <span class="chip">recuperação ativa</span>
+            <span class="chip">sem cola primeiro</span>
+            <span class="chip">erro também ensina</span>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="quiz-card">
+            <strong>1) O que é tempo histórico?</strong>
+            <details>
+              <summary>Mostrar resposta</summary>
+              <div>É o jeito de organizar e entender mudanças, permanências e acontecimentos importantes na vida das pessoas e das sociedades ao longo do tempo.</div>
+            </details>
+          </div>
+          <div class="quiz-card">
+            <strong>2) Qual é a diferença entre tempo cronológico e tempo histórico?</strong>
+            <details>
+              <summary>Mostrar resposta</summary>
+              <div>O tempo cronológico marca a passagem do tempo em datas, horas, meses e anos. O tempo histórico ajuda a interpretar acontecimentos, processos e transformações.</div>
+            </details>
+          </div>
+          <div class="quiz-card">
+            <strong>3) Em que século está o ano 2026?</strong>
+            <details>
+              <summary>Mostrar resposta</summary>
+              <div>2026 está no século XXI, porque os anos de 2001 a 2100 pertencem ao século 21.</div>
+            </details>
+          </div>
+          <div class="quiz-card">
+            <strong>4) Para que serve uma linha do tempo?</strong>
+            <details>
+              <summary>Mostrar resposta</summary>
+              <div>Serve para organizar fatos em sequência e perceber o que veio antes, depois e ao mesmo tempo.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Missão do dia</div>
+      <h2>Hoje você vai aprender a pensar como cientista</h2>
+      <p class="section-intro">A prova gosta de questões em que você precisa olhar uma situação, perceber o que está sendo observado, entender o que é hipótese e depois interpretar uma tabela. Isso aparece em Ciências, mas também ajuda em Matemática, Geografia e leitura de gráficos.</p>
+
+      <div class="focus-row">
+        <div class="focus-box">
+          <strong>Observação</strong>
+          <p>É aquilo que você percebe usando pistas reais: cor, quantidade, tempo, temperatura, crescimento, comportamento, registros.</p>
+        </div>
+        <div class="focus-box">
+          <strong>Hipótese</strong>
+          <p>É uma explicação possível para o que foi observado. Ela precisa poder ser testada, não pode ser chute solto.</p>
+        </div>
+        <div class="focus-box">
+          <strong>Tabela</strong>
+          <p>É uma forma de organizar dados. Ler tabela bem significa comparar linhas, colunas, títulos, unidades e valores.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Concreto → Pictórico → Abstrato</div>
+      <h2>Primeiro a cena, depois o desenho, depois a ideia</h2>
+      <p class="section-intro">Você não começa pela definição decorada. Primeiro entende a situação concreta, depois visualiza os dados e só então transforma isso em linguagem científica.</p>
+
+      <div class="grid-2">
+        <div class="feed-card">
+          <div class="feed-top">
+            <div class="feed-user">
+              <div class="avatar">AK</div>
+              <div class="feed-handle">
+                <strong>akemy.lab</strong>
+                <span>post de estudo • experimento do dia</span>
+              </div>
+            </div>
+            <span>⋯</span>
+          </div>
+          <div class="feed-media">
+            <span class="feed-badge">post do laboratório</span>
+            <div class="feed-title">Duas plantas. Luz diferente. Resultado diferente.</div>
+            <p class="feed-copy">Uma planta ficou perto da janela. Outra ficou num canto escuro. Depois de 10 dias, a primeira cresceu mais e ficou mais verde. A segunda cresceu pouco e ficou amarelada.</p>
+          </div>
+          <div class="feed-actions">
+            <span>observar</span>
+            <span>perguntar</span>
+            <span>testar</span>
+            <span>concluir</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>O que dá para fazer com essa cena?</h3>
+          <ul>
+            <li><strong>Observação:</strong> a planta perto da janela cresceu mais e ficou mais verde.</li>
+            <li><strong>Pergunta:</strong> a luz influencia o crescimento da planta?</li>
+            <li><strong>Hipótese:</strong> se a planta receber mais luz, então ela vai crescer melhor.</li>
+            <li><strong>Teste:</strong> deixar plantas iguais em condições diferentes de luz e comparar.</li>
+            <li><strong>Conclusão:</strong> só vem depois da análise dos dados, não antes.</li>
+          </ul>
+          <div class="visual-note">Perceba a diferença: <strong>observação</strong> descreve o que aconteceu. <strong>Hipótese</strong> tenta explicar por que aquilo aconteceu.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Fluxo do raciocínio científico</div>
+      <h2>O passo a passo que evita chute</h2>
+      <p class="section-intro">Nem toda questão usa a expressão “método científico”, mas muitas cobram exatamente essa lógica. Quando você aprende a sequência, começa a interpretar melhor vários tipos de problema.</p>
+
+      <div class="arrow-flow">
+        <div class="flow-node"><strong>1. Observar</strong><p>Notar um fato, uma diferença, um padrão ou uma mudança.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><strong>2. Perguntar</strong><p>Transformar a observação em uma pergunta investigável.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><strong>3. Hipotetizar</strong><p>Propor uma explicação possível e testável.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><strong>4. Testar</strong><p>Coletar dados por observação, experimento ou comparação.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><strong>5. Concluir</strong><p>Usar os dados para apoiar ou enfraquecer a hipótese.</p></div>
+      </div>
+
+      <div class="science-grid">
+        <div class="science-card">
+          <div class="symbol">👀</div>
+          <h4>Observação</h4>
+          <p>“A água no copo A evaporou mais rápido do que no copo B.”</p>
+        </div>
+        <div class="science-card">
+          <div class="symbol">?</div>
+          <h4>Pergunta</h4>
+          <p>“A temperatura do lugar influencia a velocidade de evaporação?”</p>
+        </div>
+        <div class="science-card">
+          <div class="symbol">💡</div>
+          <h4>Hipótese</h4>
+          <p>“Se a temperatura for maior, a evaporação será mais rápida.”</p>
+        </div>
+        <div class="science-card">
+          <div class="symbol">📊</div>
+          <h4>Dados</h4>
+          <p>Medidas de volume restantes em cada copo após o mesmo tempo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Leitura visual</div>
+      <h2>Como ler uma tabela sem se confundir</h2>
+      <p class="section-intro">Tabela não é para assustar. Ela apenas organiza dados. O segredo é seguir uma ordem fixa de leitura até isso virar hábito.</p>
+
+      <div class="science-board">
+        <div class="visual-board">
+          <svg class="mini-svg" viewBox="0 0 760 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="20" width="720" height="320" rx="24" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
+            <rect x="52" y="58" width="656" height="58" rx="16" fill="rgba(217,168,108,0.14)" stroke="rgba(217,168,108,0.20)"/>
+            <text x="78" y="95" fill="#ffe1be" font-size="22" font-weight="700">Ordem segura para ler uma tabela</text>
+            <rect x="58" y="136" width="144" height="150" rx="18" fill="rgba(193,92,138,0.18)"/>
+            <rect x="214" y="136" width="144" height="150" rx="18" fill="rgba(109,86,201,0.18)"/>
+            <rect x="370" y="136" width="144" height="150" rx="18" fill="rgba(41,93,143,0.18)"/>
+            <rect x="526" y="136" width="144" height="150" rx="18" fill="rgba(47,123,98,0.18)"/>
+            <text x="78" y="172" fill="#fff" font-size="24" font-weight="800">1</text>
+            <text x="78" y="206" fill="#fff" font-size="20" font-weight="700">Leia o título</text>
+            <text x="78" y="238" fill="#d7cde7" font-size="17">Sobre o que os dados falam?</text>
+            <text x="234" y="172" fill="#fff" font-size="24" font-weight="800">2</text>
+            <text x="234" y="206" fill="#fff" font-size="20" font-weight="700">Veja linhas e colunas</text>
+            <text x="234" y="238" fill="#d7cde7" font-size="17">O que cada lado representa?</text>
+            <text x="390" y="172" fill="#fff" font-size="24" font-weight="800">3</text>
+            <text x="390" y="206" fill="#fff" font-size="20" font-weight="700">Compare valores</text>
+            <text x="390" y="238" fill="#d7cde7" font-size="17">Maior? Menor? Igual?</text>
+            <text x="546" y="172" fill="#fff" font-size="24" font-weight="800">4</text>
+            <text x="546" y="206" fill="#fff" font-size="20" font-weight="700">Cheque a unidade</text>
+            <text x="546" y="238" fill="#d7cde7" font-size="17">Dias? cm? mL? °C?</text>
+          </svg>
+          <div class="legend-list">
+            <div class="legend-item"><span class="dot" style="background:#c15c8a"></span> Título diz o tema.</div>
+            <div class="legend-item"><span class="dot" style="background:#6d56c9"></span> Linha e coluna dizem onde procurar.</div>
+            <div class="legend-item"><span class="dot" style="background:#295d8f"></span> Comparar valores revela padrões.</div>
+            <div class="legend-item"><span class="dot" style="background:#2f7b62"></span> Unidade evita leitura errada.</div>
+          </div>
+        </div>
+
+        <div class="story-card">
+          <h3>Pense assim</h3>
+          <p>Uma tabela é como uma cena de filme organizada em quadradinhos. O título conta o assunto. As linhas e colunas mostram quem está em jogo. Os números contam o que aconteceu. O erro mais comum é ler um número isolado e esquecer de perguntar: <strong>esse número significa o quê, de quem e em qual unidade?</strong></p>
+          <div class="badge-line">
+            <span class="chip">título</span>
+            <span class="chip">linha</span>
+            <span class="chip">coluna</span>
+            <span class="chip">comparação</span>
+            <span class="chip">unidade</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Exemplo resolvido</div>
+      <h2>Da tabela para a conclusão</h2>
+      <p class="section-intro">Agora você vai fazer exatamente o que a prova pede: observar os dados, ler a tabela e concluir sem inventar coisa que não está ali.</p>
+
+      <div class="data-grid">
+        <div class="card table-card">
+          <div class="table-head">
+            <h3>Experimento: crescimento de feijões em 7 dias</h3>
+            <p class="section-intro" style="font-size:15px;max-width:none">Quatro vasos receberam a mesma quantidade de água, mas ficaram em condições diferentes.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Vaso</th>
+                  <th>Condição</th>
+                  <th>Altura após 7 dias</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A</td>
+                  <td>Perto da janela</td>
+                  <td>14 cm</td>
+                </tr>
+                <tr>
+                  <td>B</td>
+                  <td>Meia sombra</td>
+                  <td>10 cm</td>
+                </tr>
+                <tr>
+                  <td>C</td>
+                  <td>Escuro</td>
+                  <td>4 cm</td>
+                </tr>
+                <tr>
+                  <td>D</td>
+                  <td>Sol forte o dia todo</td>
+                  <td>8 cm</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="example">
+              <span class="label">Leitura guiada</span>
+              <h4>O que podemos afirmar com segurança?</h4>
+              <p><strong>Observação:</strong> o vaso A teve a maior altura, com 14 cm. O vaso C teve a menor altura, com 4 cm.</p>
+              <p><strong>Padrão:</strong> a presença de luz ajudou no crescimento, mas luz em excesso o dia todo não foi a melhor condição.</p>
+              <p><strong>Conclusão cuidadosa:</strong> neste experimento, a condição perto da janela foi mais favorável ao crescimento do que o escuro total e também melhor do que o sol forte o dia inteiro.</p>
+              <p><strong>O que não dá para afirmar:</strong> não dá para dizer que “qualquer luz sempre faz crescer mais” sem mais testes. Também não dá para concluir sobre outros tipos de plantas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Mesmos dados em gráfico</h3>
+          <p>Transformar a tabela em gráfico ajuda a ver mais rápido as diferenças, mas a lógica é a mesma: comparar valores.</p>
+          <div class="bar-chart">
+            <div class="bar"><div style="height:210px">14</div><span>Janela<br/>Vaso A</span></div>
+            <div class="bar"><div style="height:150px">10</div><span>Meia sombra<br/>Vaso B</span></div>
+            <div class="bar"><div style="height:60px">4</div><span>Escuro<br/>Vaso C</span></div>
+            <div class="bar"><div style="height:120px">8</div><span>Sol forte<br/>Vaso D</span></div>
+          </div>
+          <div class="visual-note">Na prova, tabela e gráfico são duas roupas diferentes para a mesma informação. Quem sabe ler uma, aprende a ler a outra com mais facilidade.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Worked examples → prática guiada → independente</div>
+      <h2>Treino em três níveis</h2>
+      <p class="section-intro">Primeiro você vê um exemplo completo. Depois resolve com apoio. Por fim, tenta sozinha. Esse formato reduz ansiedade e aumenta precisão.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Prática guiada</h3>
+          <div class="practice-list">
+            <div class="practice-item">
+              <strong>1) Uma aluna percebeu que o sorvete derretia mais rápido fora da geladeira do que dentro. O que é observação e o que pode ser hipótese?</strong>
+              <details>
+                <summary>Ver resposta guiada</summary>
+                <div><strong>Observação:</strong> o sorvete derreteu mais rápido fora da geladeira. <br><strong>Hipótese:</strong> a temperatura mais alta fora da geladeira acelera o derretimento.</div>
+              </details>
+            </div>
+            <div class="practice-item">
+              <strong>2) Em uma tabela de consumo de água, o título diz “Litros por dia”. Por que a unidade importa?</strong>
+              <details>
+                <summary>Ver resposta guiada</summary>
+                <div>Porque o número sozinho não basta. A unidade mostra o que está sendo medido. “12” pode ser litros, dias, centímetros ou qualquer outra coisa. Sem unidade, a leitura fica incompleta.</div>
+              </details>
+            </div>
+            <div class="practice-item">
+              <strong>3) Numa experiência, duas sementes receberam a mesma água, mas uma ficou ao sol e outra no escuro. Qual variável foi alterada?</strong>
+              <details>
+                <summary>Ver resposta guiada</summary>
+                <div>A variável alterada foi a luz. A água permaneceu igual; a condição de iluminação foi a diferença entre os dois grupos.</div>
+              </details>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Prática independente</h3>
+          <div class="qa">
+            <div class="q-card">
+              <strong>1) “As folhas da planta X estão mais amareladas do que as da planta Y.” Isso é observação ou hipótese?</strong>
+              <details>
+                <summary>Conferir</summary>
+                <div>É observação, porque descreve algo que foi percebido diretamente.</div>
+              </details>
+            </div>
+            <div class="q-card">
+              <strong>2) “Talvez a planta X esteja recebendo menos luz.” Isso é observação ou hipótese?</strong>
+              <details>
+                <summary>Conferir</summary>
+                <div>É hipótese, porque tenta explicar o motivo do que foi observado.</div>
+              </details>
+            </div>
+            <div class="q-card">
+              <strong>3) Em uma tabela, a coluna “tempo” mostra 2, 4, 6 e 8. A coluna “temperatura” mostra 18, 20, 23 e 26. O que aumentou ao longo do tempo?</strong>
+              <details>
+                <summary>Conferir</summary>
+                <div>A temperatura aumentou ao longo do tempo.</div>
+              </details>
+            </div>
+            <div class="q-card">
+              <strong>4) Qual cuidado é essencial antes de responder uma questão com tabela?</strong>
+              <details>
+                <summary>Conferir</summary>
+                <div>Ler o título, identificar linhas e colunas e checar a unidade dos dados antes de comparar valores.</div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Mistura inteligente</div>
+      <h2>Interleaving: misturando leitura, ciência e comparação</h2>
+      <p class="section-intro">A prova quase nunca vem organizada por “um conceito de cada vez”. Por isso, este bloco mistura ideias para treinar flexibilidade.</p>
+
+      <div class="mistake-grid">
+        <div class="mistake-card">
+          <strong>Questão 1</strong>
+          <p>Observe a afirmação: “O grupo A correu mais rápido porque é mais esforçado.” Sem dados de treino, alimentação, distância ou tempo medido, essa frase é observação ou interpretação?</p>
+          <details>
+            <summary>Ver análise</summary>
+            <div>É interpretação, não observação. A frase explica a causa sem apresentar dados suficientes. Uma observação seria algo como: “O grupo A terminou o percurso em menos tempo.”</div>
+          </details>
+        </div>
+        <div class="mistake-card">
+          <strong>Questão 2</strong>
+          <p>Numa tabela, o aluno vê o maior número e já marca a alternativa. Qual é o risco desse hábito?</p>
+          <details>
+            <summary>Ver análise</summary>
+            <div>Ele pode ignorar o título, a unidade e o que a pergunta realmente pede. Às vezes a questão quer o menor valor, a diferença entre valores ou uma tendência ao longo do tempo.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Caderno de erros</div>
+      <h2>Os erros mais comuns hoje</h2>
+      <p class="section-intro">Não anote só “errei a 2”. Registre o tipo de erro. Isso melhora muito a revisão de sexta e o mini simulado de sábado.</p>
+      <div class="mistake-grid">
+        <div class="mistake-card">
+          <strong>Erro 1 · Confundir observação com hipótese</strong>
+          <ul>
+            <li>Observação descreve o que foi visto.</li>
+            <li>Hipótese tenta explicar o motivo.</li>
+            <li>Pergunta-chave: “isso foi percebido ou está sendo suposto?”</li>
+          </ul>
+        </div>
+        <div class="mistake-card">
+          <strong>Erro 2 · Ler número sem contexto</strong>
+          <ul>
+            <li>Número sozinho não basta.</li>
+            <li>Leia título, linha, coluna e unidade.</li>
+            <li>Pergunta-chave: “esse valor representa o quê, de quem e em qual medida?”</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Fechamento</div>
+      <h2>Checklist do dia</h2>
+      <p class="section-intro">Antes de sair, confirme se você já domina o essencial.</p>
+      <div class="checklist">
+        <div class="check"><span class="box"></span><div>Consigo explicar a diferença entre <strong>observação</strong> e <strong>hipótese</strong>.</div></div>
+        <div class="check"><span class="box"></span><div>Consigo ler uma tabela em ordem: título, linhas, colunas, valores e unidades.</div></div>
+        <div class="check"><span class="box"></span><div>Consigo tirar uma conclusão sem inventar informação que não apareceu nos dados.</div></div>
+        <div class="check"><span class="box"></span><div>Anotei pelo menos 2 erros ou dúvidas no meu caderno de erros.</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Vídeo-aulas de apoio</div>
+      <h2>Para reforçar o conteúdo do dia</h2>
+      <p class="section-intro">Use esses materiais para revisão leve ou para destravar uma dúvida específica depois da apostila.</p>
+      <div class="resources">
+        <a class="resource" href="https://pt.khanacademy.org/science/biology/intro-to-biology/science-of-biology/v/the-scientific-method" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>Khan Academy · O método científico</strong>
+            <span>Explica a sequência observação → pergunta → hipótese → experimento → conclusão, com linguagem clara e foco no raciocínio científico.</span>
+          </div>
+          <em>Abrir</em>
+        </a>
+        <a class="resource" href="https://www.youtube.com/watch?v=MxjGqqmddS0" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>YouTube · Método científico | aula completa com esquema</strong>
+            <span>Boa opção para revisar observação, hipótese e teste de forma mais visual.</span>
+          </div>
+          <em>Abrir</em>
+        </a>
+        <a class="resource" href="https://www.youtube.com/watch?v=PETIZdSir3w" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>YouTube · Leitura de tabelas e gráficos</strong>
+            <span>Ajuda a consolidar interpretação de tabelas, gráficos de barras e organização dos dados.</span>
+          </div>
+          <em>Abrir</em>
+        </a>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a class="btn btn-secondary" href="../index.html">← Voltar para o cronograma</a>
+      <a class="btn btn-primary" href="dia-005.html">Próxima apostila →</a>
+    </div>
+    <p class="tiny">AKEMY · Dia 004 · Ciências · observação, hipótese e leitura de tabelas</p>
+  </main>
+</body>
+</html>
