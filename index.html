@@ -6,6 +6,36 @@
   <title>Akemy Estudos · ETEC 2026</title>
   <meta name="description" content="Akemy Estudos · feito no seu ritmo. Um cronograma pensado para te ajudar a ganhar confiança, criar constância e chegar na prova mais preparada.">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .schedule-months-shell{padding-top:12px}
+    .schedule-hero-card{background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));border:1px solid var(--line);border-radius:26px;padding:20px;box-shadow:var(--shadow);margin-bottom:22px;position:relative;overflow:hidden}
+    .schedule-hero-card::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg, rgba(217,168,108,.06), transparent 28%),linear-gradient(230deg, rgba(193,92,138,.09), transparent 38%);pointer-events:none}
+    .schedule-hero-note{margin-top:18px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-weight:700;color:#efe7ff;line-height:1.7}
+    .months{display:grid;gap:22px}
+    .month-card{background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));border:1px solid var(--line);border-radius:26px;padding:20px;box-shadow:var(--shadow)}
+    .month-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+    .month-head h3{margin:8px 0 4px;font-size:clamp(1.4rem,2.3vw,2rem);letter-spacing:-.02em}
+    .month-head p{margin:0;color:var(--soft);font-weight:700;line-height:1.7}
+    .month-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(217,168,108,.12);border:1px solid rgba(217,168,108,.22);color:#f6d6b0;font-weight:800;font-size:.82rem}
+    .weekday-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;margin-bottom:10px}
+    .month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+    .day-cell.sunday{background:linear-gradient(180deg, rgba(109,86,201,.12), rgba(255,255,255,.03))}
+    .day-cell.has-lesson{background:rgba(255,255,255,.06);box-shadow:0 18px 36px rgba(0,0,0,.12);transition:transform .18s ease,border-color .18s ease}.day-cell.has-lesson:hover{transform:translateY(-2px);border-color:rgba(217,168,108,.22)}
+    .day-cell.has-lesson.done{border-color:rgba(47,123,98,.46);background:linear-gradient(180deg, rgba(47,123,98,.22), rgba(255,255,255,.03))}
+    .day-num{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;font-weight:800;color:#efe7ff}.day-num span:first-child{font-size:1rem}
+    .lesson-tag{padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font-size:.7rem;font-weight:800;color:#ffe4bf;text-transform:lowercase}
+    .day-cell.has-lesson.done .lesson-tag{background:rgba(47,123,98,.2);border-color:rgba(47,123,98,.34);color:#d8ffe8}
+    .lesson-title{display:block;font-size:.94rem;line-height:1.35;font-weight:800;margin-bottom:8px;color:var(--text)}
+    .lesson-meta{font-size:.78rem;color:var(--muted);font-weight:700;line-height:1.45}
+    .lesson-open{display:inline-flex;align-items:center;gap:8px;margin-top:10px;color:#ffe1b5;font-size:.82rem;font-weight:800;text-decoration:none}
+    .lesson-open-disabled{color:var(--soft)}
+    .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .legend-item{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:.8rem;font-weight:800;color:var(--muted)}
+    .dot{width:10px;height:10px;border-radius:999px;background:#93c5fd}.dot.done{background:#22c55e}.dot.sunday{background:#94a3b8}.dot.empty{background:#cbd5e1}
+    @media (max-width:980px){.weekday-row,.month-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+    @media (max-width:760px){.month-head{flex-direction:column;align-items:flex-start}}
+    @media (max-width:680px){.weekday-row,.month-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.day-cell.has-lesson,.day-cell.sunday{min-height:120px}}
+  </style>
 </head>
 <body>
   <header class="hero">
@@ -190,10 +220,20 @@
       </div>
     </section>
 
-    <section class="section" id="cronograma">
-      <div class="section-title">Cronograma detalhado</div>
-      <h2>As 36 semanas, já no novo padrão</h2>
-      <div class="schedule-grid" id="schedule-grid"></div>
+    <section class="section schedule-months-shell" id="cronograma">
+      <div class="schedule-hero-card">
+        <div class="section-title">Cronograma detalhado</div>
+        <h2>O plano real distribuído no calendário</h2>
+        <p class="section-text">Aqui o cronograma fica em visão mensal contínua, com cada apostila posicionada na data real. A leitura fica mais direta, a navegação mais rápida e a percepção de sequência muito mais clara.</p>
+        <div class="schedule-hero-note">A ideia não é enfeitar o estudo. É reduzir fricção, dar visão de percurso e deixar o acesso às apostilas tão natural quanto abrir um calendário.</div>
+        <div class="legend">
+          <span class="legend-item"><i class="dot"></i>apostila publicada</span>
+          <span class="legend-item"><i class="dot done"></i>concluída por você</span>
+          <span class="legend-item"><i class="dot sunday"></i>descanso</span>
+          <span class="legend-item"><i class="dot empty"></i>fora do plano</span>
+        </div>
+      </div>
+      <div id="schedule-grid" class="months"></div>
     </section>
 
     <section class="section">
@@ -347,7 +387,7 @@
         { day:'Sábado', mode:'Mini simulado', text:'Teste curto, ritmo de prova, leitura de comando e autocorreção.'},
         { day:'Domingo', mode:'Descanso', text:'Pausa real para consolidar memória e evitar desgaste.'}
       ];
-      cards.forEach((item, index) => {
+      cards.forEach((item) => {
         const article = document.createElement('article');
         article.className = 'cadence-card';
         article.innerHTML = `
@@ -393,8 +433,8 @@
       }
 
       for (let day = 1; day <= lastDay.getDate(); day++) {
-        const current = new Date(state.currentYear, state.currentMonth, day);
-        const iso = current.toISOString().slice(0, 10);
+        const currentDate = new Date(state.currentYear, state.currentMonth, day);
+        const iso = currentDate.toISOString().slice(0, 10);
         const study = helpers.getStudyDayByIso(iso);
         const cell = document.createElement('div');
         cell.className = 'day-cell';
@@ -431,39 +471,94 @@
     function renderSchedule() {
       const wrap = document.getElementById('schedule-grid');
       wrap.innerHTML = '';
-      cfg.weeks.forEach(week => {
-        const weekDays = cfg.studyDays.filter(day => day.week === week.number);
-        const weekCard = document.createElement('article');
-        weekCard.className = 'week-card';
-        weekCard.innerHTML = `
-          <div class="week-head">
-            <div>
-              <span class="week-index">Semana ${String(week.number).padStart(2, '0')}</span>
-              <h3>${week.theme}</h3>
-              <p>${week.arc} · ${formatDateBR(week.start)} → ${formatDateBR(week.end)} · vibe: ${week.playlist}</p>
-            </div>
-            <span class="week-pill">${week.playlist}</span>
-          </div>
-          <div class="week-days">
-            ${weekDays.map(day => {
-              if (day.mode === 'descanso') {
-                return `<div class="week-day restful"><strong>Dom</strong><span>Descanso</span><small>respira, alonga e dorme bem</small></div>`;
-              }
+      const months = new Map();
 
-              const available = isAvailable(day.number);
-              const done = state.completed.includes(day.number);
-              return `
-                <div class="week-day ${day.mode}">
-                  <strong>${['Seg','Ter','Qua','Qui','Sex','Sáb'][day.weekday]}</strong>
-                  <span>${day.title}</span>
-                  <small>${day.mode === 'conteudo' ? 'conteúdo' : day.mode === 'revisao' ? 'revisão' : 'mini simulado'}</small>
-                  ${available ? `<a href="${day.href}">Abrir #${helpers.formatDayNumber(day.number)}${done ? ' ✓' : ''}</a>` : `<em>${day.mode === 'revisao' || day.mode === 'mini_simulado' || day.mode === 'conteudo' ? `#${helpers.formatDayNumber(day.number)} · em breve` : '—'}</em>`}
-                </div>
-              `;
-            }).join('')}
+      cfg.studyDays.forEach(day => {
+        const [year, month] = day.date.split('-');
+        const key = `${year}-${month}`;
+        if (!months.has(key)) months.set(key, []);
+        months.get(key).push(day);
+      });
+
+      months.forEach((days, key) => {
+        const [year, month] = key.split('-').map(Number);
+        const firstDay = new Date(year, month - 1, 1);
+        const lastDay = new Date(year, month, 0);
+        const monthDays = [];
+        for (let d = 1; d <= lastDay.getDate(); d++) {
+          const iso = `${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+          monthDays.push(helpers.getStudyDayByIso(iso));
+        }
+
+        const card = document.createElement('article');
+        card.className = 'month-card';
+        const publishedInMonth = days.filter(day => day.mode !== 'descanso' && isAvailable(day.number)).length;
+        const totalInMonth = days.filter(day => day.mode !== 'descanso').length;
+        card.innerHTML = `
+          <div class="month-head">
+            <div>
+              <div class="section-title">mês do plano</div>
+              <h3>${monthNames[month - 1]} de ${year}</h3>
+              <p>${publishedInMonth} de ${totalInMonth} apostilas já publicadas neste mês</p>
+            </div>
+            <span class="month-badge">${days[0]?.arc || 'cronograma'}</span>
           </div>
+          <div class="weekday-row">
+            ${weekdayNames.map(name => `<div class="weekday">${name}</div>`).join('')}
+          </div>
+          <div class="month-grid"></div>
         `;
-        wrap.appendChild(weekCard);
+        const grid = card.querySelector('.month-grid');
+
+        for (let i = 0; i < firstDay.getDay(); i++) {
+          const empty = document.createElement('div');
+          empty.className = 'day-cell empty';
+          grid.appendChild(empty);
+        }
+
+        monthDays.forEach((study, idx) => {
+          const cell = document.createElement('div');
+          if (!study) {
+            cell.className = 'day-cell empty';
+            grid.appendChild(cell);
+            return;
+          }
+
+          if (study.mode === 'descanso') {
+            cell.className = 'day-cell sunday';
+            cell.innerHTML = `
+              <div class="day-num">
+                <span>${idx + 1}</span>
+                <span class="lesson-tag">descanso</span>
+              </div>
+              <strong class="lesson-title">Domingo livre</strong>
+              <div class="lesson-meta">Respira, recupera energia e volta no dia seguinte com mais foco.</div>
+            `;
+            grid.appendChild(cell);
+            return;
+          }
+
+          const available = isAvailable(study.number);
+          const done = state.completed.includes(study.number);
+          cell.className = `day-cell has-lesson ${done ? 'done' : ''}`;
+          cell.innerHTML = `
+            <div class="day-num">
+              <span>${idx + 1}</span>
+              <span class="lesson-tag">${study.mode.replace('_',' ')}</span>
+            </div>
+            <strong class="lesson-title">#${helpers.formatDayNumber(study.number)} · ${study.title}</strong>
+            <div class="lesson-meta">${study.theme}<br>${formatDateBR(study.date)}</div>
+            ${available ? `<a class="lesson-open" href="${study.href}">Abrir apostila</a>` : `<span class="lesson-open lesson-open-disabled">Em breve</span>`}
+            ${available ? `<label class="tiny-check"><input type="checkbox" data-day="${study.number}" ${done ? 'checked' : ''}> concluída</label>` : ''}
+          `;
+          grid.appendChild(cell);
+        });
+
+        wrap.appendChild(card);
+      });
+
+      wrap.querySelectorAll('[data-day]').forEach(input => {
+        input.addEventListener('change', () => toggleCompleted(Number(input.dataset.day)));
       });
     }
 
