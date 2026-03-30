@@ -3,27 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AKEMY · Dia 002 · Matemática · valor posicional e as 4 operações</title>
-  <meta name="description" content="Apostila AKEMY Dia 002: Matemática com valor posicional e as quatro operações, com quiz de revisão do dia 1, exemplos visuais, prática guiada e treino independente." />
+  <title>Akemy Estudos · Dia 002</title>
+  <meta name="description" content="Apostila 2 do Akemy Estudos · diagnóstico de operações, valor posicional e cálculo." />
   <style>
     :root{
-      --bg:#0f0b16;
-      --bg2:#171122;
-      --panel:#1a1326;
-      --panel2:#211730;
-      --line:rgba(255,255,255,.08);
-      --text:#f7f2ff;
-      --muted:#c8bfd8;
-      --soft:#9e92b2;
-      --rose:#c15c8a;
-      --wine:#7b2f4f;
-      --violet:#6d56c9;
-      --blue:#295d8f;
-      --gold:#d9a86c;
-      --mint:#2f7b62;
-      --danger:#ba5c5c;
-      --ok:#58b383;
-      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --bg:#f7f6f2;
+      --panel:#ffffff;
+      --panel2:#f3efe7;
+      --line:rgba(31,41,55,.12);
+      --text:#1f2937;
+      --muted:#4b5563;
+      --soft:#6b7280;
+      --blue:#243b6b;
+      --green:#2f6f5e;
+      --red:#a84b4b;
+      --gold:#e9d8a6;
+      --shadow:0 20px 48px rgba(31,41,55,.08);
       --radius:24px;
     }
     *{box-sizing:border-box}
@@ -33,16 +28,15 @@
       color:var(--text);
       font-family:Inter,Segoe UI,Arial,sans-serif;
       background:
-        radial-gradient(circle at 10% 10%, rgba(193,92,138,.12), transparent 25%),
-        radial-gradient(circle at 90% 10%, rgba(109,86,201,.10), transparent 24%),
-        radial-gradient(circle at 50% 100%, rgba(41,93,143,.12), transparent 28%),
-        linear-gradient(180deg, #0f0b16 0%, #120d19 100%);
+        radial-gradient(circle at 10% 10%, rgba(36,59,107,.06), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(47,111,94,.05), transparent 24%),
+        linear-gradient(180deg, #f7f6f2 0%, #f3efe7 100%);
     }
     a{color:inherit}
-    .container{width:min(1180px, calc(100% - 28px));margin:0 auto}
-    .hero{padding:26px 0 14px}
+    .container{width:min(1080px, calc(100% - 24px));margin:0 auto}
+    .hero{padding:24px 0 14px}
     .hero-panel{
-      background:linear-gradient(180deg, rgba(26,19,38,.96), rgba(18,13,25,.92));
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(243,239,231,.98));
       border:1px solid var(--line);
       border-radius:32px;
       box-shadow:var(--shadow);
@@ -54,176 +48,116 @@
       content:"";
       position:absolute; inset:0;
       background:
-        linear-gradient(135deg, rgba(217,168,108,.07), transparent 28%),
-        linear-gradient(220deg, rgba(193,92,138,.08), transparent 35%);
+        linear-gradient(135deg, rgba(36,59,107,.04), transparent 28%),
+        linear-gradient(220deg, rgba(47,111,94,.05), transparent 35%);
       pointer-events:none;
     }
-    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:22px;position:relative;z-index:1}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;position:relative;z-index:1}
     .eyebrow{display:inline-flex;gap:8px;flex-wrap:wrap}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
       padding:8px 12px;border-radius:999px;
-      background:rgba(255,255,255,.06);border:1px solid var(--line);
-      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#f5d6ae;
+      background:rgba(233,216,166,.42);border:1px solid rgba(31,41,55,.10);
+      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#5b4a18;
     }
     h1,h2,h3,p{margin:0}
-    h1{margin-top:14px;font-size:clamp(34px, 6vw, 58px);line-height:1.03;max-width:11ch}
+    h1{margin-top:14px;font-size:clamp(34px, 6vw, 56px);line-height:1.03;max-width:12ch}
     .lead{margin-top:16px;font-size:18px;line-height:1.75;color:var(--muted);max-width:66ch}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:800;font-size:15px;
       border:1px solid var(--line);transition:.18s ease transform,.18s ease background;
+      background:#fff;
     }
     .btn:hover{transform:translateY(-1px)}
-    .btn-primary{background:linear-gradient(135deg,var(--rose),var(--wine));color:#fff;border-color:transparent}
-    .btn-secondary{background:rgba(255,255,255,.05)}
+    .btn-primary{background:linear-gradient(135deg,var(--blue),#2e4a85);color:#fff;border-color:transparent}
+    .btn-secondary{background:#fff}
     .hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
-    .mini-card{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:18px;padding:16px}
+    .mini-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
     .mini-card span{display:block;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-    .mini-card strong{font-size:22px;line-height:1.1}
+    .mini-card strong{font-size:20px;line-height:1.2}
     .hero-art{display:grid;gap:14px}
     .poster{
-      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(31,41,55,.08);
       position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+      background:#fff;
     }
     .poster::before{
-      content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.35;filter:blur(2px)
+      content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.30;filter:blur(2px)
     }
-    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#fbe6c7}
-    .poster strong{font-size:24px;line-height:1.08;max-width:9ch}
+    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:var(--soft)}
+    .poster strong{font-size:24px;line-height:1.08;max-width:10ch}
     .poster small{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55}
-    .poster-rock{background:linear-gradient(155deg, rgba(123,47,79,.40), rgba(26,19,38,.98))}
-    .poster-rock::before{background:radial-gradient(circle, rgba(217,168,108,.95), transparent 62%)}
-    .poster-social{background:linear-gradient(155deg, rgba(47,123,98,.34), rgba(26,19,38,.98))}
-    .poster-social::before{background:radial-gradient(circle, rgba(255,255,255,.72), transparent 62%)}
-    .section{padding:20px 0}
-    .section-title{color:#f4c894;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
+    .poster-blue{background:linear-gradient(155deg, rgba(36,59,107,.10), rgba(255,255,255,.98))}
+    .poster-blue::before{background:radial-gradient(circle, rgba(233,216,166,.95), transparent 62%)}
+    .poster-green{background:linear-gradient(155deg, rgba(47,111,94,.10), rgba(255,255,255,.98))}
+    .poster-green::before{background:radial-gradient(circle, rgba(36,59,107,.22), transparent 62%)}
+    .section{padding:18px 0}
+    .section-title{color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
     .section h2{font-size:clamp(28px,3vw,40px);margin-bottom:10px}
     .section-intro{color:var(--muted);line-height:1.75;font-size:17px;max-width:72ch}
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
     .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+      background:#fff;
       border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)
     }
     .card h3{font-size:22px;margin-bottom:10px}
     .card p,.card li{color:var(--muted);line-height:1.78;font-size:16px}
     .card ul{padding-left:18px;margin:10px 0 0}
     .focus-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
-    .focus-box{border-radius:20px;padding:18px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
+    .focus-box{border-radius:20px;padding:18px;border:1px solid var(--line);background:#fff}
     .focus-box strong{display:block;font-size:18px;margin-bottom:8px}
     .focus-box p{color:var(--muted);line-height:1.65}
-    .feed-card{
-      border-radius:28px; overflow:hidden; border:1px solid var(--line); background:#15101f;
-      box-shadow:var(--shadow)
-    }
-    .feed-top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
-    .feed-user{display:flex;align-items:center;gap:12px}
-    .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--rose));display:grid;place-items:center;font-weight:800}
-    .feed-handle strong{display:block}
-    .feed-handle span{color:var(--soft);font-size:14px}
-    .feed-media{
-      position:relative;padding:24px;min-height:230px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(217,168,108,.25), transparent 22%),
-        radial-gradient(circle at 80% 30%, rgba(109,86,201,.25), transparent 22%),
-        linear-gradient(160deg, rgba(41,93,143,.35), rgba(123,47,79,.25), rgba(23,17,34,.95));
-    }
-    .feed-badge{display:inline-flex;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16)}
-    .feed-title{font-size:32px;line-height:1.04;max-width:13ch;margin-top:16px}
-    .feed-copy{margin-top:12px;color:#f1e9ff;max-width:48ch;line-height:1.7}
-    .feed-actions{display:flex;gap:18px;padding:16px 18px;color:var(--muted);border-top:1px solid var(--line)}
-    .arrow-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:center;margin-top:14px}
-    .flow-node{padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:130px}
-    .flow-node strong{display:block;font-size:18px;margin-bottom:8px}
-    .flow-arrow{display:grid;place-items:center;color:#f4c894;font-size:26px;font-weight:900}
-    table{width:100%;border-collapse:collapse;margin-top:14px}
-    th,td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-    th{color:#f4c894;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
-    td{color:var(--muted);line-height:1.6}
-    .diagram-card{padding:0;overflow:hidden}
-    .diagram-wrap{padding:20px}
     .formula{
-      margin-top:12px;padding:16px 18px;border-radius:18px;border:1px solid rgba(217,168,108,.20);
-      background:rgba(217,168,108,.08);color:#ffe1be;font-weight:700;line-height:1.7
+      margin-top:12px;padding:16px 18px;border-radius:18px;border:1px solid rgba(31,41,55,.10);
+      background:rgba(233,216,166,.42);color:#5b4a18;font-weight:700;line-height:1.7
     }
-    .example{margin-top:14px;padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
-    .example h4{margin:0 0 10px;font-size:18px}
-    .example p{color:var(--muted);line-height:1.72;margin-top:10px}
-    .label{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#f5d6ae}
-    .qa{display:grid;gap:14px;margin-top:16px}
-    .q-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .diagnostic-grid{display:grid;gap:14px;margin-top:16px}
+    .q-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff}
     .q-card strong{display:block;font-size:18px;line-height:1.45}
     .q-card p{margin-top:10px;color:var(--muted)}
-    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);overflow:hidden}
+    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:#f9fafb;overflow:hidden}
     summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800}
     summary::-webkit-details-marker{display:none}
     details > div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
+    .example{margin-top:14px;padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff}
+    .example h4{margin:0 0 10px;font-size:18px}
+    .example p{color:var(--muted);line-height:1.72;margin-top:10px}
     .practice-list{display:grid;gap:12px;margin-top:14px}
-    .practice-item{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.035)}
+    .practice-item{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fff}
     .practice-item strong{display:block;line-height:1.65}
-    .practice-item ol{margin:10px 0 0 18px;color:var(--muted);line-height:1.75}
-    .bar-chart{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:end;margin-top:18px;min-height:220px}
-    .bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:10px}
-    .bar > div{width:80%;border-radius:18px 18px 8px 8px;background:linear-gradient(180deg, rgba(193,92,138,.92), rgba(109,86,201,.88));border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;font-weight:800;color:white;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
-    .bar:nth-child(2) > div{background:linear-gradient(180deg, rgba(47,123,98,.95), rgba(41,93,143,.88))}
-    .bar:nth-child(3) > div{background:linear-gradient(180deg, rgba(217,168,108,.95), rgba(180,95,47,.88))}
-    .bar span{color:var(--muted);font-size:14px;text-align:center}
+    .score-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+    .score-card{padding:18px;border-radius:20px;border:1px solid var(--line);background:#fff}
+    .score-card strong{display:block;font-size:18px;margin-bottom:8px}
+    .score-card p{color:var(--muted);line-height:1.7}
+    .score-card.good{box-shadow:inset 0 0 0 1px rgba(47,111,94,.18)}
+    .score-card.mid{box-shadow:inset 0 0 0 1px rgba(233,216,166,.72)}
+    .score-card.low{box-shadow:inset 0 0 0 1px rgba(168,75,75,.16)}
     .checklist{display:grid;gap:12px;margin-top:14px}
-    .check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
-    .check .box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(255,255,255,.28);margin-top:2px;flex:0 0 auto}
+    .check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .check .box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(31,41,55,.28);margin-top:2px;flex:0 0 auto}
     .resources{display:grid;gap:12px;margin-top:14px}
-    .resource{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);text-decoration:none}
+    .resource{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:#fff;text-decoration:none}
     .resource strong{display:block;font-size:16px}
     .resource span{display:block;color:var(--muted);line-height:1.6;margin-top:6px}
-    .resource em{font-style:normal;color:#f4c894;white-space:nowrap;align-self:center}
+    .resource em{font-style:normal;color:var(--blue);white-space:nowrap;align-self:center}
     .footer-nav{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 0 42px}
     .tiny{font-size:13px;color:var(--soft)}
+    .nav-group{display:flex;gap:12px;flex-wrap:wrap}
     @media (max-width: 980px){
-      .hero-grid,.grid-2,.grid-3,.focus-row,.arrow-flow{grid-template-columns:1fr}
+      .hero-grid,.grid-2,.grid-3,.focus-row,.score-grid{grid-template-columns:1fr}
       .hero-meta{grid-template-columns:1fr 1fr}
-      .bar-chart{grid-template-columns:1fr}
       .resource{flex-direction:column}
     }
     @media (max-width: 640px){
       .container{width:min(100% - 18px, 100%)}
       .hero-panel,.card{padding:18px}
       .hero-meta{grid-template-columns:1fr}
-      .feed-title{font-size:26px}
       h1{font-size:34px}
+      .footer-nav{flex-direction:column}
     }
-  
-
-    .quiz-wrap{display:grid;gap:16px;margin-top:16px}
-    .quiz-intro{padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
-    .quiz-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
-    .quiz-card strong{display:block;font-size:18px;line-height:1.55}
-    .quiz-card p{margin-top:10px;color:var(--muted);line-height:1.7}
-    .chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .chip{display:inline-flex;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#f1d4ac;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-    .math-visual{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:16px;align-items:stretch}
-    .visual-board{padding:20px;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
-    .visual-note{padding:16px;border-radius:18px;border:1px solid rgba(217,168,108,.22);background:rgba(217,168,108,.08);color:#ffe4c2;line-height:1.7;margin-top:14px}
-    .legend-list{display:grid;gap:10px;margin-top:12px}
-    .legend-item{display:flex;gap:12px;align-items:center;color:var(--muted)}
-    .dot{width:14px;height:14px;border-radius:4px;display:inline-block}
-    .op-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
-    .op-card{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);min-height:160px}
-    .op-card .symbol{font-size:34px;font-weight:900;color:#f5d6ae}
-    .op-card h4{margin:8px 0 8px;font-size:18px}
-    .op-card p{color:var(--muted);line-height:1.65}
-    .two-col-table td:first-child, .two-col-table th:first-child{width:34%}
-    .badge-line{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .story-card{padding:20px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(160deg, rgba(41,93,143,.2), rgba(123,47,79,.16), rgba(255,255,255,.03))}
-    .story-card h3{font-size:24px;margin-bottom:10px}
-    .story-card p{color:var(--muted);line-height:1.75}
-    .mini-svg{width:100%;height:auto;display:block}
-    @media (max-width: 980px){
-      .math-visual,.op-grid{grid-template-columns:1fr}
-    }
-
   </style>
 </head>
 <body>
@@ -236,30 +170,30 @@
               <span class="pill">Fase 1 · Base</span>
               <span class="pill">Semana 1</span>
               <span class="pill">Dia 002</span>
-              <span class="pill">Com quiz no topo</span>
+              <span class="pill">Matemática</span>
             </div>
-            <h1>Matemática · valor posicional e as 4 operações</h1>
-            <p class="lead">Hoje a missão é construir base numérica sem decorar no vazio. Você vai entender <strong>o valor de cada algarismo conforme sua posição</strong>, revisar <strong>adição, subtração, multiplicação e divisão</strong> e aprender a escolher a operação certa em problemas curtos. O visual conversa com música, feed e fantasia, mas a lógica continua alinhada à prova real.</p>
+            <h1>Diagnóstico de operações, valor posicional e cálculo</h1>
+            <p class="lead">O objetivo do Dia 2 não é despejar conta em você. É diagnosticar como você enxerga os números, reforçar o essencial e medir se já consegue escolher a operação certa antes de calcular.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#quiz">Começar a apostila</a>
+              <a class="btn btn-primary" href="#revisao-dia1">Começar a apostila</a>
               <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
             </div>
             <div class="hero-meta">
-              <div class="mini-card"><span>Meta do dia</span><strong>Entender o número antes da conta</strong></div>
-              <div class="mini-card"><span>Modelo</span><strong>Concreto → visual → abstrato</strong></div>
-              <div class="mini-card"><span>Tempo sugerido</span><strong>60–90 min</strong></div>
+              <div class="mini-card"><span>Meta do dia</span><strong>entender o número antes da conta</strong></div>
+              <div class="mini-card"><span>Formato</span><strong>revisão + diagnóstico + checagem</strong></div>
+              <div class="mini-card"><span>Tempo sugerido</span><strong>45–60 min</strong></div>
             </div>
           </div>
           <div class="hero-art">
-            <article class="poster poster-rock">
-              <div class="tag">playlist</div>
-              <strong>Rock de largada</strong>
-              <small>Hoje a energia entra em modo contagem, organização e resolução sem pular etapa.</small>
+            <article class="poster poster-blue">
+              <div class="tag">missão</div>
+              <strong>Parar de chutar conta</strong>
+              <small>Hoje a meta é escolher a operação certa com calma e clareza.</small>
             </article>
-            <article class="poster poster-social">
-              <div class="tag">feed</div>
-              <strong>Número bonito não basta</strong>
-              <small>Em prova, quem olha só o resultado aparente erra. Primeiro vem a estrutura do número e a operação certa.</small>
+            <article class="poster poster-green">
+              <div class="tag">método</div>
+              <strong>Ver a estrutura antes do cálculo</strong>
+              <small>Valor posicional e leitura de problema vêm antes da pressa.</small>
             </article>
           </div>
         </div>
@@ -268,536 +202,273 @@
   </header>
 
   <main class="container">
-    <section class="section" id="quiz">
-      <div class="section-title">Revisão espaçada · 24h</div>
-      <h2>Quiz rápido do Dia 001</h2>
-      <p class="section-intro">Antes de seguir para Matemática, puxe da memória os conceitos de Português de ontem. Tente responder <strong>sem abrir</strong> as respostas. Só depois confira.</p>
+    <section class="section" id="revisao-dia1">
+      <div class="section-title">Etapa 1</div>
+      <h2>Revisão rápida do Dia 1</h2>
+      <p class="section-intro">Antes de Matemática, puxe da memória o essencial do Dia 1. Responda primeiro. Depois confira.</p>
 
-      <div class="quiz-wrap">
-        <div class="quiz-intro">
-          <strong>Como usar este bloco</strong>
-          <p>Leia cada pergunta, responda em voz alta ou no caderno e só então abra a resposta. O objetivo aqui não é “lembrar passivamente”, e sim treinar recuperação ativa.</p>
-          <div class="chip-row">
-            <span class="chip">recuperação ativa</span>
-            <span class="chip">sem cola</span>
-            <span class="chip">2 a 5 min</span>
-          </div>
-        </div>
-
-        <article class="quiz-card">
-          <strong>1. O que é o <em>comando</em> de uma questão?</strong>
+      <div class="diagnostic-grid">
+        <article class="q-card">
+          <strong>1. O que é o comando de uma questão?</strong>
           <details>
             <summary>Mostrar resposta</summary>
-            <div>É o pedido da questão. Ele diz o que você deve fazer: identificar, localizar, comparar, concluir, inferir, marcar a alternativa correta.</div>
+            <div>É o pedido da questão, aquilo que ela quer que você faça.</div>
           </details>
         </article>
 
-        <article class="quiz-card">
-          <strong>2. Qual é a diferença entre <em>assunto</em> e <em>ideia principal</em>?</strong>
+        <article class="q-card">
+          <strong>2. Qual é a diferença entre assunto e ideia principal?</strong>
           <details>
             <summary>Mostrar resposta</summary>
-            <div><strong>Assunto</strong> é o tema geral do texto. <strong>Ideia principal</strong> é a mensagem central que o texto quer destacar sobre esse tema.</div>
+            <div>Assunto é o tema geral. Ideia principal é a mensagem central sobre esse tema.</div>
           </details>
         </article>
 
-        <article class="quiz-card">
-          <strong>3. Em qual ordem mental você deve ler uma questão de interpretação?</strong>
+        <article class="q-card">
+          <strong>3. Qual era a ordem de leitura recomendada no Dia 1?</strong>
           <details>
             <summary>Mostrar resposta</summary>
-            <div><strong>Comando → assunto → ideia principal → alternativas.</strong></div>
-          </details>
-        </article>
-
-        <article class="quiz-card">
-          <strong>4. Quando a questão diz “segundo o texto”, você responde com base em quê?</strong>
-          <details>
-            <summary>Mostrar resposta</summary>
-            <div>Com base no texto, e não na sua opinião pessoal.</div>
+            <div>Comando → assunto → ideia principal → alternativas.</div>
           </details>
         </article>
       </div>
     </section>
 
-    <section class="section" id="missao">
-      <div class="section-title">Mapa da missão</div>
-      <h2>O que precisa sair dominado hoje</h2>
-      <p class="section-intro">Muita gente tenta fazer conta rápido demais e esquece que <strong>número tem estrutura</strong>. A aula de hoje vai do concreto ao abstrato: primeiro entender onde cada algarismo mora, depois revisar as quatro operações e por fim escolher a operação certa em problemas com cara de prova.</p>
+    <section class="section">
+      <div class="section-title">Etapa 2</div>
+      <h2>Mini diagnóstico inicial de Matemática</h2>
+      <p class="section-intro">Agora meça seu ponto de partida em Matemática. Não consulte nada ainda.</p>
+
+      <div class="diagnostic-grid">
+        <article class="q-card">
+          <strong>1. No número 4.582, quanto vale o algarismo 5?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Vale 500, porque está na casa das centenas.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>2. Qual operação combina melhor com a expressão “ao todo”?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Adição.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>3. Em uma situação de repartição igual, qual operação geralmente aparece?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Divisão.</div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 3</div>
+      <h2>O essencial que precisa ficar claro</h2>
+      <p class="section-intro">O Dia 2 precisa consolidar três peças. Se essas três ficarem firmes, a base já começa a aparecer.</p>
+
       <div class="focus-row">
         <div class="focus-box">
-          <strong>1. Valor posicional</strong>
-          <p>Ler um número entendendo unidades, dezenas, centenas e milhares.</p>
+          <strong>Valor posicional</strong>
+          <p>O mesmo algarismo pode valer coisas diferentes dependendo da casa em que está.</p>
         </div>
         <div class="focus-box">
-          <strong>2. Quatro operações</strong>
-          <p>Revisar o que cada operação faz e quando ela aparece em problemas.</p>
+          <strong>Sentido das operações</strong>
+          <p>Juntar, tirar, repetir grupos e repartir são ideias diferentes e apontam operações diferentes.</p>
         </div>
         <div class="focus-box">
-          <strong>3. Escolha correta</strong>
-          <p>Parar de “chutar conta” e decidir a operação pela linguagem do enunciado.</p>
+          <strong>Leitura de problema</strong>
+          <p>Você não escolhe a operação pela pressa. Escolhe pelo sentido do enunciado.</p>
         </div>
       </div>
+
+      <div class="formula">Pergunta-chave do dia: estou juntando, tirando, repetindo grupos ou repartindo?</div>
     </section>
 
     <section class="section">
-      <div class="section-title">Entrada concreta · CPA</div>
-      <h2>Primeiro, enxergue o número em uma cena real</h2>
+      <div class="section-title">Etapa 4</div>
+      <h2>Exemplo resolvido único</h2>
       <div class="grid-2" style="margin-top:16px; align-items:start;">
-        <article class="feed-card">
-          <div class="feed-top">
-            <div class="feed-user">
-              <div class="avatar">A</div>
-              <div class="feed-handle">
-                <strong>akemy.musicclub</strong>
-                <span>@estudoscomriff</span>
-              </div>
-            </div>
-            <div class="tiny">há 4 min</div>
+        <article class="card">
+          <h3>Texto matemático do dia</h3>
+          <p>Em um festival escolar, foram distribuídas 3.482 pulseiras de entrada.</p>
+
+          <div class="example">
+            <h4>Pergunta 1</h4>
+            <p><strong>Quanto vale o algarismo 8 em 3.482?</strong></p>
+            <p>Ele vale <strong>80</strong>, porque está na casa das dezenas.</p>
           </div>
-          <div class="feed-media">
-            <span class="feed-badge">festival escolar</span>
-            <h3 class="feed-title">3.482 pulseiras entregues</h3>
-            <p class="feed-copy">Para a noite temática da escola, a equipe separou pulseiras de entrada, cartazes e kits. O número 3.482 aparece no controle geral do evento.</p>
-          </div>
-          <div class="feed-actions">
-            <span>❤ 894</span>
-            <span>💬 117</span>
-            <span>↗ salvar</span>
+
+          <div class="example">
+            <h4>Pergunta 2</h4>
+            <p><strong>Como decompor esse número?</strong></p>
+            <p>3.482 = 3.000 + 400 + 80 + 2</p>
           </div>
         </article>
 
         <article class="card">
-          <h3>O que esse número quer dizer de verdade?</h3>
-          <p>No número <strong>3.482</strong>, cada algarismo vale algo diferente por causa da <strong>posição</strong> que ocupa.</p>
-          <div class="formula">
-            3 milhares + 4 centenas + 8 dezenas + 2 unidades
-            <br>
-            <strong>3.482 = 3.000 + 400 + 80 + 2</strong>
-          </div>
-          <div class="example">
-            <h4>Erro comum</h4>
-            <p>Dizer que o 8 “vale 8” só porque o algarismo é 8. Nesse número, ele está na casa das dezenas. Então vale <strong>80</strong>.</p>
-          </div>
+          <h3>Por que esse exemplo resolve o Dia 2</h3>
+          <p>Porque ele une as duas coisas que mais derrubam no começo: não enxergar a casa do algarismo e sair fazendo conta sem entender o número.</p>
+          <p style="margin-top:10px"><strong>Erro comum:</strong> responder que o 8 vale 8 só porque o algarismo é 8.</p>
+
+          <div class="formula">O algarismo é 8. O valor dele depende da posição.</div>
         </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-title">Visualização</div>
-      <h2>Veja a estrutura do número e a lógica das operações</h2>
+      <div class="section-title">Etapa 5</div>
+      <h2>Mapa rápido das operações</h2>
 
-      <div class="math-visual">
-        <article class="visual-board">
-          <h3>Mapa visual do 3.482</h3>
-          <svg class="mini-svg" viewBox="0 0 780 250" role="img" aria-label="Representação visual do número 3482 em milhares, centenas, dezenas e unidades">
-            <rect x="20" y="28" width="170" height="180" rx="22" fill="rgba(109,86,201,.18)" stroke="rgba(255,255,255,.12)"/>
-            <rect x="210" y="28" width="170" height="180" rx="22" fill="rgba(193,92,138,.16)" stroke="rgba(255,255,255,.12)"/>
-            <rect x="400" y="28" width="170" height="180" rx="22" fill="rgba(47,123,98,.16)" stroke="rgba(255,255,255,.12)"/>
-            <rect x="590" y="28" width="170" height="180" rx="22" fill="rgba(217,168,108,.16)" stroke="rgba(255,255,255,.12)"/>
-            <text x="105" y="72" text-anchor="middle" fill="#f7e6c8" font-size="22" font-weight="800">Milhar</text>
-            <text x="295" y="72" text-anchor="middle" fill="#f7e6c8" font-size="22" font-weight="800">Centena</text>
-            <text x="485" y="72" text-anchor="middle" fill="#f7e6c8" font-size="22" font-weight="800">Dezena</text>
-            <text x="675" y="72" text-anchor="middle" fill="#f7e6c8" font-size="22" font-weight="800">Unidade</text>
-
-            <text x="105" y="140" text-anchor="middle" fill="white" font-size="56" font-weight="900">3</text>
-            <text x="295" y="140" text-anchor="middle" fill="white" font-size="56" font-weight="900">4</text>
-            <text x="485" y="140" text-anchor="middle" fill="white" font-size="56" font-weight="900">8</text>
-            <text x="675" y="140" text-anchor="middle" fill="white" font-size="56" font-weight="900">2</text>
-
-            <text x="105" y="184" text-anchor="middle" fill="#cfb8ff" font-size="28" font-weight="800">3000</text>
-            <text x="295" y="184" text-anchor="middle" fill="#ffc1d7" font-size="28" font-weight="800">400</text>
-            <text x="485" y="184" text-anchor="middle" fill="#bce8d9" font-size="28" font-weight="800">80</text>
-            <text x="675" y="184" text-anchor="middle" fill="#ffe7ba" font-size="28" font-weight="800">2</text>
-          </svg>
-
-          <div class="legend-list">
-            <div class="legend-item"><span class="dot" style="background:#6d56c9"></span><span>Quanto mais à esquerda, maior o valor posicional.</span></div>
-            <div class="legend-item"><span class="dot" style="background:#c15c8a"></span><span>O mesmo algarismo pode valer coisas diferentes em números diferentes.</span></div>
-            <div class="legend-item"><span class="dot" style="background:#2f7b62"></span><span>“8” pode valer 8, 80, 800 ou 8.000 dependendo da posição.</span></div>
-          </div>
-        </article>
-
-        <article class="visual-board">
-          <h3>Quando cada operação costuma aparecer</h3>
-          <div class="op-grid">
-            <div class="op-card">
-              <div class="symbol">+</div>
-              <h4>Adição</h4>
-              <p>Juntar, acrescentar, somar quantidades.</p>
-            </div>
-            <div class="op-card">
-              <div class="symbol">−</div>
-              <h4>Subtração</h4>
-              <p>Tirar, comparar diferença, saber quanto falta.</p>
-            </div>
-            <div class="op-card">
-              <div class="symbol">×</div>
-              <h4>Multiplicação</h4>
-              <p>Repetição de grupos iguais.</p>
-            </div>
-            <div class="op-card">
-              <div class="symbol">÷</div>
-              <h4>Divisão</h4>
-              <p>Repartir ou descobrir quantos grupos cabem.</p>
-            </div>
-          </div>
-          <div class="visual-note">
-            Pergunta útil antes de calcular: <strong>estou juntando, tirando, repetindo grupos ou repartindo?</strong> Isso evita fazer conta certa para uma pergunta errada.
-          </div>
-        </article>
-      </div>
-
-      <div class="grid-2" style="margin-top:18px; align-items:start;">
-        <article class="card">
-          <h3>Quadro-resumo do valor posicional</h3>
-          <table class="two-col-table">
-            <thead>
-              <tr>
-                <th>Casa</th>
-                <th>Vale</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Unidade</strong></td>
-                <td>de 1 em 1</td>
-              </tr>
-              <tr>
-                <td><strong>Dezena</strong></td>
-                <td>de 10 em 10</td>
-              </tr>
-              <tr>
-                <td><strong>Centena</strong></td>
-                <td>de 100 em 100</td>
-              </tr>
-              <tr>
-                <td><strong>Unidade de milhar</strong></td>
-                <td>de 1.000 em 1.000</td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="card">
-          <h3>Pistas de linguagem no enunciado</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Se o problema disser…</th>
-                <th>Pense primeiro em…</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>ao todo, juntos, total</strong></td>
-                <td>Adição</td>
-              </tr>
-              <tr>
-                <td><strong>faltam, diferença, restaram</strong></td>
-                <td>Subtração</td>
-              </tr>
-              <tr>
-                <td><strong>cada, em grupos iguais, vezes</strong></td>
-                <td>Multiplicação</td>
-              </tr>
-              <tr>
-                <td><strong>dividir, repartir, por pessoa</strong></td>
-                <td>Divisão</td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Abstração</div>
-      <h2>Agora formalize as regras</h2>
-      <div class="grid-3" style="margin-top:16px;">
-        <article class="card">
-          <h3>Valor posicional</h3>
-          <p>É o valor que um algarismo assume conforme a posição que ocupa no número. O algarismo é o mesmo; o valor muda conforme a casa.</p>
-        </article>
-        <article class="card">
-          <h3>Decomposição</h3>
-          <p>É escrever o número como soma de seus valores posicionais. Exemplo: 5.307 = 5.000 + 300 + 7.</p>
-        </article>
-        <article class="card">
-          <h3>Operação adequada</h3>
-          <p>Não é a conta que escolhe o problema. É o sentido do problema que escolhe a conta.</p>
-        </article>
-      </div>
-      <div class="card" style="margin-top:18px;">
-        <h3>Regra de ouro da aula 2</h3>
-        <div class="formula">Toda vez que vir um número grande, pergunte: <strong>qual é a casa de cada algarismo?</strong> Toda vez que vir um problema, pergunte: <strong>estou juntando, tirando, repetindo ou repartindo?</strong></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Worked examples</div>
-      <h2>Exemplos resolvidos</h2>
-      <div class="grid-2" style="margin-top:16px;">
-        <article class="card">
-          <span class="label">Exemplo 1 · valor posicional</span>
-          <div class="example">
-            <h4>Questão</h4>
-            <p>No número <strong>7.406</strong>, quanto vale o algarismo 4?</p>
-          </div>
-          <div class="example">
-            <h4>Resolução comentada</h4>
-            <p>O 4 está na <strong>casa das centenas</strong>.</p>
-            <p>Logo, ele vale <strong>400</strong>.</p>
-            <p><strong>Decomposição:</strong> 7.406 = 7.000 + 400 + 6.</p>
-            <p><strong>Erro comum:</strong> responder 4, ignorando a posição.</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <span class="label">Exemplo 2 · escolher a operação</span>
-          <div class="example">
-            <h4>Problema</h4>
-            <p>Uma fanpage da escola publicou 18 reels em uma semana. Na semana seguinte, publicou mais 27. Quantos reels publicou ao todo?</p>
-          </div>
-          <div class="example">
-            <h4>Resolução comentada</h4>
-            <p>A expressão <strong>“ao todo”</strong> indica <strong>adição</strong>.</p>
-            <p>18 + 27 = 45</p>
-            <p><strong>Resposta:</strong> 45 reels.</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <span class="label">Exemplo 3 · grupos iguais</span>
-          <div class="example">
-            <h4>Problema</h4>
-            <p>Em um estande temático, foram montados 6 suportes com 4 pulseiras cada um. Quantas pulseiras havia ao todo?</p>
-          </div>
-          <div class="example">
-            <h4>Resolução comentada</h4>
-            <p>Há <strong>grupos iguais</strong>: 6 grupos com 4.</p>
-            <p>6 × 4 = 24</p>
-            <p><strong>Resposta:</strong> 24 pulseiras.</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <span class="label">Exemplo 4 · repartição</span>
-          <div class="example">
-            <h4>Problema</h4>
-            <p>Um kit com 32 adesivos será dividido igualmente entre 8 alunos. Quantos adesivos cada um receberá?</p>
-          </div>
-          <div class="example">
-            <h4>Resolução comentada</h4>
-            <p>A ideia é <strong>repartir igualmente</strong>.</p>
-            <p>32 ÷ 8 = 4</p>
-            <p><strong>Resposta:</strong> 4 adesivos para cada aluno.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Prática guiada</div>
-      <h2>Agora com pistas</h2>
-      <div class="qa">
-        <article class="q-card">
-          <strong>1. No número <strong>5.219</strong>, quanto vale o algarismo 2?</strong>
-          <details>
-            <summary>Mostrar pista</summary>
-            <div>Localize a casa do 2. Ele está em unidade, dezena, centena ou milhar?</div>
-          </details>
-          <details>
-            <summary>Mostrar resposta</summary>
-            <div>Ele está na <strong>casa das centenas</strong>. Portanto vale <strong>200</strong>.</div>
-          </details>
-        </article>
-
-        <article class="q-card">
-          <strong>2. Decomponha o número <strong>8.034</strong>.</strong>
-          <details>
-            <summary>Mostrar pista</summary>
-            <div>Pense em milhar, centena, dezena e unidade. Lembre que pode haver casa “vazia”.</div>
-          </details>
-          <details>
-            <summary>Mostrar resposta</summary>
-            <div><strong>8.034 = 8.000 + 30 + 4.</strong> A casa das centenas está vazia.</div>
-          </details>
-        </article>
-
-        <article class="q-card">
-          <strong>3. Uma conta diz: “Luna comprou 13 marcadores e depois ganhou mais 9”. Qual operação combina melhor?</strong>
-          <details>
-            <summary>Mostrar resposta</summary>
-            <div><strong>Adição</strong>, porque a quantidade aumentou: 13 + 9.</div>
-          </details>
-        </article>
-
-        <article class="q-card">
-          <strong>4. “Um pacote com 24 figurinhas foi dividido igualmente entre 6 amigas.” Qual operação combina melhor?</strong>
-          <details>
-            <summary>Mostrar resposta</summary>
-            <div><strong>Divisão</strong>, porque a situação pede repartição igual: 24 ÷ 6.</div>
-          </details>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Painel visual</div>
-      <h2>Mapa mental das operações</h2>
       <div class="grid-2" style="margin-top:16px; align-items:start;">
-        <article class="story-card">
-          <h3>Fluxo de decisão</h3>
-          <div class="arrow-flow">
-            <div class="flow-node">
-              <strong>Juntou?</strong>
-              <p>Quantidades se somaram? Pense em <strong>adição</strong>.</p>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-node">
-              <strong>Tirou ou comparou?</strong>
-              <p>Restou, faltou ou quer saber diferença? Pense em <strong>subtração</strong>.</p>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-node">
-              <strong>Grupos iguais ou repartição?</strong>
-              <p>Se repete grupos, <strong>multiplicação</strong>. Se reparte, <strong>divisão</strong>.</p>
-            </div>
-          </div>
+        <article class="card">
+          <h3>Palavras que ajudam</h3>
+          <ul>
+            <li><strong>ao todo, juntos, mais</strong> → adição</li>
+            <li><strong>faltam, diferença, restaram</strong> → subtração</li>
+            <li><strong>cada, em grupos iguais, vezes</strong> → multiplicação</li>
+            <li><strong>dividir, repartir, por pessoa</strong> → divisão</li>
+          </ul>
         </article>
 
         <article class="card">
-          <h3>Onde o erro costuma nascer</h3>
-          <p class="section-intro">O gráfico abaixo é um <strong>mapa visual didático</strong>, não estatística oficial da ETEC. Ele só ajuda a lembrar os tropeços mais comuns no início.</p>
-          <div class="bar-chart">
-            <div class="bar">
-              <div style="height:74%;">74%</div>
-              <span>Ignorar a casa do algarismo</span>
-            </div>
-            <div class="bar">
-              <div style="height:61%;">61%</div>
-              <span>Escolher operação pelo impulso</span>
-            </div>
-            <div class="bar">
-              <div style="height:47%;">47%</div>
-              <span>Fazer conta certa para pergunta errada</span>
-            </div>
-          </div>
+          <h3>Atenção importante</h3>
+          <p>Palavra ajuda, mas não decide sozinha. O que manda é o sentido da situação.</p>
+          <div class="formula">Primeiro entenda o problema. Depois faça a conta.</div>
         </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-title">Prática independente</div>
-      <h2>Treino com cara de prova</h2>
+      <div class="section-title">Etapa 6</div>
+      <h2>Diagnóstico final do Dia 2</h2>
+      <p class="section-intro">Agora meça se o essencial ficou.</p>
+
       <div class="practice-list">
         <article class="practice-item">
-          <strong>1. Valor posicional</strong>
-          <ol>
-            <li>No número <strong>6.581</strong>, quanto vale o algarismo 5?</li>
-            <li>No número <strong>9.207</strong>, quanto vale o algarismo 2?</li>
-            <li>Decomponha <strong>4.390</strong>.</li>
-          </ol>
+          <strong>1. No número 7.304, quanto vale o algarismo 3?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Vale 300, porque está na casa das centenas.</div>
+          </details>
         </article>
 
         <article class="practice-item">
-          <strong>2. Quatro operações em contexto</strong>
-          <ol>
-            <li>Uma página de estudos tinha 245 seguidores e ganhou mais 78. Quantos tem agora?</li>
-            <li>Uma turma tinha 36 cartazes, mas 11 foram usados. Quantos restaram?</li>
-            <li>Foram montadas 7 fileiras com 5 cadeiras em cada uma. Quantas cadeiras ao todo?</li>
-            <li>48 marcadores serão repartidos igualmente entre 6 caixas. Quantos marcadores em cada caixa?</li>
-          </ol>
+          <strong>2. Decomponha o número 5.620.</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>5.620 = 5.000 + 600 + 20</div>
+          </details>
         </article>
 
         <article class="practice-item">
-          <strong>3. Mistura de problemas</strong>
-          <ol>
-            <li>Explique por que, em <strong>2.345</strong>, o algarismo 3 vale 300.</li>
-            <li>Escreva uma situação curta em que a palavra <strong>diferença</strong> indique subtração.</li>
-            <li>Escreva uma situação curta em que a expressão <strong>cada um</strong> indique divisão.</li>
-          </ol>
+          <strong>3. Uma página tinha 245 seguidores e ganhou mais 37. Qual operação combina melhor?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Adição.</div>
+          </details>
         </article>
 
         <article class="practice-item">
-          <strong>4. Desafio com duas etapas</strong>
-          <p class="section-intro" style="margin-top:10px">Uma loja temática vendeu 18 camisetas de uma banda na sexta e 25 no sábado. Depois, separou igualmente todas as camisetas vendidas em 7 caixas.</p>
-          <ol>
-            <li>Quantas camisetas foram vendidas ao todo?</li>
-            <li>Se a divisão fosse exata, qual operação usaria para descobrir quantas iriam em cada caixa?</li>
-            <li>Qual é a pegadinha principal desse problema?</li>
-          </ol>
+          <strong>4. Um pacote com 32 adesivos foi repartido igualmente entre 8 alunos. Qual operação combina melhor?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Divisão.</div>
+          </details>
+        </article>
+
+        <article class="practice-item">
+          <strong>5. Explique com suas palavras por que escolher a operação pelo impulso costuma gerar erro.</strong>
+          <details>
+            <summary>Mostrar resposta orientativa</summary>
+            <div>Porque a pessoa pode fazer uma conta correta para uma pergunta errada, sem entender o que o problema realmente pediu.</div>
+          </details>
         </article>
       </div>
-
-      <details>
-        <summary>Mostrar gabarito comentado</summary>
-        <div>
-          <p><strong>1.</strong> Em 6.581, o 5 vale <strong>500</strong>. Em 9.207, o 2 vale <strong>200</strong>. 4.390 = <strong>4.000 + 300 + 90</strong>.</p>
-          <p><strong>2.</strong> 245 + 78 = <strong>323</strong>. 36 − 11 = <strong>25</strong>. 7 × 5 = <strong>35</strong>. 48 ÷ 6 = <strong>8</strong>.</p>
-          <p><strong>3.</strong> O 3 vale 300 porque está na <strong>casa das centenas</strong>. Situações curtas variam, mas precisam combinar o verbo com a operação.</p>
-          <p><strong>4.</strong> Primeiro: 18 + 25 = <strong>43</strong>. Depois, a operação para repartir igualmente seria <strong>divisão</strong>. A pegadinha é perceber que há <strong>duas etapas</strong>, não só uma.</p>
-        </div>
-      </details>
     </section>
 
     <section class="section">
-      <div class="section-title">Fechamento</div>
-      <h2>Checklist de saída</h2>
+      <div class="section-title">Etapa 7</div>
+      <h2>Como interpretar seu resultado</h2>
+
+      <div class="score-grid">
+        <article class="score-card good">
+          <strong>4 ou 5 acertos</strong>
+          <p>Base boa. Pode seguir para o Dia 3 normalmente.</p>
+        </article>
+
+        <article class="score-card mid">
+          <strong>2 ou 3 acertos</strong>
+          <p>Pode seguir, mas revise valor posicional e escolha de operação no próximo estudo.</p>
+        </article>
+
+        <article class="score-card low">
+          <strong>0 ou 1 acerto</strong>
+          <p>Melhor refazer esta apostila antes de avançar.</p>
+        </article>
+      </div>
+
+      <div class="formula">O Dia 2 não serve para impressionar com velocidade. Serve para construir base com clareza.</div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 8</div>
+      <h2>Caderno de erros e fechamento</h2>
       <div class="grid-2" style="margin-top:16px; align-items:start;">
         <article class="card">
-          <h3>O que precisa estar claro agora</h3>
+          <h3>Checklist de saída</h3>
           <div class="checklist">
-            <div class="check"><div class="box"></div><div>Consigo dizer quanto vale um algarismo pela posição que ocupa.</div></div>
-            <div class="check"><div class="box"></div><div>Consigo decompor um número em milhares, centenas, dezenas e unidades.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo dizer quanto vale um algarismo pela posição.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo decompor um número com segurança.</div></div>
             <div class="check"><div class="box"></div><div>Consigo escolher a operação olhando o sentido do enunciado.</div></div>
-            <div class="check"><div class="box"></div><div>Consigo resolver sem sair fazendo conta por impulso.</div></div>
+            <div class="check"><div class="box"></div><div>Sei decidir se devo seguir ou revisar.</div></div>
           </div>
         </article>
 
         <article class="card">
           <h3>Caderno de erros</h3>
-          <p>Hoje, não anote só “errei a 3”. Registre <strong>o mecanismo do erro</strong>:</p>
+          <p>Anote qual foi o seu erro mais frequente hoje:</p>
           <ul>
-            <li>ignorei a casa do algarismo;</li>
-            <li>confundi “ao todo” com “diferença”;</li>
-            <li>vi o número, mas não decomponho com segurança;</li>
-            <li>acertei a conta, mas escolhi a operação errada no começo.</li>
+            <li>ignorei a casa do algarismo</li>
+            <li>confundi o sentido da operação</li>
+            <li>li rápido demais o problema</li>
+            <li>acertei a conta, mas parti da operação errada</li>
           </ul>
-          <div class="formula">Matemática melhora muito quando você descobre em qual etapa errou: leitura, escolha da operação ou cálculo.</div>
+          <div class="formula">Erro nomeado vira aprendizado. Erro vago vira repetição.</div>
         </article>
       </div>
     </section>
 
     <section class="section">
       <div class="section-title">Vídeo-aulas</div>
-      <h2>Apoio para reforçar o mesmo assunto</h2>
+      <h2>Apoio curto para reforçar o Dia 2</h2>
       <div class="resources">
-        <a class="resource" href="https://www.youtube.com/watch?v=q0F8_P8QnTA" target="_blank" rel="noopener noreferrer">
+        <a class="resource" href="https://www.youtube.com/results?search_query=valor+posicional+dos+numeros" target="_blank" rel="noopener noreferrer">
           <div>
-            <strong>Valor posicional dos números</strong>
-            <span>Boa para revisar leitura de unidades, dezenas, centenas e milhares.</span>
+            <strong>YouTube · valor posicional</strong>
+            <span>Boa para reforçar leitura de unidades, dezenas, centenas e milhares.</span>
           </div>
-          <em>abrir aula</em>
+          <em>abrir busca</em>
         </a>
-        <a class="resource" href="https://pt.khanacademy.org/math/arithmetic" target="_blank" rel="noopener noreferrer">
+        <a class="resource" href="https://www.youtube.com/results?search_query=problemas+quatro+operacoes" target="_blank" rel="noopener noreferrer">
           <div>
-            <strong>Khan Academy · aritmética</strong>
-            <span>Trilha com revisão de valor posicional e operações básicas.</span>
+            <strong>YouTube · problemas com as quatro operações</strong>
+            <span>Boa para ligar a linguagem do enunciado à operação correta.</span>
           </div>
-          <em>abrir aula</em>
-        </a>
-        <a class="resource" href="https://www.youtube.com/watch?v=4PqECm1OA7U" target="_blank" rel="noopener noreferrer">
-          <div>
-            <strong>Problemas envolvendo as quatro operações</strong>
-            <span>Ajuda a ligar palavras do enunciado à operação adequada.</span>
-          </div>
-          <em>abrir aula</em>
+          <em>abrir busca</em>
         </a>
       </div>
     </section>
 
     <div class="footer-nav">
-      <a class="btn btn-secondary" href="../index.html">← Voltar para o cronograma</a>
+      <div class="nav-group">
+        <a class="btn btn-secondary" href="dia-001.html">← Voltar à apostila anterior</a>
+        <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
+      </div>
       <a class="btn btn-primary" href="dia-003.html">Próxima apostila →</a>
     </div>
   </main>
