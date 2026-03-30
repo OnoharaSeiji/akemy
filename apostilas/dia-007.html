@@ -4,9 +4,441 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akemy Estudos · Dia 007</title>
-  <meta name="description" content="AKEMY · Dia 007" />
-  <script src="../config.js"></script>
-  <script defer src="./runtime.js"></script>
+  <meta name="description" content="Apostila 7 do Akemy Estudos · explícito, implícito e inferência básica." />
+  <style>
+    :root{
+      --bg:#f7f6f2;
+      --panel:#ffffff;
+      --panel2:#f3efe7;
+      --line:rgba(31,41,55,.12);
+      --text:#1f2937;
+      --muted:#4b5563;
+      --soft:#6b7280;
+      --blue:#243b6b;
+      --green:#2f6f5e;
+      --red:#a84b4b;
+      --gold:#e9d8a6;
+      --shadow:0 20px 48px rgba(31,41,55,.08);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(36,59,107,.06), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(47,111,94,.05), transparent 24%),
+        linear-gradient(180deg, #f7f6f2 0%, #f3efe7 100%);
+    }
+    a{color:inherit}
+    .container{width:min(1080px, calc(100% - 24px));margin:0 auto}
+    .hero{padding:24px 0 14px}
+    .hero-panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(243,239,231,.98));
+      border:1px solid var(--line);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:28px;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(135deg, rgba(36,59,107,.04), transparent 28%),
+        linear-gradient(220deg, rgba(47,111,94,.05), transparent 35%);
+      pointer-events:none;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;position:relative;z-index:1}
+    .eyebrow{display:inline-flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(233,216,166,.42);border:1px solid rgba(31,41,55,.10);
+      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#5b4a18;
+    }
+    h1,h2,h3,p{margin:0}
+    h1{margin-top:14px;font-size:clamp(34px, 6vw, 56px);line-height:1.03;max-width:12ch}
+    .lead{margin-top:16px;font-size:18px;line-height:1.75;color:var(--muted);max-width:66ch}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:800;font-size:15px;
+      border:1px solid var(--line);transition:.18s ease transform,.18s ease background;
+      background:#fff;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--blue),#2e4a85);color:#fff;border-color:transparent}
+    .btn-secondary{background:#fff}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+    .mini-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
+    .mini-card span{display:block;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .mini-card strong{font-size:20px;line-height:1.2}
+    .hero-art{display:grid;gap:14px}
+    .poster{
+      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(31,41,55,.08);
+      position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+      background:#fff;
+    }
+    .poster::before{
+      content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.30;filter:blur(2px)
+    }
+    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:var(--soft)}
+    .poster strong{font-size:24px;line-height:1.08;max-width:10ch}
+    .poster small{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55}
+    .poster-blue{background:linear-gradient(155deg, rgba(36,59,107,.10), rgba(255,255,255,.98))}
+    .poster-blue::before{background:radial-gradient(circle, rgba(233,216,166,.95), transparent 62%)}
+    .poster-green{background:linear-gradient(155deg, rgba(47,111,94,.10), rgba(255,255,255,.98))}
+    .poster-green::before{background:radial-gradient(circle, rgba(36,59,107,.22), transparent 62%)}
+    .section{padding:18px 0}
+    .section-title{color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
+    .section h2{font-size:clamp(28px,3vw,40px);margin-bottom:10px}
+    .section-intro{color:var(--muted);line-height:1.75;font-size:17px;max-width:72ch}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{
+      background:#fff;
+      border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)
+    }
+    .card h3{font-size:22px;margin-bottom:10px}
+    .card p,.card li{color:var(--muted);line-height:1.78;font-size:16px}
+    .card ul{padding-left:18px;margin:10px 0 0}
+    .focus-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .focus-box{border-radius:20px;padding:18px;border:1px solid var(--line);background:#fff}
+    .focus-box strong{display:block;font-size:18px;margin-bottom:8px}
+    .focus-box p{color:var(--muted);line-height:1.65}
+    .formula{
+      margin-top:12px;padding:16px 18px;border-radius:18px;border:1px solid rgba(31,41,55,.10);
+      background:rgba(233,216,166,.42);color:#5b4a18;font-weight:700;line-height:1.7
+    }
+    .diagnostic-grid{display:grid;gap:14px;margin-top:16px}
+    .q-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff}
+    .q-card strong{display:block;font-size:18px;line-height:1.45}
+    .q-card p{margin-top:10px;color:var(--muted)}
+    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:#f9fafb;overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800}
+    summary::-webkit-details-marker{display:none}
+    details > div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
+    .example{margin-top:14px;padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff}
+    .example h4{margin:0 0 10px;font-size:18px}
+    .example p{color:var(--muted);line-height:1.72;margin-top:10px}
+    .practice-list{display:grid;gap:12px;margin-top:14px}
+    .practice-item{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fff}
+    .practice-item strong{display:block;line-height:1.65}
+    .score-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+    .score-card{padding:18px;border-radius:20px;border:1px solid var(--line);background:#fff}
+    .score-card strong{display:block;font-size:18px;margin-bottom:8px}
+    .score-card p{color:var(--muted);line-height:1.7}
+    .score-card.good{box-shadow:inset 0 0 0 1px rgba(47,111,94,.18)}
+    .score-card.mid{box-shadow:inset 0 0 0 1px rgba(233,216,166,.72)}
+    .score-card.low{box-shadow:inset 0 0 0 1px rgba(168,75,75,.16)}
+    .checklist{display:grid;gap:12px;margin-top:14px}
+    .check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .check .box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(31,41,55,.28);margin-top:2px;flex:0 0 auto}
+    .resources{display:grid;gap:12px;margin-top:14px}
+    .resource{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:#fff;text-decoration:none}
+    .resource strong{display:block;font-size:16px}
+    .resource span{display:block;color:var(--muted);line-height:1.6;margin-top:6px}
+    .resource em{font-style:normal;color:var(--blue);white-space:nowrap;align-self:center}
+    .footer-nav{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 0 42px}
+    .nav-group{display:flex;gap:12px;flex-wrap:wrap}
+    @media (max-width: 980px){
+      .hero-grid,.grid-2,.grid-3,.focus-row,.score-grid{grid-template-columns:1fr}
+      .hero-meta{grid-template-columns:1fr 1fr}
+      .resource{flex-direction:column}
+    }
+    @media (max-width: 640px){
+      .container{width:min(100% - 18px, 100%)}
+      .hero-panel,.card{padding:18px}
+      .hero-meta{grid-template-columns:1fr}
+      h1{font-size:34px}
+      .footer-nav{flex-direction:column}
+    }
+  </style>
 </head>
-<body data-day="7"></body>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="pill">Fase 1 · Base</span>
+              <span class="pill">Semana 2</span>
+              <span class="pill">Dia 007</span>
+              <span class="pill">Português</span>
+            </div>
+            <h1>Explícito, implícito e inferência básica</h1>
+            <p class="lead">O objetivo do Dia 7 é dar um passo além do básico da leitura: perceber o que o texto diz claramente, o que ele apenas sugere e como fazer inferências simples sem inventar informação.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#revisao-dia6">Começar a apostila</a>
+              <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
+            </div>
+            <div class="hero-meta">
+              <div class="mini-card"><span>Meta do dia</span><strong>ler além da superfície sem exagerar</strong></div>
+              <div class="mini-card"><span>Formato</span><strong>revisão + diagnóstico + checagem</strong></div>
+              <div class="mini-card"><span>Tempo sugerido</span><strong>45–60 min</strong></div>
+            </div>
+          </div>
+          <div class="hero-art">
+            <article class="poster poster-blue">
+              <div class="tag">missão</div>
+              <strong>Parar de confundir pista com invenção</strong>
+              <small>Hoje você aprende a inferir com base no texto, não no chute.</small>
+            </article>
+            <article class="poster poster-green">
+              <div class="tag">método</div>
+              <strong>Dito, sugerido, concluído</strong>
+              <small>O segredo é saber em qual camada da leitura a questão está te cobrando.</small>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section" id="revisao-dia6">
+      <div class="section-title">Etapa 1</div>
+      <h2>Revisão rápida do Dia 6</h2>
+      <p class="section-intro">Antes de abrir a semana 2, puxe da memória o mini simulado do Dia 6. Responda primeiro. Depois confira.</p>
+
+      <div class="diagnostic-grid">
+        <article class="q-card">
+          <strong>1. No mini simulado, o que mais importava: decorar ou decidir bem?</strong>
+          <details><summary>Mostrar resposta</summary><div>Decidir bem.</div></details>
+        </article>
+
+        <article class="q-card">
+          <strong>2. Em Português, qual ordem mental ajudava a responder melhor?</strong>
+          <details><summary>Mostrar resposta</summary><div>Comando → assunto → ideia principal → alternativa.</div></details>
+        </article>
+
+        <article class="q-card">
+          <strong>3. O que o caderno de erros do simulado deveria registrar?</strong>
+          <details><summary>Mostrar resposta</summary><div>O mecanismo do erro, não só a questão errada.</div></details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 2</div>
+      <h2>Mini diagnóstico inicial</h2>
+      <p class="section-intro">Agora descubra seu ponto de partida em explícito, implícito e inferência.</p>
+
+      <div class="diagnostic-grid">
+        <article class="q-card">
+          <strong>1. Se o texto afirma algo diretamente, essa informação é explícita ou implícita?</strong>
+          <details><summary>Mostrar resposta</summary><div>Explícita.</div></details>
+        </article>
+
+        <article class="q-card">
+          <strong>2. Quando o texto dá pistas e você conclui algo com base nelas, isso é inferência ou cópia literal?</strong>
+          <details><summary>Mostrar resposta</summary><div>Inferência.</div></details>
+        </article>
+
+        <article class="q-card">
+          <strong>3. Qual é o erro mais comum em questão de inferência?</strong>
+          <details><summary>Mostrar resposta</summary><div>Inventar algo possível na vida real, mas sem base suficiente no texto.</div></details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 3</div>
+      <h2>O essencial que precisa ficar claro</h2>
+      <p class="section-intro">O Dia 7 precisa consolidar três camadas de leitura. Se essas três ficarem firmes, a interpretação ganha precisão.</p>
+
+      <div class="focus-row">
+        <div class="focus-box">
+          <strong>Explícito</strong>
+          <p>É aquilo que o texto afirma diretamente, sem precisar completar com raciocínio.</p>
+        </div>
+        <div class="focus-box">
+          <strong>Implícito</strong>
+          <p>É aquilo que o texto sugere, sem dizer de forma literal.</p>
+        </div>
+        <div class="focus-box">
+          <strong>Inferência</strong>
+          <p>É a conclusão feita a partir das pistas do texto, sem extrapolar além delas.</p>
+        </div>
+      </div>
+
+      <div class="formula">Pergunta-chave do dia: isso está escrito, sugerido ou eu estou inventando demais?</div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 4</div>
+      <h2>Exemplo resolvido único</h2>
+
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>Texto</h3>
+          <p>“Joana chegou à sala, colocou a mochila sobre a cadeira e ficou olhando pela janela. Quando a professora perguntou se ela tinha feito a atividade, Joana abaixou os olhos e mexeu nos cadernos sem responder.”</p>
+
+          <div class="example">
+            <h4>Explícito</h4>
+            <p>Joana chegou à sala, colocou a mochila na cadeira e não respondeu imediatamente à professora.</p>
+          </div>
+
+          <div class="example">
+            <h4>Implícito / inferência</h4>
+            <p>O comportamento de Joana sugere desconforto ou insegurança em relação à atividade.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Por que esse exemplo resolve o Dia 7</h3>
+          <p>Porque ele mostra a passagem da leitura literal para a inferência básica sem exagero.</p>
+          <p style="margin-top:10px"><strong>Erro comum:</strong> afirmar que Joana “estava com medo da professora” ou “não fez a atividade” como certeza absoluta. O texto sugere, mas não prova isso completamente.</p>
+
+          <div class="formula">Inferir não é fantasiar. É concluir com base em pistas reais.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 5</div>
+      <h2>Como pensar antes de responder</h2>
+
+      <div class="grid-3" style="margin-top:16px">
+        <article class="card">
+          <h3>Pergunta 1</h3>
+          <p>O texto disse isso com todas as letras?</p>
+          <div class="formula">Se sim, é explícito.</div>
+        </article>
+
+        <article class="card">
+          <h3>Pergunta 2</h3>
+          <p>O texto não disse, mas deixou pistas fortes?</p>
+          <div class="formula">Se sim, pode ser implícito ou inferência.</div>
+        </article>
+
+        <article class="card">
+          <h3>Pergunta 3</h3>
+          <p>Minha resposta depende mais do meu palpite do que do texto?</p>
+          <div class="formula">Se sim, provavelmente você extrapolou.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 6</div>
+      <h2>Diagnóstico final do Dia 7</h2>
+      <p class="section-intro">Agora verifique se o essencial ficou.</p>
+
+      <div class="practice-list">
+        <article class="practice-item">
+          <strong>1. Se o texto diz “Pedro saiu correndo assim que ouviu o trovão”, a informação “houve trovão” é explícita ou implícita?</strong>
+          <details><summary>Mostrar resposta</summary><div>Explícita.</div></details>
+        </article>
+
+        <article class="practice-item">
+          <strong>2. Se o texto diz “Maria releu a mensagem três vezes antes de responder”, o que pode ser inferido?</strong>
+          <details><summary>Mostrar resposta</summary><div>Que ela ficou em dúvida, insegura ou pensativa antes de responder.</div></details>
+        </article>
+
+        <article class="practice-item">
+          <strong>3. Qual é o risco de inferir sem olhar bem as pistas do texto?</strong>
+          <details><summary>Mostrar resposta</summary><div>Inventar informação sem base suficiente.</div></details>
+        </article>
+
+        <article class="practice-item">
+          <strong>4. Quando a resposta está literalmente escrita, a questão cobra explícito ou inferência?</strong>
+          <details><summary>Mostrar resposta</summary><div>Explícito.</div></details>
+        </article>
+
+        <article class="practice-item">
+          <strong>5. Explique com suas palavras a diferença entre implícito e chute.</strong>
+          <details><summary>Mostrar resposta orientativa</summary><div>Implícito tem apoio em pistas do texto. Chute é uma ideia sem sustentação suficiente.</div></details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 7</div>
+      <h2>Como interpretar seu resultado</h2>
+
+      <div class="score-grid">
+        <article class="score-card good">
+          <strong>4 ou 5 acertos</strong>
+          <p>Base boa. Pode seguir para o Dia 8 normalmente.</p>
+        </article>
+
+        <article class="score-card mid">
+          <strong>2 ou 3 acertos</strong>
+          <p>Pode seguir, mas revise a diferença entre explícito, implícito e inferência antes do próximo estudo.</p>
+        </article>
+
+        <article class="score-card low">
+          <strong>0 ou 1 acerto</strong>
+          <p>Melhor refazer esta apostila antes de avançar.</p>
+        </article>
+      </div>
+
+      <div class="formula">O Dia 7 não serve para adivinhar intenções escondidas. Serve para ler melhor o que o texto realmente entrega.</div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 8</div>
+      <h2>Caderno de erros e fechamento</h2>
+
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>Checklist de saída</h3>
+          <div class="checklist">
+            <div class="check"><div class="box"></div><div>Consigo identificar informação explícita.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo perceber quando o texto sugere algo sem dizer diretamente.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo fazer inferência básica com apoio no texto.</div></div>
+            <div class="check"><div class="box"></div><div>Sei diferenciar pista textual de chute.</div></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Caderno de erros</h3>
+          <p>Anote qual foi o seu erro mais frequente hoje:</p>
+          <ul>
+            <li>confundi explícito com implícito</li>
+            <li>inferi além do que o texto permitia</li>
+            <li>li rápido e ignorei pistas importantes</li>
+            <li>respondi com opinião, não com base textual</li>
+          </ul>
+          <div class="formula">Em interpretação, o erro mais caro costuma ser sair do texto cedo demais.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Vídeo-aulas</div>
+      <h2>Apoio curto para reforçar o Dia 7</h2>
+      <div class="resources">
+        <a class="resource" href="https://www.youtube.com/results?search_query=explicito+implicito+inferencia+basica+interpretacao+de+texto" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>YouTube · explícito, implícito e inferência</strong>
+            <span>Busca pronta para revisar as três camadas de leitura trabalhadas hoje.</span>
+          </div>
+          <em>abrir busca</em>
+        </a>
+        <a class="resource" href="https://www.youtube.com/results?search_query=interpretacao+de+texto+ensino+fundamental+inferencia" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>YouTube · interpretação com inferência</strong>
+            <span>Boa para praticar questões curtas com foco em pista textual.</span>
+          </div>
+          <em>abrir busca</em>
+        </a>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <div class="nav-group">
+        <a class="btn btn-secondary" href="dia-006.html">← Voltar à apostila anterior</a>
+        <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
+      </div>
+      <a class="btn btn-primary" href="dia-008.html">Próxima apostila →</a>
+    </div>
+  </main>
+</body>
 </html>
