@@ -4,26 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akemy Estudos · Dia 005</title>
-  <meta name="description" content="Apostila AKEMY Dia 005: revisão da semana 1 com quiz do dia 4, português, matemática, humanas e ciências em formato visual, guiado e mais próximo da prova real." />
+  <meta name="description" content="Apostila 5 do Akemy Estudos · revisão diagnóstica da semana 1." />
   <style>
     :root{
-      --bg:#0f0b16;
-      --bg2:#171122;
-      --panel:#1a1326;
-      --panel2:#211730;
-      --line:rgba(255,255,255,.08);
-      --text:#f7f2ff;
-      --muted:#c8bfd8;
-      --soft:#9e92b2;
-      --rose:#c15c8a;
-      --wine:#7b2f4f;
-      --violet:#6d56c9;
-      --blue:#295d8f;
-      --gold:#d9a86c;
-      --mint:#2f7b62;
-      --danger:#ba5c5c;
-      --ok:#58b383;
-      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --bg:#f7f6f2;
+      --panel:#ffffff;
+      --panel2:#f3efe7;
+      --line:rgba(31,41,55,.12);
+      --text:#1f2937;
+      --muted:#4b5563;
+      --soft:#6b7280;
+      --blue:#243b6b;
+      --green:#2f6f5e;
+      --red:#a84b4b;
+      --gold:#e9d8a6;
+      --shadow:0 20px 48px rgba(31,41,55,.08);
       --radius:24px;
     }
     *{box-sizing:border-box}
@@ -33,16 +28,15 @@
       color:var(--text);
       font-family:Inter,Segoe UI,Arial,sans-serif;
       background:
-        radial-gradient(circle at 10% 10%, rgba(193,92,138,.12), transparent 25%),
-        radial-gradient(circle at 90% 10%, rgba(109,86,201,.10), transparent 24%),
-        radial-gradient(circle at 50% 100%, rgba(41,93,143,.12), transparent 28%),
-        linear-gradient(180deg, #0f0b16 0%, #120d19 100%);
+        radial-gradient(circle at 10% 10%, rgba(36,59,107,.06), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(47,111,94,.05), transparent 24%),
+        linear-gradient(180deg, #f7f6f2 0%, #f3efe7 100%);
     }
     a{color:inherit}
-    .container{width:min(1180px, calc(100% - 28px));margin:0 auto}
-    .hero{padding:26px 0 14px}
+    .container{width:min(1100px, calc(100% - 24px));margin:0 auto}
+    .hero{padding:24px 0 14px}
     .hero-panel{
-      background:linear-gradient(180deg, rgba(26,19,38,.96), rgba(18,13,25,.92));
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(243,239,231,.98));
       border:1px solid var(--line);
       border-radius:32px;
       box-shadow:var(--shadow);
@@ -54,591 +48,459 @@
       content:"";
       position:absolute; inset:0;
       background:
-        linear-gradient(135deg, rgba(217,168,108,.07), transparent 28%),
-        linear-gradient(220deg, rgba(193,92,138,.08), transparent 35%);
+        linear-gradient(135deg, rgba(36,59,107,.04), transparent 28%),
+        linear-gradient(220deg, rgba(47,111,94,.05), transparent 35%);
       pointer-events:none;
     }
-    .hero-grid{display:grid;grid-template-columns:1.16fr .84fr;gap:22px;position:relative;z-index:1}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;position:relative;z-index:1}
     .eyebrow{display:inline-flex;gap:8px;flex-wrap:wrap}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
       padding:8px 12px;border-radius:999px;
-      background:rgba(255,255,255,.06);border:1px solid var(--line);
-      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#f5d6ae;
+      background:rgba(233,216,166,.42);border:1px solid rgba(31,41,55,.10);
+      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#5b4a18;
     }
     h1,h2,h3,p{margin:0}
-    h1{margin-top:14px;font-size:clamp(34px, 6vw, 58px);line-height:1.03;max-width:12ch}
-    .lead{margin-top:16px;font-size:18px;line-height:1.75;color:var(--muted);max-width:67ch}
+    h1{margin-top:14px;font-size:clamp(34px, 6vw, 56px);line-height:1.03;max-width:12ch}
+    .lead{margin-top:16px;font-size:18px;line-height:1.75;color:var(--muted);max-width:68ch}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:800;font-size:15px;
       border:1px solid var(--line);transition:.18s ease transform,.18s ease background;
+      background:#fff;
     }
     .btn:hover{transform:translateY(-1px)}
-    .btn-primary{background:linear-gradient(135deg,var(--rose),var(--wine));color:#fff;border-color:transparent}
-    .btn-secondary{background:rgba(255,255,255,.05)}
+    .btn-primary{background:linear-gradient(135deg,var(--blue),#2e4a85);color:#fff;border-color:transparent}
+    .btn-secondary{background:#fff}
     .hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
-    .mini-card{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:18px;padding:16px}
+    .mini-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
     .mini-card span{display:block;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-    .mini-card strong{font-size:22px;line-height:1.1}
+    .mini-card strong{font-size:20px;line-height:1.2}
     .hero-art{display:grid;gap:14px}
     .poster{
-      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(31,41,55,.08);
       position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+      background:#fff;
     }
-    .poster::before{content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.35;filter:blur(2px)}
-    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#fbe6c7}
+    .poster::before{
+      content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.30;filter:blur(2px)
+    }
+    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:var(--soft)}
     .poster strong{font-size:24px;line-height:1.08;max-width:10ch}
     .poster small{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55}
-    .poster-rock{background:linear-gradient(155deg, rgba(123,47,79,.40), rgba(26,19,38,.98))}
-    .poster-rock::before{background:radial-gradient(circle, rgba(217,168,108,.95), transparent 62%)}
-    .poster-social{background:linear-gradient(155deg, rgba(47,123,98,.34), rgba(26,19,38,.98))}
-    .poster-social::before{background:radial-gradient(circle, rgba(255,255,255,.72), transparent 62%)}
-    .section{padding:20px 0}
-    .section-title{color:#f4c894;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
+    .poster-blue{background:linear-gradient(155deg, rgba(36,59,107,.10), rgba(255,255,255,.98))}
+    .poster-blue::before{background:radial-gradient(circle, rgba(233,216,166,.95), transparent 62%)}
+    .poster-green{background:linear-gradient(155deg, rgba(47,111,94,.10), rgba(255,255,255,.98))}
+    .poster-green::before{background:radial-gradient(circle, rgba(36,59,107,.22), transparent 62%)}
+    .section{padding:18px 0}
+    .section-title{color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
     .section h2{font-size:clamp(28px,3vw,40px);margin-bottom:10px}
-    .section-intro{color:var(--muted);font-size:17px;line-height:1.75;max-width:72ch}
-    .grid{display:grid;gap:18px}
-    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .section-intro{color:var(--muted);line-height:1.75;font-size:17px;max-width:74ch}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
     .card{
-      background:linear-gradient(180deg, rgba(31,23,48,.95), rgba(26,19,38,.92));
-      border:1px solid var(--line);border-radius:26px;padding:22px;box-shadow:var(--shadow)
+      background:#fff;
+      border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)
     }
     .card h3{font-size:22px;margin-bottom:10px}
-    .card p,.card li{color:var(--muted);line-height:1.72;font-size:16px}
-    .card ul{margin:12px 0 0 18px;padding:0}
-    .subtle{color:var(--soft)}
-    .quiz-card details{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
-    .quiz-card details + details{margin-top:12px}
-    .quiz-card summary{cursor:pointer;font-weight:800;font-size:17px;list-style:none}
-    .quiz-card summary::-webkit-details-marker{display:none}
-    .quiz-card .answer{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
-    .subject-card{position:relative;overflow:hidden}
-    .subject-card::after{content:"";position:absolute;inset:auto -20px -35px auto;width:110px;height:110px;border-radius:50%;opacity:.12}
-    .subject-port::after{background:radial-gradient(circle, var(--gold), transparent 70%)}
-    .subject-math::after{background:radial-gradient(circle, var(--violet), transparent 70%)}
-    .subject-human::after{background:radial-gradient(circle, var(--rose), transparent 70%)}
-    .subject-sci::after{background:radial-gradient(circle, var(--mint), transparent 70%)}
-    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);font-size:13px;font-weight:700;color:#ead7ff}
-    .bars{display:grid;gap:12px;margin-top:14px}
-    .bar{display:grid;gap:8px}
-    .bar-top{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#f7e7ca}
-    .bar-track{height:12px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.05)}
-    .bar-fill{height:100%;border-radius:999px}
-    .fill-port{background:linear-gradient(90deg, #d9a86c, #f0d5a3)}
-    .fill-math{background:linear-gradient(90deg, #6d56c9, #b39dff)}
-    .fill-human{background:linear-gradient(90deg, #c15c8a, #ebb3cc)}
-    .fill-sci{background:linear-gradient(90deg, #2f7b62, #8cd6bb)}
-    .visual-board{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
-    .flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
-    .step{padding:16px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
-    .step strong{display:block;font-size:15px;margin-bottom:8px;color:#ffe7c0}
-    .timeline{position:relative;padding-left:26px;margin-top:16px}
-    .timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:3px;background:linear-gradient(180deg,var(--rose),var(--blue))}
-    .timeline-item{position:relative;padding:0 0 18px 18px}
-    .timeline-item::before{content:"";position:absolute;left:-2px;top:4px;width:12px;height:12px;border-radius:50%;background:#f7e3c0;box-shadow:0 0 0 6px rgba(247,227,192,.08)}
-    .timeline-item strong{display:block;margin-bottom:6px;font-size:17px}
-    .table-card table{width:100%;border-collapse:collapse;margin-top:14px;overflow:hidden;border-radius:18px}
-    .table-card th,.table-card td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:15px}
-    .table-card th{color:#ffe5bd;background:rgba(255,255,255,.04)}
-    .table-card tr:last-child td{border-bottom:none}
-    .callout{padding:18px 20px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
-    .callout strong{color:#ffe2b0}
-    .question{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
-    .question h3{font-size:18px;margin-bottom:8px}
-    .gabarito details{margin-top:12px}
-    .dual{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-    .support-link{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid var(--line);text-decoration:none}
-    .support-link strong{display:block;font-size:17px;margin-bottom:6px}
-    .support-link span{color:var(--muted);line-height:1.65}
-    .footer-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:10px}
-    .footer-nav .btn{min-width:240px}
-    @media (max-width: 980px){
-      .hero-grid,.visual-board,.grid-4,.grid-3,.grid-2,.dual,.flow{grid-template-columns:1fr}
-      .hero-meta{grid-template-columns:1fr}
+    .card p,.card li{color:var(--muted);line-height:1.78;font-size:16px}
+    .card ul{padding-left:18px;margin:10px 0 0}
+    .topic-card{position:relative;overflow:hidden}
+    .topic-card::after{content:"";position:absolute;inset:auto -18px -28px auto;width:100px;height:100px;border-radius:50%;opacity:.10}
+    .topic-port::after{background:radial-gradient(circle, #b48a36, transparent 70%)}
+    .topic-math::after{background:radial-gradient(circle, #243b6b, transparent 70%)}
+    .topic-human::after{background:radial-gradient(circle, #a84b4b, transparent 70%)}
+    .topic-sci::after{background:radial-gradient(circle, #2f6f5e, transparent 70%)}
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .chip{display:inline-flex;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#f8fafc;color:#243b6b;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+    .diagnostic-grid{display:grid;gap:14px;margin-top:16px}
+    .q-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff}
+    .q-card strong{display:block;font-size:18px;line-height:1.45}
+    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:#f9fafb;overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800}
+    summary::-webkit-details-marker{display:none}
+    details > div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
+    .formula{
+      margin-top:12px;padding:16px 18px;border-radius:18px;border:1px solid rgba(31,41,55,.10);
+      background:rgba(233,216,166,.42);color:#5b4a18;font-weight:700;line-height:1.7
     }
-    @media (max-width: 720px){
-      .container{width:min(100% - 18px, 1180px)}
+    .bars{display:grid;gap:12px;margin-top:16px}
+    .bar{display:grid;gap:8px}
+    .bar-top{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted)}
+    .bar-track{height:12px;background:rgba(31,41,55,.08);border-radius:999px;overflow:hidden}
+    .bar-fill{height:100%;border-radius:999px}
+    .fill-port{background:linear-gradient(90deg, #b48a36, #e9d8a6)}
+    .fill-math{background:linear-gradient(90deg, #243b6b, #4f6eb5)}
+    .fill-human{background:linear-gradient(90deg, #a84b4b, #cf8787)}
+    .fill-sci{background:linear-gradient(90deg, #2f6f5e, #67a998)}
+    .mixed-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+    .score-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+    .score-card{padding:18px;border-radius:20px;border:1px solid var(--line);background:#fff}
+    .score-card strong{display:block;font-size:18px;margin-bottom:8px}
+    .score-card p{color:var(--muted);line-height:1.7}
+    .score-card.good{box-shadow:inset 0 0 0 1px rgba(47,111,94,.18)}
+    .score-card.mid{box-shadow:inset 0 0 0 1px rgba(233,216,166,.72)}
+    .score-card.low{box-shadow:inset 0 0 0 1px rgba(168,75,75,.16)}
+    .checklist{display:grid;gap:12px;margin-top:14px}
+    .check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .check .box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(31,41,55,.28);margin-top:2px;flex:0 0 auto}
+    .resources{display:grid;gap:12px;margin-top:14px}
+    .resource{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:#fff;text-decoration:none}
+    .resource strong{display:block;font-size:16px}
+    .resource span{display:block;color:var(--muted);line-height:1.6;margin-top:6px}
+    .resource em{font-style:normal;color:var(--blue);white-space:nowrap;align-self:center}
+    .footer-nav{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 0 42px}
+    .nav-group{display:flex;gap:12px;flex-wrap:wrap}
+    @media (max-width: 980px){
+      .hero-grid,.grid-2,.grid-3,.grid-4,.mixed-grid,.score-grid{grid-template-columns:1fr}
+      .hero-meta{grid-template-columns:1fr 1fr}
+      .resource{flex-direction:column}
+    }
+    @media (max-width: 640px){
+      .container{width:min(100% - 18px, 100%)}
       .hero-panel,.card{padding:18px}
-      h1{font-size:clamp(30px, 12vw, 44px)}
-      .lead,.section-intro{font-size:16px}
-      .footer-nav .btn{width:100%}
+      .hero-meta{grid-template-columns:1fr}
+      h1{font-size:34px}
+      .footer-nav{flex-direction:column}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <section class="hero">
+  <header class="hero">
+    <div class="container">
       <div class="hero-panel">
         <div class="hero-grid">
           <div>
             <div class="eyebrow">
+              <span class="pill">Fase 1 · Base</span>
+              <span class="pill">Semana 1</span>
               <span class="pill">Dia 005</span>
-              <span class="pill">Revisão da semana 01</span>
-              <span class="pill">Rock de largada</span>
+              <span class="pill">Revisão</span>
             </div>
-            <h1>Revisão inteligente da semana 1</h1>
-            <p class="lead">
-              Hoje o foco não é correr para conteúdo novo. Hoje é o dia de juntar as peças, reconhecer padrões,
-              revisar os erros que mais enganariam na prova e transformar a semana em memória mais forte.
-              Você vai passar por Português, Matemática, Humanas e Ciências com um ritmo de revisão guiada.
-            </p>
+            <h1>Revisão diagnóstica da semana 1</h1>
+            <p class="lead">O objetivo do Dia 5 não é abrir matéria nova. É consolidar o que foi estudado do Dia 1 ao Dia 4, identificar onde você ainda escorrega e te deixar pronto para o mini simulado do Dia 6.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#quiz">Começar pelo quiz</a>
-              <a class="btn btn-secondary" href="#misto">Ir para o bloco estilo prova</a>
+              <a class="btn btn-primary" href="#revisao-dia4">Começar a revisão</a>
+              <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
             </div>
             <div class="hero-meta">
-              <div class="mini-card">
-                <span>Tempo estimado</span>
-                <strong>60–90 min</strong>
-              </div>
-              <div class="mini-card">
-                <span>Missão</span>
-                <strong>Consolidar a semana</strong>
-              </div>
-              <div class="mini-card">
-                <span>Método</span>
-                <strong>Revisar + misturar + testar</strong>
-              </div>
+              <div class="mini-card"><span>Meta do dia</span><strong>corrigir base antes do simulado</strong></div>
+              <div class="mini-card"><span>Formato</span><strong>revisão + mistura + diagnóstico</strong></div>
+              <div class="mini-card"><span>Tempo sugerido</span><strong>50–70 min</strong></div>
             </div>
           </div>
           <div class="hero-art">
-            <article class="poster poster-rock">
-              <span class="tag">setlist da semana</span>
-              <strong>4 matérias. 1 mapa mental.</strong>
-              <small>Hoje você junta leitura, cálculo, tempo histórico e raciocínio científico em uma mesma revisão.</small>
+            <article class="poster poster-blue">
+              <div class="tag">missão</div>
+              <strong>Juntar as peças da semana</strong>
+              <small>Hoje você transforma conteúdo solto em base de prova.</small>
             </article>
-            <article class="poster poster-social">
-              <span class="tag">feed do progresso</span>
-              <strong>Menos decorar. Mais enxergar padrão.</strong>
-              <small>Quando você percebe o padrão, a questão parece menos “difícil” e mais “decifrável”.</small>
+            <article class="poster poster-green">
+              <div class="tag">método</div>
+              <strong>Revisar, misturar, corrigir</strong>
+              <small>Quem revisa certo erra menos no simulado do dia seguinte.</small>
             </article>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <section class="section" id="quiz">
-      <div class="section-title">Revisão espaçada de 24h</div>
-      <h2>Quiz rápido para puxar da memória o Dia 004</h2>
-      <p class="section-intro">
-        Antes de seguir, tente responder sem olhar. O objetivo não é acertar tudo de primeira. O objetivo é
-        obrigar o cérebro a puxar a informação antes de confirmar a resposta.
-      </p>
-      <div class="card quiz-card">
-        <details>
-          <summary>1) Em Ciências, qual é a diferença entre observação e hipótese?</summary>
-          <div class="answer">
-            <p><strong>Observação</strong> é aquilo que você percebe ou registra. <strong>Hipótese</strong> é uma explicação possível para o que foi observado.</p>
-          </div>
-        </details>
-        <details>
-          <summary>2) Se uma tabela mostra que a planta A cresceu mais no grupo com luz, o que você pode concluir com segurança?</summary>
-          <div class="answer">
-            <p>Você pode concluir que, naquele experimento, a presença de luz esteve associada a maior crescimento. Não pode inventar causas que os dados não mostram.</p>
-          </div>
-        </details>
-        <details>
-          <summary>3) Qual é o erro mais comum ao ler uma tabela?</summary>
-          <div class="answer">
-            <p>Olhar só um número isolado e ignorar comparação, unidade de medida, período observado ou título da tabela.</p>
-          </div>
-        </details>
-        <details>
-          <summary>4) Se dois grupos diferem em água e luz ao mesmo tempo, o experimento está bom?</summary>
-          <div class="answer">
-            <p>Não. Porque você mudou duas variáveis ao mesmo tempo e perde clareza sobre qual delas influenciou o resultado.</p>
-          </div>
-        </details>
-        <details>
-          <summary>5) O que a prova mais quer quando mostra uma tabela ou gráfico?</summary>
-          <div class="answer">
-            <p>Que você compare dados, perceba tendência e tire uma conclusão fiel ao que está representado — sem exagerar e sem inventar informação.</p>
-          </div>
-        </details>
+  <main class="container">
+    <section class="section" id="revisao-dia4">
+      <div class="section-title">Etapa 1</div>
+      <h2>Revisão rápida do Dia 4</h2>
+      <p class="section-intro">Antes de revisar a semana inteira, recupere o essencial de Ciências. Responda primeiro. Depois confira.</p>
+
+      <div class="diagnostic-grid">
+        <article class="q-card">
+          <strong>1. Qual é a diferença entre observação e hipótese?</strong>
+          <details><summary>Mostrar resposta</summary><div>Observação descreve o que foi percebido. Hipótese tenta explicar o que foi observado.</div></details>
+        </article>
+        <article class="q-card">
+          <strong>2. Em uma tabela, o que você deve olhar primeiro?</strong>
+          <details><summary>Mostrar resposta</summary><div>O título.</div></details>
+        </article>
+        <article class="q-card">
+          <strong>3. Por que a unidade do dado importa?</strong>
+          <details><summary>Mostrar resposta</summary><div>Porque o número sozinho não basta; a unidade mostra o que está sendo medido.</div></details>
+        </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-title">Mapa da semana 1</div>
-      <h2>O que você precisa sair dominando hoje</h2>
-      <p class="section-intro">
-        Esta revisão fecha o primeiro bloco da jornada. O objetivo é consolidar os quatro pilares trabalhados na semana
-        e preparar você para o mini simulado de amanhã com mais segurança e menos improviso.
-      </p>
-      <div class="grid grid-4">
-        <article class="card subject-card subject-port">
+      <div class="section-title">Etapa 2</div>
+      <h2>Mapa da semana 1</h2>
+      <p class="section-intro">Aqui está o núcleo que precisa estar claro antes do mini simulado de amanhã.</p>
+
+      <div class="grid-4">
+        <article class="card topic-card topic-port">
           <h3>Português</h3>
-          <p>Comando da questão, assunto, ideia principal, informação explícita e informação implícita.</p>
+          <p>Comando, assunto, ideia principal, explícito e implícito.</p>
           <div class="chips">
-            <span class="chip">ler com calma</span>
+            <span class="chip">ler o pedido</span>
             <span class="chip">achar a ideia central</span>
-            <span class="chip">não extrapolar</span>
           </div>
         </article>
-        <article class="card subject-card subject-math">
+
+        <article class="card topic-card topic-math">
           <h3>Matemática</h3>
-          <p>Valor posicional, operações e leitura correta do que o problema está pedindo.</p>
+          <p>Valor posicional, operações e escolha correta da conta.</p>
           <div class="chips">
-            <span class="chip">ordem das etapas</span>
-            <span class="chip">troca de unidade</span>
+            <span class="chip">entender o número</span>
             <span class="chip">conta com sentido</span>
           </div>
         </article>
-        <article class="card subject-card subject-human">
+
+        <article class="card topic-card topic-human">
           <h3>Humanas</h3>
-          <p>Tempo histórico, século e linha do tempo como forma de organizar eventos.</p>
+          <p>Linha do tempo, mapa, legenda e gráfico de barras.</p>
           <div class="chips">
-            <span class="chip">antes / durante / depois</span>
-            <span class="chip">século sem medo</span>
-            <span class="chip">ordem importa</span>
+            <span class="chip">ordem</span>
+            <span class="chip">localização</span>
+            <span class="chip">quantidade</span>
           </div>
         </article>
-        <article class="card subject-card subject-sci">
+
+        <article class="card topic-card topic-sci">
           <h3>Ciências</h3>
-          <p>Observação, hipótese e leitura de tabelas sem chute e sem invenção.</p>
+          <p>Observação, hipótese, conclusão e leitura de tabela.</p>
           <div class="chips">
-            <span class="chip">comparar dados</span>
-            <span class="chip">ler título e unidade</span>
+            <span class="chip">evidência</span>
             <span class="chip">conclusão fiel</span>
           </div>
         </article>
       </div>
-      <div class="card bars">
+
+      <div class="bars">
         <div class="bar">
-          <div class="bar-top"><span>Português · leitura de comando e ideia principal</span><span>revisão-chave</span></div>
+          <div class="bar-top"><span>Português</span><span>comando + ideia principal</span></div>
           <div class="bar-track"><div class="bar-fill fill-port" style="width:88%"></div></div>
         </div>
         <div class="bar">
-          <div class="bar-top"><span>Matemática · valor posicional e 4 operações</span><span>revisão-chave</span></div>
+          <div class="bar-top"><span>Matemática</span><span>valor posicional + operações</span></div>
           <div class="bar-track"><div class="bar-fill fill-math" style="width:84%"></div></div>
         </div>
         <div class="bar">
-          <div class="bar-top"><span>Humanas · século e linha do tempo</span><span>revisão-chave</span></div>
-          <div class="bar-track"><div class="bar-fill fill-human" style="width:79%"></div></div>
+          <div class="bar-top"><span>Humanas</span><span>tempo, mapa e gráfico</span></div>
+          <div class="bar-track"><div class="bar-fill fill-human" style="width:80%"></div></div>
         </div>
         <div class="bar">
-          <div class="bar-top"><span>Ciências · observação, hipótese e tabela</span><span>revisão-chave</span></div>
+          <div class="bar-top"><span>Ciências</span><span>observação, hipótese e tabela</span></div>
           <div class="bar-track"><div class="bar-fill fill-sci" style="width:82%"></div></div>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-title">Worked examples → prática guiada → independente</div>
-      <h2>Português: leia o comando como quem decifra uma letra</h2>
-      <div class="visual-board">
-        <article class="card">
-          <h3>Exemplo resolvido</h3>
-          <p><strong>Texto:</strong> “No intervalo, Laura abriu o caderno, mas não estudou. Ficou olhando a chuva cair no pátio e pensando no ensaio da banda da tarde.”</p>
-          <div class="flow">
-            <div class="step"><strong>1. Assunto</strong>O texto fala do momento de Laura no intervalo.</div>
-            <div class="step"><strong>2. Ideia principal</strong>Mesmo com o caderno aberto, ela estava distraída e pensando em outra coisa.</div>
-            <div class="step"><strong>3. Implícito</strong>Não basta ver o caderno aberto e concluir que ela estudou.</div>
-          </div>
-        </article>
-        <article class="card callout">
-          <strong>Regra de ouro</strong>
-          <p>Questão de interpretação não é para adivinhar intenção escondida do universo. É para ler o comando, voltar ao texto e responder com base no que está ali.</p>
-          <ul>
-            <li><strong>Explícito:</strong> o texto diz diretamente.</li>
-            <li><strong>Implícito:</strong> você conclui por pista real do texto.</li>
-            <li><strong>Erro clássico:</strong> responder algo possível na vida real, mas não sustentado pelo trecho.</li>
-          </ul>
-        </article>
-      </div>
-      <div class="dual">
-        <article class="card question">
-          <h3>Prática guiada</h3>
-          <p><strong>Trecho:</strong> “A postagem teve muitas curtidas, mas quase nenhum comentário dizia algo sobre o conteúdo.”</p>
-          <p><strong>Pergunta:</strong> O que dá para inferir?</p>
-          <p class="subtle">Pense: curtida e compreensão são a mesma coisa?</p>
-          <div class="gabarito">
-            <details>
-              <summary>Ver resposta</summary>
-              <p>Não. Dá para inferir que a postagem chamou atenção, mas isso não garante que as pessoas realmente entenderam ou discutiram o conteúdo.</p>
-            </details>
-          </div>
-        </article>
-        <article class="card question">
-          <h3>Prática independente</h3>
-          <p><strong>Trecho:</strong> “No cartaz, a frase maior era ‘Preserve a água’. Em letras menores, apareciam orientações para economizar em casa.”</p>
-          <p><strong>Pergunta:</strong> Qual é a ideia principal do cartaz?</p>
-          <div class="gabarito">
-            <details>
-              <summary>Conferir</summary>
-              <p>A ideia principal é incentivar a preservação da água. As orientações menores servem para desenvolver essa mensagem central.</p>
-            </details>
-          </div>
-        </article>
-      </div>
-    </section>
+      <div class="section-title">Etapa 3</div>
+      <h2>Correção por matéria</h2>
+      <p class="section-intro">Aqui você revisa o padrão mais importante de cada área antes de misturar tudo.</p>
 
-    <section class="section">
-      <div class="section-title">CPA · Concreto → pictórico → abstrato</div>
-      <h2>Matemática: conta boa começa com leitura boa</h2>
-      <div class="grid grid-2">
+      <div class="grid-2">
         <article class="card">
-          <h3>Concreto e pictórico</h3>
-          <p>Imagine 4 ingressos a R$ 18 cada. Antes de sair multiplicando, visualize: são <strong>4 grupos de 18</strong>. Depois desenhe em blocos:</p>
-          <div class="flow">
-            <div class="step"><strong>18</strong>1 dezena + 8 unidades</div>
-            <div class="step"><strong>x 4</strong>4 grupos iguais</div>
-            <div class="step"><strong>= 72</strong>72 reais no total</div>
-          </div>
-          <p>Esse desenho evita o erro de misturar posição dos algarismos e ajuda a entender por que a operação escolhida faz sentido.</p>
-        </article>
-        <article class="card table-card">
-          <h3>Valor posicional sem tropeço</h3>
-          <table>
-            <thead>
-              <tr><th>Número</th><th>Dezena</th><th>Unidade</th><th>Leitura útil</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>47</td><td>4 dezenas</td><td>7 unidades</td><td>40 + 7</td></tr>
-              <tr><td>305</td><td>3 centenas</td><td>0 dezenas</td><td>300 + 5</td></tr>
-              <tr><td>1.284</td><td>1 milhar</td><td>2 centenas / 8 dezenas / 4 unidades</td><td>1000 + 200 + 80 + 4</td></tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
-      <div class="dual">
-        <article class="card question">
-          <h3>Prática guiada</h3>
-          <p>Uma camiseta custa R$ 35 e um adesivo custa R$ 4. Quanto você paga por 2 camisetas e 3 adesivos?</p>
-          <div class="gabarito">
-            <details>
-              <summary>Ver passo a passo</summary>
-              <p>2 camisetas = 2 × 35 = 70. 3 adesivos = 3 × 4 = 12. Total = 70 + 12 = <strong>82</strong>.</p>
-            </details>
+          <h3>Português</h3>
+          <p><strong>Erro mais comum:</strong> responder algo possível, mas não sustentado pelo texto.</p>
+          <div class="formula">Regra da revisão: comando → assunto → ideia principal → alternativa.</div>
+          <div class="diagnostic-grid">
+            <article class="q-card">
+              <strong>Trecho: “O cartaz dizia preserve a água.” Qual é a ideia principal?</strong>
+              <details><summary>Conferir</summary><div>Incentivar a preservação da água.</div></details>
+            </article>
           </div>
         </article>
-        <article class="card question">
-          <h3>Prática independente</h3>
-          <p>Em uma estante há 248 livros. Foram emprestados 39 e depois chegaram mais 56. Com quantos livros a estante ficou?</p>
-          <div class="gabarito">
-            <details>
-              <summary>Conferir</summary>
-              <p>248 − 39 = 209. Depois, 209 + 56 = <strong>265</strong>.</p>
-            </details>
-          </div>
-        </article>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="section-title">Linha do tempo mental</div>
-      <h2>Humanas: ordem dos fatos muda a compreensão</h2>
-      <div class="grid grid-2">
         <article class="card">
-          <h3>Veja a sequência como uma saga</h3>
-          <div class="timeline">
-            <div class="timeline-item">
-              <strong>1. O fato acontece</strong>
-              <p>Exemplo: 1822 marca a Independência do Brasil.</p>
-            </div>
-            <div class="timeline-item">
-              <strong>2. Você localiza no século</strong>
-              <p>1822 está no século 19, porque vai de 1801 a 1900.</p>
-            </div>
-            <div class="timeline-item">
-              <strong>3. Você compara com outros fatos</strong>
-              <p>Isso permite entender o que veio antes, depois e qual processo histórico está em jogo.</p>
-            </div>
+          <h3>Matemática</h3>
+          <p><strong>Erro mais comum:</strong> fazer conta certa para uma pergunta errada.</p>
+          <div class="formula">Regra da revisão: entender a situação antes da operação.</div>
+          <div class="diagnostic-grid">
+            <article class="q-card">
+              <strong>No número 1.742, quanto vale o 7?</strong>
+              <details><summary>Conferir</summary><div>Vale 700.</div></details>
+            </article>
           </div>
         </article>
-        <article class="card callout">
-          <strong>Atalho que salva</strong>
-          <p>Para achar o século de um ano que não termina em 00, pense assim:</p>
-          <ul>
-            <li>1822 → 18 + 1 = <strong>século 19</strong></li>
-            <li>1500 → como termina em 00, é <strong>século 15</strong></li>
-            <li>2026 → 20 + 1 = <strong>século 21</strong></li>
-          </ul>
-        </article>
-      </div>
-      <div class="dual">
-        <article class="card question">
-          <h3>Prática guiada</h3>
-          <p>Coloque em ordem cronológica: chegada da família real ao Brasil (1808), Independência (1822) e Proclamação da República (1889).</p>
-          <div class="gabarito">
-            <details>
-              <summary>Ver ordem</summary>
-              <p>1808 → 1822 → 1889.</p>
-            </details>
-          </div>
-        </article>
-        <article class="card question">
-          <h3>Prática independente</h3>
-          <p>Em que século está o ano 1789?</p>
-          <div class="gabarito">
-            <details>
-              <summary>Conferir</summary>
-              <p>1789 está no <strong>século 18</strong>.</p>
-            </details>
-          </div>
-        </article>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="section-title">Leitura de dados</div>
-      <h2>Ciências: observar, comparar e concluir sem inventar</h2>
-      <div class="grid grid-2">
-        <article class="card table-card">
-          <h3>Tabela de revisão</h3>
-          <p class="subtle">Experimento: crescimento de mudas em 5 dias.</p>
-          <table>
-            <thead>
-              <tr><th>Grupo</th><th>Luz</th><th>Água</th><th>Altura final</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>A</td><td>sim</td><td>sim</td><td>14 cm</td></tr>
-              <tr><td>B</td><td>não</td><td>sim</td><td>8 cm</td></tr>
-              <tr><td>C</td><td>sim</td><td>não</td><td>6 cm</td></tr>
-            </tbody>
-          </table>
-        </article>
         <article class="card">
-          <h3>O que os dados permitem dizer?</h3>
-          <ul>
-            <li>O grupo A cresceu mais do que os outros.</li>
-            <li>A ausência de luz ou água esteve associada a menor crescimento.</li>
-            <li>Você pode comparar resultados, mas não deve inventar fator não testado.</li>
-          </ul>
-          <div class="flow">
-            <div class="step"><strong>Observe</strong>Quem teve maior e menor resultado?</div>
-            <div class="step"><strong>Compare</strong>O que mudou de um grupo para outro?</div>
-            <div class="step"><strong>Conclua</strong>Fale só o que os dados sustentam.</div>
+          <h3>Humanas</h3>
+          <p><strong>Erro mais comum:</strong> misturar sequência, localização e comparação de quantidade.</p>
+          <div class="formula">Linha do tempo = ordem. Mapa = localização. Gráfico = quantidade.</div>
+          <div class="diagnostic-grid">
+            <article class="q-card">
+              <strong>Em uma linha do tempo, o fato mais à esquerda é o mais antigo ou mais recente?</strong>
+              <details><summary>Conferir</summary><div>O mais antigo.</div></details>
+            </article>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Ciências</h3>
+          <p><strong>Erro mais comum:</strong> tratar hipótese como se já fosse conclusão.</p>
+          <div class="formula">Observação descreve. Hipótese explica. Conclusão confirma ou enfraquece com base nos dados.</div>
+          <div class="diagnostic-grid">
+            <article class="q-card">
+              <strong>“Talvez a falta de luz tenha prejudicado a planta.” Isso é observação ou hipótese?</strong>
+              <details><summary>Conferir</summary><div>Hipótese.</div></details>
+            </article>
           </div>
         </article>
       </div>
     </section>
 
     <section class="section" id="misto">
-      <div class="section-title">Interleaving</div>
-      <h2>Bloco misto com cara de prova real</h2>
-      <p class="section-intro">
-        Agora você vai misturar os tipos de raciocínio. É aqui que o estudo fica mais parecido com a prova, porque a prova não avisa qual “gaveta mental” você deve abrir.
-      </p>
-      <div class="grid grid-2">
-        <article class="card question">
-          <h3>1) Português</h3>
-          <p>Num aviso escolar, a frase em destaque é: “Traga sua garrafa e evite desperdício”. Qual é a finalidade principal do texto?</p>
-          <div class="gabarito"><details><summary>Ver resposta</summary><p>Incentivar um comportamento: levar garrafa e evitar desperdício.</p></details></div>
+      <div class="section-title">Etapa 4</div>
+      <h2>Bloco misto com cara de prova</h2>
+      <p class="section-intro">Agora você mistura as áreas. Esse é o treino que mais se aproxima do que acontece em prova objetiva.</p>
+
+      <div class="mixed-grid">
+        <article class="q-card">
+          <strong>1. Português</strong>
+          <p>Se um texto diz “o pátio ficou vazio em poucos minutos”, isso é informação explícita ou implícita?</p>
+          <details><summary>Mostrar resposta</summary><div>Explícita.</div></details>
         </article>
-        <article class="card question">
-          <h3>2) Matemática</h3>
+
+        <article class="q-card">
+          <strong>2. Matemática</strong>
           <p>Uma compra teve 3 cadernos de R$ 12 e 2 canetas de R$ 5. Qual foi o total?</p>
-          <div class="gabarito"><details><summary>Ver resposta</summary><p>3 × 12 = 36. 2 × 5 = 10. Total = <strong>46</strong>.</p></details></div>
+          <details><summary>Mostrar resposta</summary><div>3 × 12 = 36; 2 × 5 = 10; total = 46.</div></details>
         </article>
-        <article class="card question">
-          <h3>3) Humanas</h3>
-          <p>O ano 1500 pertence a qual século?</p>
-          <div class="gabarito"><details><summary>Ver resposta</summary><p><strong>Século 15.</strong></p></details></div>
+
+        <article class="q-card">
+          <strong>3. Humanas</strong>
+          <p>Em um gráfico de barras, qual barra representa a maior quantidade?</p>
+          <details><summary>Mostrar resposta</summary><div>A barra mais alta.</div></details>
         </article>
-        <article class="card question">
-          <h3>4) Ciências</h3>
-          <p>Se uma tabela mostra aumento de temperatura ao longo das horas, qual conclusão básica é possível?</p>
-          <div class="gabarito"><details><summary>Ver resposta</summary><p>Que, no período observado, a temperatura apresentou tendência de aumento.</p></details></div>
+
+        <article class="q-card">
+          <strong>4. Ciências</strong>
+          <p>Se uma tabela mostra aumento de temperatura ao longo do tempo, o que isso indica?</p>
+          <details><summary>Mostrar resposta</summary><div>Que, no período observado, houve tendência de aumento de temperatura.</div></details>
         </article>
-        <article class="card question">
-          <h3>5) Português</h3>
-          <p>Se o texto diz “o pátio ficou vazio em poucos minutos”, isso é informação explícita ou implícita?</p>
-          <div class="gabarito"><details><summary>Ver resposta</summary><p><strong>Explícita</strong>, porque foi afirmada diretamente.</p></details></div>
+
+        <article class="q-card">
+          <strong>5. Português</strong>
+          <p>Qual é a ideia principal de um aviso com a frase “Use a lixeira e preserve o espaço comum”?</p>
+          <details><summary>Mostrar resposta</summary><div>Incentivar o cuidado com o espaço comum por meio do uso da lixeira.</div></details>
         </article>
-        <article class="card question">
-          <h3>6) Matemática</h3>
-          <p>Qual é o valor do algarismo 7 em 1.742?</p>
-          <div class="gabarito"><details><summary>Ver resposta</summary><p>O 7 está na casa das centenas. Vale <strong>700</strong>.</p></details></div>
+
+        <article class="q-card">
+          <strong>6. Matemática</strong>
+          <p>Em 305, quantas dezenas há?</p>
+          <details><summary>Mostrar resposta</summary><div>Zero dezenas.</div></details>
         </article>
-        <article class="card question">
-          <h3>7) Humanas</h3>
-          <p>Em uma linha do tempo, um fato mais à esquerda aconteceu antes ou depois?</p>
-          <div class="gabarito"><details><summary>Ver resposta</summary><p><strong>Antes.</strong></p></details></div>
+
+        <article class="q-card">
+          <strong>7. Humanas</strong>
+          <p>Para que serve a legenda de um mapa?</p>
+          <details><summary>Mostrar resposta</summary><div>Para explicar o significado das cores, marcas e símbolos.</div></details>
         </article>
-        <article class="card question">
-          <h3>8) Ciências</h3>
-          <p>Uma hipótese é o resultado final do experimento?</p>
-          <div class="gabarito"><details><summary>Ver resposta</summary><p>Não. Hipótese é uma explicação possível que será testada.</p></details></div>
+
+        <article class="q-card">
+          <strong>8. Ciências</strong>
+          <p>Uma conclusão científica boa pode afirmar mais do que os dados mostram?</p>
+          <details><summary>Mostrar resposta</summary><div>Não. Ela deve respeitar o que foi realmente observado e medido.</div></details>
         </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-title">Fechamento</div>
-      <h2>Checklist de saída</h2>
-      <div class="dual">
-        <article class="card">
-          <h3>O que precisa estar claro agora</h3>
-          <ul>
-            <li>Você consegue separar assunto de ideia principal.</li>
-            <li>Você percebe a diferença entre explícito e implícito.</li>
-            <li>Você lê problema matemático e escolhe operação com sentido.</li>
-            <li>Você localiza ano em século e organiza fatos em sequência.</li>
-            <li>Você observa uma tabela sem inventar conclusão.</li>
-          </ul>
+      <div class="section-title">Etapa 5</div>
+      <h2>Como interpretar seu desempenho</h2>
+
+      <div class="score-grid">
+        <article class="score-card good">
+          <strong>7 ou 8 acertos</strong>
+          <p>Você entra bem no mini simulado do Dia 6. Siga normalmente.</p>
         </article>
+
+        <article class="score-card mid">
+          <strong>4 a 6 acertos</strong>
+          <p>Base razoável. Vale revisar seus dois erros mais repetidos antes de dormir.</p>
+        </article>
+
+        <article class="score-card low">
+          <strong>0 a 3 acertos</strong>
+          <p>Não acelere. Revise os pontos fracos antes de ir para o mini simulado.</p>
+        </article>
+      </div>
+
+      <div class="formula">O Dia 5 não mede perfeição. Mede prontidão para o simulado.</div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 6</div>
+      <h2>Caderno de erros e fechamento</h2>
+
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>Checklist de saída</h3>
+          <div class="checklist">
+            <div class="check"><div class="box"></div><div>Consigo ler comando e achar ideia principal sem inventar.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo escolher operação matemática pelo sentido do problema.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo diferenciar ordem, localização e quantidade em Humanas.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo separar observação, hipótese e conclusão em Ciências.</div></div>
+          </div>
+        </article>
+
         <article class="card">
           <h3>Caderno de erros</h3>
-          <p>Não escreva só “errei a 4”. Escreva o motivo real:</p>
+          <p>Anote o motivo real do erro, não só o número da questão.</p>
           <ul>
-            <li>Li rápido e ignorei o comando.</li>
-            <li>Confundi ideia principal com detalhe.</li>
-            <li>Escolhi operação antes de entender a situação.</li>
-            <li>Esqueci a lógica do século.</li>
-            <li>Tirei conclusão maior do que os dados permitiam.</li>
+            <li>li rápido e ignorei o comando</li>
+            <li>escolhi a operação antes de entender o enunciado</li>
+            <li>confundi linha do tempo com mapa ou gráfico</li>
+            <li>inventei conclusão além do que o dado mostrava</li>
           </ul>
+          <div class="formula">Quem chega no Dia 6 sabendo onde tropeça tem muito mais chance de se corrigir durante o simulado.</div>
         </article>
       </div>
     </section>
 
     <section class="section">
       <div class="section-title">Apoio</div>
-      <h2>Links para reforçar o mesmo bloco da semana</h2>
-      <div class="grid grid-2">
-        <a class="support-link" href="https://www.youtube.com/results?search_query=ideia+principal+e+inferencia+interpreta%C3%A7%C3%A3o+de+texto" target="_blank" rel="noopener noreferrer">
+      <h2>Reforço rápido por matéria</h2>
+      <div class="resources">
+        <a class="resource" href="https://www.youtube.com/results?search_query=ideia+principal+e+inferencia+interpretacao+de+texto" target="_blank" rel="noopener noreferrer">
           <div>
             <strong>Português · ideia principal e inferência</strong>
-            <span>Busca pronta no YouTube para revisar leitura de comando, inferência e ideia central.</span>
+            <span>Busca pronta para reforçar leitura de comando, inferência e ideia central.</span>
           </div>
-          <span>abrir ↗</span>
+          <em>abrir busca</em>
         </a>
-        <a class="support-link" href="https://www.youtube.com/results?search_query=valor+posicional+e+quatro+opera%C3%A7%C3%B5es+problemas" target="_blank" rel="noopener noreferrer">
+        <a class="resource" href="https://www.youtube.com/results?search_query=valor+posicional+e+quatro+operacoes+problemas" target="_blank" rel="noopener noreferrer">
           <div>
-            <strong>Matemática · valor posicional e 4 operações</strong>
-            <span>Busca pronta com foco em revisão do básico que mais cai nas questões iniciais.</span>
+            <strong>Matemática · valor posicional e operações</strong>
+            <span>Busca pronta para revisar o básico que mais cai no começo.</span>
           </div>
-          <span>abrir ↗</span>
+          <em>abrir busca</em>
         </a>
-        <a class="support-link" href="https://www.youtube.com/results?search_query=s%C3%A9culo+linha+do+tempo+tempo+hist%C3%B3rico" target="_blank" rel="noopener noreferrer">
+        <a class="resource" href="https://www.youtube.com/results?search_query=linha+do+tempo+mapa+grafico+ensino+fundamental" target="_blank" rel="noopener noreferrer">
           <div>
-            <strong>Humanas · século e linha do tempo</strong>
-            <span>Busca pronta para reforçar cronologia e tempo histórico sem decorar no vazio.</span>
+            <strong>Humanas · linha do tempo, mapa e gráfico</strong>
+            <span>Busca pronta para reforçar leitura de recursos visuais.</span>
           </div>
-          <span>abrir ↗</span>
+          <em>abrir busca</em>
         </a>
-        <a class="support-link" href="https://www.youtube.com/results?search_query=observa%C3%A7%C3%A3o+hip%C3%B3tese+leitura+de+tabelas+ci%C3%AAncias" target="_blank" rel="noopener noreferrer">
+        <a class="resource" href="https://www.youtube.com/results?search_query=observacao+hipotese+leitura+de+tabela+ciencias" target="_blank" rel="noopener noreferrer">
           <div>
-            <strong>Ciências · observação, hipótese e tabelas</strong>
-            <span>Busca pronta para treinar leitura de dados e conclusões fiéis ao experimento.</span>
+            <strong>Ciências · observação, hipótese e tabela</strong>
+            <span>Busca pronta para treinar leitura de dados e conclusões fiéis.</span>
           </div>
-          <span>abrir ↗</span>
+          <em>abrir busca</em>
         </a>
       </div>
     </section>
 
-    <section class="section">
-      <div class="footer-nav">
-        <a class="btn btn-secondary" href="../index.html">← Voltar para o cronograma</a>
-        <a class="btn btn-primary" href="dia-006.html">Próxima apostila →</a>
+    <div class="footer-nav">
+      <div class="nav-group">
+        <a class="btn btn-secondary" href="dia-004.html">← Voltar à apostila anterior</a>
+        <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
       </div>
-    </section>
-  </div>
+      <a class="btn btn-primary" href="dia-006.html">Próxima apostila →</a>
+    </div>
+  </main>
 </body>
 </html>
