@@ -531,24 +531,6 @@ function getSimuladoTitle(weekNumber) {
         dayNumber++;
         continue;
       }
-      if (weekday === 5) {
-        studyDays.push({
-          date,
-          week: week.week,
-          weekday,
-          mode: "mini_simulado",
-          title: getSimuladoTitle(week.week),          
-          theme: week.theme,
-          arc: week.arc,
-          playlist: week.playlist,
-          visual: visuals[weekday],
-          number: dayNumber,
-          slug: `dia-${padDay(dayNumber)}.html`,
-          href: `apostilas/dia-${padDay(dayNumber)}.html`
-        });
-        dayNumber++;
-        continue;
-      }
 
       studyDays.push({
         date,
