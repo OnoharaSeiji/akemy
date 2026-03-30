@@ -17,57 +17,46 @@
 
   const styles = `
     :root{
-      --bg:#f7f6f2;
-      --panel:#ffffff;
-      --panel2:#f1efe8;
-      --line:rgba(31,41,55,.12);
-      --text:#1f2937;
-      --muted:#475569;
-      --soft:#64748b;
-      --concept:#243b6b;
-      --accent:#325f9f;
-      --example:#2f6f5e;
-      --warning:#a84b4b;
-      --highlight:#e9d8a6;
-      --shadow:0 16px 40px rgba(15,23,42,.08)
+      --bg:#f7f6f2;--panel:#ffffff;--panel2:#f3efe7;--line:rgba(31,41,55,.12);--text:#1f2937;
+      --muted:#4b5563;--soft:#6b7280;--rose:#b85c6b;--wine:#a84b4b;--violet:#6d56c9;--blue:#243b6b;
+      --gold:#e9d8a6;--mint:#2f6f5e;--shadow:0 20px 48px rgba(31,41,55,.08)
     }
     *{box-sizing:border-box} html{scroll-behavior:smooth}
     body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:
-      radial-gradient(circle at 10% 10%, rgba(50,95,159,.08), transparent 24%),
-      radial-gradient(circle at 90% 12%, rgba(233,216,166,.18), transparent 24%),
-      linear-gradient(180deg,#f8f6f1 0%,#f2efe8 100%)}
+      radial-gradient(circle at 8% 10%, rgba(36,59,107,.06), transparent 25%),
+      radial-gradient(circle at 92% 14%, rgba(47,111,94,.05), transparent 22%),
+      linear-gradient(180deg,#f7f6f2 0%,#f3efe7 100%)}
     a{color:inherit}.page{width:min(1180px,calc(100% - 24px));margin:0 auto;padding:24px 0 52px}
-    .hero,.section{background:linear-gradient(180deg,#ffffff,#fbfaf7);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
-    .hero{padding:26px;position:relative;overflow:hidden}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(24px);opacity:.34}
-    .hero:before{width:180px;height:180px;right:-30px;top:-30px;background:radial-gradient(circle,rgba(50,95,159,.22),transparent 70%)}
-    .hero:after{width:220px;height:220px;left:-50px;bottom:-70px;background:radial-gradient(circle,rgba(233,216,166,.42),transparent 70%)}
+    .hero,.section{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
+    .hero{padding:26px;position:relative;overflow:hidden}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(22px);opacity:.28}
+    .hero:before{width:180px;height:180px;right:-30px;top:-30px;background:radial-gradient(circle,rgba(184,92,107,.32),transparent 70%)}
+    .hero:after{width:220px;height:220px;left:-50px;bottom:-70px;background:radial-gradient(circle,rgba(36,59,107,.22),transparent 70%)}
     .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:20px;position:relative;z-index:1}.hero-art{display:grid;gap:12px}
     .eyebrow{display:flex;gap:8px;flex-wrap:wrap}.pill,.chip,.tag,.mode-badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;border:1px solid var(--line)}
-    .pill{padding:8px 12px;background:rgba(36,59,107,.08);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--concept)}
-    h1,h2,h3,h4,p{margin:0}.hero h1{margin-top:14px;font-size:clamp(2rem,5vw,3.6rem);line-height:1.03;max-width:12ch;color:var(--text)}
+    .pill{padding:8px 12px;background:rgba(233,216,166,.42);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5b4a18}
+    h1,h2,h3,h4,p{margin:0}.hero h1{margin-top:14px;font-size:clamp(2rem,5vw,3.6rem);line-height:1.03;max-width:12ch}
     .lead{margin-top:16px;color:var(--muted);font-size:1.06rem;line-height:1.72;max-width:64ch}
     .hero-actions,.nav{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:800;border:1px solid var(--line)}
-    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--concept));color:#fff;border-color:transparent}.btn-secondary{background:#fff}
+    .btn-primary{background:linear-gradient(135deg,var(--blue),#2e4a85);color:#fff;border-color:transparent}.btn-secondary{background:#fff}
     .hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.mini-card,.card,.quiz-card,.flow-card,.exercise,.video,.week-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px}
-    .mini-card span,.muted-label,.tiny{display:block;color:var(--soft);font-size:12px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em}.mini-card strong{font-size:1.05rem;color:var(--text)}
-    .poster{min-height:170px;padding:18px;border-radius:24px;position:relative;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end}
-    .poster:before{content:"";position:absolute;right:-20px;top:-18px;width:140px;height:140px;border-radius:50%;opacity:.34}
-    .poster-rock{background:linear-gradient(160deg,rgba(36,59,107,.10),rgba(255,255,255,.92))}.poster-rock:before{background:radial-gradient(circle,rgba(50,95,159,.18),transparent 62%)}
-    .poster-social{background:linear-gradient(160deg,rgba(47,111,94,.10),rgba(255,255,255,.92))}.poster-social:before{background:radial-gradient(circle,rgba(233,216,166,.48),transparent 62%)}
-    .poster .mode-badge{position:absolute;top:16px;left:16px;padding:7px 10px;background:rgba(36,59,107,.08);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--concept)}
+    .mini-card span,.muted-label,.tiny{display:block;color:var(--soft);font-size:12px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em}.mini-card strong{font-size:1.05rem}
+    .poster{min-height:170px;padding:18px;border-radius:24px;position:relative;overflow:hidden;border:1px solid rgba(31,41,55,.08);display:flex;flex-direction:column;justify-content:flex-end}
+    .poster:before{content:"";position:absolute;right:-20px;top:-18px;width:140px;height:140px;border-radius:50%;opacity:.28}.poster-rock{background:linear-gradient(160deg,rgba(184,92,107,.14),rgba(255,255,255,.98))}.poster-rock:before{background:radial-gradient(circle,rgba(233,216,166,.9),transparent 62%)}
+    .poster-social{background:linear-gradient(160deg,rgba(36,59,107,.10),rgba(255,255,255,.98))}.poster-social:before{background:radial-gradient(circle,rgba(47,111,94,.22),transparent 62%)}
+    .poster .mode-badge{position:absolute;top:16px;left:16px;padding:7px 10px;background:#f8fafc;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#243b6b}
     .poster strong{font-size:1.35rem;line-height:1.08;max-width:12ch}.poster small{margin-top:8px;color:var(--muted);line-height:1.6}
-    .stack{display:grid;gap:18px;margin-top:18px}.section{padding:22px}.section-title{color:var(--concept);text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
+    .stack{display:grid;gap:18px;margin-top:18px}.section{padding:22px}.section-title{color:#243b6b;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
     .section h2{font-size:clamp(1.6rem,3vw,2.5rem);margin-bottom:10px}.section-intro,.card p,.card li,.exercise li,.exercise p,.quiz-card p,.video p,.week-card p{color:var(--muted);line-height:1.72}
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.focus-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
-    .focus-box{padding:16px;border-radius:18px;background:rgba(36,59,107,.03);border:1px solid var(--line)}.focus-box strong{display:block;font-size:1rem;margin-bottom:8px;color:var(--concept)}.focus-box p{color:var(--muted);line-height:1.65}
-    .formula{margin-top:14px;padding:14px 16px;border-radius:18px;background:rgba(233,216,166,.38);border:1px solid rgba(212,185,120,.52);color:#4b3b12;line-height:1.68;font-weight:700}
-    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:rgba(36,59,107,.03);overflow:hidden}summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800;color:var(--concept)}summary::-webkit-details-marker{display:none}details div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
-    .quiz-wrap,.qa,.practice-list,.videos,.week-grid{display:grid;gap:14px;margin-top:16px}.chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.chip{padding:8px 12px;background:rgba(36,59,107,.06);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--concept)}
-    .flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.flow-card strong{display:block;margin-bottom:8px;color:var(--concept)}.table-wrap{overflow:auto;margin-top:16px;border:1px solid var(--line);border-radius:18px}table{width:100%;min-width:560px;border-collapse:collapse;background:#fff}th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);color:var(--muted);line-height:1.62}th{color:var(--concept);background:rgba(36,59,107,.04);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
-    .exercise strong,.video strong,.week-card strong{display:block;font-size:1rem;line-height:1.55;margin-bottom:8px;color:var(--text)}.video a{text-decoration:none}.nav{justify-content:space-between}.footer-note{margin-top:12px;color:var(--soft);font-size:.92rem;text-align:center}
+    .focus-box{padding:16px;border-radius:18px;background:#fff;border:1px solid var(--line)}.focus-box strong{display:block;font-size:1rem;margin-bottom:8px}.focus-box p{color:var(--muted);line-height:1.65}
+    .formula{margin-top:14px;padding:14px 16px;border-radius:18px;background:rgba(233,216,166,.42);border:1px solid rgba(31,41,55,.10);color:#5b4a18;line-height:1.68;font-weight:700}
+    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:#f9fafb;overflow:hidden}summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800}summary::-webkit-details-marker{display:none}details div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
+    .quiz-wrap,.qa,.practice-list,.videos,.week-grid{display:grid;gap:14px;margin-top:16px}.chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.chip{padding:8px 12px;background:#f8fafc;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#243b6b}
+    .flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.flow-card strong{display:block;margin-bottom:8px}.table-wrap{overflow:auto;margin-top:16px;border:1px solid var(--line);border-radius:18px}table{width:100%;min-width:560px;border-collapse:collapse;background:#fff}th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);color:var(--muted);line-height:1.62}th{color:#243b6b;background:#f8fafc;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+    .exercise strong,.video strong,.week-card strong{display:block;font-size:1rem;line-height:1.55;margin-bottom:8px}.video a{text-decoration:none;color:#243b6b}.nav{justify-content:space-between}.footer-note{margin-top:12px;color:var(--soft);font-size:.92rem;text-align:center}
     @media (max-width:1024px){.hero-grid,.grid-2,.grid-3,.focus-row,.flow{grid-template-columns:1fr}.hero-meta{grid-template-columns:1fr 1fr}}
     @media (max-width:720px){.page{width:min(100% - 16px,1180px)}.hero,.section{padding:18px}.hero-meta{grid-template-columns:1fr}.nav,.hero-actions{flex-direction:column;align-items:stretch}}
-`;
+  `;
 
   function injectStyles(){
     const style = document.createElement('style');
@@ -331,9 +320,9 @@
         </section>
         <div class="stack">
           ${renderQuiz(prev)}
-          <section class="section"><div class="section-title">Mapa da semana</div><h2>O que esta revisão precisa amarrar</h2><p class="section-intro">A revisão não serve para reler tudo de forma passiva. Serve para juntar os temas, reconhecer o que já ficou e enxergar o que ainda precisa de apoio.</p><div class="week-grid">${items.map(d=>{const s=splitTitle(d.title); return `<article class="week-card"><span class="tiny">Dia ${pad(d.number)}</span><strong>${esc(d.title)}</strong><p>${esc(daySummary(d))}</p></article>`;}).join('')}</div></section>
+          <section class="section"><div class="section-title">Mapa da semana</div><h2>O que esta revisão precisa amarrar</h2><p class="section-intro">A revisão não serve para reler tudo de forma passiva. Serve para juntar os temas, reconhecer o que já ficou e enxergar o que ainda precisa de apoio.</p><div class="week-grid">${items.map(d=>{return `<article class="week-card"><span class="tiny">Dia ${pad(d.number)}</span><strong>${esc(d.title)}</strong><p>${esc(daySummary(d))}</p></article>`;}).join('')}</div></section>
           <section class="section"><div class="section-title">Puxando conexões</div><h2>Como revisar sem cair em tédio</h2><div class="flow"><article class="flow-card"><strong>1. Recuperar</strong><p>Responder de cabeça antes de olhar material ou gabarito.</p></article><article class="flow-card"><strong>2. Misturar</strong><p>Alternar assuntos para treinar escolha de estratégia, não só execução mecânica.</p></article><article class="flow-card"><strong>3. Corrigir</strong><p>Nomear o erro e registrar o ajuste no caderno.</p></article></div></section>
-          <section class="section"><div class="section-title">Treino misto</div><h2>Blocos de revisão da semana</h2><div class="practice-list">${items.map((d,idx)=>{const s=splitTitle(d.title); return `<article class="exercise"><strong>Bloco ${idx+1} · ${esc(d.title)}</strong><p>Explique o conceito central, dê um exemplo concreto e diga qual armadilha mais costuma aparecer nesse tema.</p></article>`;}).join('')}<article class="exercise"><strong>Bloco final · conexão entre os temas</strong><p>Escreva como os quatro temas da semana podem aparecer misturados numa prova curta e qual pista ajuda a reconhecer cada um.</p></article></div><details><summary>Mostrar resposta orientativa</summary><div>Uma boa revisão traz o conceito central de cada aula, um exemplo real, um erro comum e um critério de reconhecimento rápido na prova.</div></details></section>
+          <section class="section"><div class="section-title">Treino misto</div><h2>Blocos de revisão da semana</h2><div class="practice-list">${items.map((d,idx)=>`<article class="exercise"><strong>Bloco ${idx+1} · ${esc(d.title)}</strong><p>Explique o conceito central, dê um exemplo concreto e diga qual armadilha mais costuma aparecer nesse tema.</p></article>`).join('')}<article class="exercise"><strong>Bloco final · conexão entre os temas</strong><p>Escreva como os quatro temas da semana podem aparecer misturados numa prova curta e qual pista ajuda a reconhecer cada um.</p></article></div><details><summary>Mostrar resposta orientativa</summary><div>Uma boa revisão traz o conceito central de cada aula, um exemplo real, um erro comum e um critério de reconhecimento rápido na prova.</div></details></section>
           <section class="section"><div class="section-title">Pós-revisão</div><h2>Checklist do dia</h2><div class="grid-2" style="margin-top:16px"><article class="card"><h3>Checklist</h3><p>• Consigo resumir os quatro conteúdos da semana sem ler.</p><p>• Sei onde meu desempenho caiu.</p><p>• Já deixei o mini simulado preparado com foco e sem ansiedade boba.</p></article><article class="card"><h3>Caderno de erros</h3><p>Registre não apenas o que errou, mas o mecanismo: leitura ruim, distração, estratégia errada, cálculo, contexto ou definição frouxa.</p><div class="formula">Quem revisa apontando o tipo de erro cresce muito mais rápido do que quem só marca acerto e erro.</div></article></div></section>
           ${renderWeekVideos(items)}
           ${renderNav()}
@@ -344,7 +333,7 @@
   function makeQuestions(){
     const items = weekContentDays();
     const questions = [];
-    items.forEach((d, idx) => {
+    items.forEach((d) => {
       const {subject, topic} = splitTitle(d.title);
       questions.push({subject, q:`Questão ${questions.length+1} · ${topic}: qual é o foco central que a prova quer que você reconheça nesse tema?`, a:`Reconhecer ${topic.toLowerCase()} com base no comando da questão e na relação principal do enunciado.`});
       questions.push({subject, q:`Questão ${questions.length+1} · ${topic}: qual erro comum mais derruba quem estudou esse assunto só de forma decorada?`, a:`${commonError(subject, topic).charAt(0).toUpperCase()+commonError(subject, topic).slice(1)}.`});
@@ -360,7 +349,7 @@
       <main class="page">
         <section class="hero"><div class="hero-grid"><div><div class="eyebrow"><span class="pill">${esc(current.arc)}</span><span class="pill">Semana ${String(current.week).padStart(2,'0')}</span><span class="pill">Dia ${pad(current.number)}</span><span class="pill">Mini simulado</span></div><h1>${esc(current.title)}</h1><p class="lead">Hoje a meta é trocar leitura confortável por situação de prova: assuntos misturados, foco no comando e correção com diagnóstico honesto.</p><div class="hero-actions"><a class="btn btn-primary" href="#quiz">Começar o mini simulado</a><a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a></div><div class="hero-meta"><div class="mini-card"><span>Modo</span><strong>misto</strong></div><div class="mini-card"><span>Questões</span><strong>12</strong></div><div class="mini-card"><span>Tempo</span><strong>35–50 min</strong></div></div></div><div class="hero-art"><article class="poster poster-rock"><span class="mode-badge">ritmo de prova</span><strong>Treinar sem glamour</strong><small>Ler, decidir, responder e corrigir com critério.</small></article><article class="poster poster-social"><span class="mode-badge">mindset</span><strong>Simulado é diagnóstico</strong><small>Não mede valor pessoal. Mede estágio de preparo.</small></article></div></div></section>
         <div class="stack">${renderQuiz(prev)}<section class="section"><div class="section-title">Como usar</div><h2>Faça em clima de prova, corrija em clima de treino</h2><div class="flow"><article class="flow-card"><strong>1. Leia tudo</strong><p>Marque as mais fáceis e ganhe ritmo.</p></article><article class="flow-card"><strong>2. Resolva por camadas</strong><p>Fáceis, médias e depois as que exigem mais energia.</p></article><article class="flow-card"><strong>3. Corrija com lupa</strong><p>Nomeie o tipo de erro no caderno.</p></article></div></section>
-        <section class="section"><div class="section-title">Mini simulado</div><h2>12 questões mistas</h2><div class="qa">${questions.map((item,i)=>`<article class="quiz-card"><span class="tiny">${esc(item.subject)}</span><strong>${esc(item.q)}</strong><details><summary>Mostrar gabarito orientativo</summary><div>${esc(item.a)}</div></details></article>`).join('')}</div></section>
+        <section class="section"><div class="section-title">Mini simulado</div><h2>12 questões mistas</h2><div class="qa">${questions.map((item)=>`<article class="quiz-card"><span class="tiny">${esc(item.subject)}</span><strong>${esc(item.q)}</strong><details><summary>Mostrar gabarito orientativo</summary><div>${esc(item.a)}</div></details></article>`).join('')}</div></section>
         <section class="section"><div class="section-title">Pós-prova</div><h2>Transforme o erro em ajuste</h2><div class="grid-2" style="margin-top:16px"><article class="card"><h3>Checklist de correção</h3><p>• Eu li o comando com atenção?</p><p>• Escolhi a estratégia certa?</p><p>• Meu erro foi de conteúdo, leitura, distração ou execução?</p><p>• Como evito repetir isso na próxima semana?</p></article><article class="card"><h3>Interpretação do resultado</h3><p>Acertar muito mostra base firme. Acertar médio mostra boa construção. Acertar pouco mostra onde a próxima semana deve reforçar. Tudo isso é dado de treino.</p><div class="formula">O simulado só vale de verdade quando ele gera caderno de erros útil.</div></article></div></section>
         ${renderWeekVideos(weekContentDays())}${renderNav()}</div></main>`;
   }
