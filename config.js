@@ -9,281 +9,281 @@ window.AKEMY_CONFIG = (() => {
   const totalStudyDays = 216;
 
   const weeklyPlan = [
-    {
+   {
       "week": 1,
       "arc": "Fase 1 · Base",
-      "theme": "Aquecimento e diagnóstico inteligente",
-      "playlist": "rock de largada",
-      "monday": "Português · leitura de comando, assunto e ideia principal",
-      "tuesday": "Matemática · valor posicional e as 4 operações",
-      "wednesday": "Humanas · tempo histórico, século e linha do tempo",
-      "thursday": "Ciências · observação, hipótese e leitura de tabelas"
+      "theme": "Diagnóstico e alinhamento",
+      "playlist": "foco inicial",
+      "monday": "Português · diagnóstico de leitura, comando e ideia principal",
+      "tuesday": "Matemática · diagnóstico de operações, valor posicional e cálculo",
+      "wednesday": "Humanas · linha do tempo, mapa e leitura inicial de gráfico",
+      "thursday": "Ciências · método científico, observação, hipótese e leitura de tabela"
     },
     {
       "week": 2,
       "arc": "Fase 1 · Base",
-      "theme": "Entender antes de decorar",
-      "playlist": "feed de organização",
+      "theme": "Base de leitura e número",
+      "playlist": "foco inicial",
       "monday": "Português · explícito, implícito e inferência básica",
       "tuesday": "Matemática · adição, subtração e problemas curtos",
-      "wednesday": "Geografia · orientação, mapas e pontos cardeais",
-      "thursday": "Ciências · seres vivos e características gerais"
+      "wednesday": "Geografia · orientação, mapas, escala e pontos cardeais",
+      "thursday": "Ciências · seres vivos, níveis de organização e características gerais"
     },
     {
       "week": 3,
       "arc": "Fase 1 · Base",
-      "theme": "Leitura que enxerga pistas",
-      "playlist": "clima de saga",
-      "monday": "Português · gênero textual e finalidade",
-      "tuesday": "Matemática · multiplicação e divisão",
-      "wednesday": "História · Brasil colonial em linguagem simples",
-      "thursday": "Ciências · cadeia alimentar e relações ecológicas"
+      "theme": "Fundamentos operatórios",
+      "playlist": "foco inicial",
+      "monday": "Português · gênero textual, finalidade e suporte",
+      "tuesday": "Matemática · multiplicação, divisão e cálculo mental",
+      "wednesday": "História · Brasil colonial, indígenas e colonização",
+      "thursday": "Ciências · água, ar, solo e estados físicos da matéria"
     },
     {
       "week": 4,
       "arc": "Fase 1 · Base",
-      "theme": "Compreender relações e padrões",
-      "playlist": "cinema fantástico",
-      "monday": "Português · coesão, referência e sentido no texto",
+      "theme": "Frações e espaço",
+      "playlist": "foco inicial",
+      "monday": "Português · coesão, referência e sentido global",
       "tuesday": "Matemática · frações I",
-      "wednesday": "Geografia · paisagem, lugar e território",
-      "thursday": "Ciências · água, ar e solo"
+      "wednesday": "Geografia · paisagem, lugar, território e urbanização inicial",
+      "thursday": "Ciências · cadeia alimentar, relações ecológicas e equilíbrio ambiental"
     },
     {
       "week": 5,
       "arc": "Fase 1 · Base",
-      "theme": "Fundação sólida sem pressa",
-      "playlist": "playlist de foco",
+      "theme": "Frações aplicadas",
+      "playlist": "foco inicial",
       "monday": "Português · pontuação e efeito de sentido",
-      "tuesday": "Matemática · frações II",
-      "wednesday": "História · indígenas, colonização e resistência",
-      "thursday": "Ciências · sistema digestório e hábitos saudáveis"
+      "tuesday": "Matemática · frações II e problemas cotidianos",
+      "wednesday": "História · escravidão, resistência e abolição",
+      "thursday": "Ciências · alimentação, digestão, nutrientes e saúde"
     },
     {
       "week": 6,
       "arc": "Fase 1 · Base",
-      "theme": "Leitura e número em conexão",
-      "playlist": "estética social",
-      "monday": "Português · classes de palavras I",
-      "tuesday": "Matemática · números decimais",
-      "wednesday": "Geografia · clima, tempo e relevo",
-      "thursday": "Ciências · estados físicos e mudanças da matéria"
+      "theme": "Números decimais e medidas",
+      "playlist": "foco inicial",
+      "monday": "Português · classes de palavras em contexto",
+      "tuesday": "Matemática · números decimais e sistema monetário",
+      "wednesday": "Geografia · clima, tempo, relevo e paisagens do Brasil",
+      "thursday": "Ciências · calor, temperatura e mudanças de estado"
     },
     {
       "week": 7,
       "arc": "Fase 1 · Base",
-      "theme": "Do concreto para o símbolo",
-      "playlist": "castelo mágico",
-      "monday": "Português · classes de palavras II",
-      "tuesday": "Matemática · porcentagem simples",
-      "wednesday": "História · independência, império e república",
-      "thursday": "Ciências · energia, calor e transformações"
+      "theme": "Porcentagem e cidadania",
+      "playlist": "foco inicial",
+      "monday": "Português · sintaxe básica e ordem da frase",
+      "tuesday": "Matemática · porcentagem simples e descontos/acréscimos",
+      "wednesday": "História · império, república e cidadania",
+      "thursday": "Ciências · sistema respiratório, circulação e hábitos saudáveis"
     },
     {
       "week": 8,
       "arc": "Fase 1 · Base",
-      "theme": "Primeiro fechamento de ciclo",
-      "playlist": "rock melódico",
-      "monday": "Português · sintaxe básica e ordem da frase",
-      "tuesday": "Matemática · razão e proporção",
-      "wednesday": "Geografia · população, urbanização e migração",
-      "thursday": "Ciências · sistema respiratório e circulação"
+      "theme": "Razão e revisão de base",
+      "playlist": "foco inicial",
+      "monday": "Português · ortografia frequente, acentuação e regularidades",
+      "tuesday": "Matemática · razão, proporção e escalas simples",
+      "wednesday": "Geografia · população, migração e redes urbanas",
+      "thursday": "Ciências · força, movimento e máquinas simples"
     },
     {
       "week": 9,
       "arc": "Fase 2 · Consolidação",
       "theme": "Ler melhor, resolver melhor",
-      "playlist": "feed criativo",
-      "monday": "Português · revisão estratégica de leitura e inferência",
-      "tuesday": "Matemática · porcentagem em problemas",
-      "wednesday": "Humanas · leitura de gráficos e tabelas sociais",
-      "thursday": "Ciências · método científico e interpretação de dados"
+      "playlist": "ritmo constante",
+      "monday": "Português · revisão estratégica de leitura, inferência e comando",
+      "tuesday": "Matemática · porcentagem em problemas e múltiplas etapas",
+      "wednesday": "Humanas · leitura de gráficos, tabelas e infográficos sociais",
+      "thursday": "Ciências · ecossistemas brasileiros e impactos humanos"
     },
     {
       "week": 10,
       "arc": "Fase 2 · Consolidação",
-      "theme": "Narrativa, lógica e localização",
-      "playlist": "universo de magia",
+      "theme": "Narrativa, lógica e cartografia",
+      "playlist": "ritmo constante",
       "monday": "Português · narrativa, crônica e elementos do enredo",
       "tuesday": "Matemática · equações do 1º grau I",
-      "wednesday": "Geografia · cartografia, escala e legenda",
-      "thursday": "Ciências · ecossistemas brasileiros"
+      "wednesday": "Geografia · cartografia, escala, legenda e coordenadas",
+      "thursday": "Ciências · células, tecidos e organização do corpo"
     },
     {
       "week": 11,
       "arc": "Fase 2 · Consolidação",
-      "theme": "Imagem, texto e conta",
-      "playlist": "noite lilás",
-      "monday": "Português · poema, conotação e linguagem figurada",
+      "theme": "Linguagem figurada e trabalho",
+      "playlist": "ritmo constante",
+      "monday": "Português · poema, conotação, denotação e figuras de linguagem",
       "tuesday": "Matemática · equações do 1º grau II",
-      "wednesday": "História · trabalho, escravidão e abolição",
-      "thursday": "Ciências · células, tecidos e organização do corpo"
+      "wednesday": "História · trabalho, industrialização e transformações sociais",
+      "thursday": "Ciências · misturas, separação de materiais e densidade"
     },
     {
       "week": 12,
       "arc": "Fase 2 · Consolidação",
       "theme": "Construir precisão",
-      "playlist": "playlist vintage",
-      "monday": "Português · concordância nominal e verbal básica",
+      "playlist": "ritmo constante",
+      "monday": "Português · concordância nominal e verbal em contexto",
       "tuesday": "Matemática · geometria plana I",
-      "wednesday": "Geografia · recursos naturais e impactos ambientais",
-      "thursday": "Ciências · alimentação, nutrientes e energia"
+      "wednesday": "Geografia · recursos naturais, energia e impactos ambientais",
+      "thursday": "Ciências · eletricidade básica, circuitos simples e consumo consciente"
     },
     {
       "week": 13,
       "arc": "Fase 2 · Consolidação",
       "theme": "Comparar e decidir",
-      "playlist": "romance sombrio",
-      "monday": "Português · variação linguística e uso da norma",
+      "playlist": "ritmo constante",
+      "monday": "Português · variação linguística, norma e adequação",
       "tuesday": "Matemática · geometria plana II",
-      "wednesday": "História · industrialização e vida urbana",
-      "thursday": "Ciências · sistema excretor e equilíbrio do corpo"
+      "wednesday": "História · século XX, ditadura, democracia e direitos",
+      "thursday": "Ciências · sistema nervoso, sentidos e coordenação do corpo"
     },
     {
       "week": 14,
       "arc": "Fase 2 · Consolidação",
       "theme": "Argumentar com clareza",
-      "playlist": "feed storytelling",
-      "monday": "Português · argumentação, opinião e fato",
-      "tuesday": "Matemática · perímetro e área",
-      "wednesday": "Geografia · economia, trabalho e consumo",
-      "thursday": "Ciências · saúde pública, vacinas e prevenção"
+      "playlist": "ritmo constante",
+      "monday": "Português · argumentação, opinião, fato e tese",
+      "tuesday": "Matemática · perímetro, área e composição de figuras",
+      "wednesday": "Geografia · economia, trabalho, consumo e globalização",
+      "thursday": "Ciências · saúde pública, vacinas, vírus, bactérias e prevenção"
     },
     {
       "week": 15,
       "arc": "Fase 2 · Consolidação",
       "theme": "Ajuste fino da linguagem",
-      "playlist": "rock nacional",
-      "monday": "Português · ortografia, acentuação e regularidades",
-      "tuesday": "Matemática · grandezas e medidas",
-      "wednesday": "História · república, cidadania e participação",
-      "thursday": "Ciências · sistema nervoso e sentidos"
+      "playlist": "ritmo constante",
+      "monday": "Português · reescrita, coesão e coerência",
+      "tuesday": "Matemática · grandezas, medidas e conversões",
+      "wednesday": "História · república, cidadania e participação social",
+      "thursday": "Ciências · genética básica, hereditariedade e biotecnologia inicial"
     },
     {
       "week": 16,
       "arc": "Fase 2 · Consolidação",
       "theme": "Interpretar além do óbvio",
-      "playlist": "cinema de aventura",
-      "monday": "Português · interpretação avançada com múltiplas pistas",
-      "tuesday": "Matemática · estatística I",
-      "wednesday": "Geografia · globalização, redes e circulação",
-      "thursday": "Ciências · genética básica e hereditariedade"
+      "playlist": "ritmo constante",
+      "monday": "Português · leitura avançada com textos verbais e não verbais",
+      "tuesday": "Matemática · estatística I · tabelas, médias e gráficos",
+      "wednesday": "Geografia · campo, cidade, redes de produção e circulação",
+      "thursday": "Ciências · astronomia, Terra, Lua, Sol e movimentos"
     },
     {
       "week": 17,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Comparar textos e estratégias",
-      "playlist": "luzes do palco",
-      "monday": "Português · leitura comparativa de textos",
-      "tuesday": "Matemática · estatística II",
-      "wednesday": "História · século XX em linhas gerais",
-      "thursday": "Ciências · probabilidade em situações cotidianas"
+      "playlist": "mistura inteligente",
+      "monday": "Português · leitura comparativa de textos e fontes",
+      "tuesday": "Matemática · estatística II e interpretação de dados",
+      "wednesday": "História · ciência, tecnologia e sociedade",
+      "thursday": "Ciências · matéria, materiais e propriedades"
     },
     {
       "week": 18,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Dados, mídia e mundo",
-      "playlist": "feed noturno",
-      "monday": "Português · infográficos, quadrinhos e propaganda",
+      "playlist": "mistura inteligente",
+      "monday": "Português · infográficos, quadrinhos, propaganda e intenção",
       "tuesday": "Matemática · probabilidade I",
       "wednesday": "Geografia · água, energia e sustentabilidade",
-      "thursday": "Ciências · astronomia e movimentos da Terra"
+      "thursday": "Ciências · transformações físicas e químicas no cotidiano"
     },
     {
       "week": 19,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Tempo, mudança e processo",
-      "playlist": "mistério pop",
-      "monday": "Português · verbos, tempos verbais e efeito de sequência",
+      "playlist": "mistura inteligente",
+      "monday": "Português · verbos, tempos verbais e efeitos de sequência",
       "tuesday": "Matemática · probabilidade II",
-      "wednesday": "História · ditadura, democracia e direitos",
-      "thursday": "Ciências · transformações químicas e físicas"
+      "wednesday": "História · movimentos sociais, cultura e cidadania",
+      "thursday": "Ciências · eletricidade, magnetismo e aplicações cotidianas"
     },
     {
       "week": 20,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Aplicar em contexto",
-      "playlist": "aquarela mágica",
+      "playlist": "mistura inteligente",
       "monday": "Português · figuras de linguagem em textos reais",
-      "tuesday": "Matemática · álgebra aplicada a problemas",
-      "wednesday": "Geografia · campo, cidade e redes de produção",
-      "thursday": "Ciências · sistema locomotor e movimento"
+      "tuesday": "Matemática · álgebra aplicada e problemas contextualizados",
+      "wednesday": "Geografia · agro, indústria, serviços e cadeias produtivas",
+      "thursday": "Ciências · força, velocidade, trajetórias e interpretação de situações"
     },
     {
       "week": 21,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Ciência, texto e sociedade",
-      "playlist": "mood de revisão",
+      "playlist": "mistura inteligente",
       "monday": "Português · texto de divulgação científica",
-      "tuesday": "Matemática · proporcionalidade e escalas",
-      "wednesday": "História · ciência, tecnologia e sociedade",
-      "thursday": "Ciências · corpo humano integrado"
+      "tuesday": "Matemática · proporcionalidade, escalas e mapas",
+      "wednesday": "História · democracia, participação e leitura de fontes",
+      "thursday": "Ciências · corpo humano integrado e homeostase"
     },
     {
       "week": 22,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Misto com controle",
-      "playlist": "tela widescreen",
-      "monday": "Português · revisão mista de leitura e gramática",
-      "tuesday": "Matemática · revisão mista de frações, porcentagem e equações",
-      "wednesday": "Geografia · mapas, escalas e gráficos",
-      "thursday": "Ciências · ecologia e corpo humano em alternância"
+      "playlist": "mistura inteligente",
+      "monday": "Português · revisão mista de leitura, gramática e comando",
+      "tuesday": "Matemática · revisão mista de frações, porcentagem, equações e medidas",
+      "wednesday": "Humanas · mapas, escalas, gráficos e cronologia",
+      "thursday": "Ciências · ecologia, matéria, energia e corpo humano"
     },
     {
       "week": 23,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Leitura crítica de mídias",
-      "playlist": "reels com propósito",
+      "playlist": "mistura inteligente",
       "monday": "Português · leitura crítica de mídias e redes",
-      "tuesday": "Matemática · gráficos, médias e interpretação",
-      "wednesday": "História · movimentos sociais e cultura",
-      "thursday": "Ciências · ecossistemas e impactos humanos"
+      "tuesday": "Matemática · gráficos, médias, porcentagens e interpretação",
+      "wednesday": "Humanas · Brasil contemporâneo, território e cidadania",
+      "thursday": "Ciências · recursos naturais, clima, energia e impactos ambientais"
     },
     {
       "week": 24,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Interleaving 1",
-      "playlist": "setlist misto",
-      "monday": "Português · textos curtos de prova com comparação",
-      "tuesday": "Matemática · mistura de operações e geometria",
-      "wednesday": "Humanas · linha do tempo + mapa + gráfico",
-      "thursday": "Ciências · mistura de corpo humano e ecologia"
+      "playlist": "mistura inteligente",
+      "monday": "Português · textos curtos de prova com comparação e inferência",
+      "tuesday": "Matemática · operações, geometria e medidas em mistura",
+      "wednesday": "Humanas · linha do tempo, mapa, gráfico e fonte histórica",
+      "thursday": "Ciências · corpo humano, ecologia e matéria em mistura"
     },
     {
       "week": 25,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Interleaving 2",
-      "playlist": "noite de maratona",
-      "monday": "Português · inferência + gramática em contexto",
-      "tuesday": "Matemática · equações + porcentagem + medidas",
-      "wednesday": "Humanas · urbanização + cidadania + história do Brasil",
-      "thursday": "Ciências · matéria + energia + saúde"
+      "playlist": "mistura inteligente",
+      "monday": "Português · inferência, tese e linguagem figurada em contexto",
+      "tuesday": "Matemática · equações, porcentagem e proporção em conjunto",
+      "wednesday": "Humanas · urbanização, cidadania, economia e território",
+      "thursday": "Ciências · energia, eletricidade, saúde e ambiente"
     },
     {
       "week": 26,
       "arc": "Fase 3 · Aprofundamento",
       "theme": "Interleaving 3",
-      "playlist": "castelo e cidade",
-      "monday": "Português · revisão de gêneros textuais",
-      "tuesday": "Matemática · estatística + probabilidade + leitura gráfica",
-      "wednesday": "Humanas · atualidades e interpretação documental",
-      "thursday": "Ciências · revisão interdisciplinar com tabelas e diagramas"
+      "playlist": "mistura inteligente",
+      "monday": "Português · revisão de gêneros textuais e estratégias de prova",
+      "tuesday": "Matemática · estatística, probabilidade e leitura gráfica",
+      "wednesday": "Humanas · atualidades, documentos e leitura interdisciplinar",
+      "thursday": "Ciências · experimentos, tabelas, gráficos e interpretação integrada"
     },
     {
       "week": 27,
       "arc": "Fase 4 · Reta final",
       "theme": "Reta final 1",
-      "playlist": "palco principal",
-      "monday": "Português · prova guiada de leitura",
-      "tuesday": "Matemática · prova guiada de problemas",
-      "wednesday": "Humanas · prova guiada com mapas e cronologia",
-      "thursday": "Ciências · prova guiada com gráficos e experimentos"
+      "playlist": "reta final",
+      "monday": "Português · prova guiada de leitura e comando fino",
+      "tuesday": "Matemática · prova guiada de problemas e estratégia",
+      "wednesday": "Humanas · prova guiada com mapas, cronologia e gráficos",
+      "thursday": "Ciências · prova guiada com experimentos, energia e corpo humano"
     },
     {
       "week": 28,
       "arc": "Fase 4 · Reta final",
       "theme": "Reta final 2",
-      "playlist": "filme de virada",
+      "playlist": "reta final",
       "monday": "Português · recuperação de erros frequentes",
       "tuesday": "Matemática · recuperação de erros frequentes",
       "wednesday": "Humanas · recuperação de erros frequentes",
@@ -293,37 +293,37 @@ window.AKEMY_CONFIG = (() => {
       "week": 29,
       "arc": "Fase 4 · Reta final",
       "theme": "Reta final 3",
-      "playlist": "álbum favorito",
+      "playlist": "reta final",
       "monday": "Português · velocidade com precisão",
       "tuesday": "Matemática · rapidez sem pular etapas",
-      "wednesday": "Humanas · leitura rápida de fontes",
-      "thursday": "Ciências · interpretação visual de questões"
+      "wednesday": "Humanas · leitura rápida de fontes e gráficos",
+      "thursday": "Ciências · interpretação visual e experimental de questões"
     },
     {
       "week": 30,
       "arc": "Fase 4 · Reta final",
       "theme": "Reta final 4",
-      "playlist": "feed impecável",
-      "monday": "Português · textos híbridos e comando fino",
-      "tuesday": "Matemática · problemas de múltiplas etapas",
-      "wednesday": "Humanas · mapas, tabelas e leitura crítica",
-      "thursday": "Ciências · experimentos, gráficos e cotidiano"
+      "playlist": "reta final",
+      "monday": "Português · textos híbridos, inferência e tese",
+      "tuesday": "Matemática · problemas de múltiplas etapas e gestão de tempo",
+      "wednesday": "Humanas · mapas, tabelas e leitura crítica interdisciplinar",
+      "thursday": "Ciências · experimentos, gráficos, cotidiano e intervenção humana"
     },
     {
       "week": 31,
       "arc": "Fase 5 · Simulados",
       "theme": "Simulados orientados 1",
-      "playlist": "saga final",
-      "monday": "Português · treino por blocos cronometrados",
-      "tuesday": "Matemática · treino por blocos cronometrados",
-      "wednesday": "Humanas · treino por blocos cronometrados",
-      "thursday": "Ciências · treino por blocos cronometrados"
+      "playlist": "simulados",
+      "monday": "Português · bloco cronometrado de alta recorrência",
+      "tuesday": "Matemática · bloco cronometrado de alta recorrência",
+      "wednesday": "Humanas · bloco cronometrado de alta recorrência",
+      "thursday": "Ciências · bloco cronometrado de alta recorrência"
     },
     {
       "week": 32,
       "arc": "Fase 5 · Simulados",
       "theme": "Simulados orientados 2",
-      "playlist": "clima de estreia",
+      "playlist": "simulados",
       "monday": "Português · textos mais difíceis e revisão final",
       "tuesday": "Matemática · problemas mais difíceis e revisão final",
       "wednesday": "Humanas · leitura integrada e revisão final",
@@ -333,17 +333,17 @@ window.AKEMY_CONFIG = (() => {
       "week": 33,
       "arc": "Fase 5 · Simulados",
       "theme": "Ataque aos erros recorrentes",
-      "playlist": "edição deluxe",
-      "monday": "Português · erros do caderno de erros",
-      "tuesday": "Matemática · erros do caderno de erros",
-      "wednesday": "Humanas · erros do caderno de erros",
-      "thursday": "Ciências · erros do caderno de erros"
+      "playlist": "simulados",
+      "monday": "Português · caderno de erros e reensino",
+      "tuesday": "Matemática · caderno de erros e reensino",
+      "wednesday": "Humanas · caderno de erros e reensino",
+      "thursday": "Ciências · caderno de erros e reensino"
     },
     {
       "week": 34,
       "arc": "Fase 5 · Simulados",
       "theme": "Prova real 1",
-      "playlist": "ensaio geral",
+      "playlist": "simulados",
       "monday": "Português · simulado parcial com correção guiada",
       "tuesday": "Matemática · simulado parcial com correção guiada",
       "wednesday": "Humanas · simulado parcial com correção guiada",
@@ -353,7 +353,7 @@ window.AKEMY_CONFIG = (() => {
       "week": 35,
       "arc": "Fase 5 · Simulados",
       "theme": "Prova real 2",
-      "playlist": "último ato",
+      "playlist": "simulados",
       "monday": "Português · itens de alta recorrência",
       "tuesday": "Matemática · itens de alta recorrência",
       "wednesday": "Humanas · itens de alta recorrência",
@@ -363,11 +363,11 @@ window.AKEMY_CONFIG = (() => {
       "week": 36,
       "arc": "Fase 5 · Simulados",
       "theme": "Semana leve pré-prova",
-      "playlist": "respira e confia",
-      "monday": "Português · leitura leve de confiança",
-      "tuesday": "Matemática · revisão essencial",
-      "wednesday": "Humanas · revisão essencial",
-      "thursday": "Ciências · revisão essencial"
+      "playlist": "simulados",
+      "monday": "Português · leitura leve de confiança e repertório",
+      "tuesday": "Matemática · revisão essencial e aquecimento",
+      "wednesday": "Humanas · revisão essencial e segurança",
+      "thursday": "Ciências · revisão essencial e segurança"
     }
   ];
 
@@ -425,7 +425,49 @@ window.AKEMY_CONFIG = (() => {
   const visuals = ["playlist", "logica", "mapa", "laboratorio", "revisao", "simulado", "descanso"];
   const studyDays = [];
   let dayNumber = 1;
+function getReviewTitle(weekNumber) {
+  const label = String(weekNumber).padStart(2, "0");
 
+  if (weekNumber === 1) {
+    return `Revisão diagnóstica da semana ${label} · corrigir base e ajustar ritmo`;
+  }
+
+  if (weekNumber % 4 === 0 && weekNumber <= 24) {
+    return `Revisão acumulada ${String(weekNumber / 4).padStart(2, "0")} · últimas 4 semanas + caderno de erros`;
+  }
+
+  if (weekNumber >= 27 && weekNumber <= 30) {
+    return `Revisão estratégica ${label} · recuperação de lacunas e ajuste fino`;
+  }
+
+  if (weekNumber >= 31) {
+    return `Correção orientada ${label} · erros recorrentes e decisão de prova`;
+  }
+
+  return `Revisão da semana ${label} · consolidar erros, padrões e atalhos`;
+}
+
+function getSimuladoTitle(weekNumber) {
+  const label = String(weekNumber).padStart(2, "0");
+
+  if (weekNumber === 1) {
+    return `Mini simulado diagnóstico ${label} · leitura, cálculo e noção de prova`;
+  }
+
+  if (weekNumber % 4 === 0 && weekNumber <= 24) {
+    return `Simulado acumulado ${String(weekNumber / 4).padStart(2, "0")} · bloco misto das últimas 4 semanas`;
+  }
+
+  if (weekNumber >= 27 && weekNumber <= 30) {
+    return `Simulado parcial ${label} · prova mista por áreas`;
+  }
+
+  if (weekNumber >= 31) {
+    return `Simulado cronometrado ${label} · alta recorrência e estratégia`;
+  }
+
+  return `Mini simulado da semana ${label} · ritmo, leitura e confiança`;
+}
   weeklyPlan.forEach((week, weekIndex) => {
     const baseOffset = weekIndex * 7;
     const contentTitles = [week.monday, week.tuesday, week.wednesday, week.thursday];
@@ -458,8 +500,7 @@ window.AKEMY_CONFIG = (() => {
           week: week.week,
           weekday,
           mode: "revisao",
-          title: `Revisão da semana ${String(week.week).padStart(2, "0")} · consolidar erros, padrões e atalhos`,
-          theme: week.theme,
+title: getReviewTitle(week.week),          theme: week.theme,
           arc: week.arc,
           playlist: week.playlist,
           visual: visuals[weekday],
@@ -477,8 +518,7 @@ window.AKEMY_CONFIG = (() => {
           week: week.week,
           weekday,
           mode: "mini_simulado",
-          title: `Mini simulado da semana ${String(week.week).padStart(2, "0")} · ritmo, leitura e confiança`,
-          theme: week.theme,
+title: getSimuladoTitle(week.week),          theme: week.theme,
           arc: week.arc,
           playlist: week.playlist,
           visual: visuals[weekday],
