@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akemy Estudos · Dia 009</title>
+  <meta name="description" content="Apostila 9 do Akemy Estudos · Geografia: orientação, mapas, escala e pontos cardeais." />
+  <style>
+    :root{
+      --bg:#f7f6f2;
+      --panel:#ffffff;
+      --panel2:#f3efe7;
+      --line:rgba(31,41,55,.12);
+      --text:#1f2937;
+      --muted:#4b5563;
+      --soft:#6b7280;
+      --blue:#243b6b;
+      --green:#2f6f5e;
+      --red:#a84b4b;
+      --gold:#e9d8a6;
+      --shadow:0 20px 48px rgba(31,41,55,.08);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(36,59,107,.06), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(47,111,94,.05), transparent 24%),
+        linear-gradient(180deg, #f7f6f2 0%, #f3efe7 100%);
+    }
+    a{color:inherit}
+    .container{width:min(1080px, calc(100% - 24px));margin:0 auto}
+    .hero{padding:24px 0 14px}
+    .hero-panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(243,239,231,.98));
+      border:1px solid var(--line);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:28px;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(135deg, rgba(36,59,107,.04), transparent 28%),
+        linear-gradient(220deg, rgba(47,111,94,.05), transparent 35%);
+      pointer-events:none;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;position:relative;z-index:1}
+    .eyebrow{display:inline-flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(233,216,166,.42);border:1px solid rgba(31,41,55,.10);
+      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#5b4a18;
+    }
+    h1,h2,h3,h4,p{margin:0}
+    h1{margin-top:14px;font-size:clamp(34px, 6vw, 56px);line-height:1.03;max-width:12ch}
+    .lead{margin-top:16px;font-size:18px;line-height:1.75;color:var(--muted);max-width:66ch}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:800;font-size:15px;
+      border:1px solid var(--line);transition:.18s ease transform,.18s ease background;
+      background:#fff;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--blue),#2e4a85);color:#fff;border-color:transparent}
+    .btn-secondary{background:#fff}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+    .mini-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
+    .mini-card span{display:block;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .mini-card strong{font-size:20px;line-height:1.2}
+    .hero-art{display:grid;gap:14px}
+    .poster{
+      min-height:176px;padding:18px;border-radius:24px;border:1px solid rgba(31,41,55,.08);
+      position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+      background:#fff;
+    }
+    .poster::before{content:"";position:absolute;right:-24px;top:-18px;width:150px;height:150px;border-radius:50%;opacity:.30;filter:blur(2px)}
+    .poster .tag{position:absolute;top:16px;left:16px;font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:var(--soft)}
+    .poster strong{font-size:24px;line-height:1.08;max-width:11ch}
+    .poster small{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55}
+    .poster-blue{background:linear-gradient(155deg, rgba(36,59,107,.10), rgba(255,255,255,.98))}
+    .poster-blue::before{background:radial-gradient(circle, rgba(233,216,166,.95), transparent 62%)}
+    .poster-green{background:linear-gradient(155deg, rgba(47,111,94,.10), rgba(255,255,255,.98))}
+    .poster-green::before{background:radial-gradient(circle, rgba(36,59,107,.22), transparent 62%)}
+    .section{padding:18px 0}
+    .section-title{color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800;margin-bottom:10px}
+    .section h2{font-size:clamp(28px,3vw,40px);margin-bottom:10px}
+    .section-intro{color:var(--muted);line-height:1.75;font-size:17px;max-width:72ch}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+    .card h3{font-size:22px;margin-bottom:10px}
+    .card p,.card li{color:var(--muted);line-height:1.78;font-size:16px}
+    .card ul{padding-left:18px;margin:10px 0 0}
+    .focus-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .focus-box{border-radius:20px;padding:18px;border:1px solid var(--line);background:#fff}
+    .focus-box strong{display:block;font-size:18px;margin-bottom:8px}
+    .focus-box p{color:var(--muted);line-height:1.65}
+    .formula{margin-top:12px;padding:16px 18px;border-radius:18px;border:1px solid rgba(31,41,55,.10);background:rgba(233,216,166,.42);color:#5b4a18;font-weight:700;line-height:1.7}
+    .diagnostic-grid{display:grid;gap:14px;margin-top:16px}
+    .q-card{padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff}
+    .q-card strong{display:block;font-size:18px;line-height:1.45}
+    .q-card p{margin-top:10px;color:var(--muted)}
+    details{margin-top:12px;border-radius:16px;border:1px solid var(--line);background:#f9fafb;overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800}
+    summary::-webkit-details-marker{display:none}
+    details > div{padding:0 16px 16px;color:var(--muted);line-height:1.7}
+    .example{margin-top:14px;padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff}
+    .example p{color:var(--muted);line-height:1.72;margin-top:10px}
+    .practice-list{display:grid;gap:12px;margin-top:14px}
+    .practice-item{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fff}
+    .practice-item strong{display:block;line-height:1.65}
+    .score-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+    .score-card{padding:18px;border-radius:20px;border:1px solid var(--line);background:#fff}
+    .score-card strong{display:block;font-size:18px;margin-bottom:8px}
+    .score-card p{color:var(--muted);line-height:1.7}
+    .score-card.good{box-shadow:inset 0 0 0 1px rgba(47,111,94,.18)}
+    .score-card.mid{box-shadow:inset 0 0 0 1px rgba(233,216,166,.72)}
+    .score-card.low{box-shadow:inset 0 0 0 1px rgba(168,75,75,.16)}
+    .checklist{display:grid;gap:12px;margin-top:14px}
+    .check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .check .box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(31,41,55,.28);margin-top:2px;flex:0 0 auto}
+    .resources{display:grid;gap:12px;margin-top:14px}
+    .resource{display:flex;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:#fff;text-decoration:none}
+    .resource strong{display:block;font-size:16px}
+    .resource span{display:block;color:var(--muted);line-height:1.6;margin-top:6px}
+    .resource em{font-style:normal;color:var(--blue);white-space:nowrap;align-self:center}
+    .footer-nav{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 0 42px}
+    .nav-group{display:flex;gap:12px;flex-wrap:wrap}
+    @media (max-width: 980px){
+      .hero-grid,.grid-2,.grid-3,.focus-row,.score-grid{grid-template-columns:1fr}
+      .hero-meta{grid-template-columns:1fr 1fr}
+      .resource{flex-direction:column}
+    }
+    @media (max-width: 640px){
+      .container{width:min(100% - 18px, 100%)}
+      .hero-panel,.card{padding:18px}
+      .hero-meta{grid-template-columns:1fr}
+      h1{font-size:34px}
+      .footer-nav{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="pill">Fase 1 · Base</span>
+              <span class="pill">Semana 2</span>
+              <span class="pill">Dia 009</span>
+              <span class="pill">Geografia</span>
+            </div>
+            <h1>Orientação, mapas, escala e pontos cardeais</h1>
+            <p class="lead">O objetivo de hoje não é decorar mapa como se fosse desenho. É aprender a se localizar, ler direção, entender legenda e perceber o que a escala está dizendo antes de responder.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#revisao-dia8">Começar a apostila</a>
+              <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
+            </div>
+            <div class="hero-meta">
+              <div class="mini-card"><span>Meta do dia</span><strong>saber se localizar no papel</strong></div>
+              <div class="mini-card"><span>Formato</span><strong>revisão + conteúdo + checagem</strong></div>
+              <div class="mini-card"><span>Tempo sugerido</span><strong>45–60 min</strong></div>
+            </div>
+          </div>
+          <div class="hero-art">
+            <article class="poster poster-blue">
+              <div class="tag">missão</div>
+              <strong>Parar de olhar mapa sem entender nada</strong>
+              <small>Hoje você vai treinar direção, posição e leitura visual com clareza.</small>
+            </article>
+            <article class="poster poster-green">
+              <div class="tag">método</div>
+              <strong>Ler símbolo, direção e proporção</strong>
+              <small>Mapa não é só imagem. É informação organizada.</small>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section" id="revisao-dia8">
+      <div class="section-title">Etapa 1</div>
+      <h2>Revisão rápida do Dia 8</h2>
+      <p class="section-intro">Antes de Geografia, puxe da memória o essencial de Matemática do dia anterior. Responda primeiro. Depois confira.</p>
+
+      <div class="diagnostic-grid">
+        <article class="q-card">
+          <strong>1. Quando uma situação pede para juntar quantidades, qual operação costuma aparecer?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Adição.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>2. Quando a situação fala em descobrir quanto sobrou ou a diferença entre valores, qual operação costuma aparecer?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Subtração.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>3. Qual é o cuidado mais importante antes de fazer a conta?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Entender o sentido do enunciado antes de escolher a operação.</div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 2</div>
+      <h2>Mini diagnóstico inicial de Geografia</h2>
+      <p class="section-intro">Agora meça seu ponto de partida. Não consulte nada ainda.</p>
+
+      <div class="diagnostic-grid">
+        <article class="q-card">
+          <strong>1. Quais são os quatro pontos cardeais?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Norte, Sul, Leste e Oeste.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>2. Para que serve a legenda de um mapa?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Para explicar o significado das cores, linhas, símbolos e sinais usados no mapa.</div>
+          </details>
+        </article>
+
+        <article class="q-card">
+          <strong>3. Se um mapa mostra tudo muito pequeno, o que ajuda a entender a relação entre o desenho e a realidade?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>A escala.</div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 3</div>
+      <h2>O essencial que precisa ficar claro</h2>
+      <p class="section-intro">Hoje você precisa consolidar quatro peças. Se essas peças ficarem firmes, o restante começa a fazer sentido sozinho.</p>
+
+      <div class="focus-row">
+        <div class="focus-box">
+          <strong>Pontos cardeais</strong>
+          <p>São as direções principais usadas para localização: Norte, Sul, Leste e Oeste.</p>
+        </div>
+        <div class="focus-box">
+          <strong>Legenda</strong>
+          <p>É a chave do mapa. Ela mostra o que cada cor, linha ou símbolo representa.</p>
+        </div>
+        <div class="focus-box">
+          <strong>Escala</strong>
+          <p>Mostra a proporção entre o espaço desenhado no mapa e o espaço real.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>Orientação na prática</h3>
+          <p>Em muitos mapas, o Norte aparece apontado para cima. Isso ajuda a localizar o resto:</p>
+          <ul>
+            <li>se o Norte está para cima, o Sul fica para baixo</li>
+            <li>o Leste fica à direita</li>
+            <li>o Oeste fica à esquerda</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Cuidado importante</h3>
+          <p>Nem todo desenho serve como mapa. Para valer como mapa, ele precisa organizar informação espacial com algum critério.</p>
+          <div class="formula">Sem direção, legenda ou referência, o desenho pode até parecer mapa, mas não informa bem.</div>
+        </article>
+      </div>
+
+      <div class="formula">Pergunta-chave do dia: este símbolo, esta direção e este tamanho significam o quê no espaço real?</div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 4</div>
+      <h2>Exemplo resolvido único</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>Situação</h3>
+          <p>Em um mapa simples da escola, a biblioteca está à direita do pátio, a quadra está abaixo do pátio e a entrada principal está à esquerda do pátio. Uma seta indica o Norte para cima.</p>
+
+          <div class="example">
+            <h4>Pergunta 1</h4>
+            <p><strong>Em que direção a biblioteca está em relação ao pátio?</strong></p>
+            <p>No <strong>Leste</strong>, porque com o Norte para cima, a direita corresponde ao Leste.</p>
+          </div>
+
+          <div class="example">
+            <h4>Pergunta 2</h4>
+            <p><strong>Em que direção a quadra está em relação ao pátio?</strong></p>
+            <p>No <strong>Sul</strong>, porque abaixo do pátio corresponde ao Sul.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Por que esse exemplo resolve o Dia 9</h3>
+          <p>Porque ele mostra que localização não depende de chute. Depende de referência. Quando o Norte está definido, as outras direções deixam de ser confusas.</p>
+          <p style="margin-top:10px"><strong>Erro comum:</strong> responder “direita” ou “esquerda” e parar aí. Em prova, geralmente o que vale é a direção geográfica.</p>
+
+          <div class="formula">Direita e esquerda ajudam. Norte, Sul, Leste e Oeste resolvem melhor.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 5</div>
+      <h2>Leitura rápida de escala e legenda</h2>
+
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>Legenda</h3>
+          <p>Se um mapa usa:</p>
+          <ul>
+            <li>azul para rios</li>
+            <li>verde para áreas de vegetação</li>
+            <li>linha preta para estrada</li>
+          </ul>
+          <p>você precisa consultar a legenda antes de interpretar o desenho.</p>
+        </article>
+
+        <article class="card">
+          <h3>Escala</h3>
+          <p>Quando um mapa diz <strong>1 cm = 1 km</strong>, isso significa que cada centímetro medido no papel representa 1 quilômetro na realidade.</p>
+          <div class="formula">Escala não é enfeite. É a regra que liga o mapa ao mundo real.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 6</div>
+      <h2>Diagnóstico final do Dia 9</h2>
+      <p class="section-intro">Agora meça se o essencial ficou.</p>
+
+      <div class="practice-list">
+        <article class="practice-item">
+          <strong>1. Se o Norte está para cima em um mapa, que direção fica à esquerda?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Oeste.</div>
+          </details>
+        </article>
+
+        <article class="practice-item">
+          <strong>2. Em um mapa, a praça está abaixo da igreja. Com o Norte para cima, em que direção a praça está em relação à igreja?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Sul.</div>
+          </details>
+        </article>
+
+        <article class="practice-item">
+          <strong>3. Para que serve a legenda de um mapa?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>Para explicar o significado dos símbolos, cores e sinais do mapa.</div>
+          </details>
+        </article>
+
+        <article class="practice-item">
+          <strong>4. Se a escala diz 1 cm = 2 km, quantos quilômetros correspondem a 3 cm no mapa?</strong>
+          <details>
+            <summary>Mostrar resposta</summary>
+            <div>6 km.</div>
+          </details>
+        </article>
+
+        <article class="practice-item">
+          <strong>5. Explique com suas palavras por que olhar um mapa sem legenda pode gerar erro.</strong>
+          <details>
+            <summary>Mostrar resposta orientativa</summary>
+            <div>Porque a pessoa vê cores e símbolos, mas não sabe exatamente o que cada um representa.</div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 7</div>
+      <h2>Como interpretar seu resultado</h2>
+
+      <div class="score-grid">
+        <article class="score-card good">
+          <strong>4 ou 5 acertos</strong>
+          <p>Base boa. Pode seguir para o Dia 10 normalmente.</p>
+        </article>
+
+        <article class="score-card mid">
+          <strong>2 ou 3 acertos</strong>
+          <p>Pode seguir, mas revise pontos cardeais e escala no começo do próximo estudo.</p>
+        </article>
+
+        <article class="score-card low">
+          <strong>0 ou 1 acerto</strong>
+          <p>Melhor refazer esta apostila antes de avançar.</p>
+        </article>
+      </div>
+
+      <div class="formula">Hoje o foco não é decorar nome bonito. É saber ler posição, direção e proporção com segurança.</div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Etapa 8</div>
+      <h2>Caderno de erros e fechamento</h2>
+      <div class="grid-2" style="margin-top:16px; align-items:start;">
+        <article class="card">
+          <h3>Checklist de saída</h3>
+          <div class="checklist">
+            <div class="check"><div class="box"></div><div>Consigo nomear os quatro pontos cardeais.</div></div>
+            <div class="check"><div class="box"></div><div>Consigo localizar direita, esquerda, cima e baixo em termos geográficos.</div></div>
+            <div class="check"><div class="box"></div><div>Entendo para que serve a legenda.</div></div>
+            <div class="check"><div class="box"></div><div>Entendo a função básica da escala.</div></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Caderno de erros</h3>
+          <p>Anote qual foi o seu erro mais frequente hoje:</p>
+          <ul>
+            <li>confundi Leste com Oeste</li>
+            <li>respondi posição comum, mas não direção geográfica</li>
+            <li>ignorei a legenda</li>
+            <li>não entendi o que a escala estava dizendo</li>
+          </ul>
+          <div class="formula">Erro nomeado vira ajuste. Erro confuso continua voltando.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Vídeo-aulas</div>
+      <h2>Apoio curto para reforçar o Dia 9</h2>
+      <div class="resources">
+        <a class="resource" href="https://www.youtube.com/results?search_query=pontos+cardeais+e+orientacao" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>YouTube · pontos cardeais e orientação</strong>
+            <span>Boa para reforçar direção e localização com mapa simples.</span>
+          </div>
+          <em>abrir busca</em>
+        </a>
+        <a class="resource" href="https://www.youtube.com/results?search_query=escala+e+legenda+mapa" target="_blank" rel="noopener noreferrer">
+          <div>
+            <strong>YouTube · escala e legenda em mapas</strong>
+            <span>Boa para entender como o mapa representa o espaço real.</span>
+          </div>
+          <em>abrir busca</em>
+        </a>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <div class="nav-group">
+        <a class="btn btn-secondary" href="dia-008.html">← Voltar à apostila anterior</a>
+        <a class="btn btn-secondary" href="../index.html">Voltar para o cronograma</a>
+      </div>
+      <a class="btn btn-primary" href="dia-010.html">Próxima apostila →</a>
+    </div>
+  </main>
+</body>
+</html>
