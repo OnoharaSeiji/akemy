@@ -3,358 +3,658 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>index | Cronograma Etec | Semana 1</title>
+  <title>Akemy Estudos | Calendário semanal</title>
   <style>
     :root {
-      --bg: #f7f8fc;
+      --bg: #f5f7fb;
       --card: #ffffff;
-      --ink: #1f2937;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --primary: #1d4ed8;
-      --primary-soft: #dbeafe;
-      --accent: #0f766e;
-      --accent-soft: #ccfbf1;
-      --warn: #92400e;
-      --warn-soft: #fef3c7;
-      --shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
-      --radius: 22px;
+      --ink: #18212f;
+      --muted: #667085;
+      --line: #dbe3ef;
+      --blue: #2457d6;
+      --blue-2: #1d4ed8;
+      --blue-soft: #e8f0ff;
+      --green: #0f9d58;
+      --green-soft: #eaf8f0;
+      --amber: #b7791f;
+      --amber-soft: #fff6df;
+      --gray-soft: #f3f4f6;
+      --shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
+      --radius: 24px;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 150px);
       color: var(--ink);
-      line-height: 1.55;
+      background:
+        radial-gradient(circle at top left, #eff4ff 0%, transparent 30%),
+        radial-gradient(circle at top right, #edf8f3 0%, transparent 25%),
+        var(--bg);
     }
-    .wrap { width: min(1180px, calc(100% - 28px)); margin: 28px auto 70px; }
+
+    .wrap {
+      width: min(1240px, calc(100% - 32px));
+      margin: 28px auto 48px;
+    }
+
     .hero {
-      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      background: linear-gradient(135deg, #173b9c 0%, #2457d6 52%, #2d6dff 100%);
       color: #fff;
-      border-radius: 28px;
+      border-radius: 30px;
       padding: 30px;
       box-shadow: var(--shadow);
     }
+
     .pill {
       display: inline-block;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.14);
       border: 1px solid rgba(255,255,255,0.18);
       font-size: 13px;
-      font-weight: 700;
       margin-bottom: 14px;
     }
-    h1, h2 { margin: 0 0 12px; }
-    h1 { font-size: 34px; }
-    h2 { font-size: 24px; }
-    .hero p { margin: 0; color: #dbeafe; max-width: 920px; }
-    .toolbar {
+
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: 34px; line-height: 1.12; }
+    h2 { font-size: 30px; }
+    h3 { font-size: 22px; }
+
+    .hero p {
+      max-width: 860px;
+      margin-top: 12px;
+      color: #dbe8ff;
+      line-height: 1.6;
+    }
+
+    .hero-bottom {
+      margin-top: 24px;
       display: flex;
-      justify-content: space-between;
+      gap: 14px;
       align-items: center;
-      gap: 12px;
-      margin-top: 20px;
+      justify-content: space-between;
       flex-wrap: wrap;
     }
-    .week-title { font-size: 24px; font-weight: 700; }
-    .navs { display: flex; gap: 10px; }
-    .nav-btn {
+
+    .navs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button.nav-btn {
+      appearance: none;
       border: 1px solid rgba(255,255,255,0.22);
       background: rgba(255,255,255,0.14);
-      color: white;
+      color: #fff;
+      padding: 12px 16px;
       border-radius: 14px;
-      padding: 12px 14px;
+      font-weight: bold;
       cursor: pointer;
-      font-weight: 700;
+      transition: 0.18s ease;
     }
-    .nav-btn:hover { background: rgba(255,255,255,0.22); }
-    .card {
+
+    button.nav-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.22);
+    }
+
+    button.nav-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .panel {
       margin-top: 18px;
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 22px;
       box-shadow: var(--shadow);
+      padding: 20px;
     }
+
+    .status-bar {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #cfe0ff;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .panel-head p {
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.55;
+      max-width: 780px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #d1d5db;
+    }
+
+    .dot.green { background: var(--green); }
+    .dot.blue { background: var(--blue); }
+    .dot.gray { background: #98a2b3; }
+
     .week-grid {
       display: grid;
       grid-template-columns: repeat(7, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 16px;
     }
+
     .day-card {
-      min-height: 305px;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fff 0%, #fbfcff 100%);
       padding: 16px;
-      background: #fff;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
     }
-    .day-card.has-plan {
-      border-color: #bfdbfe;
-      box-shadow: inset 0 0 0 1px #dbeafe;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-    }
+
     .day-card.today {
-      border-color: #60a5fa;
-      box-shadow: inset 0 0 0 1px #93c5fd;
+      border-color: #8eb3ff;
+      box-shadow: inset 0 0 0 1px #cfe0ff;
     }
+
+    .day-card.has-file::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 4px;
+      background: linear-gradient(90deg, #16a34a, #22c55e);
+    }
+
     .day-name {
       font-size: 12px;
-      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .08em;
       color: var(--muted);
+      font-weight: bold;
     }
-    .day-date { font-size: 22px; font-weight: 700; }
-    .load {
+
+    .day-date {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .day-badge {
       display: inline-block;
-      width: fit-content;
-      padding: 6px 10px;
+      margin-top: 14px;
+      padding: 8px 10px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 700;
-      background: var(--primary-soft);
-      color: var(--primary);
+      font-weight: bold;
+      width: fit-content;
     }
-    .load.review { background: var(--accent-soft); color: var(--accent); }
-    .load.light { background: #f3f4f6; color: #4b5563; }
-    .topic-title { font-size: 16px; font-weight: 700; margin-top: 2px; }
-    .topic-list { margin: 0; padding-left: 18px; color: #475569; font-size: 14px; }
-    .topic-list li { margin-top: 6px; }
-    .open-link {
-      margin-top: auto;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 700;
-      background: #eff6ff;
-      color: var(--primary);
-      border: 1px solid #bfdbfe;
+
+    .badge-study {
+      background: var(--blue-soft);
+      color: var(--blue-2);
     }
-    .open-link:hover { background: #dbeafe; }
-    .open-link.disabled {
-      background: #f8fafc;
-      border-color: #e5e7eb;
-      color: #94a3b8;
-      pointer-events: none;
+
+    .badge-rest {
+      background: var(--gray-soft);
+      color: #667085;
     }
-    .status {
+
+    .badge-review {
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .day-title {
       margin-top: 16px;
-      padding: 14px;
-      border-radius: 14px;
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      color: var(--warn);
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.35;
+    }
+
+    .day-desc {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.6;
       font-size: 14px;
     }
-    .status.ok {
-      background: #ecfdf5;
-      border-color: #86efac;
-      color: #166534;
+
+    .topics {
+      margin: 14px 0 0 0;
+      padding-left: 18px;
+      color: #475467;
+      line-height: 1.55;
+      font-size: 14px;
+      flex: 1;
     }
-    code {
-      background: #111827;
-      color: #f9fafb;
-      padding: 2px 6px;
-      border-radius: 6px;
-      font-size: 12px;
+
+    .topics li + li { margin-top: 8px; }
+
+    .file-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.18s ease;
     }
-    @media (max-width: 1100px) {
+
+    .file-btn.available {
+      background: var(--green-soft);
+      color: var(--green);
+      border-color: #b7ebcd;
+    }
+
+    .file-btn.available:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(15,157,88,.12);
+    }
+
+    .file-btn.missing {
+      background: #f5f6f8;
+      color: #98a2b3;
+      border-color: #e4e7ec;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid #b7ebcd;
+      background: var(--green-soft);
+      color: #146c43;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .muted-line {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1180px) {
       .week-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .day-card { min-height: 360px; }
+      .status-bar { grid-template-columns: 1fr; }
     }
+
     @media (max-width: 700px) {
-      .week-grid { grid-template-columns: 1fr; }
+      .wrap { width: min(100%, calc(100% - 20px)); margin: 10px auto 24px; }
+      .hero { padding: 22px; border-radius: 24px; }
       h1 { font-size: 28px; }
-      .hero, .card { padding: 18px; }
+      h2 { font-size: 24px; }
+      .week-grid { grid-template-columns: 1fr; }
+      .panel { padding: 16px; }
     }
   </style>
 </head>
 <body>
   <main class="wrap">
     <section class="hero">
-      <div class="pill">Projeto Etec • Semana 1 • index autoatualizável</div>
-      <h1>Cronograma semanal dinâmico</h1>
+      <div class="pill">AKEMY • Modelo A ativo</div>
+      <h1>Calendário semanal dinâmico</h1>
       <p>
-        Este <strong>index</strong> detecta automaticamente quais apostilas já existem no repositório pelo padrão de nome <code>dd_mm_aaaa.html</code>.
-        Quando você subir um novo arquivo no GitHub com esse padrão, o botão do respectivo dia passa a abrir a apostila sem você precisar subir um novo <code>index.html</code>.
+        Este index funciona sem depender de <strong>config.js</strong> ou de nomes fixos como <strong>dia-009.html</strong>.
+        Cada data verifica automaticamente se existe um arquivo no padrão <strong>dd_mm_aaaa.html</strong> no mesmo diretório.
+        Quando você subir uma nova apostila com esse nome, o botão do dia correspondente será liberado sozinho.
       </p>
-      <div class="toolbar">
-        <div class="week-title" id="weekTitle"></div>
+
+      <div class="status-bar">
+        <div class="stat">
+          <div class="stat-label">Padrão de arquivo</div>
+          <div class="stat-value">01_04_2026.html</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Modo</div>
+          <div class="stat-value">Detecção automática por data</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Compatibilidade</div>
+          <div class="stat-value">GitHub Pages + uploads futuros</div>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <div>
+          <div class="muted-line" id="currentWeekHint">Carregando semana...</div>
+        </div>
         <div class="navs">
           <button class="nav-btn" id="prevWeek">◀ Semana anterior</button>
+          <button class="nav-btn" id="todayWeek">Semana atual</button>
           <button class="nav-btn" id="nextWeek">Próxima semana ▶</button>
         </div>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Semana em andamento</h2>
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2 id="weekTitle">Semana</h2>
+          <p>
+            O calendário abaixo mostra a semana completa. Quando existir uma apostila para a data,
+            o botão ficará verde e abrirá o arquivo correspondente automaticamente.
+          </p>
+          <div class="legend">
+            <span class="tag"><span class="dot green"></span>Apostila disponível</span>
+            <span class="tag"><span class="dot blue"></span>Dia de estudo</span>
+            <span class="tag"><span class="dot gray"></span>Sem arquivo ainda</span>
+          </div>
+        </div>
+      </div>
+
       <div class="week-grid" id="weekGrid"></div>
-      <div class="status" id="statusBox">Lendo o repositório para descobrir quais apostilas já existem...</div>
+
+      <div class="note">
+        Você só precisa manter o arquivo <strong>index.html</strong> e subir novas apostilas com nomes como
+        <strong>07_04_2026.html</strong>, <strong>08_04_2026.html</strong> e assim por diante.
+      </div>
     </section>
   </main>
 
   <script>
-    const weekdays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-    const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-    const weekTitle = document.getElementById('weekTitle');
-    const weekGrid = document.getElementById('weekGrid');
-    const prevWeek = document.getElementById('prevWeek');
-    const nextWeek = document.getElementById('nextWeek');
-    const statusBox = document.getElementById('statusBox');
+    const MONTHS = [
+      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ];
+    const WEEKDAYS = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 
-    const plans = {
+    const schedule = {
       '2026-04-01': {
-        load: 'Estudo principal',
-        loadClass: '',
+        badge: 'Estudo principal',
+        badgeClass: 'badge-study',
         title: 'Base do ciclo',
-        topics: ['Diagnóstico inicial', 'Interpretação literal', 'Ideia principal', 'Frações: conceito e equivalência']
+        desc: 'Português + Matemática',
+        topics: [
+          'Diagnóstico inicial',
+          'Interpretação literal',
+          'Ideia principal',
+          'Frações: conceito e equivalência'
+        ]
       },
       '2026-04-02': {
-        load: 'Estudo principal',
-        loadClass: '',
+        badge: 'Estudo principal',
+        badgeClass: 'badge-study',
         title: 'Base de leitura + matemática',
-        topics: ['Referência textual e pronomes', 'Comparação de frações', 'Leitura sem chute']
+        desc: 'Português + Matemática',
+        topics: [
+          'Referência textual e pronomes',
+          'Leitura sem chute',
+          'Comparação de frações'
+        ]
       },
       '2026-04-03': {
-        load: 'Estudo principal',
-        loadClass: '',
+        badge: 'Estudo principal',
+        badgeClass: 'badge-study',
         title: 'Fixação inteligente',
-        topics: ['Ideia principal x detalhe', 'Simplificação de frações', 'Soma e subtração com mesmo denominador']
+        desc: 'Português + Matemática',
+        topics: [
+          'Ideia principal x detalhe',
+          'Simplificação de frações',
+          'Soma e subtração com mesmo denominador'
+        ]
       },
       '2026-04-04': {
-        load: 'Aplicação',
-        loadClass: '',
+        badge: 'Aplicação',
+        badgeClass: 'badge-review',
         title: 'Questões curtas',
-        topics: ['Texto curto com alternativas', 'Problemas contextualizados com frações', 'Correção guiada']
+        desc: 'Português + Matemática',
+        topics: [
+          'Texto curto com alternativas',
+          'Problemas contextualizados com frações',
+          'Correção guiada'
+        ]
       },
       '2026-04-05': {
-        load: 'Revisão leve',
-        loadClass: 'review',
-        title: 'Recuperação útil',
-        topics: ['Caderno de erros', 'Revisão de pontos fracos', 'Sem conteúdo novo']
+        badge: 'Revisão',
+        badgeClass: 'badge-review',
+        title: 'Revisão leve com caderno de erros',
+        desc: 'Consolidação semanal',
+        topics: [
+          'Revisão mista da semana',
+          'Erros mais recorrentes',
+          'Sem conteúdo novo'
+        ]
       },
       '2026-04-06': {
-        load: 'Estudo principal',
-        loadClass: '',
-        title: 'Consolidação matemática',
-        topics: ['Frações de quantidade', 'Equivalência e simplificação', 'Treino de cálculo limpo']
-      },
-      '2026-04-07': {
-        load: 'Fechamento',
-        loadClass: '',
-        title: 'Fechamento da Semana 1',
-        topics: ['Mini simulado', 'Revisão guiada', 'Análise dos erros da semana']
+        badge: 'Estudo principal',
+        badgeClass: 'badge-study',
+        title: 'Frações de quantidade',
+        desc: 'Matemática',
+        topics: [
+          'Fração de quantidade',
+          'Equivalência e simplificação',
+          'Treino de cálculo limpo'
+        ]
       }
     };
 
-    let currentWeekStart = new Date(2026, 2, 29);
-    let repoFiles = new Set();
+    const startRange = new Date(2026, 2, 29); // 29/03/2026
+    const endRange = new Date(2026, 10, 29);  // 29/11/2026
 
-    function formatISO(date) {
+    function cloneDate(d) {
+      return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    }
+
+    function toIso(date) {
       const y = date.getFullYear();
       const m = String(date.getMonth() + 1).padStart(2, '0');
       const d = String(date.getDate()).padStart(2, '0');
       return `${y}-${m}-${d}`;
     }
 
-    function formatFile(date) {
-      const d = String(date.getDate()).padStart(2, '0');
-      const m = String(date.getMonth() + 1).padStart(2, '0');
-      const y = date.getFullYear();
-      return `${d}_${m}_${y}.html`;
+    function toFileName(date) {
+      const dd = String(date.getDate()).padStart(2, '0');
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      const yyyy = date.getFullYear();
+      return `${dd}_${mm}_${yyyy}.html`;
     }
 
-    function detectRepoInfo() {
-      const host = window.location.hostname;
-      const pathParts = window.location.pathname.split('/').filter(Boolean);
-      const owner = host.endsWith('.github.io') ? host.split('.')[0] : '';
-      const repo = pathParts.length > 0 ? pathParts[0] : '';
-      return { owner, repo };
+    function formatShort(date) {
+      return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}`;
     }
 
-    async function loadRepoFiles() {
-      const { owner, repo } = detectRepoInfo();
-      if (!owner || !repo) {
-        statusBox.textContent = 'Modo local detectado. Os links funcionarão pelos nomes previstos, mas a detecção automática do GitHub só ativa quando o arquivo estiver publicado no GitHub Pages.';
-        statusBox.className = 'status';
-        renderWeek();
-        return;
+    function formatLong(date) {
+      return `${String(date.getDate()).padStart(2, '0')} de ${MONTHS[date.getMonth()]} de ${date.getFullYear()}`;
+    }
+
+    function getWeekStart(date) {
+      const d = cloneDate(date);
+      d.setDate(d.getDate() - d.getDay());
+      return d;
+    }
+
+    function formatWeekTitle(weekStart) {
+      const end = cloneDate(weekStart);
+      end.setDate(end.getDate() + 6);
+      const sameMonth = weekStart.getMonth() === end.getMonth();
+      const startDay = String(weekStart.getDate()).padStart(2, '0');
+      const endDay = String(end.getDate()).padStart(2, '0');
+      if (sameMonth) {
+        return `${startDay} a ${endDay} de ${MONTHS[weekStart.getMonth()]} de ${weekStart.getFullYear()}`;
       }
+      return `${startDay} de ${MONTHS[weekStart.getMonth()]} a ${endDay} de ${MONTHS[end.getMonth()]} de ${end.getFullYear()}`;
+    }
 
-      const url = `https://api.github.com/repos/${owner}/${repo}/contents`;
+    async function fileExists(fileName) {
       try {
-        const response = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
-        if (!response.ok) throw new Error('Falha ao consultar o repositório');
-        const data = await response.json();
-        repoFiles = new Set((Array.isArray(data) ? data : (data.entries || [])).map(item => item.name));
-        statusBox.textContent = 'Detecção automática ativa. Agora, quando você subir uma nova apostila com nome no padrão de data, o botão do dia correspondente será liberado sozinho.';
-        statusBox.className = 'status ok';
-      } catch (error) {
-        statusBox.textContent = 'Não consegui ler o repositório agora. O cronograma continua funcionando, mas a detecção automática pode depender de recarregar a página após a publicação no GitHub.';
-        statusBox.className = 'status';
+        const head = await fetch(fileName, { method: 'HEAD', cache: 'no-store' });
+        if (head.ok) return true;
+        if (head.status && head.status !== 404 && head.status !== 405) return false;
+      } catch (e) {}
+
+      try {
+        const get = await fetch(fileName, { method: 'GET', cache: 'no-store' });
+        return get.ok;
+      } catch (e) {
+        return false;
       }
-      renderWeek();
     }
 
-    function renderWeek() {
-      const start = new Date(currentWeekStart);
-      const end = new Date(start);
-      end.setDate(start.getDate() + 6);
-      weekTitle.textContent = `${String(start.getDate()).padStart(2,'0')} a ${String(end.getDate()).padStart(2,'0')} de ${monthNames[end.getMonth()]} de ${end.getFullYear()}`;
+    const today = new Date();
+    const initialBase = (today >= startRange && today <= endRange) ? today : new Date(2026, 3, 1);
+    let currentWeekStart = getWeekStart(initialBase);
+
+    const weekGrid = document.getElementById('weekGrid');
+    const weekTitle = document.getElementById('weekTitle');
+    const currentWeekHint = document.getElementById('currentWeekHint');
+    const prevWeekBtn = document.getElementById('prevWeek');
+    const nextWeekBtn = document.getElementById('nextWeek');
+    const todayWeekBtn = document.getElementById('todayWeek');
+
+    function getDefaultDay(date) {
+      const weekday = date.getDay();
+      const isWeekend = weekday === 0 || weekday === 6;
+      return {
+        badge: isWeekend ? 'Descanso / apoio' : 'Planejamento em aberto',
+        badgeClass: isWeekend ? 'badge-rest' : 'badge-rest',
+        title: isWeekend ? 'Sem conteúdo previsto' : 'Cronograma ainda não detalhado',
+        desc: isWeekend ? 'Dia sem estudo obrigatório' : 'Você pode subir a apostila com o nome da data normalmente.',
+        topics: isWeekend
+          ? ['Use o dia para descansar, revisar leve ou organizar seus materiais.']
+          : ['Quando o arquivo da apostila existir, o botão abaixo será liberado automaticamente.']
+      };
+    }
+
+    async function renderWeek() {
       weekGrid.innerHTML = '';
+      weekTitle.textContent = formatWeekTitle(currentWeekStart);
+      currentWeekHint.textContent = `Semana exibida: ${formatWeekTitle(currentWeekStart)}`;
 
-      const todayISO = formatISO(new Date());
-
+      const promises = [];
+      const dates = [];
       for (let i = 0; i < 7; i++) {
-        const date = new Date(start);
-        date.setDate(start.getDate() + i);
-        const iso = formatISO(date);
-        const plan = plans[iso];
-        const fileName = formatFile(date);
-        const exists = repoFiles.has(fileName);
+        const date = cloneDate(currentWeekStart);
+        date.setDate(date.getDate() + i);
+        dates.push(date);
+        promises.push(fileExists(toFileName(date)));
+      }
+      const fileStates = await Promise.all(promises);
+
+      dates.forEach((date, index) => {
+        const iso = toIso(date);
+        const data = schedule[iso] || getDefaultDay(date);
+        const fileName = toFileName(date);
+        const exists = fileStates[index];
+        const isToday = toIso(date) === toIso(new Date());
 
         const card = document.createElement('article');
-        card.className = `day-card${plan ? ' has-plan' : ''}${todayISO === iso ? ' today' : ''}`;
+        card.className = `day-card${exists ? ' has-file' : ''}${isToday ? ' today' : ''}`;
 
-        const loadClass = plan?.loadClass ? ` ${plan.loadClass}` : '';
-        const linkLabel = plan ? (exists ? 'Abrir apostila' : 'Apostila ainda não criada') : 'Sem estudo';
-        const href = exists ? fileName : '#';
-        const disabled = exists ? '' : ' disabled';
+        const topicsHtml = (data.topics || []).map(topic => `<li>${topic}</li>`).join('');
+        const buttonHtml = exists
+          ? `<a class="file-btn available" href="${fileName}">Abrir apostila</a>`
+          : `<span class="file-btn missing">Apostila ainda não criada</span>`;
 
         card.innerHTML = `
-          <div class="day-name">${weekdays[date.getDay()]}</div>
-          <div class="day-date">${String(date.getDate()).padStart(2,'0')}/${String(date.getMonth()+1).padStart(2,'0')}</div>
-          ${plan ? `<span class="load${loadClass}">${plan.load}</span>` : `<span class="load light">Descanso</span>`}
-          <div class="topic-title">${plan ? plan.title : 'Sem conteúdo previsto'}</div>
-          ${plan ? `<ul class="topic-list">${plan.topics.map(topic => `<li>${topic}</li>`).join('')}</ul>` : '<p class="topic-list" style="padding-left:0;">Sem estudo programado para este dia.</p>'}
-          <a class="open-link${disabled}" href="${href}">${linkLabel}</a>
+          <div class="day-name">${WEEKDAYS[date.getDay()]}</div>
+          <div class="day-date">${formatShort(date)}</div>
+          <span class="day-badge ${data.badgeClass || 'badge-rest'}">${data.badge || 'Sem conteúdo'}</span>
+          <div class="day-title">${data.title || 'Sem conteúdo previsto'}</div>
+          <p class="day-desc">${data.desc || ''}</p>
+          <ul class="topics">${topicsHtml}</ul>
+          ${buttonHtml}
         `;
+
         weekGrid.appendChild(card);
-      }
+      });
+
+      const prevCandidate = cloneDate(currentWeekStart);
+      prevCandidate.setDate(prevCandidate.getDate() - 7);
+      const nextCandidate = cloneDate(currentWeekStart);
+      nextCandidate.setDate(nextCandidate.getDate() + 7);
+
+      prevWeekBtn.disabled = prevCandidate < startRange;
+      nextWeekBtn.disabled = nextCandidate > endRange;
     }
 
-    prevWeek.addEventListener('click', () => {
-      currentWeekStart.setDate(currentWeekStart.getDate() - 7);
-      renderWeek();
+    prevWeekBtn.addEventListener('click', () => {
+      const next = cloneDate(currentWeekStart);
+      next.setDate(next.getDate() - 7);
+      if (next >= startRange) {
+        currentWeekStart = next;
+        renderWeek();
+      }
     });
 
-    nextWeek.addEventListener('click', () => {
-      currentWeekStart.setDate(currentWeekStart.getDate() + 7);
+    nextWeekBtn.addEventListener('click', () => {
+      const next = cloneDate(currentWeekStart);
+      next.setDate(next.getDate() + 7);
+      if (next <= endRange) {
+        currentWeekStart = next;
+        renderWeek();
+      }
+    });
+
+    todayWeekBtn.addEventListener('click', () => {
+      const base = (new Date() >= startRange && new Date() <= endRange) ? new Date() : new Date(2026, 3, 1);
+      currentWeekStart = getWeekStart(base);
       renderWeek();
     });
 
     renderWeek();
-    loadRepoFiles();
   </script>
 </body>
 </html>
