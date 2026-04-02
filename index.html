@@ -1,528 +1,338 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akemy Estudos | Calendário semanal</title>
-  <style>
-    :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --ink: #18212f;
-      --muted: #667085;
-      --line: #dbe3ef;
-      --blue: #2457d6;
-      --blue-2: #1d4ed8;
-      --blue-soft: #e8f0ff;
-      --green: #0f9d58;
-      --green-soft: #eaf8f0;
-      --amber: #b7791f;
-      --amber-soft: #fff6df;
-      --gray-soft: #f3f4f6;
-      --shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
-      --radius: 24px;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at top left, #eff4ff 0%, transparent 30%),
-        radial-gradient(circle at top right, #edf8f3 0%, transparent 25%),
-        var(--bg);
-    }
-
-    .wrap {
-      width: min(1240px, calc(100% - 32px));
-      margin: 28px auto 48px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #173b9c 0%, #2457d6 52%, #2d6dff 100%);
-      color: #fff;
-      border-radius: 30px;
-      padding: 30px;
-      box-shadow: var(--shadow);
-    }
-
-    .pill {
-      display: inline-block;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.18);
-      font-size: 13px;
-      margin-bottom: 14px;
-    }
-
-    h1, h2, h3, p { margin: 0; }
-    h1 { font-size: 34px; line-height: 1.12; }
-    h2 { font-size: 30px; }
-    h3 { font-size: 22px; }
-
-    .hero p {
-      max-width: 860px;
-      margin-top: 12px;
-      color: #dbe8ff;
-      line-height: 1.6;
-    }
-
-    .hero-bottom {
-      margin-top: 24px;
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .navs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    button.nav-btn {
-      appearance: none;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.14);
-      color: #fff;
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.18s ease;
-    }
-
-    button.nav-btn:hover:not(:disabled) {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.22);
-    }
-
-    button.nav-btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    .panel {
-      margin-top: 18px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
-    }
-
-    .status-bar {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr 1fr;
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .stat {
-      padding: 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.1);
-    }
-
-    .stat-label {
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: #cfe0ff;
-      margin-bottom: 6px;
-    }
-
-    .stat-value {
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .panel-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .panel-head p {
-      color: var(--muted);
-      margin-top: 6px;
-      line-height: 1.55;
-      max-width: 780px;
-    }
-
-    .legend {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: bold;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--ink);
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: #d1d5db;
-    }
-
-    .dot.green { background: var(--green); }
-    .dot.blue { background: var(--blue); }
-    .dot.gray { background: #98a2b3; }
-
-    .week-grid {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .day-card {
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: linear-gradient(180deg, #fff 0%, #fbfcff 100%);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      min-height: 420px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .day-card.today {
-      border-color: #8eb3ff;
-      box-shadow: inset 0 0 0 1px #cfe0ff;
-    }
-
-    .day-card.has-file::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 4px;
-      background: linear-gradient(90deg, #16a34a, #22c55e);
-    }
-
-    .day-name {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--muted);
-      font-weight: bold;
-    }
-
-    .day-date {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .day-badge {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: bold;
-      width: fit-content;
-    }
-
-    .badge-study {
-      background: var(--blue-soft);
-      color: var(--blue-2);
-    }
-
-    .badge-rest {
-      background: var(--gray-soft);
-      color: #667085;
-    }
-
-    .badge-review {
-      background: var(--amber-soft);
-      color: var(--amber);
-    }
-
-    .day-title {
-      margin-top: 16px;
-      font-size: 16px;
-      font-weight: bold;
-      line-height: 1.35;
-    }
-
-    .day-desc {
-      margin-top: 10px;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .topics {
-      margin: 14px 0 0 0;
-      padding-left: 18px;
-      color: #475467;
-      line-height: 1.55;
-      font-size: 14px;
-      flex: 1;
-    }
-
-    .topics li + li { margin-top: 8px; }
-
-    .file-btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      margin-top: 18px;
-      padding: 14px 14px;
-      border-radius: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      border: 1px solid transparent;
-      transition: 0.18s ease;
-    }
-
-    .file-btn.available {
-      background: var(--green-soft);
-      color: var(--green);
-      border-color: #b7ebcd;
-    }
-
-    .file-btn.available:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 20px rgba(15,157,88,.12);
-    }
-
-    .file-btn.missing {
-      background: #f5f6f8;
-      color: #98a2b3;
-      border-color: #e4e7ec;
-      pointer-events: none;
-      cursor: default;
-    }
-
-    .note {
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid #b7ebcd;
-      background: var(--green-soft);
-      color: #146c43;
-      line-height: 1.55;
-      font-size: 14px;
-    }
-
-    .muted-line {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    @media (max-width: 1180px) {
-      .week-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .day-card { min-height: 360px; }
-      .status-bar { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 700px) {
-      .wrap { width: min(100%, calc(100% - 20px)); margin: 10px auto 24px; }
-      .hero { padding: 22px; border-radius: 24px; }
-      h1 { font-size: 28px; }
-      h2 { font-size: 24px; }
-      .week-grid { grid-template-columns: 1fr; }
-      .panel { padding: 16px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETEC 2026 — Preparatório Vestibulinho</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Sentient:ital,wght@0,400;0,700;1,400&family=Martian+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0d1117; --bg2:#161b22; --bg3:#21262d; --bg4:#2d333b;
+  --border:#30363d; --border2:#3d444d;
+  --text:#e6edf3; --text2:#8b949e; --text3:#484f58;
+  --green:#2dba6e; --green-lt:rgba(45,186,110,.12);
+  --gold:#e3b341; --gold-lt:rgba(227,179,65,.12);
+  --blue:#388bfd; --blue-lt:rgba(56,139,253,.12);
+  --purple:#bc8cff; --purple-lt:rgba(188,140,255,.1);
+  --orange:#f0883e; --orange-lt:rgba(240,136,62,.1);
+  --p1:#2dba6e; --p2:#388bfd; --p3:#f0883e; --p4:#bc8cff;
+  --r:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Cabinet Grotesk',sans-serif;font-size:14px;line-height:1.6;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.012) 2px,rgba(255,255,255,.012) 4px)}
+/* HEADER */
+.header{position:relative;z-index:10;background:var(--bg);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1200px;margin:0 auto;padding:24px 32px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.logo-top{font-family:'Martian Mono',monospace;font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.logo-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.logo-h1{font-size:clamp(20px,3vw,32px);font-weight:900;letter-spacing:-1px;line-height:1;color:var(--text)}
+.logo-h1 .etec{color:var(--green)}
+.logo-h1 .year{color:var(--text2);font-weight:500;font-size:.65em}
+.logo-sub{font-size:13px;color:var(--text2);margin-top:5px;font-family:'Sentient',serif;font-style:italic}
+.cd-label{font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:7px;text-align:right}
+.cd-grid{display:flex;gap:6px}
+.cd-unit{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px 6px;text-align:center;min-width:52px}
+.cd-num{font-family:'Martian Mono',monospace;font-size:20px;font-weight:700;color:var(--gold);line-height:1;display:block}
+.cd-lbl{font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--text3);display:block;margin-top:2px}
+.exam-badge{margin-top:8px;display:flex;justify-content:flex-end}
+.exam-badge span{display:inline-flex;align-items:center;gap:6px;background:var(--gold-lt);border:1px solid rgba(227,179,65,.3);border-radius:20px;padding:3px 10px;font-family:'Martian Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gold)}
+/* PHASE BAR */
+.phase-bar{position:relative;z-index:10;background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 32px}
+.phase-bar-inner{max-width:1200px;margin:0 auto}
+.phase-labels{display:flex;justify-content:space-between;margin-bottom:6px}
+.phase-lbl{font-family:'Martian Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.phase-track{height:5px;background:var(--bg3);border-radius:4px;overflow:hidden;display:flex}
+.phase-seg{height:100%}
+.phase-bottom{display:flex;justify-content:space-between;margin-top:5px}
+.phase-date{font-family:'Martian Mono',monospace;font-size:8px;color:var(--text3)}
+.phase-pct{font-family:'Martian Mono',monospace;font-size:10px;color:var(--green);font-weight:700}
+/* MAIN */
+.main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:28px 32px 80px}
+/* WEEK NAV */
+.week-nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;margin-bottom:16px}
+.week-nav-btn{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);font-family:'Cabinet Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap}
+.week-nav-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-lt)}
+.week-nav-btn:disabled{opacity:.3;pointer-events:none}
+.week-info{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px}
+.week-num-badge{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 14px;text-align:center}
+.wn{font-family:'Martian Mono',monospace;font-size:20px;font-weight:700;color:var(--text);line-height:1}
+.wl{font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);display:block;margin-top:2px}
+.week-dates{font-family:'Martian Mono',monospace;font-size:11px;color:var(--text2);margin-bottom:4px}
+.week-focus{font-size:14px;font-weight:700;color:var(--text)}
+.week-phase-tag{font-family:'Martian Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px;white-space:nowrap;align-self:center}
+/* WEEK GRID */
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day-col{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-height:180px}
+.day-col.today{border-color:var(--green);border-width:2px}
+.day-col.exam-day{border-color:var(--gold);border-width:2px}
+.day-col.out-of-range{opacity:.35}
+.day-col.sunday{background:rgba(0,0,0,.2)}
+.day-col.saturday{background:rgba(255,255,255,.015)}
+.day-col.past{opacity:.55}
+.day-header{padding:10px 10px 8px;border-bottom:1px solid var(--border);background:var(--bg3)}
+.day-name{font-family:'Martian Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:3px}
+.day-col.today .day-name{color:var(--green)}
+.day-col.exam-day .day-name{color:var(--gold)}
+.day-num{font-family:'Martian Mono',monospace;font-size:18px;font-weight:700;color:var(--text2);line-height:1}
+.day-col.today .day-num{color:var(--green)}
+.day-col.exam-day .day-num{color:var(--gold)}
+.day-col.out-of-range .day-num{color:var(--text3)}
+.today-ring{width:26px;height:26px;border-radius:50%;background:var(--green);color:var(--bg);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
+.exam-ring{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--bg);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
+.day-month{font-family:'Martian Mono',monospace;font-size:8px;color:var(--text3);margin-top:1px;letter-spacing:.5px}
+.day-body{padding:8px;flex:1;display:flex;flex-direction:column;gap:5px}
+.day-empty-msg{font-size:11px;color:var(--text3);font-style:italic;margin-top:auto;margin-bottom:auto;text-align:center;padding:8px 4px}
+.day-link{display:block;text-decoration:none;padding:6px 8px;border-radius:6px;font-size:11px;font-weight:700;line-height:1.35;border:1px solid;transition:filter .15s,transform .1s}
+.day-link:hover{filter:brightness(1.25);transform:translateY(-1px)}
+.day-link.apostila{background:var(--green-lt);color:var(--green);border-color:rgba(45,186,110,.3)}
+.day-link.reforco{background:var(--blue-lt);color:var(--blue);border-color:rgba(56,139,253,.3)}
+.day-link.simulado{background:var(--purple-lt);color:var(--purple);border-color:rgba(188,140,255,.25)}
+.day-link.revisao{background:var(--gold-lt);color:var(--gold);border-color:rgba(227,179,65,.3)}
+.day-link.exam{background:var(--gold-lt);color:var(--gold);border-color:rgba(227,179,65,.5);font-weight:900}
+.day-link.coming{background:rgba(255,255,255,.03);color:var(--text3);border-color:var(--border);cursor:default;pointer-events:none;font-weight:500}
+.dl-label{display:block}
+.dl-sub{font-size:9px;font-weight:500;opacity:.65;letter-spacing:.3px;margin-top:1px}
+/* BOTTOM */
+.bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.legend{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.legend-title{font-family:'Martian Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);width:100%}
+.leg-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text2)}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.quick-links{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.ql-title{font-family:'Martian Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.ql-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ql-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:7px;border:1px solid var(--border);background:var(--bg3);text-decoration:none;color:var(--text);font-size:12px;font-weight:600;transition:all .18s}
+.ql-item:hover{border-color:var(--green);color:var(--green);background:var(--green-lt)}
+.qi-badge{margin-left:auto;font-family:'Martian Mono',monospace;font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 6px;border-radius:20px;background:var(--green-lt);color:var(--green)}
+footer{position:relative;z-index:1;background:var(--bg);border-top:1px solid var(--border);text-align:center;padding:22px 32px;font-family:'Martian Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.5px}
+footer strong{color:var(--green)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.week-grid{animation:fadeIn .3s ease}
+@media(max-width:900px){
+  .week-grid{grid-template-columns:repeat(4,1fr)}
+  .week-grid .day-col:nth-child(5),.week-grid .day-col:nth-child(6),.week-grid .day-col:nth-child(7){display:none}
+  .main{padding:16px 16px 60px}
+  .header-inner{grid-template-columns:1fr}
+  .cd-grid{justify-content:flex-start}
+  .exam-badge{justify-content:flex-start}
+  .bottom-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .week-grid{grid-template-columns:repeat(2,1fr)}
+  .week-grid .day-col:nth-child(n+3){display:none}
+  .week-nav{grid-template-columns:1fr 1fr}
+  .week-info{display:none}
+  .ql-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <div class="pill">AKEMY • Modelo A ativo</div>
-      <h1>Calendário semanal dinâmico</h1>
-      <p>
-        Este index funciona sem depender de <strong>config.js</strong> ou de nomes fixos como <strong>dia-009.html</strong>.
-        Cada data verifica automaticamente se existe um arquivo no padrão <strong>dd_mm_aaaa.html</strong> dentro da pasta <strong>apostilas/</strong>.
-        Quando você subir uma nova apostila com esse nome nessa pasta, o botão do dia correspondente será liberado sozinho.
-      </p>
-
-      <div class="status-bar">
-        <div class="stat">
-          <div class="stat-label">Padrão de arquivo</div>
-          <div class="stat-value">apostilas/01_04_2026.html</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Modo</div>
-          <div class="stat-value">Detecção automática por data</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Compatibilidade</div>
-          <div class="stat-value">GitHub Pages + uploads futuros</div>
-        </div>
+<header class="header">
+  <div class="header-inner">
+    <div>
+      <div class="logo-top"><div class="logo-dot"></div>Preparatório Vestibulinho ETEC</div>
+      <div class="logo-h1"><span class="etec">ETEC</span> <span class="year">1&ordm; SEM/2027</span></div>
+      <div class="logo-sub">243 dias de prepara&ccedil;&atilde;o &middot; Akemy &middot; In&iacute;cio: 01 de abril de 2026</div>
+    </div>
+    <div>
+      <div class="cd-label">Faltam para a prova</div>
+      <div class="cd-grid">
+        <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">dias</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-lbl">horas</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-lbl">min</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl">seg</span></div>
       </div>
-
-      <div class="hero-bottom">
-        <div>
-          <div class="muted-line" id="currentWeekHint">Carregando semana...</div>
-        </div>
-        <div class="navs">
-          <button class="nav-btn" id="prevWeek">◀ Semana anterior</button>
-          <button class="nav-btn" id="todayWeek">Semana atual</button>
-          <button class="nav-btn" id="nextWeek">Próxima semana ▶</button>
-        </div>
+      <div class="exam-badge"><span>&#127942; 30 &middot; NOV &middot; 2026 &middot; 13h30</span></div>
+    </div>
+  </div>
+</header>
+<div class="phase-bar">
+  <div class="phase-bar-inner">
+    <div class="phase-labels">
+      <span class="phase-lbl" style="color:var(--p1)">&#127807; Fase 1 &mdash; Alicerce</span>
+      <span class="phase-lbl" style="color:var(--p2)">&#127959;&#65039; Fase 2 &mdash; Constru&ccedil;&atilde;o</span>
+      <span class="phase-lbl" style="color:var(--p3)">&#128293; Fase 3 &mdash; Intensivo</span>
+      <span class="phase-lbl" style="color:var(--p4)">&#128640; Sprint Final</span>
+    </div>
+    <div class="phase-track">
+      <div class="phase-seg" style="width:25%;background:var(--p1)"></div>
+      <div class="phase-seg" style="width:37%;background:var(--p2);opacity:.6"></div>
+      <div class="phase-seg" style="width:25%;background:var(--p3);opacity:.4"></div>
+      <div class="phase-seg" style="width:13%;background:var(--p4);opacity:.3"></div>
+    </div>
+    <div class="phase-bottom">
+      <span class="phase-date">01 abr</span>
+      <span class="phase-date">01 jun</span>
+      <span class="phase-date">01 set</span>
+      <span class="phase-date">01 nov</span>
+      <span class="phase-date" style="color:var(--gold)">30 nov &#127942;</span>
+      <span class="phase-pct" id="phase-pct">0% conclu&iacute;do</span>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="week-nav">
+    <button class="week-nav-btn" id="prev-btn" onclick="changeWeek(-1)">&larr; Semana anterior</button>
+    <div class="week-info">
+      <div class="week-num-badge">
+        <div class="wn" id="week-num">--</div>
+        <span class="wl">semana</span>
       </div>
-    </section>
-
-    <section class="panel">
-      <div class="panel-head">
-        <div>
-          <h2 id="weekTitle">Semana</h2>
-          <p>
-            O calendário abaixo mostra a semana completa. Quando existir uma apostila para a data,
-            o botão ficará verde e abrirá o arquivo correspondente automaticamente.
-          </p>
-          <div class="legend">
-            <span class="tag"><span class="dot green"></span>Apostila disponível</span>
-            <span class="tag"><span class="dot blue"></span>Dia de estudo</span>
-            <span class="tag"><span class="dot gray"></span>Sem arquivo ainda</span>
-          </div>
-        </div>
+      <div>
+        <div class="week-dates" id="week-dates">&mdash;</div>
+        <div class="week-focus" id="week-focus">&mdash;</div>
       </div>
-
-      <div class="week-grid" id="weekGrid"></div>
-
-      <div class="note">
-        Você só precisa manter o arquivo <strong>index.html</strong> na raiz e subir novas apostilas dentro da pasta
-        <strong>apostilas/</strong> com nomes como <strong>07_04_2026.html</strong>, <strong>08_04_2026.html</strong> e assim por diante.
+      <div class="week-phase-tag" id="week-phase-tag">&mdash;</div>
+    </div>
+    <button class="week-nav-btn" id="next-btn" onclick="changeWeek(1)">Pr&oacute;xima semana &rarr;</button>
+  </div>
+  <div class="week-grid" id="week-grid"></div>
+  <div class="bottom-row">
+    <div class="legend">
+      <div class="legend-title">Legenda</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>Apostila do dia</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--blue)"></div>Material de refor&ccedil;o</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--purple)"></div>Simulado</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div>Revis&atilde;o / Prova</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--border);border:1px solid var(--border2)"></div>Em breve</div>
+    </div>
+    <div class="quick-links">
+      <div class="ql-title">&#128279; Acesso R&aacute;pido</div>
+      <div class="ql-grid">
+        <a href="cronograma/cronograma-etec-2026.html" class="ql-item">&#128197; Cronograma<span class="qi-badge">PRONTO</span></a>
+        <a href="apostilas/01_04_2026.html"            class="ql-item">&#128196; 01/04/2026<span class="qi-badge">PRONTO</span></a>
+        <a href="apostilas/02_04_2026.html"            class="ql-item">&#128196; 02/04/2026<span class="qi-badge">PRONTO</span></a>
+        <a href="reforco/regra-de-tres-akemy.html"     class="ql-item">&#127919; Refor&ccedil;o R&#179;<span class="qi-badge">PRONTO</span></a>
+        <a href="referencia/apostila-geral-etec.html"  class="ql-item">&#128218; Ref. Geral<span class="qi-badge">PRONTO</span></a>
       </div>
-    </section>
-  </main>
-
-  <script>
-    const MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-    const WEEKDAYS = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
-    const BASE_DIR = 'apostilas';
-
-    const schedule = {
-      '2026-04-01': { badge:'Estudo principal', badgeClass:'badge-study', title:'Base do ciclo', desc:'Português + Matemática', topics:['Diagnóstico inicial','Interpretação literal','Ideia principal','Frações: conceito e equivalência'] },
-      '2026-04-02': { badge:'Estudo principal', badgeClass:'badge-study', title:'Base de leitura + matemática', desc:'Português + Matemática', topics:['Referência textual e pronomes','Leitura sem chute','Comparação de frações'] },
-      '2026-04-03': { badge:'Estudo principal', badgeClass:'badge-study', title:'Fixação inteligente', desc:'Português + Matemática', topics:['Ideia principal x detalhe','Simplificação de frações','Soma e subtração com mesmo denominador'] },
-      '2026-04-04': { badge:'Aplicação', badgeClass:'badge-review', title:'Questões curtas', desc:'Português + Matemática', topics:['Texto curto com alternativas','Problemas contextualizados com frações','Correção guiada'] },
-      '2026-04-05': { badge:'Revisão', badgeClass:'badge-review', title:'Revisão leve com caderno de erros', desc:'Consolidação semanal', topics:['Revisão mista da semana','Erros mais recorrentes','Sem conteúdo novo'] },
-      '2026-04-06': { badge:'Estudo principal', badgeClass:'badge-study', title:'Frações de quantidade', desc:'Matemática', topics:['Fração de quantidade','Equivalência e simplificação','Treino de cálculo limpo'] }
-    };
-
-    const startRange = new Date(2026, 2, 29);
-    const endRange = new Date(2026, 10, 29);
-
-    function cloneDate(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
-    function toIso(date){ const y=date.getFullYear(); const m=String(date.getMonth()+1).padStart(2,'0'); const d=String(date.getDate()).padStart(2,'0'); return `${y}-${m}-${d}`; }
-    function toFileName(date){ const dd=String(date.getDate()).padStart(2,'0'); const mm=String(date.getMonth()+1).padStart(2,'0'); const yyyy=date.getFullYear(); return `${dd}_${mm}_${yyyy}.html`; }
-    function toFilePath(date){ return `${BASE_DIR}/${toFileName(date)}`; }
-    function formatShort(date){ return `${String(date.getDate()).padStart(2,'0')}/${String(date.getMonth()+1).padStart(2,'0')}`; }
-    function getWeekStart(date){ const d=cloneDate(date); d.setDate(d.getDate()-d.getDay()); return d; }
-    function formatWeekTitle(weekStart){ const end=cloneDate(weekStart); end.setDate(end.getDate()+6); const sameMonth=weekStart.getMonth()===end.getMonth(); const startDay=String(weekStart.getDate()).padStart(2,'0'); const endDay=String(end.getDate()).padStart(2,'0'); if(sameMonth){ return `${startDay} a ${endDay} de ${MONTHS[weekStart.getMonth()]} de ${weekStart.getFullYear()}`; } return `${startDay} de ${MONTHS[weekStart.getMonth()]} a ${endDay} de ${MONTHS[end.getMonth()]} de ${end.getFullYear()}`; }
-
-    async function fileExists(path){
-      try {
-        const res = await fetch(path, { method: 'GET', cache: 'no-store' });
-        return res.ok;
-      } catch (e) {
-        return false;
-      }
-    }
-
-    const today = new Date();
-    const initialBase = (today >= startRange && today <= endRange) ? today : new Date(2026, 3, 1);
-    let currentWeekStart = getWeekStart(initialBase);
-
-    const weekGrid = document.getElementById('weekGrid');
-    const weekTitle = document.getElementById('weekTitle');
-    const currentWeekHint = document.getElementById('currentWeekHint');
-    const prevWeekBtn = document.getElementById('prevWeek');
-    const nextWeekBtn = document.getElementById('nextWeek');
-    const todayWeekBtn = document.getElementById('todayWeek');
-
-    function getDefaultDay(date){
-      const weekday = date.getDay();
-      const isWeekend = weekday === 0 || weekday === 6;
-      return {
-        badge: isWeekend ? 'Descanso / apoio' : 'Planejamento em aberto',
-        badgeClass: 'badge-rest',
-        title: isWeekend ? 'Sem conteúdo previsto' : 'Cronograma ainda não detalhado',
-        desc: isWeekend ? 'Dia sem estudo obrigatório' : 'Você pode subir a apostila com o nome da data normalmente.',
-        topics: isWeekend ? ['Use o dia para descansar, revisar leve ou organizar seus materiais.'] : ['Quando o arquivo da apostila existir, o botão abaixo será liberado automaticamente.']
-      };
-    }
-
-    async function renderWeek(){
-      weekGrid.innerHTML = '';
-      weekTitle.textContent = formatWeekTitle(currentWeekStart);
-      currentWeekHint.textContent = `Semana exibida: ${formatWeekTitle(currentWeekStart)}`;
-
-      const dates = [];
-      const checks = [];
-      for(let i=0;i<7;i++){
-        const date = cloneDate(currentWeekStart);
-        date.setDate(date.getDate()+i);
-        dates.push(date);
-        checks.push(fileExists(toFilePath(date)));
-      }
-      const fileStates = await Promise.all(checks);
-
-      dates.forEach((date,index)=>{
-        const iso = toIso(date);
-        const data = schedule[iso] || getDefaultDay(date);
-        const filePath = toFilePath(date);
-        const exists = fileStates[index];
-        const isToday = iso === toIso(new Date());
-
-        const card = document.createElement('article');
-        card.className = `day-card${exists ? ' has-file' : ''}${isToday ? ' today' : ''}`;
-        const topicsHtml = (data.topics || []).map(topic => `<li>${topic}</li>`).join('');
-        const buttonHtml = exists
-          ? `<a class="file-btn available" href="${filePath}">Abrir apostila</a>`
-          : `<span class="file-btn missing">Apostila ainda não criada</span>`;
-
-        card.innerHTML = `
-          <div class="day-name">${WEEKDAYS[date.getDay()]}</div>
-          <div class="day-date">${formatShort(date)}</div>
-          <span class="day-badge ${data.badgeClass || 'badge-rest'}">${data.badge || 'Sem conteúdo'}</span>
-          <div class="day-title">${data.title || 'Sem conteúdo previsto'}</div>
-          <p class="day-desc">${data.desc || ''}</p>
-          <ul class="topics">${topicsHtml}</ul>
-          ${buttonHtml}
-        `;
-        weekGrid.appendChild(card);
+    </div>
+  </div>
+</div>
+<footer><strong>OnoharaSeiji/etec</strong> &middot; Preparat&oacute;rio Vestibulinho ETEC &middot; 01 abr &ndash; 30 nov 2026</footer>
+<script>
+const STUDY_START=new Date(2026,3,1);
+const EXAM_DAY=new Date(2026,10,30);
+const TODAY=(()=>{const d=new Date();d.setHours(0,0,0,0);return d;})();
+const MONTHS_PT=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+const DAYS_PT=['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
+const SCHEDULE={
+'2026-4-1':[{type:'apostila',label:'01/04/2026',sub:'Port \u00b7 Mat',file:'apostilas/01_04_2026.html'}],
+'2026-4-2':[{type:'apostila',label:'02/04/2026',sub:'Port \u00b7 Bio \u00b7 Geo',file:'apostilas/02_04_2026.html'},{type:'reforco',label:'Refor\u00e7o',sub:'Regra de Tr\u00eas',file:'reforco/regra-de-tres-akemy.html'}],
+'2026-8-28':[{type:'simulado',label:'Simulado 1',sub:'50 quest\u00f5es',file:'cronograma/cronograma-etec-2026.html'}],
+'2026-9-15':[{type:'simulado',label:'Simulado 2',sub:'50 quest\u00f5es',file:'cronograma/cronograma-etec-2026.html'}],
+'2026-10-6':[{type:'simulado',label:'Simulado 3',sub:'50 quest\u00f5es',file:'cronograma/cronograma-etec-2026.html'}],
+'2026-10-27':[{type:'simulado',label:'Simulado 4',sub:'50 quest\u00f5es',file:'cronograma/cronograma-etec-2026.html'}],
+'2026-11-17':[{type:'simulado',label:'Simulado Final',sub:'50 quest\u00f5es',file:'cronograma/cronograma-etec-2026.html'}],
+'2026-11-30':[{type:'exam',label:'\u2b50 VESTIBULINHO',sub:'13h30 \u00b7 Boa prova!',file:'cronograma/cronograma-etec-2026.html'}],
+};
+const WEEK_FOCUS={1:'Diagn\u00f3stico \u00b7 Fra\u00e7\u00f5es \u00b7 Leitura Literal',2:'Raz\u00e3o, Propor\u00e7\u00e3o, Regra de Tr\u00eas \u00b7 Pronomes e Coes\u00e3o',3:'Porcentagem \u00b7 G\u00eaneros Textuais',4:'Tabelas e Gr\u00e1ficos \u00b7 Conectivos e Infer\u00eancia',5:'Express\u00f5es Alg\u00e9bricas \u00b7 Figuras de Linguagem',6:'Unidades e Convers\u00f5es \u00b7 Pontua\u00e7\u00e3o e Sentido',7:'\u00c1rea e Per\u00edmetro \u00b7 Revis\u00e3o Port + Mat',8:'Volume, Nota\u00e7\u00e3o Cient\u00edfica \u00b7 Simulado Curto',9:'Ecologia \u00b7 Cadeias Alimentares',10:'Biomas do Brasil \u00b7 Cartografia',11:'Bot\u00e2nica I \u2014 Grupos Vegetais',12:'Bot\u00e2nica II \u2014 Fotosse\u00edntese e Impactos',13:'Zoologia I \u2014 Vertebrados e Invertebrados',14:'Zoologia II + Sa\u00fade \u00b7 Vacina\u00e7\u00e3o',15:'Qu\u00edmica I \u2014 \u00c1tomo, Subst\u00e2ncias, Misturas',16:'Qu\u00edmica II + F\u00edsica I \u2014 pH, Densidade, Calor',17:'\u00d3ptica \u00b7 Eletricidade',18:'Magnetismo \u00b7 Press\u00e3o \u00b7 Velocidade',19:'Pr\u00e9-Hist\u00f3ria \u00b7 Antiguidade \u00b7 Idade M\u00e9dia',20:'Grandes Navega\u00e7\u00f5es \u00b7 Coloniza\u00e7\u00e3o',21:'Revolu\u00e7\u00e3o Industrial \u00b7 Urbaniza\u00e7\u00e3o',22:'S\u00e9c. XX \u2014 Guerras \u00b7 Guerra Fria',23:'Geografia do Brasil \u2014 Regi\u00f5es e Problemas',24:'Revis\u00e3o Geral \u2014 Humanas + Natureza',25:'Prova 2022 Completa + Caderno de Erros',26:'Prova 2023 Completa + Caderno de Erros',27:'Prova 2024 Completa + Caderno de Erros',28:'Prova 2025 Completa + Caderno de Erros',29:'Prova 2026 Completa + Caderno de Erros',30:'Simulado Autoral 1',31:'Simulado Autoral 2 \u00b7 Port + Mat',32:'Simulado Autoral 3 \u00b7 Natureza + Humanas',33:'Revis\u00e3o Final \u2014 Todas as Mat\u00e9rias',34:'Simulados Finais \u2014 Nada de Conte\u00fado Novo',35:'\u2b50 V\u00e9spera e Dia da Prova \u2014 30/11/2026'};
+function getPhase(d){
+  if(d<new Date(2026,5,1))return{n:1,label:'\u{1F331} Fase 1',color:'var(--p1)'};
+  if(d<new Date(2026,8,1))return{n:2,label:'\u{1F3D7}\uFE0F Fase 2',color:'var(--p2)'};
+  if(d<new Date(2026,10,1))return{n:3,label:'\u{1F525} Fase 3',color:'var(--p3)'};
+  return{n:4,label:'\u{1F680} Sprint',color:'var(--p4)'};
+}
+function getMon(d){const r=new Date(d);const day=r.getDay();const diff=day===0?-6:1-day;r.setDate(r.getDate()+diff);r.setHours(0,0,0,0);return r;}
+function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r;}
+function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();}
+function skey(d){return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function fmt(d){return String(d.getDate()).padStart(2,'0')+' '+MONTHS_PT[d.getMonth()];}
+const FIRST_MON=getMon(STUDY_START);
+const LAST_MON=getMon(EXAM_DAY);
+function weekNum(mon){return Math.floor((mon-FIRST_MON)/(7*86400000))+1;}
+let curMon=getMon(TODAY);
+if(curMon<FIRST_MON)curMon=new Date(FIRST_MON);
+if(curMon>LAST_MON)curMon=new Date(LAST_MON);
+function changeWeek(dir){
+  const n=addDays(curMon,dir*7);
+  if(n<FIRST_MON||n>LAST_MON)return;
+  curMon=n;render();
+}
+function render(){
+  const grid=document.getElementById('week-grid');
+  grid.innerHTML='';
+  document.getElementById('prev-btn').disabled=curMon<=FIRST_MON;
+  document.getElementById('next-btn').disabled=curMon>=LAST_MON;
+  const wn=weekNum(curMon);
+  const wSun=addDays(curMon,6);
+  document.getElementById('week-num').textContent=String(wn).padStart(2,'0');
+  document.getElementById('week-dates').textContent=fmt(curMon)+' \u2013 '+fmt(wSun)+' \u00b7 '+wSun.getFullYear();
+  document.getElementById('week-focus').textContent=WEEK_FOCUS[wn]||'\u2014';
+  const mid=addDays(curMon,3);
+  const ph=getPhase(mid);
+  const tag=document.getElementById('week-phase-tag');
+  tag.textContent=ph.label;
+  tag.style.background=ph.color+'22';
+  tag.style.color=ph.color;
+  tag.style.border='1px solid '+ph.color+'55';
+  for(let i=0;i<7;i++){
+    const date=addDays(curMon,i);
+    const isSun=i===6,isSat=i===5;
+    const isToday=sameDay(date,TODAY);
+    const isExam=sameDay(date,EXAM_DAY);
+    const inRange=date>=STUDY_START&&date<=EXAM_DAY;
+    const isPast=date<TODAY&&!isToday;
+    const items=SCHEDULE[skey(date)]||[];
+    const col=document.createElement('div');
+    const cls=['day-col'];
+    if(isToday)cls.push('today');
+    else if(isExam)cls.push('exam-day');
+    else if(!inRange)cls.push('out-of-range');
+    else if(isPast)cls.push('past');
+    if(isSun)cls.push('sunday');
+    if(isSat)cls.push('saturday');
+    col.className=cls.join(' ');
+    // header
+    const hdr=document.createElement('div');hdr.className='day-header';
+    const dn=document.createElement('div');dn.className='day-name';dn.textContent=DAYS_PT[date.getDay()];hdr.appendChild(dn);
+    const dnum=document.createElement('div');dnum.className='day-num';
+    if(isToday){const r=document.createElement('div');r.className='today-ring';r.textContent=date.getDate();dnum.appendChild(r);}
+    else if(isExam){const r=document.createElement('div');r.className='exam-ring';r.textContent=date.getDate();dnum.appendChild(r);}
+    else dnum.textContent=date.getDate();
+    hdr.appendChild(dnum);
+    const dm=document.createElement('div');dm.className='day-month';dm.textContent=MONTHS_PT[date.getMonth()];hdr.appendChild(dm);
+    col.appendChild(hdr);
+    // body
+    const body=document.createElement('div');body.className='day-body';
+    const ICONS={apostila:'\ud83d\udcc4',reforco:'\ud83c\udfaf',simulado:'\ud83d\udcdd',revisao:'\ud83d\udcda',exam:'\u2b50'};
+    if(isExam&&items.length===0){
+      const a=document.createElement('a');a.className='day-link exam';a.href='cronograma/cronograma-etec-2026.html';
+      a.innerHTML='<span class="dl-label">\u2b50 VESTIBULINHO</span><span class="dl-sub">13h30 \u00b7 Boa prova!</span>';body.appendChild(a);
+    } else if(items.length>0){
+      items.forEach(item=>{
+        const a=document.createElement('a');a.className='day-link '+item.type;a.href=item.file;
+        a.innerHTML='<span class="dl-label">'+(ICONS[item.type]||'\ud83d\udcc4')+' '+item.label+'</span><span class="dl-sub">'+item.sub+'</span>';
+        body.appendChild(a);
       });
-
-      const prevCandidate = cloneDate(currentWeekStart); prevCandidate.setDate(prevCandidate.getDate()-7);
-      const nextCandidate = cloneDate(currentWeekStart); nextCandidate.setDate(nextCandidate.getDate()+7);
-      prevWeekBtn.disabled = prevCandidate < startRange;
-      nextWeekBtn.disabled = nextCandidate > endRange;
+    } else if(inRange&&!isSun){
+      const ph2=getPhase(date);
+      const msg=document.createElement('div');msg.className='day-empty-msg';
+      msg.style.borderLeft='2px solid '+ph2.color+'44';msg.style.paddingLeft='8px';msg.style.textAlign='left';
+      msg.textContent=isSat?'\u26a1 Quest\u00f5es':'\u00b7\u00b7\u00b7';body.appendChild(msg);
+    } else if(isSun&&inRange){
+      const msg=document.createElement('div');msg.className='day-empty-msg';msg.innerHTML='\ud83c\udf3f<br>Descanso';body.appendChild(msg);
     }
-
-    prevWeekBtn.addEventListener('click',()=>{ const next=cloneDate(currentWeekStart); next.setDate(next.getDate()-7); if(next>=startRange){ currentWeekStart=next; renderWeek(); } });
-    nextWeekBtn.addEventListener('click',()=>{ const next=cloneDate(currentWeekStart); next.setDate(next.getDate()+7); if(next<=endRange){ currentWeekStart=next; renderWeek(); } });
-    todayWeekBtn.addEventListener('click',()=>{ const base=(new Date()>=startRange && new Date()<=endRange)?new Date():new Date(2026,3,1); currentWeekStart=getWeekStart(base); renderWeek(); });
-
-    renderWeek();
-  </script>
+    col.appendChild(body);grid.appendChild(col);
+  }
+  grid.style.animation='none';requestAnimationFrame(()=>{grid.style.animation='';});
+}
+function updateStats(){
+  const total=243;
+  const done=Math.max(0,Math.min(total,Math.floor((TODAY-STUDY_START)/86400000)));
+  document.getElementById('phase-pct').textContent=Math.round(done/total*100)+'% conclu\u00eddo';
+}
+function tick(){
+  const diff=new Date('2026-11-30T13:30:00')-new Date();
+  if(diff<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return;}
+  document.getElementById('cd-d').textContent=String(Math.floor(diff/86400000)).padStart(3,'0');
+  document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');
+}
+render();updateStats();tick();setInterval(tick,1000);
+</script>
 </body>
 </html>
