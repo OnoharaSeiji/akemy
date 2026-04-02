@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cronograma Etec | Fase 1 | Semana 1</title>
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --primary: #1d4ed8;
+      --primary-soft: #dbeafe;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+      --warn: #92400e;
+      --warn-soft: #fef3c7;
+      --shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 150px);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .wrap { width: min(1180px, calc(100% - 28px)); margin: 28px auto 70px; }
+    .hero {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff;
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+    .pill {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    h1, h2, h3, h4 { margin: 0 0 12px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 24px; }
+    .hero p { margin: 0; color: #dbeafe; max-width: 900px; }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .week-title { font-size: 24px; font-weight: 700; }
+    .navs { display: flex; gap: 10px; }
+    .nav-btn {
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.14);
+      color: white;
+      border-radius: 14px;
+      padding: 12px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.22); }
+    .card {
+      margin-top: 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .day-card {
+      min-height: 290px;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 16px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .day-card.has-study {
+      border-color: #bfdbfe;
+      box-shadow: inset 0 0 0 1px #dbeafe;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+    .day-card.today {
+      border-color: #60a5fa;
+      box-shadow: inset 0 0 0 1px #93c5fd;
+    }
+    .day-name {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+    .day-date {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .load {
+      display: inline-block;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+    .load.review { background: var(--accent-soft); color: var(--accent); }
+    .load.light { background: #f3f4f6; color: #4b5563; }
+    .topic-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .topic-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #475569;
+      font-size: 14px;
+    }
+    .topic-list li { margin-top: 6px; }
+    .open-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      background: #eff6ff;
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+    }
+    .open-link:hover { background: #dbeafe; }
+    .open-link.disabled {
+      background: #f8fafc;
+      border-color: #e5e7eb;
+      color: #94a3b8;
+      pointer-events: none;
+    }
+    .note {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: var(--warn);
+      font-size: 14px;
+    }
+    .footer-nav { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+    .footer-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+    .footer-btn:hover { background: #dbeafe; }
+    @media (max-width: 1100px) {
+      .week-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .week-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 28px; }
+      .hero, .card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="pill">Projeto Etec • Fase 1 • Semana 1</div>
+      <h1>Cronograma semanal dinâmico</h1>
+      <p>Esta versão mostra apenas a Fase 1, Semana 1, em formato semanal. Cada dia tem foco fechado e carga controlada para aprofundar sem sobrecarregar.</p>
+      <div class="toolbar">
+        <div class="week-title" id="weekTitle"></div>
+        <div class="navs">
+          <button class="nav-btn" id="prevWeek">◀ Semana anterior</button>
+          <button class="nav-btn" id="nextWeek">Próxima semana ▶</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Semana em andamento</h2>
+      <div class="week-grid" id="weekGrid"></div>
+      <div class="note">Nesta etapa, menos assuntos por dia é melhor do que um volume grande e superficial. O objetivo da Semana 1 é construir a base com retenção real.</div>
+      <div class="footer-nav">
+        <a class="footer-btn" href="apostila_01_etec_01_04_2026_v4.html">Abrir apostila de 01/04</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const weekGrid = document.getElementById('weekGrid');
+    const weekTitle = document.getElementById('weekTitle');
+    const prevWeek = document.getElementById('prevWeek');
+    const nextWeek = document.getElementById('nextWeek');
+
+    const weekdays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+    const monthNames = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+
+    const plans = {
+      '2026-04-01': {
+        load: 'Estudo principal',
+        loadClass: '',
+        title: 'Apostila 1',
+        topics: ['Diagnóstico inicial', 'Interpretação literal', 'Ideia principal', 'Frações: conceito e equivalência'],
+        href: 'apostila_01_etec_01_04_2026_v4.html',
+        label: 'Abrir apostila'
+      },
+      '2026-04-02': {
+        load: 'Estudo principal',
+        loadClass: '',
+        title: 'Base de leitura + matemática',
+        topics: ['Referência textual e pronomes', 'Comparação de frações', 'Leitura sem chute'],
+        href: '',
+        label: 'Apostila ainda não criada'
+      },
+      '2026-04-03': {
+        load: 'Estudo principal',
+        loadClass: '',
+        title: 'Fixação inteligente',
+        topics: ['Ideia principal x detalhe', 'Simplificação de frações', 'Soma e subtração com mesmo denominador'],
+        href: '',
+        label: 'Apostila ainda não criada'
+      },
+      '2026-04-04': {
+        load: 'Aplicação',
+        loadClass: '',
+        title: 'Questões curtas',
+        topics: ['Texto curto com alternativas', 'Problemas contextualizados com frações', 'Correção guiada'],
+        href: '',
+        label: 'Apostila ainda não criada'
+      },
+      '2026-04-05': {
+        load: 'Revisão leve',
+        loadClass: 'review',
+        title: 'Recuperação útil',
+        topics: ['Caderno de erros', 'Revisão de pontos fracos', 'Sem conteúdo novo'],
+        href: '',
+        label: 'Sem apostila'
+      },
+      '2026-04-06': {
+        load: 'Estudo principal',
+        loadClass: '',
+        title: 'Consolidação matemática',
+        topics: ['Frações de quantidade', 'Equivalência e simplificação', 'Treino de cálculo limpo'],
+        href: '',
+        label: 'Apostila ainda não criada'
+      },
+      '2026-04-07': {
+        load: 'Fechamento',
+        loadClass: '',
+        title: 'Fechamento da Semana 1',
+        topics: ['Mini simulado', 'Revisão guiada', 'Análise dos erros da semana'],
+        href: '',
+        label: 'Apostila ainda não criada'
+      }
+    };
+
+    let currentWeekStart = new Date(2026, 2, 29); // domingo da semana que contém 01/04/2026
+
+    function formatISO(date) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function formatHuman(date) {
+      return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}`;
+    }
+
+    function setWeekTitle(start) {
+      const end = new Date(start);
+      end.setDate(start.getDate() + 6);
+      weekTitle.textContent = `${formatHuman(start)} a ${formatHuman(end)} • ${monthNames[start.getMonth()]} / ${start.getFullYear()}`;
+    }
+
+    function renderWeek() {
+      weekGrid.innerHTML = '';
+      setWeekTitle(currentWeekStart);
+
+      for (let i = 0; i < 7; i++) {
+        const date = new Date(currentWeekStart);
+        date.setDate(currentWeekStart.getDate() + i);
+        const iso = formatISO(date);
+        const plan = plans[iso];
+        const card = document.createElement('div');
+        const isToday = iso === '2026-04-01';
+        card.className = 'day-card' + (plan ? ' has-study' : '') + (isToday ? ' today' : '');
+
+        let topicsHtml = '<ul class="topic-list"><li>Sem conteúdo definido para esta semana.</li></ul>';
+        let load = '<span class="load light">Sem estudo definido</span>';
+        let title = 'Planejamento em aberto';
+        let link = '<span class="open-link disabled">Sem apostila</span>';
+
+        if (plan) {
+          load = `<span class="load ${plan.loadClass || ''}">${plan.load}</span>`;
+          title = plan.title;
+          topicsHtml = `<ul class="topic-list">${plan.topics.map(t => `<li>${t}</li>`).join('')}</ul>`;
+          link = plan.href
+            ? `<a class="open-link" href="${plan.href}">${plan.label}</a>`
+            : `<span class="open-link disabled">${plan.label}</span>`;
+        }
+
+        card.innerHTML = `
+          <div class="day-name">${weekdays[date.getDay()]}</div>
+          <div class="day-date">${formatHuman(date)}</div>
+          ${load}
+          <div class="topic-title">${title}</div>
+          ${topicsHtml}
+          ${link}
+        `;
+
+        weekGrid.appendChild(card);
+      }
+    }
+
+    prevWeek.addEventListener('click', () => {
+      currentWeekStart = new Date(currentWeekStart.getFullYear(), currentWeekStart.getMonth(), currentWeekStart.getDate() - 7);
+      renderWeek();
+    });
+
+    nextWeek.addEventListener('click', () => {
+      currentWeekStart = new Date(currentWeekStart.getFullYear(), currentWeekStart.getMonth(), currentWeekStart.getDate() + 7);
+      renderWeek();
+    });
+
+    renderWeek();
+  </script>
+</body>
+</html>
