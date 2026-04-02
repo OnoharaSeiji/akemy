@@ -358,14 +358,14 @@
       <h1>Calendário semanal dinâmico</h1>
       <p>
         Este index funciona sem depender de <strong>config.js</strong> ou de nomes fixos como <strong>dia-009.html</strong>.
-        Cada data verifica automaticamente se existe um arquivo no padrão <strong>dd_mm_aaaa.html</strong> no mesmo diretório.
-        Quando você subir uma nova apostila com esse nome, o botão do dia correspondente será liberado sozinho.
+        Cada data verifica automaticamente se existe um arquivo no padrão <strong>dd_mm_aaaa.html</strong> dentro da pasta <strong>apostilas/</strong>.
+        Quando você subir uma nova apostila com esse nome nessa pasta, o botão do dia correspondente será liberado sozinho.
       </p>
 
       <div class="status-bar">
         <div class="stat">
           <div class="stat-label">Padrão de arquivo</div>
-          <div class="stat-value">01_04_2026.html</div>
+          <div class="stat-value">apostilas/01_04_2026.html</div>
         </div>
         <div class="stat">
           <div class="stat-label">Modo</div>
@@ -408,146 +408,41 @@
       <div class="week-grid" id="weekGrid"></div>
 
       <div class="note">
-        Você só precisa manter o arquivo <strong>index.html</strong> e subir novas apostilas com nomes como
-        <strong>07_04_2026.html</strong>, <strong>08_04_2026.html</strong> e assim por diante.
+        Você só precisa manter o arquivo <strong>index.html</strong> na raiz e subir novas apostilas dentro da pasta
+        <strong>apostilas/</strong> com nomes como <strong>07_04_2026.html</strong>, <strong>08_04_2026.html</strong> e assim por diante.
       </div>
     </section>
   </main>
 
   <script>
-    const MONTHS = [
-      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-    ];
-    const WEEKDAYS = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+    const MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const WEEKDAYS = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+    const BASE_DIR = 'apostilas';
 
     const schedule = {
-      '2026-04-01': {
-        badge: 'Estudo principal',
-        badgeClass: 'badge-study',
-        title: 'Base do ciclo',
-        desc: 'Português + Matemática',
-        topics: [
-          'Diagnóstico inicial',
-          'Interpretação literal',
-          'Ideia principal',
-          'Frações: conceito e equivalência'
-        ]
-      },
-      '2026-04-02': {
-        badge: 'Estudo principal',
-        badgeClass: 'badge-study',
-        title: 'Base de leitura + matemática',
-        desc: 'Português + Matemática',
-        topics: [
-          'Referência textual e pronomes',
-          'Leitura sem chute',
-          'Comparação de frações'
-        ]
-      },
-      '2026-04-03': {
-        badge: 'Estudo principal',
-        badgeClass: 'badge-study',
-        title: 'Fixação inteligente',
-        desc: 'Português + Matemática',
-        topics: [
-          'Ideia principal x detalhe',
-          'Simplificação de frações',
-          'Soma e subtração com mesmo denominador'
-        ]
-      },
-      '2026-04-04': {
-        badge: 'Aplicação',
-        badgeClass: 'badge-review',
-        title: 'Questões curtas',
-        desc: 'Português + Matemática',
-        topics: [
-          'Texto curto com alternativas',
-          'Problemas contextualizados com frações',
-          'Correção guiada'
-        ]
-      },
-      '2026-04-05': {
-        badge: 'Revisão',
-        badgeClass: 'badge-review',
-        title: 'Revisão leve com caderno de erros',
-        desc: 'Consolidação semanal',
-        topics: [
-          'Revisão mista da semana',
-          'Erros mais recorrentes',
-          'Sem conteúdo novo'
-        ]
-      },
-      '2026-04-06': {
-        badge: 'Estudo principal',
-        badgeClass: 'badge-study',
-        title: 'Frações de quantidade',
-        desc: 'Matemática',
-        topics: [
-          'Fração de quantidade',
-          'Equivalência e simplificação',
-          'Treino de cálculo limpo'
-        ]
-      }
+      '2026-04-01': { badge:'Estudo principal', badgeClass:'badge-study', title:'Base do ciclo', desc:'Português + Matemática', topics:['Diagnóstico inicial','Interpretação literal','Ideia principal','Frações: conceito e equivalência'] },
+      '2026-04-02': { badge:'Estudo principal', badgeClass:'badge-study', title:'Base de leitura + matemática', desc:'Português + Matemática', topics:['Referência textual e pronomes','Leitura sem chute','Comparação de frações'] },
+      '2026-04-03': { badge:'Estudo principal', badgeClass:'badge-study', title:'Fixação inteligente', desc:'Português + Matemática', topics:['Ideia principal x detalhe','Simplificação de frações','Soma e subtração com mesmo denominador'] },
+      '2026-04-04': { badge:'Aplicação', badgeClass:'badge-review', title:'Questões curtas', desc:'Português + Matemática', topics:['Texto curto com alternativas','Problemas contextualizados com frações','Correção guiada'] },
+      '2026-04-05': { badge:'Revisão', badgeClass:'badge-review', title:'Revisão leve com caderno de erros', desc:'Consolidação semanal', topics:['Revisão mista da semana','Erros mais recorrentes','Sem conteúdo novo'] },
+      '2026-04-06': { badge:'Estudo principal', badgeClass:'badge-study', title:'Frações de quantidade', desc:'Matemática', topics:['Fração de quantidade','Equivalência e simplificação','Treino de cálculo limpo'] }
     };
 
-    const startRange = new Date(2026, 2, 29); // 29/03/2026
-    const endRange = new Date(2026, 10, 29);  // 29/11/2026
+    const startRange = new Date(2026, 2, 29);
+    const endRange = new Date(2026, 10, 29);
 
-    function cloneDate(d) {
-      return new Date(d.getFullYear(), d.getMonth(), d.getDate());
-    }
+    function cloneDate(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+    function toIso(date){ const y=date.getFullYear(); const m=String(date.getMonth()+1).padStart(2,'0'); const d=String(date.getDate()).padStart(2,'0'); return `${y}-${m}-${d}`; }
+    function toFileName(date){ const dd=String(date.getDate()).padStart(2,'0'); const mm=String(date.getMonth()+1).padStart(2,'0'); const yyyy=date.getFullYear(); return `${dd}_${mm}_${yyyy}.html`; }
+    function toFilePath(date){ return `${BASE_DIR}/${toFileName(date)}`; }
+    function formatShort(date){ return `${String(date.getDate()).padStart(2,'0')}/${String(date.getMonth()+1).padStart(2,'0')}`; }
+    function getWeekStart(date){ const d=cloneDate(date); d.setDate(d.getDate()-d.getDay()); return d; }
+    function formatWeekTitle(weekStart){ const end=cloneDate(weekStart); end.setDate(end.getDate()+6); const sameMonth=weekStart.getMonth()===end.getMonth(); const startDay=String(weekStart.getDate()).padStart(2,'0'); const endDay=String(end.getDate()).padStart(2,'0'); if(sameMonth){ return `${startDay} a ${endDay} de ${MONTHS[weekStart.getMonth()]} de ${weekStart.getFullYear()}`; } return `${startDay} de ${MONTHS[weekStart.getMonth()]} a ${endDay} de ${MONTHS[end.getMonth()]} de ${end.getFullYear()}`; }
 
-    function toIso(date) {
-      const y = date.getFullYear();
-      const m = String(date.getMonth() + 1).padStart(2, '0');
-      const d = String(date.getDate()).padStart(2, '0');
-      return `${y}-${m}-${d}`;
-    }
-
-    function toFileName(date) {
-      const dd = String(date.getDate()).padStart(2, '0');
-      const mm = String(date.getMonth() + 1).padStart(2, '0');
-      const yyyy = date.getFullYear();
-      return `${dd}_${mm}_${yyyy}.html`;
-    }
-
-    function formatShort(date) {
-      return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}`;
-    }
-
-    function formatLong(date) {
-      return `${String(date.getDate()).padStart(2, '0')} de ${MONTHS[date.getMonth()]} de ${date.getFullYear()}`;
-    }
-
-    function getWeekStart(date) {
-      const d = cloneDate(date);
-      d.setDate(d.getDate() - d.getDay());
-      return d;
-    }
-
-    function formatWeekTitle(weekStart) {
-      const end = cloneDate(weekStart);
-      end.setDate(end.getDate() + 6);
-      const sameMonth = weekStart.getMonth() === end.getMonth();
-      const startDay = String(weekStart.getDate()).padStart(2, '0');
-      const endDay = String(end.getDate()).padStart(2, '0');
-      if (sameMonth) {
-        return `${startDay} a ${endDay} de ${MONTHS[weekStart.getMonth()]} de ${weekStart.getFullYear()}`;
-      }
-      return `${startDay} de ${MONTHS[weekStart.getMonth()]} a ${endDay} de ${MONTHS[end.getMonth()]} de ${end.getFullYear()}`;
-    }
-
-    async function fileExists(fileName) {
+    async function fileExists(path){
       try {
-        const head = await fetch(fileName, { method: 'HEAD', cache: 'no-store' });
-        if (head.ok) return true;
-        if (head.status && head.status !== 404 && head.status !== 405) return false;
-      } catch (e) {}
-
-      try {
-        const get = await fetch(fileName, { method: 'GET', cache: 'no-store' });
-        return get.ok;
+        const res = await fetch(path, { method: 'GET', cache: 'no-store' });
+        return res.ok;
       } catch (e) {
         return false;
       }
@@ -564,48 +459,45 @@
     const nextWeekBtn = document.getElementById('nextWeek');
     const todayWeekBtn = document.getElementById('todayWeek');
 
-    function getDefaultDay(date) {
+    function getDefaultDay(date){
       const weekday = date.getDay();
       const isWeekend = weekday === 0 || weekday === 6;
       return {
         badge: isWeekend ? 'Descanso / apoio' : 'Planejamento em aberto',
-        badgeClass: isWeekend ? 'badge-rest' : 'badge-rest',
+        badgeClass: 'badge-rest',
         title: isWeekend ? 'Sem conteúdo previsto' : 'Cronograma ainda não detalhado',
         desc: isWeekend ? 'Dia sem estudo obrigatório' : 'Você pode subir a apostila com o nome da data normalmente.',
-        topics: isWeekend
-          ? ['Use o dia para descansar, revisar leve ou organizar seus materiais.']
-          : ['Quando o arquivo da apostila existir, o botão abaixo será liberado automaticamente.']
+        topics: isWeekend ? ['Use o dia para descansar, revisar leve ou organizar seus materiais.'] : ['Quando o arquivo da apostila existir, o botão abaixo será liberado automaticamente.']
       };
     }
 
-    async function renderWeek() {
+    async function renderWeek(){
       weekGrid.innerHTML = '';
       weekTitle.textContent = formatWeekTitle(currentWeekStart);
       currentWeekHint.textContent = `Semana exibida: ${formatWeekTitle(currentWeekStart)}`;
 
-      const promises = [];
       const dates = [];
-      for (let i = 0; i < 7; i++) {
+      const checks = [];
+      for(let i=0;i<7;i++){
         const date = cloneDate(currentWeekStart);
-        date.setDate(date.getDate() + i);
+        date.setDate(date.getDate()+i);
         dates.push(date);
-        promises.push(fileExists(toFileName(date)));
+        checks.push(fileExists(toFilePath(date)));
       }
-      const fileStates = await Promise.all(promises);
+      const fileStates = await Promise.all(checks);
 
-      dates.forEach((date, index) => {
+      dates.forEach((date,index)=>{
         const iso = toIso(date);
         const data = schedule[iso] || getDefaultDay(date);
-        const fileName = toFileName(date);
+        const filePath = toFilePath(date);
         const exists = fileStates[index];
-        const isToday = toIso(date) === toIso(new Date());
+        const isToday = iso === toIso(new Date());
 
         const card = document.createElement('article');
         card.className = `day-card${exists ? ' has-file' : ''}${isToday ? ' today' : ''}`;
-
         const topicsHtml = (data.topics || []).map(topic => `<li>${topic}</li>`).join('');
         const buttonHtml = exists
-          ? `<a class="file-btn available" href="${fileName}">Abrir apostila</a>`
+          ? `<a class="file-btn available" href="${filePath}">Abrir apostila</a>`
           : `<span class="file-btn missing">Apostila ainda não criada</span>`;
 
         card.innerHTML = `
@@ -617,42 +509,18 @@
           <ul class="topics">${topicsHtml}</ul>
           ${buttonHtml}
         `;
-
         weekGrid.appendChild(card);
       });
 
-      const prevCandidate = cloneDate(currentWeekStart);
-      prevCandidate.setDate(prevCandidate.getDate() - 7);
-      const nextCandidate = cloneDate(currentWeekStart);
-      nextCandidate.setDate(nextCandidate.getDate() + 7);
-
+      const prevCandidate = cloneDate(currentWeekStart); prevCandidate.setDate(prevCandidate.getDate()-7);
+      const nextCandidate = cloneDate(currentWeekStart); nextCandidate.setDate(nextCandidate.getDate()+7);
       prevWeekBtn.disabled = prevCandidate < startRange;
       nextWeekBtn.disabled = nextCandidate > endRange;
     }
 
-    prevWeekBtn.addEventListener('click', () => {
-      const next = cloneDate(currentWeekStart);
-      next.setDate(next.getDate() - 7);
-      if (next >= startRange) {
-        currentWeekStart = next;
-        renderWeek();
-      }
-    });
-
-    nextWeekBtn.addEventListener('click', () => {
-      const next = cloneDate(currentWeekStart);
-      next.setDate(next.getDate() + 7);
-      if (next <= endRange) {
-        currentWeekStart = next;
-        renderWeek();
-      }
-    });
-
-    todayWeekBtn.addEventListener('click', () => {
-      const base = (new Date() >= startRange && new Date() <= endRange) ? new Date() : new Date(2026, 3, 1);
-      currentWeekStart = getWeekStart(base);
-      renderWeek();
-    });
+    prevWeekBtn.addEventListener('click',()=>{ const next=cloneDate(currentWeekStart); next.setDate(next.getDate()-7); if(next>=startRange){ currentWeekStart=next; renderWeek(); } });
+    nextWeekBtn.addEventListener('click',()=>{ const next=cloneDate(currentWeekStart); next.setDate(next.getDate()+7); if(next<=endRange){ currentWeekStart=next; renderWeek(); } });
+    todayWeekBtn.addEventListener('click',()=>{ const base=(new Date()>=startRange && new Date()<=endRange)?new Date():new Date(2026,3,1); currentWeekStart=getWeekStart(base); renderWeek(); });
 
     renderWeek();
   </script>
