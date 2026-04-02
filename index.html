@@ -963,45 +963,9 @@
 
     <nav class="sticky-nav">
       <div class="container nav-scroll">
-        <a class="nav-link active" href="#fases">Fases</a>
-        <a class="nav-link" href="#estrutura">Estrutura semanal</a>
-        <a class="nav-link" href="#calendario">Calendário</a>
-        <a class="nav-link" href="#notas">Princípios do sistema</a>
+        <a class="nav-link active" href="#calendario">Calendário</a>
       </div>
     </nav>
-
-    <section class="section" id="fases">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Arquitetura do plano</div>
-          <h2 class="section-title">As fases reais do AKEMY</h2>
-          <p class="section-sub">A lógica pedagógica do AKEMY foi preservada. O que mudou aqui foi a apresentação do sistema: mais forte, mais clara e com visão de produto.</p>
-        </div>
-
-        <div class="phase-cards" id="phase-cards"></div>
-
-        <div class="legend">
-          <div class="legend-title">Legenda da cadência do calendário</div>
-          <div class="legend-item"><span class="legend-dot" style="background: var(--content)"></span> Conteúdo</div>
-          <div class="legend-item"><span class="legend-dot" style="background: var(--review)"></span> Revisão</div>
-          <div class="legend-item"><span class="legend-dot" style="background: var(--sim)"></span> Mini simulado</div>
-          <div class="legend-item"><span class="legend-dot" style="background: var(--rest)"></span> Descanso</div>
-          <div class="legend-item"><span class="legend-dot" style="background: var(--gold)"></span> Dia da prova</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="estrutura">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Ritmo semanal</div>
-          <h2 class="section-title">Como a semana funciona</h2>
-          <p class="section-sub">A espinha do AKEMY continua: segunda a quinta para conteúdo, sexta para revisão, sábado para mini simulado e domingo sem apostila numerada.</p>
-        </div>
-
-        <div class="cadence-grid" id="cadence-grid"></div>
-      </div>
-    </section>
 
     <section class="section calendar-section" id="calendario">
       <div class="container">
@@ -1060,56 +1024,7 @@
                 </div>
               </div>
             </section>
-
-            <section class="side-card">
-              <div class="side-card-head"><div class="side-card-title">Acesso rápido</div></div>
-              <div class="side-card-body">
-                <div class="link-list" id="quick-links"></div>
-              </div>
-            </section>
-
-            <section class="side-card">
-              <div class="side-card-head"><div class="side-card-title">Fases</div></div>
-              <div class="side-card-body">
-                <div class="phase-list" id="phase-list"></div>
-              </div>
-            </section>
-
-            <section class="side-card">
-              <div class="side-card-head"><div class="side-card-title">Próximos marcos</div></div>
-              <div class="side-card-body">
-                <div class="upcoming-list" id="upcoming-list"></div>
-              </div>
-            </section>
           </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="notas">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Direção do produto</div>
-          <h2 class="section-title">O que foi preservado e o que mudou</h2>
-          <p class="section-sub">A casa visual foi elevada para o padrão do projeto ETEC. A lógica curricular continua sendo a do AKEMY.</p>
-        </div>
-
-        <div class="notes-grid">
-          <article class="note-card">
-            <div class="note-icon">🧠</div>
-            <h4>Espinha pedagógica do AKEMY</h4>
-            <p>O cronograma continua vindo do <code>config.js</code> real do repositório, com 216 dias de estudo, revisão na sexta, mini simulado no sábado e descanso no domingo.</p>
-          </article>
-          <article class="note-card">
-            <div class="note-icon">🎛️</div>
-            <h4>Casca no padrão ETEC</h4>
-            <p>Hero forte, countdown, cards, barra de fases, calendário protagonista, sidebar e sensação de plataforma, não de arquivo isolado.</p>
-          </article>
-          <article class="note-card">
-            <div class="note-icon">🚀</div>
-            <h4>Próximo passo natural</h4>
-            <p>Depois do <code>index</code>, o passo de maior impacto é criar o template visual definitivo das apostilas e migrar as páginas internas para o mesmo padrão.</p>
-          </article>
         </div>
       </div>
     </section>
@@ -1467,82 +1382,6 @@
       document.getElementById('mini-left').textContent = Math.max(cfg.totalStudyDays - completed, 0);
       document.getElementById('mini-reviews').textContent = reviews;
       document.getElementById('mini-sims').textContent = sims;
-
-      const firstPublished = state.availableApostilas[0];
-      const lastPublished = state.availableApostilas[state.availableApostilas.length - 1];
-      const firstPublishedDay = cfg.studyDays.find(d => d.number === firstPublished);
-      const lastPublishedDay = cfg.studyDays.find(d => d.number === lastPublished);
-      const todayStudy = getStudyDayToday();
-      const nextReview = cfg.studyDays.find(d => d.mode === 'revisao' && parseIsoLocal(d.date) >= today);
-      const nextSim = cfg.studyDays.find(d => d.mode === 'mini_simulado' && parseIsoLocal(d.date) >= today);
-
-      const quickLinks = [
-        firstPublishedDay ? {
-          label: 'Primeira apostila publicada',
-          href: firstPublishedDay.href,
-          badge: `#${helpers.formatDayNumber(firstPublishedDay.number)}`
-        } : null,
-        lastPublishedDay ? {
-          label: 'Última apostila publicada',
-          href: lastPublishedDay.href,
-          badge: `#${helpers.formatDayNumber(lastPublishedDay.number)}`
-        } : null,
-        todayStudy && todayStudy.mode !== 'descanso' ? {
-          label: 'Apostila do dia',
-          href: isAvailable(todayStudy.number) ? todayStudy.href : '#calendario',
-          badge: isAvailable(todayStudy.number) ? 'hoje' : 'em breve'
-        } : {
-          label: 'Ver calendário do mês',
-          href: '#calendario',
-          badge: 'agenda'
-        },
-        nextReview ? {
-          label: 'Próxima revisão',
-          href: '#calendario',
-          badge: formatLongDate(nextReview.date)
-        } : null,
-        nextSim ? {
-          label: 'Próximo mini simulado',
-          href: '#calendario',
-          badge: formatLongDate(nextSim.date)
-        } : null
-      ].filter(Boolean);
-
-      document.getElementById('quick-links').innerHTML = quickLinks.map(link => `
-        <a class="quick-link" href="${link.href}">
-          <span>→</span>
-          <span>${link.label}</span>
-          <span class="quick-link-badge">${link.badge}</span>
-        </a>
-      `).join('');
-
-      const phases = currentPhaseMeta();
-      document.getElementById('phase-list').innerHTML = phases.map((phase, idx) => `
-        <div class="phase-item">
-          <div class="phase-icon" style="background:${phase.color}22;color:${phase.color}">${phase.emoji}</div>
-          <div>
-            <div class="phase-item-title">${phase.label}</div>
-            <div class="phase-item-sub">${formatLongDate(phase.start)} → ${formatLongDate(phase.end)}</div>
-          </div>
-        </div>
-      `).join('');
-
-      const upcoming = cfg.studyDays
-        .filter(day => parseIsoLocal(day.date) >= today)
-        .slice(0, 7);
-
-      document.getElementById('upcoming-list').innerHTML = upcoming.map(day => {
-        const color = day.mode === 'conteudo' ? 'var(--green)' : day.mode === 'revisao' ? 'var(--gold)' : day.mode === 'mini_simulado' ? 'var(--purple)' : 'var(--text3)';
-        return `
-          <div class="upcoming-item" style="border-left-color:${color}">
-            <div class="upcoming-date">${formatLongDate(day.date)}</div>
-            <div class="upcoming-text">
-              <strong>${day.mode === 'descanso' ? 'Descanso' : `#${helpers.formatDayNumber(day.number)} · ${day.title}`}</strong>
-              <span>${day.theme}</span>
-            </div>
-          </div>
-        `;
-      }).join('');
     }
 
     function bindNav() {
@@ -1570,8 +1409,6 @@
       fillHeader();
       fillCountdown();
       renderPhaseProgress();
-      renderPhaseCards();
-      renderCadence();
       renderCalendar();
       renderSidebar();
       bindNav();
