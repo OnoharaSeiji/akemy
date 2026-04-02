@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apostila 02/04/2026 · Vestibulinho ETEC 2026</title>
+  <script src="config.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #F7F3EC;
+      --surface:   #FFFFFF;
+      --navy:      #1A2B3C;
+      --navy-soft: #2C3E50;
+      --terra:     #C0572A;
+      --terra-lt:  #E8784F;
+      --sage:      #4A7B58;
+      --sage-lt:   #6FAB7F;
+      --amber:     #D4902A;
+      --amber-lt:  #F0C060;
+      --blue:      #2563EB;
+      --blue-lt:   #DBEAFE;
+      --muted:     #8A8078;
+      --border:    #E2D9CE;
+      --text:      #2A2318;
+      --text-soft: #5C5248;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 400; line-height: 1.7; }
+
+    /* ── HEADER ── */
+    .header { background: var(--navy); color: #fff; padding: 40px 48px 36px; position: relative; overflow: hidden; }
+    .header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: rgba(37,99,235,.2); }
+    .header::after  { content: ''; position: absolute; bottom: -40px; left: 30%; width: 180px; height: 180px; border-radius: 50%; background: rgba(74,123,88,.12); }
+    .header-inner { position: relative; z-index: 1; max-width: 860px; }
+    .header-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 20px; padding: 4px 14px; font-size: .72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--amber-lt); margin-bottom: 14px; }
+    .header-badge span { width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; display: inline-block; }
+    .header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; line-height: 1.15; color: #fff; margin-bottom: 10px; }
+    .header h1 em { font-style: italic; color: var(--amber-lt); }
+    .header-meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: .82rem; color: rgba(255,255,255,.6); margin-top: 18px; }
+    .header-meta strong { color: rgba(255,255,255,.9); }
+    .pills { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+    .pill { display: inline-block; padding: 5px 12px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.9); border-radius: 999px; font-size: .75rem; font-weight: 500; }
+
+    /* ── NAV ── */
+    .nav-bar { background: var(--surface); border-bottom: 2px solid var(--border); padding: 0 48px; display: flex; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.05); overflow-x: auto; }
+    .nav-bar a { display: flex; align-items: center; gap: 8px; padding: 16px 20px; font-size: .82rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .2s; white-space: nowrap; }
+    .nav-bar a.b1:hover { color: var(--blue);  border-color: var(--blue); }
+    .nav-bar a.b2:hover { color: var(--terra); border-color: var(--terra); }
+    .nav-bar a.b3:hover { color: var(--amber); border-color: var(--amber); }
+    .nav-bar a.bf:hover { color: var(--navy);  border-color: var(--navy); }
+    .nav-pill { width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: .65rem; font-weight: 700; color: #fff; }
+    .b1 .nav-pill { background: var(--blue); }
+    .b2 .nav-pill { background: var(--terra); }
+    .b3 .nav-pill { background: var(--amber); }
+    .bf .nav-pill { background: var(--navy); }
+
+    /* ── MAIN ── */
+    .main { max-width: 860px; margin: 0 auto; padding: 48px 24px 60px; }
+
+    /* ── PROGRESSO ── */
+    .progress-wrap { margin-bottom: 36px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 8px; }
+    .progress-bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(to right, var(--blue), var(--sage)); border-radius: 4px; width: 0; transition: width .6s ease; }
+
+    /* ── OVERVIEW TABLE ── */
+    .overview { background: var(--surface); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 40px; }
+    .overview-head { background: var(--navy); color: #fff; padding: 18px 28px; font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; }
+    .ov-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .ov-table th { background: #F0EBE3; padding: 10px 20px; text-align: left; font-weight: 600; color: var(--navy); font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+    .ov-table td { padding: 12px 20px; border-bottom: 1px solid var(--border); color: var(--text-soft); vertical-align: top; }
+    .ov-table tr:last-child td { border-bottom: none; }
+    .blabel { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: .72rem; font-weight: 600; }
+    .b1-tag { background: var(--blue-lt); color: var(--blue); }
+    .b2-tag { background: #FDEEE8; color: var(--terra); }
+    .b3-tag { background: #FEF3DC; color: var(--amber); }
+
+    /* ── BLOCO CARD ── */
+    .bloco { background: var(--surface); border-radius: 16px; margin-bottom: 40px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 6px 24px rgba(0,0,0,.04); }
+    .bloco-header { padding: 22px 32px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .bloco-num { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: .7rem; font-weight: 500; color: #fff; flex-shrink: 0; }
+    .bloco-1 .bloco-num { background: var(--blue); }
+    .bloco-2 .bloco-num { background: var(--terra); }
+    .bloco-3 .bloco-num { background: var(--amber); color: var(--navy); }
+    .bloco-info { flex: 1; }
+    .bloco-info h2 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+    .bloco-info .meta { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+    .timer-badge { background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: .75rem; font-weight: 500; color: var(--text-soft); display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .timer-badge::before { content: '⏱'; font-size: .85rem; }
+    .bloco-body { padding: 32px; }
+
+    /* ── INTRO BOX ── */
+    .intro-box { border-left: 4px solid var(--blue); background: #EFF6FF; border-radius: 0 10px 10px 0; padding: 16px 20px; margin-bottom: 28px; font-size: .88rem; color: var(--text-soft); }
+    .intro-box strong { color: var(--blue); }
+    .intro-terra { border-color: var(--terra); background: #FEF0EC; }
+    .intro-terra strong { color: var(--terra); }
+    .intro-amber { border-color: var(--amber); background: #FEF7E8; }
+    .intro-amber strong { color: var(--amber); }
+
+    /* ── SECTION TITLE ── */
+    .sec-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin: 28px 0 14px; display: flex; align-items: center; gap: 10px; }
+    .sec-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--border), transparent); }
+
+    /* ── CONTENT ── */
+    .content p { margin-bottom: 12px; font-size: .92rem; }
+    .content strong { color: var(--navy); font-weight: 600; }
+    .content ul, .content ol { padding-left: 20px; margin-bottom: 12px; }
+    .content li { font-size: .92rem; margin-bottom: 6px; }
+
+    /* ── SKILL GRID ── */
+    .skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 16px 0 24px; }
+    .skill-card { border-radius: 12px; padding: 16px 18px; border: 1px solid var(--border); background: var(--bg); }
+    .skill-card .sk-title { font-weight: 600; font-size: .88rem; color: var(--navy); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .skill-card ul { padding-left: 16px; }
+    .skill-card li { font-size: .83rem; color: var(--text-soft); margin-bottom: 5px; }
+    .skill-card li strong { color: var(--text); }
+
+    /* ── CONCEPT BOX ── */
+    .concept-chain { display: flex; align-items: center; gap: 0; margin: 16px 0 24px; overflow-x: auto; padding-bottom: 4px; }
+    .chain-item { display: flex; flex-direction: column; align-items: center; min-width: 90px; }
+    .chain-bubble { background: var(--navy); color: #fff; border-radius: 12px; padding: 10px 14px; font-size: .78rem; font-weight: 500; text-align: center; line-height: 1.35; }
+    .chain-bubble.producer { background: var(--sage); }
+    .chain-bubble.consumer1 { background: #2563EB; }
+    .chain-bubble.consumer2 { background: var(--terra); }
+    .chain-bubble.consumer3 { background: #7C3AED; }
+    .chain-bubble.decomp { background: var(--muted); }
+    .chain-label { font-size: .68rem; color: var(--muted); margin-top: 5px; text-align: center; }
+    .chain-arrow { font-size: 1.2rem; color: var(--border); margin: 0 4px; flex-shrink: 0; align-self: center; margin-bottom: 20px; }
+
+    /* ── LEVELS TABLE ── */
+    .levels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 24px; }
+    .level-card { border-radius: 12px; padding: 16px; border: 1px solid var(--border); }
+    .lc-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .lc-title { font-weight: 700; font-size: .88rem; color: var(--navy); margin-bottom: 4px; }
+    .lc-body { font-size: .8rem; color: var(--text-soft); line-height: 1.5; }
+    .lc-blue { background: #EFF6FF; border-color: #BFDBFE; }
+    .lc-green { background: #ECFDF5; border-color: #A7F3D0; }
+    .lc-orange { background: #FFF7ED; border-color: #FED7AA; }
+
+    /* ── HIGHLIGHT ── */
+    .highlight { background: linear-gradient(135deg, #FEF7E8, #FDF3D6); border: 1px solid #F0D898; border-radius: 10px; padding: 16px 20px; margin: 20px 0; font-size: .88rem; }
+    .highlight .hl-title { font-weight: 600; color: var(--amber); font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 8px; }
+    .highlight-blue { background: linear-gradient(135deg, #EFF6FF, #DBEAFE); border-color: #BFDBFE; }
+    .highlight-blue .hl-title { color: var(--blue); }
+
+    /* ── FORMULA BOX ── */
+    .formula-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 16px 0 24px; }
+    .formula-card { background: var(--navy); border-radius: 12px; padding: 18px; }
+    .fc-label { font-size: .72rem; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 8px; }
+    .fc-formula { font-family: 'DM Mono', monospace; font-size: 1.05rem; color: var(--amber-lt); margin-bottom: 6px; }
+    .fc-desc { font-size: .78rem; color: rgba(255,255,255,.65); line-height: 1.5; }
+
+    /* ── METODO ── */
+    .metodo { background: linear-gradient(135deg, #F0EBE3, #EDE6DC); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 16px 0 24px; }
+    .metodo .m-title { font-weight: 600; color: var(--terra); font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 12px; }
+    .metodo ol { padding-left: 18px; }
+    .metodo li { font-size: .9rem; margin-bottom: 8px; color: var(--text); }
+    .metodo li strong { color: var(--navy); }
+
+    /* ── UNITS TABLE ── */
+    .units-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: .84rem; }
+    .units-table th { background: var(--navy); color: #fff; padding: 10px 16px; text-align: left; font-weight: 500; font-size: .77rem; letter-spacing: .04em; }
+    .units-table th:first-child { border-radius: 8px 0 0 0; }
+    .units-table th:last-child  { border-radius: 0 8px 0 0; }
+    .units-table td { padding: 10px 16px; border-bottom: 1px solid var(--border); color: var(--text-soft); vertical-align: middle; }
+    .units-table tr:nth-child(even) td { background: #F7F3EC; }
+    .units-table tr:last-child td { border-bottom: none; }
+    .units-table .mono { font-family: 'DM Mono', monospace; font-size: .82rem; color: var(--navy); }
+
+    /* ── TEXT BASE ── */
+    .text-label { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--terra); margin-bottom: 10px; }
+    .text-box { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; font-size: .9rem; line-height: 1.85; }
+    .text-box .source { display: block; text-align: right; font-size: .75rem; color: var(--muted); margin-top: 12px; font-style: italic; }
+
+    /* ── QUESTIONS ── */
+    .q-section-label { font-size: .8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin: 24px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .question-list { display: flex; flex-direction: column; gap: 16px; }
+    .question-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .q-head { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; cursor: pointer; background: var(--surface); transition: background .15s; user-select: none; }
+    .q-head:hover { background: var(--bg); }
+    .q-num { width: 30px; height: 30px; border-radius: 8px; color: #fff; display: flex; align-items: center; justify-content: center; font-size: .78rem; font-weight: 700; flex-shrink: 0; }
+    .q-num.blue  { background: var(--blue); }
+    .q-num.terra { background: var(--terra); }
+    .q-text { font-size: .9rem; flex: 1; padding-top: 3px; line-height: 1.55; }
+    .q-toggle { width: 24px; height: 24px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .8rem; flex-shrink: 0; margin-top: 2px; transition: transform .2s; }
+    .question-card.open .q-toggle { transform: rotate(180deg); background: var(--navy); color: #fff; border-color: var(--navy); }
+    .q-options { padding: 0 20px 16px 64px; display: none; flex-direction: column; gap: 8px; }
+    .question-card.open .q-options { display: flex; }
+    .opt { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); font-size: .86rem; cursor: pointer; transition: all .15s; background: var(--bg); }
+    .opt:hover:not(.correct):not(.wrong) { border-color: var(--navy); background: #EEF2F5; }
+    .opt .opt-letter { font-family: 'DM Mono', monospace; font-size: .8rem; font-weight: 600; color: var(--muted); flex-shrink: 0; }
+    .opt.correct { background: #ECFDF5; border-color: var(--sage-lt); pointer-events: none; }
+    .opt.correct .opt-letter { color: var(--sage); }
+    .opt.wrong { background: #FEF2F2; border-color: #FCA5A5; pointer-events: none; }
+    .opt.wrong .opt-letter { color: #EF4444; }
+    .opt.disabled { pointer-events: none; }
+    .q-explain { margin: 8px 0 4px; padding: 12px 16px; background: #EFF6F1; border-radius: 8px; font-size: .83rem; color: var(--sage); display: none; line-height: 1.6; }
+    .q-explain strong { color: var(--navy); }
+
+    /* ── FORMULAS TABLE (B3) ── */
+    .ref-section { margin-bottom: 24px; }
+    .ref-title { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: 10px; }
+    .ref-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .ref-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+    .ref-card .ref-name { font-size: .78rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .ref-card .ref-formula { font-family: 'DM Mono', monospace; font-size: .88rem; color: var(--terra); }
+    .ref-card .ref-desc { font-size: .76rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── FECHAMENTO ── */
+    .fechamento { background: var(--surface); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 40px; }
+    .fechamento-head { background: var(--navy); color: #fff; padding: 20px 28px; display: flex; align-items: center; gap: 12px; }
+    .fechamento-head h2 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; }
+    .fechamento-body { padding: 28px 32px; }
+    .benchmark-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+    .bm-card { border-radius: 12px; padding: 18px 16px; text-align: center; border: 1px solid var(--border); }
+    .bm-card .bm-score { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; margin-bottom: 6px; }
+    .bm-card .bm-label { font-size: .8rem; font-weight: 600; margin-bottom: 6px; }
+    .bm-card .bm-desc { font-size: .78rem; color: var(--text-soft); }
+    .bm-great { background: #ECFDF5; border-color: #A7F3D0; }
+    .bm-great .bm-score, .bm-great .bm-label { color: var(--sage); }
+    .bm-ok { background: #FEF7E8; border-color: #FDE68A; }
+    .bm-ok .bm-score, .bm-ok .bm-label { color: var(--amber); }
+    .bm-retry { background: #FEF2F2; border-color: #FCA5A5; }
+    .bm-retry .bm-score, .bm-retry .bm-label { color: #EF4444; }
+    .missao { background: linear-gradient(135deg, var(--navy), var(--navy-soft)); border-radius: 12px; padding: 20px 24px; color: #fff; }
+    .missao h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--amber-lt); margin-bottom: 8px; }
+    .missao ul { padding-left: 18px; }
+    .missao li { font-size: .88rem; color: rgba(255,255,255,.8); margin-bottom: 6px; }
+
+    /* ── APOSTILA NAV ── */
+    .apostila-nav { max-width: 860px; margin: 0 auto 20px; padding: 0 24px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: stretch; }
+    .anav-btn { display: flex; flex-direction: column; padding: 18px 22px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); text-decoration: none; color: var(--text); transition: all .2s; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+    .anav-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+    .anav-prev { align-items: flex-start; }
+    .anav-cronograma { align-items: center; justify-content: center; background: var(--navy); border-color: var(--navy); color: #fff; text-align: center; }
+    .anav-cronograma:hover { background: #243447; }
+    .anav-next { align-items: flex-end; }
+    .anav-arrow { font-size: 1.2rem; color: var(--muted); margin-bottom: 2px; }
+    .anav-next .anav-arrow { margin-bottom: 0; margin-top: 2px; }
+    .anav-icon { font-size: 1.6rem; margin-bottom: 4px; }
+    .anav-label { font-weight: 600; font-size: .88rem; color: var(--navy); }
+    .anav-cronograma .anav-label { color: #fff; }
+    .anav-date { font-size: .75rem; color: var(--muted); margin-top: 2px; font-family: 'DM Mono', monospace; }
+    .anav-cronograma .anav-date { color: rgba(255,255,255,.6); font-family: 'DM Sans', sans-serif; font-size: .78rem; }
+    .anav-btn.disabled { opacity: .35; pointer-events: none; }
+
+    /* ── FOOTER ── */
+    .footer { text-align: center; padding: 40px 24px; font-size: .78rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+    @media (max-width: 640px) {
+      .header { padding: 28px 20px; }
+      .header h1 { font-size: 1.7rem; }
+      .main { padding: 24px 16px 40px; }
+      .bloco-body { padding: 20px; }
+      .skill-grid, .levels-grid, .formula-grid, .ref-grid { grid-template-columns: 1fr; }
+      .benchmark-grid { grid-template-columns: 1fr; }
+      .concept-chain { flex-wrap: nowrap; }
+      .q-options { padding-left: 20px; }
+      .apostila-nav { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-badge"><span></span> Vestibulinho ETEC · Fase 1 — Base Forte</div>
+    <h1>Apostila <em>Dia 2</em></h1>
+    <div class="header-meta">
+      <span>📅 <strong>02 de abril de 2026</strong> — Quinta-feira</span>
+      <span>📚 <strong>Semana 14</strong></span>
+      <span>🎯 Objetivo: <strong>Construir base sem atropelo</strong></span>
+    </div>
+    <div class="pills">
+      <span class="pill">Ciências</span>
+      <span class="pill">Matemática</span>
+      <span class="pill">Fórmulas e Unidades</span>
+      <span class="pill">⏱ 2h – 2h30 no total</span>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <a href="#overview" class="bf"><span class="nav-pill" style="background:var(--navy)">▦</span> Visão geral</a>
+  <a href="#bloco1" class="b1"><span class="nav-pill">1</span> Ciências</a>
+  <a href="#bloco2" class="b2"><span class="nav-pill">2</span> Matemática</a>
+  <a href="#bloco3" class="b3"><span class="nav-pill">3</span> Fórmulas</a>
+  <a href="#fechamento" class="bf"><span class="nav-pill" style="background:var(--navy)">✓</span> Fechamento</a>
+</nav>
+
+<main class="main">
+
+  <!-- PROGRESSO -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Questões respondidas</span>
+      <span id="prog-pct">0 / 22</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+  </div>
+
+  <!-- VISÃO GERAL -->
+  <div class="overview" id="overview">
+    <div class="overview-head">📋 O que estudar hoje</div>
+    <table class="ov-table">
+      <thead><tr><th>Bloco</th><th>Foco</th><th>Atividade</th><th>Tempo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="blabel b1-tag">Bloco 1</span></td>
+          <td><strong>Ciências</strong></td>
+          <td>Ecologia: cadeia e teia alimentar, níveis tróficos, fluxo de energia + 10 questões</td>
+          <td>~50–60 min</td>
+        </tr>
+        <tr>
+          <td><span class="blabel b2-tag">Bloco 2</span></td>
+          <td><strong>Matemática</strong></td>
+          <td>Unidades de medida, notação científica, porcentagem + 12 questões</td>
+          <td>~45–55 min</td>
+        </tr>
+        <tr>
+          <td><span class="blabel b3-tag">Bloco 3</span></td>
+          <td><strong>Fórmulas e Unidades</strong></td>
+          <td>Revisar e registrar fórmulas essenciais no caderno</td>
+          <td>~20 min</td>
+        </tr>
+        <tr>
+          <td colspan="2"><strong>Regra do dia</strong></td>
+          <td colspan="2">Registre no caderno de erros todas as questões que errar — incluindo o tipo de erro (conteúdo, interpretação ou distração).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══ BLOCO 1 — CIÊNCIAS ══ -->
+  <section class="bloco bloco-1" id="bloco1">
+    <div class="bloco-header">
+      <div class="bloco-num">B1</div>
+      <div class="bloco-info">
+        <h2>Ciências — Ecologia: Cadeias e Teias Alimentares</h2>
+        <div class="meta">Teoria + 10 questões interativas</div>
+      </div>
+      <div class="timer-badge">50–60 min</div>
+    </div>
+    <div class="bloco-body">
+
+      <div class="intro-box">
+        <strong>Por que ecologia agora?</strong> A prova de 2026 tem como tema central os <strong>animais</strong>. Cadeia alimentar, teia alimentar e relações ecológicas aparecem em <em>toda</em> edição do Vestibulinho ETEC. Dominar esse conteúdo garante pontos certos.
+      </div>
+
+      <!-- CADEIA ALIMENTAR -->
+      <div class="sec-title"><span>🌿</span> Cadeia Alimentar</div>
+      <div class="content">
+        <p>A cadeia alimentar mostra quem come quem em um ecossistema. A energia flui sempre na mesma direção: do <strong>produtor</strong> para os <strong>consumidores</strong>, e deles para os <strong>decompositores</strong>.</p>
+        <p>Cada seta indica transferência de energia: <strong>A → B</strong> significa que B se alimenta de A (B depende de A, não o contrário).</p>
+      </div>
+
+      <div class="concept-chain">
+        <div class="chain-item">
+          <div class="chain-bubble producer">🌱 Grama<br>(planta)</div>
+          <div class="chain-label">Produtor</div>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-item">
+          <div class="chain-bubble consumer1">🐛 Gafanhoto</div>
+          <div class="chain-label">Consumidor 1º</div>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-item">
+          <div class="chain-bubble consumer2">🐸 Sapo</div>
+          <div class="chain-label">Consumidor 2º</div>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-item">
+          <div class="chain-bubble consumer3">🦅 Gavião</div>
+          <div class="chain-label">Consumidor 3º</div>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-item">
+          <div class="chain-bubble decomp">🍄 Fungos/<br>Bactérias</div>
+          <div class="chain-label">Decompositores</div>
+        </div>
+      </div>
+
+      <!-- NÍVEIS TRÓFICOS -->
+      <div class="sec-title"><span>🔢</span> Níveis Tróficos</div>
+      <div class="levels-grid">
+        <div class="level-card lc-green">
+          <div class="lc-icon">🌿</div>
+          <div class="lc-title">Produtores</div>
+          <div class="lc-body">Plantas, algas e cianobactérias. Fazem <strong>fotossíntese</strong> — convertem energia solar em matéria orgânica. São a base de toda cadeia.</div>
+        </div>
+        <div class="level-card lc-blue">
+          <div class="lc-icon">🐄</div>
+          <div class="lc-title">Consumidores</div>
+          <div class="lc-body"><strong>1º ordem</strong> (herbívoros): comem plantas.<br><strong>2º ordem</strong>: comem herbívoros.<br><strong>3º ordem</strong>: comem os de 2ª — predadores de topo.</div>
+        </div>
+        <div class="level-card lc-orange">
+          <div class="lc-icon">🍄</div>
+          <div class="lc-title">Decompositores</div>
+          <div class="lc-body">Fungos e bactérias. Decompõem matéria orgânica morta e devolvem os nutrientes ao solo — fecham o ciclo da matéria.</div>
+        </div>
+      </div>
+
+      <!-- TEIA ALIMENTAR -->
+      <div class="sec-title"><span>🕸️</span> Teia Alimentar</div>
+      <div class="content">
+        <p>A teia alimentar é o conjunto de cadeias interligadas. Na prática, um animal raramente come apenas uma coisa — e é comido por mais de um predador. Isso torna o ecossistema mais <strong>estável</strong>: se uma espécie diminui, outras podem compensar.</p>
+      </div>
+
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="sk-title">⚡ Fluxo de energia</div>
+          <ul>
+            <li>Energia <strong>não retorna</strong> ao nível anterior</li>
+            <li>Em cada nível, cerca de <strong>90%</strong> da energia se perde como calor</li>
+            <li>Por isso pirâmides de energia são sempre mais largas na base</li>
+            <li>Quanto mais longa a cadeia, menos energia chega ao topo</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="sk-title">⚠️ Erros mais comuns na prova</div>
+          <ul>
+            <li>Inverter a seta: A → B significa B <strong>come</strong> A</li>
+            <li>Confundir decompositor com consumidor</li>
+            <li>Achar que decompositores são "predadores" dos mortos</li>
+            <li>Esquecer que plantas são sempre produtoras — nunca consumidoras</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight highlight-blue">
+        <div class="hl-title">💡 Dica de Prova — Tema Animais 2026</div>
+        A banca costuma apresentar um texto sobre um animal específico (onça, tubarão, abelha) e perguntar seu papel na cadeia. Identifique primeiro: ele come plantas? É herbívoro (consumidor 1º). Come herbívoros? É carnívoro (consumidor 2º ou 3º). Come tudo? É onívoro.
+      </div>
+
+      <!-- QUESTÕES CIÊNCIAS -->
+      <div class="q-section-label">🏋️ Exercícios — Bloco 1 (10 questões)</div>
+
+      <div class="text-label">Texto base — Questões 01 a 05</div>
+      <div class="text-box">
+        <p>Em um ecossistema de cerrado, pesquisadores identificaram a seguinte cadeia alimentar: <strong>capim → cupim → tamanduá-bandeira → onça-pintada</strong>. Ao analisar a área, constataram que uma seca severa reduziu drasticamente a quantidade de capim disponível. Ao longo dos meses seguintes, as populações de cupim, tamanduá e onça também apresentaram redução.</p>
+        <p>Além da cadeia principal, os pesquisadores observaram que a onça-pintada também se alimenta de veados e capivaras, e que a carcaça dos animais mortos é decomposta por bactérias e fungos presentes no solo.</p>
+        <span class="source">Texto elaborado para fins pedagógicos.</span>
+      </div>
+
+      <div class="question-list">
+
+        <div class="question-card" data-correct="a">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">01</div>
+            <div class="q-text">Na cadeia alimentar descrita, o capim desempenha o papel de:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Produtor, pois realiza fotossíntese.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Consumidor primário, pois é a base da cadeia.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Decompositor, pois serve de alimento.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Consumidor secundário, pois precisa de outros seres para existir.</div>
+            <div class="q-explain">✅ <strong>Gabarito A.</strong> Capim é uma planta — realiza fotossíntese e produz matéria orgânica a partir da energia solar. Todo produtor é um ser autótrofo. "Ser a base da cadeia" é consequência, não definição.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">02</div>
+            <div class="q-text">O tamanduá-bandeira ocupa qual nível trófico na cadeia apresentada?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Produtor.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Consumidor primário (1º ordem).</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Consumidor secundário (2º ordem).</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Decompositor.</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> A cadeia é: capim (produtor) → cupim (1º ordem) → tamanduá (2º ordem) → onça (3º ordem). O tamanduá come cupim, que é herbívoro — por isso é consumidor secundário.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">03</div>
+            <div class="q-text">A redução do capim causou diminuição nas populações de cupim, tamanduá e onça. Isso demonstra que:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Decompositores controlam a cadeia alimentar.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Uma alteração no produtor impacta todos os níveis da cadeia.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> A onça é responsável pelo equilíbrio do capim.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Cadeias alimentares são independentes das condições ambientais.</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> A energia flui do produtor para os consumidores — se a base diminui, toda a cadeia é afetada em cascata. Essa é a essência do conceito de <em>cascata trófica</em>, frequentemente cobrado.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="d">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">04</div>
+            <div class="q-text">Fungos e bactérias que decompõem as carcaças dos animais são chamados de:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Consumidores terciários.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Produtores secundários.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Predadores de topo.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Decompositores.</div>
+            <div class="q-explain">✅ <strong>Gabarito D.</strong> Decompositores quebram matéria orgânica morta em substâncias inorgânicas, devolvendo nutrientes ao solo. Eles não "caçam" — aguardam a morte para agir. São essenciais para fechar o ciclo da matéria.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">05</div>
+            <div class="q-text">O fato de a onça-pintada se alimentar também de veados e capivaras (além de tamanduás) indica que ela faz parte de uma:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Cadeia alimentar simples e linear.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Pirâmide de biomassa invertida.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Teia alimentar.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Cadeia de decompositores.</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> Quando um organismo participa de mais de uma cadeia alimentar, forma-se uma teia alimentar. A onça conecta várias cadeias diferentes — isso é exatamente a definição de teia.</div>
+          </div>
+        </div>
+
+        <!-- Questões 6-10: sem texto base -->
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">06</div>
+            <div class="q-text">Em uma cadeia alimentar, a seta indica:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Quem produz energia para o próximo.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> A direção do fluxo de energia — quem é comido por quem.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> O caminho que a água percorre no ecossistema.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> A relação de amizade entre as espécies.</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> A seta mostra o fluxo de energia: <strong>A → B</strong> significa que A é comido por B, ou seja, a energia passa de A para B. Nunca inverta o sentido da seta ao responder.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="a">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">07</div>
+            <div class="q-text">Por que a energia diminui a cada nível trófico?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Porque grande parte é perdida como calor na respiração dos organismos.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Porque decompositores roubam energia de cada nível.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Porque plantas absorvem de volta a energia dos consumidores.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Porque a energia se transforma em matéria ao longo da cadeia.</div>
+            <div class="q-explain">✅ <strong>Gabarito A.</strong> Em cada nível, cerca de 90% da energia se perde como calor (respiração celular). Apenas ~10% é transferida ao próximo nível. Por isso pirâmides de energia têm base larga e topo estreito.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="d">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">08</div>
+            <div class="q-text">Um ser <strong>onívoro</strong> como o ser humano é classificado como:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Produtor, pois transforma energia.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Consumidor primário exclusivamente.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Decompositor facultativo.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Consumidor de múltiplas ordens, dependendo do que consome.</div>
+            <div class="q-explain">✅ <strong>Gabarito D.</strong> Onívoros comem plantas (1º ordem) e animais (2º, 3º ordem). Sua posição na cadeia varia conforme o alimento. Isso é exatamente por que a teia alimentar é mais realista do que cadeias simples.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">09</div>
+            <div class="q-text">A extinção de um predador de topo em uma cadeia alimentar tende a causar:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Redução imediata dos produtores.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Aumento dos decompositores na base da pirâmide.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Superpopulação das presas e possível colapso dos produtores.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Nenhum efeito, pois o predador não é essencial.</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> Sem predador, as presas se multiplicam sem controle, consomem mais produtores e podem colapsar o ecossistema. Esse fenômeno é chamado de <em>cascata trófica</em> — muito cobrado em contextos ambientais.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num blue">10</div>
+            <div class="q-text">Qual dos seres abaixo NÃO pode ser considerado produtor em uma cadeia alimentar?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Alga verde.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Cogumelo (fungo).</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Cianobactéria.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Grama.</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> Fungos são <em>decompositores</em> — obtêm energia decompondo matéria orgânica morta, não pela fotossíntese. Algas, cianobactérias e gramíneas são todos fotossintetizantes, portanto produtores.</div>
+          </div>
+        </div>
+
+      </div><!-- /question-list -->
+    </div>
+  </section>
+
+  <!-- ══ BLOCO 2 — MATEMÁTICA ══ -->
+  <section class="bloco bloco-2" id="bloco2">
+    <div class="bloco-header">
+      <div class="bloco-num">B2</div>
+      <div class="bloco-info">
+        <h2>Matemática — Unidades, Notação Científica e Porcentagem</h2>
+        <div class="meta">Teoria + 12 questões interativas</div>
+      </div>
+      <div class="timer-badge">45–55 min</div>
+    </div>
+    <div class="bloco-body">
+
+      <div class="intro-box intro-terra">
+        <strong>Por que esses tópicos?</strong> Aparecem em <em>toda</em> prova do Vestibulinho — muitas vezes embutidos em questões de Ciências ou Humanas. Saber converter unidades e calcular porcentagem resolve pelo menos 4 a 6 questões por prova.
+      </div>
+
+      <!-- UNIDADES DE MEDIDA -->
+      <div class="sec-title"><span>📏</span> Unidades de Medida — Sistema Internacional (SI)</div>
+      <div class="content">
+        <p>O SI organiza as medidas em unidades-base. A ETEC cobra conversão entre múltiplos e submúltiplos — especialmente km/m/cm e kg/g.</p>
+      </div>
+
+      <table class="units-table">
+        <thead>
+          <tr><th>Grandeza</th><th>Unidade-base</th><th>Conversões frequentes</th><th>Relação</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Comprimento</td>
+            <td><span class="mono">metro (m)</span></td>
+            <td>1 km = 1 000 m &nbsp;|&nbsp; 1 m = 100 cm &nbsp;|&nbsp; 1 cm = 10 mm</td>
+            <td>×10 ou ÷10 a cada prefixo</td>
+          </tr>
+          <tr>
+            <td>Massa</td>
+            <td><span class="mono">quilograma (kg)</span></td>
+            <td>1 kg = 1 000 g &nbsp;|&nbsp; 1 g = 1 000 mg</td>
+            <td>×1 000 a cada nível</td>
+          </tr>
+          <tr>
+            <td>Volume</td>
+            <td><span class="mono">litro (L)</span></td>
+            <td>1 L = 1 000 mL &nbsp;|&nbsp; 1 m³ = 1 000 L</td>
+            <td>×1 000</td>
+          </tr>
+          <tr>
+            <td>Tempo</td>
+            <td><span class="mono">segundo (s)</span></td>
+            <td>1 min = 60 s &nbsp;|&nbsp; 1 h = 3 600 s &nbsp;|&nbsp; 1 dia = 86 400 s</td>
+            <td>×60 ou ×3 600</td>
+          </tr>
+          <tr>
+            <td>Temperatura</td>
+            <td><span class="mono">kelvin (K)</span></td>
+            <td>K = °C + 273 &nbsp;|&nbsp; 0 °C = 273 K &nbsp;|&nbsp; 100 °C = 373 K</td>
+            <td>+ 273</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- NOTAÇÃO CIENTÍFICA -->
+      <div class="sec-title"><span>🔬</span> Notação Científica</div>
+      <div class="content">
+        <p>Usada para escrever números muito grandes ou muito pequenos de forma compacta. O formato é sempre: <strong>A × 10ⁿ</strong>, onde <strong>1 ≤ A &lt; 10</strong>.</p>
+      </div>
+
+      <div class="formula-grid">
+        <div class="formula-card">
+          <div class="fc-label">Número grande → notação</div>
+          <div class="fc-formula">5 700 000 = 5,7 × 10⁶</div>
+          <div class="fc-desc">Mova a vírgula 6 posições para a esquerda → expoente positivo.</div>
+        </div>
+        <div class="formula-card">
+          <div class="fc-label">Número pequeno → notação</div>
+          <div class="fc-formula">0,000034 = 3,4 × 10⁻⁵</div>
+          <div class="fc-desc">Mova a vírgula 5 posições para a direita → expoente negativo.</div>
+        </div>
+        <div class="formula-card">
+          <div class="fc-label">Notação → número</div>
+          <div class="fc-formula">2,8 × 10³ = 2 800</div>
+          <div class="fc-desc">Expoente +3 → mova a vírgula 3 posições para a direita.</div>
+        </div>
+        <div class="formula-card">
+          <div class="fc-label">Multiplicando potências</div>
+          <div class="fc-formula">10³ × 10² = 10⁵</div>
+          <div class="fc-desc">Mesma base → some os expoentes. Dividindo: subtraia.</div>
+        </div>
+      </div>
+
+      <!-- PORCENTAGEM -->
+      <div class="sec-title"><span>💯</span> Porcentagem</div>
+      <div class="content">
+        <p>Porcentagem significa "por cem". É a forma mais cobrada de matemática contextualizada no Vestibulinho — aparece em gráficos, tabelas, questões de Ciências e Humanas.</p>
+      </div>
+
+      <div class="metodo">
+        <div class="m-title">🧮 Fórmulas essenciais</div>
+        <ol>
+          <li><strong>Calcular a porcentagem de um valor:</strong><br>
+            Parte = (% ÷ 100) × Total &nbsp;→&nbsp; Ex: 30% de 200 = (30÷100) × 200 = 60</li>
+          <li><strong>Calcular que porcentagem A é de B:</strong><br>
+            % = (A ÷ B) × 100 &nbsp;→&nbsp; Ex: 45 de 180 = (45÷180) × 100 = 25%</li>
+          <li><strong>Aumento percentual:</strong><br>
+            Novo = Antigo × (1 + %/100) &nbsp;→&nbsp; Ex: 200 + 15% = 200 × 1,15 = 230</li>
+          <li><strong>Redução percentual:</strong><br>
+            Novo = Antigo × (1 − %/100) &nbsp;→&nbsp; Ex: 200 − 20% = 200 × 0,80 = 160</li>
+        </ol>
+      </div>
+
+      <div class="highlight">
+        <div class="hl-title">💡 Atalho para prova sem calculadora</div>
+        Para calcular 10%: divida por 10. Para 5%: divida o resultado por 2. Para 25%: divida por 4. Para 50%: divida por 2. Combine esses atalhos para chegar em qualquer porcentagem sem cálculo complexo.
+      </div>
+
+      <!-- QUESTÕES MATEMÁTICA -->
+      <div class="q-section-label">🏋️ Exercícios — Bloco 2 (12 questões)</div>
+      <div class="question-list">
+
+        <!-- Conversão de unidades -->
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">11</div>
+            <div class="q-text">Um atleta percorreu <strong>3,5 km</strong> em uma corrida. Esse valor em metros equivale a:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 350 m</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 35 m</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 3 500 m</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 35 000 m</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> 1 km = 1 000 m → 3,5 km = 3,5 × 1 000 = 3 500 m. Regra: multiplicar ao converter de unidade maior para menor (km → m).</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="a">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">12</div>
+            <div class="q-text">Uma receita pede <strong>2 500 mL</strong> de caldo. Quantos litros são necessários?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 2,5 L</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 25 L</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 0,25 L</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 250 L</div>
+            <div class="q-explain">✅ <strong>Gabarito A.</strong> 1 L = 1 000 mL → 2 500 mL ÷ 1 000 = 2,5 L. Regra: dividir ao converter de menor para maior (mL → L).</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="d">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">13</div>
+            <div class="q-text">A temperatura de ebulição da água é <strong>100 °C</strong>. Em Kelvin, esse valor equivale a:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 100 K</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 200 K</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 273 K</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 373 K</div>
+            <div class="q-explain">✅ <strong>Gabarito D.</strong> K = °C + 273 → 100 + 273 = 373 K. O zero absoluto (0 K) equivale a −273 °C. Essa conversão aparece frequentemente em questões de física e química.</div>
+          </div>
+        </div>
+
+        <!-- Notação científica -->
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">14</div>
+            <div class="q-text">O número <strong>0,000 045</strong> em notação científica é:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 4,5 × 10⁴</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 4,5 × 10⁻⁵</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 45 × 10⁻⁶</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 4,5 × 10⁵</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> 0,000045 → mova a vírgula 5 posições para a direita até ter 4,5 → expoente negativo: 4,5 × 10⁻⁵. Número menor que 1 → expoente sempre negativo.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">15</div>
+            <div class="q-text">O resultado de <strong>3,2 × 10⁴</strong> em forma decimal é:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 320</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 3 200</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 32 000</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 320 000</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> 3,2 × 10⁴ → mova a vírgula 4 posições para a direita → 3,2000 → 32 000. Expoente positivo = número grande.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="a">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">16</div>
+            <div class="q-text">Multiplicando <strong>2 × 10³</strong> por <strong>3 × 10²</strong>, o resultado em notação científica é:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 6 × 10⁵</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 6 × 10⁶</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 5 × 10⁵</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 6 × 10⁻⁵</div>
+            <div class="q-explain">✅ <strong>Gabarito A.</strong> (2 × 3) × (10³ × 10²) = 6 × 10⁵. Multiplicar: multiplique as partes (2×3=6) e some os expoentes (3+2=5).</div>
+          </div>
+        </div>
+
+        <!-- Porcentagem -->
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">17</div>
+            <div class="q-text">Em uma turma de <strong>40 alunos</strong>, <strong>25%</strong> foram aprovados na primeira fase. Quantos alunos foram aprovados?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 8 alunos</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 10 alunos</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 12 alunos</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 15 alunos</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> 25% de 40 = 40 ÷ 4 = 10. Atalho: 25% = ¼ → basta dividir por 4. Sempre mais rápido do que calcular (25/100) × 40 na prova.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="d">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">18</div>
+            <div class="q-text">Uma camiseta custa R$ 80,00 e está com <strong>15% de desconto</strong>. Qual o preço final?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> R$ 15,00</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> R$ 65,00</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> R$ 70,00</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> R$ 68,00</div>
+            <div class="q-explain">✅ <strong>Gabarito D.</strong> 10% de 80 = 8. 5% = 4. 15% = 8 + 4 = 12. Preço final = 80 − 12 = 68. Ou: 80 × 0,85 = 68. Fator de desconto: 1 − 0,15 = 0,85.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">19</div>
+            <div class="q-text">De uma floresta com <strong>1 200 árvores</strong>, <strong>300 foram derrubadas</strong>. Que percentual da floresta foi desmatado?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 20%</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 30%</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 25%</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 15%</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> % = (300 ÷ 1200) × 100 = 0,25 × 100 = 25%. Atalho: 300/1200 = 1/4 = 25%. Reconhecer frações simples (1/4, 1/5, 1/3) economiza tempo na prova.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="a">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">20</div>
+            <div class="q-text">Uma população de insetos <strong>cresceu 40%</strong> em relação ao ano anterior, quando era de <strong>5 000 indivíduos</strong>. Qual a população atual?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 7 000</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 5 400</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 6 000</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 5 040</div>
+            <div class="q-explain">✅ <strong>Gabarito A.</strong> 40% de 5 000 = 2 000. Total = 5 000 + 2 000 = 7 000. Ou: 5 000 × 1,40 = 7 000. Aumento percentual: multiplique por (1 + taxa).</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">21</div>
+            <div class="q-text">Um gráfico mostra que 60% das espécies de um ecossistema são insetos, 25% são plantas e 15% são outros animais. Se há <strong>400 espécies no total</strong>, quantas são insetos?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 200</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 240</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 260</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 280</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> 60% de 400: 10% = 40 → 60% = 6 × 40 = 240. Questão interdisciplinar típica da ETEC: dados ecológicos + cálculo de porcentagem.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="d">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">22</div>
+            <div class="q-text">A massa de uma célula é de <strong>2,5 × 10⁻⁹ gramas</strong>. Em miligramas (1 g = 1 000 mg), esse valor é:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 2,5 × 10⁻¹² mg</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 2,5 × 10⁻⁶ mg</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> 2,5 × 10⁻⁸ mg</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> 2,5 × 10⁻⁶ mg</div>
+            <div class="q-explain">✅ <strong>Gabarito D.</strong> g → mg: multiplique por 1 000 = 10³. Logo: 2,5 × 10⁻⁹ × 10³ = 2,5 × 10⁻⁶ mg. Conversão de unidade + notação científica na mesma questão — padrão interdisciplinar da ETEC.</div>
+          </div>
+        </div>
+
+      </div><!-- /question-list -->
+    </div>
+  </section>
+
+  <!-- ══ BLOCO 3 — FÓRMULAS E UNIDADES ══ -->
+  <section class="bloco bloco-3" id="bloco3">
+    <div class="bloco-header">
+      <div class="bloco-num">B3</div>
+      <div class="bloco-info">
+        <h2>Revisão de Fórmulas e Unidades</h2>
+        <div class="meta">Copie para o caderno — referência rápida para toda a Fase 1</div>
+      </div>
+      <div class="timer-badge">20 min</div>
+    </div>
+    <div class="bloco-body">
+
+      <div class="intro-box intro-amber">
+        <strong>Tarefa do Bloco 3:</strong> Copie estas fórmulas e tabelas para um caderno ou fichário separado. Esse caderno de fórmulas vai crescer a cada dia — ao final da Fase 1 você terá um resumão completo para revisão rápida.
+      </div>
+
+      <div class="ref-section">
+        <div class="ref-title">🔢 Matemática — Fórmulas essenciais</div>
+        <div class="ref-grid">
+          <div class="ref-card">
+            <div class="ref-name">Porcentagem de um total</div>
+            <div class="ref-formula">Parte = (% ÷ 100) × Total</div>
+            <div class="ref-desc">Ex: 30% de 200 = 0,30 × 200 = 60</div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-name">Que % A é de B</div>
+            <div class="ref-formula">% = (A ÷ B) × 100</div>
+            <div class="ref-desc">Ex: 45 de 180 = (45÷180)×100 = 25%</div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-name">Aumento percentual</div>
+            <div class="ref-formula">Novo = Antigo × (1 + %/100)</div>
+            <div class="ref-desc">Ex: 200 + 15% = 200 × 1,15 = 230</div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-name">Redução percentual</div>
+            <div class="ref-formula">Novo = Antigo × (1 − %/100)</div>
+            <div class="ref-desc">Ex: 200 − 20% = 200 × 0,80 = 160</div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-name">Notação científica</div>
+            <div class="ref-formula">A × 10ⁿ &nbsp; (1 ≤ A &lt; 10)</div>
+            <div class="ref-desc">Grande: n positivo. Pequeno: n negativo.</div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-name">Temperatura °C → K</div>
+            <div class="ref-formula">K = °C + 273</div>
+            <div class="ref-desc">0°C = 273K &nbsp;|&nbsp; 100°C = 373K</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ref-section">
+        <div class="ref-title">🌿 Ciências — Conceitos-chave</div>
+        <div class="ref-grid">
+          <div class="ref-card">
+            <div class="ref-name">Nível trófico</div>
+            <div class="ref-formula">Produtor → C1 → C2 → C3 → Decomp.</div>
+            <div class="ref-desc">Energia flui sempre nessa direção, sem retorno.</div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-name">Perda de energia por nível</div>
+            <div class="ref-formula">~90% perdido como calor</div>
+            <div class="ref-desc">Apenas ~10% passa para o próximo nível trófico.</div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-name">Fotossíntese (resumo)</div>
+            <div class="ref-formula">CO₂ + H₂O + luz → glicose + O₂</div>
+            <div class="ref-desc">Só produtores (autótrofos) realizam fotossíntese.</div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-name">Decompositores</div>
+            <div class="ref-formula">Fungos e bactérias</div>
+            <div class="ref-desc">Decompõem matéria morta → devolvem nutrientes ao solo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <div class="hl-title">📌 Não esqueça</div>
+        Registre também no caderno de erros todas as questões que errou hoje. Use as 5 colunas: questão · matéria · errei por quê · regra correta · como evitar repetir.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ FECHAMENTO ══ -->
+  <div class="fechamento" id="fechamento">
+    <div class="fechamento-head">
+      <span style="font-size:1.4rem">🏁</span>
+      <h2>Fechamento do Dia 2</h2>
+    </div>
+    <div class="fechamento-body">
+
+      <div class="sec-title" style="margin-top:0"><span>📊</span> Como foi seu desempenho? (22 questões)</div>
+      <div class="benchmark-grid">
+        <div class="bm-card bm-great">
+          <div class="bm-score">18–22</div>
+          <div class="bm-label">✅ Base muito boa</div>
+          <div class="bm-desc">Excelente. Registre os erros e avance amanhã com confiança.</div>
+        </div>
+        <div class="bm-card bm-ok">
+          <div class="bm-score">13–17</div>
+          <div class="bm-label">⚠️ Bom início</div>
+          <div class="bm-desc">Revise os erros hoje. Identifique se é conteúdo ou interpretação.</div>
+        </div>
+        <div class="bm-card bm-retry">
+          <div class="bm-score">0–12</div>
+          <div class="bm-label">🔁 Sem drama</div>
+          <div class="bm-desc">Refaça as questões erradas amanhã antes de começar o Dia 3.</div>
+        </div>
+      </div>
+
+      <div class="missao">
+        <h3>🎯 Missão do Dia 2 — cumprida se você:</h3>
+        <ul>
+          <li>Consegue identificar <strong>produtor, consumidor e decompositor</strong> em qualquer cadeia</li>
+          <li>Sabe para onde aponta a <strong>seta da cadeia alimentar</strong> e o que ela indica</li>
+          <li>Converte entre <strong>km/m/cm</strong> e <strong>kg/g</strong> sem errar</li>
+          <li>Transforma números em <strong>notação científica</strong> e vice-versa</li>
+          <li>Calcula <strong>porcentagem</strong> usando atalhos (÷4 para 25%, ÷10 para 10%…)</li>
+          <li>Tem o <strong>caderno de fórmulas iniciado</strong> com os conteúdos de hoje</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  Apostila — Dia 2 · Vestibulinho ETEC 2026 · Fase 1: Base Forte · 02/04/2026
+</footer>
+
+<!-- ══ NAVEGAÇÃO ENTRE APOSTILAS ══ -->
+<div class="apostila-nav">
+  <a class="anav-btn anav-prev" id="btn-apostila-prev" href="apostila_01_04_2026.html">
+    <span class="anav-arrow">←</span>
+    <span class="anav-label">Apostila anterior</span>
+    <span class="anav-date" id="prev-date">01/04/2026</span>
+  </a>
+  <a class="anav-btn anav-cronograma" href="index.html">
+    <span class="anav-icon">📅</span>
+    <span class="anav-label">Cronograma</span>
+    <span class="anav-date">Ver todas as semanas</span>
+  </a>
+  <a class="anav-btn anav-next" id="btn-apostila-next" href="apostila_03_04_2026.html">
+    <span class="anav-label">Próxima apostila</span>
+    <span class="anav-date" id="next-date">03/04/2026</span>
+    <span class="anav-arrow">→</span>
+  </a>
+</div>
+
+<div style="height:32px"></div>
+
+<script>
+  const TOTAL = 22;
+
+  function toggleQ(head) {
+    const card = head.parentElement;
+    card.classList.toggle('open');
+  }
+
+  function answer(optEl, letter) {
+    const card = optEl.closest('.question-card');
+    if (card.dataset.done) return;
+    card.dataset.done = '1';
+
+    const correct = card.dataset.correct;
+    const opts = card.querySelectorAll('.opt');
+    const explain = card.querySelector('.q-explain');
+
+    opts.forEach(o => o.classList.add('disabled'));
+
+    if (letter === correct) {
+      optEl.classList.add('correct');
+    } else {
+      optEl.classList.add('wrong');
+      opts.forEach(o => {
+        const l = o.querySelector('.opt-letter').textContent.replace(')','').trim().toLowerCase();
+        if (l === correct) o.classList.add('correct');
+      });
+    }
+
+    if (explain) explain.style.display = 'block';
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const done = document.querySelectorAll('.question-card[data-done]').length;
+    const pct = Math.round((done / TOTAL) * 100);
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('prog-pct').textContent = done + ' / ' + TOTAL;
+  }
+</script>
+
+</body>
+</html>
