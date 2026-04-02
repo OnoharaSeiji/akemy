@@ -1,0 +1,584 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apostila 4 | Etec | 04/04/2026</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --primary: #1d4ed8;
+      --primary-soft: #dbeafe;
+      --good: #166534;
+      --good-soft: #dcfce7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --warn: #92400e;
+      --warn-soft: #fef3c7;
+      --shadow: 0 10px 30px rgba(15,23,42,.08);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #eef2ff 0, var(--bg) 160px);
+      line-height: 1.55;
+    }
+    .wrap { width: min(1040px, calc(100% - 28px)); margin: 28px auto 56px; }
+    .hero {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+    .pill {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.18);
+      color: #eff6ff;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    h1,h2,h3 { margin: 0 0 12px; }
+    h1 { font-size: 34px; line-height: 1.12; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 19px; }
+    .hero p { margin: 0; max-width: 800px; color: #dbeafe; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .meta-item {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .meta-label { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: #bfdbfe; margin-bottom: 5px; }
+    .meta-value { font-size: 16px; font-weight: 700; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12,1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .card {
+      grid-column: span 12;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .tag {
+      display: inline-block;
+      margin: 0 6px 6px 0;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+    }
+    .box {
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+    }
+    .box.good { background: #ecfdf5; border-color: #a7f3d0; }
+    .box.warn { background: #fffbeb; border-color: #fde68a; }
+    .box.primary { background: #eff6ff; border-color: #bfdbfe; }
+    .text-base {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+    .question {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 16px;
+      background: #fcfcff;
+    }
+    .question h4 { margin: 0 0 10px; font-size: 17px; }
+    .alts { display: grid; gap: 10px; margin-top: 12px; }
+    .alt {
+      width: 100%;
+      text-align: left;
+      border: 1px solid #dbe3ef;
+      background: #fff;
+      color: var(--ink);
+      border-radius: 14px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: .18s ease;
+      font-size: 15px;
+    }
+    .alt:hover { border-color: #93c5fd; background: #f8fbff; }
+    .alt.correct { border-color: #86efac; background: var(--good-soft); color: var(--good); font-weight: 700; }
+    .alt.wrong { border-color: #fca5a5; background: var(--bad-soft); color: var(--bad); }
+    .alt.dim { opacity: .72; }
+    .feedback {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 14px;
+    }
+    .feedback.show { display: block; }
+    .feedback.ok { background: var(--good-soft); color: var(--good); border: 1px solid #86efac; }
+    .feedback.no { background: var(--bad-soft); color: var(--bad); border: 1px solid #fca5a5; }
+    details {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+    }
+    summary {
+      cursor: pointer;
+      padding: 16px 18px;
+      background: #f9fafb;
+      font-weight: 700;
+    }
+    details > div { padding: 0 18px 18px; }
+    .steps { margin: 8px 0 0 20px; }
+    .steps li + li { margin-top: 6px; }
+    .nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .nav a, .nav span {
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+    }
+    .nav a:hover { border-color: #93c5fd; background: #f8fbff; }
+    .nav .primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .nav .disabled { opacity: .5; cursor: not-allowed; }
+    ul { margin: 10px 0 0 20px; }
+    li + li { margin-top: 6px; }
+    .footer { text-align: center; margin-top: 20px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 900px) {
+      .meta { grid-template-columns: 1fr 1fr; }
+      .span-6, .span-4 { grid-column: span 12; }
+      h1 { font-size: 28px; }
+      .card { padding: 20px; }
+      .hero { padding: 24px; }
+    }
+    @media (max-width: 640px) { .meta { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="pill">Projeto Etec • Apostila 4</div>
+      <h1>Aplicação com textos curtos + frações em contexto</h1>
+      <p>
+        Hoje o foco é transformar o que você estudou nos três primeiros dias em acerto real. A ideia não é despejar teoria nova,
+        mas te fazer ler melhor sob pressão, decidir sem chute e resolver problemas com frações em situações parecidas com as da Etec.
+      </p>
+      <div class="meta">
+        <div class="meta-item"><div class="meta-label">Data de estudo</div><div class="meta-value">04/04/2026</div></div>
+        <div class="meta-item"><div class="meta-label">Carga sugerida</div><div class="meta-value">1h45 a 2h10</div></div>
+        <div class="meta-item"><div class="meta-label">Foco</div><div class="meta-value">Aplicação</div></div>
+        <div class="meta-item"><div class="meta-label">Meta do dia</div><div class="meta-value">Acertar com método</div></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card span-6">
+        <h2>Objetivo da apostila</h2>
+        <p>
+          Este dia foi planejado para treino aplicado. Em Português, você vai lidar com textos curtos e alternativas parecidas, como acontece na prova.
+          Em Matemática, você vai resolver frações dentro de situações concretas, sem depender de enunciados artificiais.
+        </p>
+        <div style="margin-top:12px;">
+          <span class="tag">Texto curto com alternativas</span>
+          <span class="tag">Leitura sem chute</span>
+          <span class="tag">Frações em contexto</span>
+          <span class="tag">Correção guiada</span>
+        </div>
+      </article>
+
+      <article class="card span-6">
+        <h2>Escopo de hoje</h2>
+        <div class="box primary">
+          <strong>Hoje entra:</strong>
+          aplicação do que já foi estudado sobre ideia principal, detalhe, referência textual, equivalência, simplificação,
+          comparação e operações básicas com frações.
+        </div>
+        <div class="box warn">
+          <strong>Hoje não é dia de teoria pesada.</strong>
+          Se você travar em regra básica, volte na apostila correspondente, corrija a base e depois retorne para a aplicação.
+        </div>
+        <ul>
+          <li>Se o erro for em referência textual, revise a Apostila 2.</li>
+          <li>Se o erro for em ideia principal x detalhe, revise a Apostila 3.</li>
+          <li>Se o erro for em equivalência ou simplificação, revise a Apostila 1 e 3.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 1 • Diagnóstico rápido</h2>
+        <p>Resolva este aquecimento sem consultar nada. A ideia é testar se a base está pronta para a aplicação principal.</p>
+
+        <div class="text-base">
+          <strong>Texto base</strong>
+          <p>
+            A escola instalou novos bebedouros nos corredores para diminuir as filas no intervalo. Depois da mudança,
+            os alunos passaram a encher suas garrafas com mais rapidez e o deslocamento entre a sala e o pátio ficou mais organizado.
+          </p>
+        </div>
+
+        <div class="question" data-correct="B" data-explanation="O centro da mensagem é a instalação dos novos bebedouros para melhorar o uso no intervalo. As outras alternativas trazem exagero ou informação que não aparece no texto.">
+          <h4>1. A ideia principal do texto é</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) os alunos deixaram de usar garrafas.</button>
+            <button class="alt" data-letter="B">(B) a instalação de novos bebedouros melhorou a rotina no intervalo.</button>
+            <button class="alt" data-letter="C">(C) o pátio passou a ser o único lugar com água.</button>
+            <button class="alt" data-letter="D">(D) as filas no intervalo aumentaram muito.</button>
+            <button class="alt" data-letter="E">(E) a escola fechou os corredores antigos.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="C" data-explanation="No texto, o pronome 'suas' se refere aos alunos, porque são eles que passaram a encher suas garrafas.">
+          <h4>2. No trecho “os alunos passaram a encher suas garrafas”, a palavra “suas” se refere a</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) escola</button>
+            <button class="alt" data-letter="B">(B) corredores</button>
+            <button class="alt" data-letter="C">(C) alunos</button>
+            <button class="alt" data-letter="D">(D) filas</button>
+            <button class="alt" data-letter="E">(E) intervalo</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="D" data-explanation="Frações com mesmo denominador são comparadas pelo numerador. Entre 3/9 e 7/9, a maior é 7/9.">
+          <h4>3. Qual fração é maior?</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) 2/9</button>
+            <button class="alt" data-letter="B">(B) 3/9</button>
+            <button class="alt" data-letter="C">(C) 5/9</button>
+            <button class="alt" data-letter="D">(D) 7/9</button>
+            <button class="alt" data-letter="E">(E) 1/9</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="A" data-explanation="1/2 e 2/4 representam a mesma quantidade. São frações equivalentes.">
+          <h4>4. A fração equivalente a 1/2 é</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) 2/4</button>
+            <button class="alt" data-letter="B">(B) 2/5</button>
+            <button class="alt" data-letter="C">(C) 3/5</button>
+            <button class="alt" data-letter="D">(D) 4/10</button>
+            <button class="alt" data-letter="E">(E) 5/8</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 2 • Aplicação em Português</h2>
+        <p>Textos curtos, alternativas parecidas e foco em leitura precisa.</p>
+
+        <div class="text-base">
+          <strong>Texto 1</strong>
+          <p>
+            Uma turma montou um mural para divulgar dicas de estudo. Em vez de encher o painel com frases longas,
+            os alunos decidiram usar orientações curtas e objetivas. Assim, quem passasse pelo corredor conseguiria compreender a mensagem rapidamente.
+          </p>
+        </div>
+
+        <div class="question" data-correct="E" data-explanation="O detalhe verdadeiro é que o mural usou orientações curtas. Isso ajuda a construção do texto, mas não resume sozinho a intenção central.">
+          <h4>5. Qual alternativa traz um detalhe do texto, mas não sua ideia principal?</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) O mural foi criado para facilitar a comunicação das dicas.</button>
+            <button class="alt" data-letter="B">(B) A turma quis tornar a mensagem mais rápida de entender.</button>
+            <button class="alt" data-letter="C">(C) A escolha por frases objetivas melhorou a leitura do painel.</button>
+            <button class="alt" data-letter="D">(D) O objetivo do mural era divulgar dicas de estudo de forma clara.</button>
+            <button class="alt" data-letter="E">(E) Os alunos evitaram frases longas no painel.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="B" data-explanation="A finalidade do mural era permitir compreensão rápida. Essa é a intenção comunicativa destacada no final do texto.">
+          <h4>6. A finalidade do mural era</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) decorar o corredor com frases bonitas.</button>
+            <button class="alt" data-letter="B">(B) comunicar dicas de estudo de forma rápida e clara.</button>
+            <button class="alt" data-letter="C">(C) reduzir o número de alunos no corredor.</button>
+            <button class="alt" data-letter="D">(D) substituir a aula por orientações escritas.</button>
+            <button class="alt" data-letter="E">(E) mostrar apenas a opinião de um grupo pequeno.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="text-base">
+          <strong>Texto 2</strong>
+          <p>
+            Rafael emprestou seu livro a Caio na segunda-feira. No dia seguinte, ele pediu que o colega o devolvesse,
+            porque precisava estudar para a prova.
+          </p>
+        </div>
+
+        <div class="question" data-correct="A" data-explanation="No contexto, quem precisava estudar para a prova era Rafael, que havia emprestado o livro. O pedido de devolução parte dele.">
+          <h4>7. No texto, o pronome “ele” refere-se a</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) Rafael</button>
+            <button class="alt" data-letter="B">(B) Caio</button>
+            <button class="alt" data-letter="C">(C) livro</button>
+            <button class="alt" data-letter="D">(D) dia seguinte</button>
+            <button class="alt" data-letter="E">(E) prova</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="D" data-explanation="A informação decisiva é que Rafael pediu a devolução do livro porque precisava estudar. As outras alternativas isolam partes do texto ou distorcem o foco.">
+          <h4>8. A informação principal do texto é que</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) Caio comprou um livro na segunda-feira.</button>
+            <button class="alt" data-letter="B">(B) Rafael e Caio estudaram juntos para a prova.</button>
+            <button class="alt" data-letter="C">(C) o livro foi perdido antes da prova.</button>
+            <button class="alt" data-letter="D">(D) Rafael pediu de volta o livro que havia emprestado.</button>
+            <button class="alt" data-letter="E">(E) a prova foi adiada para outro dia.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 3 • Aplicação em Matemática</h2>
+        <p>Agora o treino é em problemas curtos, com frações escondidas em situações do cotidiano.</p>
+
+        <div class="question" data-correct="C" data-explanation="Foram lidos 3 de 8 capítulos. A fração lida é 3/8.">
+          <h4>9. Um aluno leu 3 de 8 capítulos de um livro. Que fração representa a parte já lida?</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) 8/3</button>
+            <button class="alt" data-letter="B">(B) 5/8</button>
+            <button class="alt" data-letter="C">(C) 3/8</button>
+            <button class="alt" data-letter="D">(D) 3/5</button>
+            <button class="alt" data-letter="E">(E) 1/8</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="B" data-explanation="Comparando 2/3 e 3/5: 2/3 ≈ 0,666... e 3/5 = 0,6. Logo, 2/3 é maior.">
+          <h4>10. Em uma arrecadação, a turma A atingiu 2/3 da meta e a turma B atingiu 3/5 da meta. Quem avançou mais?</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) turma B</button>
+            <button class="alt" data-letter="B">(B) turma A</button>
+            <button class="alt" data-letter="C">(C) as duas avançaram igual</button>
+            <button class="alt" data-letter="D">(D) não é possível saber</button>
+            <button class="alt" data-letter="E">(E) depende do tamanho da meta</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="D" data-explanation="3/12 simplifica para 1/4, dividindo numerador e denominador por 3.">
+          <h4>11. Uma faixa foi pintada em 3 de 12 partes iguais. A forma simplificada dessa fração é</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) 3/4</button>
+            <button class="alt" data-letter="B">(B) 2/4</button>
+            <button class="alt" data-letter="C">(C) 2/3</button>
+            <button class="alt" data-letter="D">(D) 1/4</button>
+            <button class="alt" data-letter="E">(E) 1/3</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="A" data-explanation="Somando partes do mesmo tamanho: 2/7 + 3/7 = 5/7.">
+          <h4>12. Em uma trilha, João percorreu 2/7 do caminho pela manhã e 3/7 à tarde. Qual fração do caminho ele já percorreu?</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) 5/7</button>
+            <button class="alt" data-letter="B">(B) 5/14</button>
+            <button class="alt" data-letter="C">(C) 1/7</button>
+            <button class="alt" data-letter="D">(D) 6/7</button>
+            <button class="alt" data-letter="E">(E) 7/7</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="E" data-explanation="De 6/10 foram consumidos 2/10. Restam 4/10, que simplifica para 2/5. Como a alternativa pede a fração restante, a forma correta é 4/10 ou 2/5. Como só há 2/5, a resposta é a letra E.">
+          <h4>13. Uma garrafa estava com 6/10 de suco. Foram consumidos 2/10. Quanto restou?</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) 3/10</button>
+            <button class="alt" data-letter="B">(B) 8/10</button>
+            <button class="alt" data-letter="C">(C) 1/5</button>
+            <button class="alt" data-letter="D">(D) 6/20</button>
+            <button class="alt" data-letter="E">(E) 2/5</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="C" data-explanation="1/2 = 4/8 e 3/8 = 3/8. Logo, 1/2 é maior que 3/8.">
+          <h4>14. Qual é a maior fração?</h4>
+          <div class="alts">
+            <button class="alt" data-letter="A">(A) 3/8</button>
+            <button class="alt" data-letter="B">(B) são iguais</button>
+            <button class="alt" data-letter="C">(C) 1/2</button>
+            <button class="alt" data-letter="D">(D) não é possível comparar</button>
+            <button class="alt" data-letter="E">(E) depende do contexto</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 4 • Correção guiada</h2>
+        <p>Antes de abrir o gabarito, faça sua autocorreção com este roteiro.</p>
+        <div class="box good">
+          <strong>Em Português</strong>
+          <ul>
+            <li>A alternativa responde exatamente o que foi perguntado?</li>
+            <li>Você marcou a ideia principal ou caiu em um detalhe verdadeiro?</li>
+            <li>Quando havia pronome, você testou a substituição para ver se o sentido fechava?</li>
+          </ul>
+        </div>
+        <div class="box primary">
+          <strong>Em Matemática</strong>
+          <ul>
+            <li>Você identificou corretamente o todo e a parte?</li>
+            <li>Quando simplificou, dividiu numerador e denominador pelo mesmo número?</li>
+            <li>Quando comparou, transformou mentalmente para um mesmo referencial?</li>
+          </ul>
+        </div>
+        <div class="box warn">
+          <strong>Erro que mais derruba:</strong>
+          marcar a alternativa que parece familiar, sem conferir se ela realmente responde o enunciado.
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 5 • Gabarito comentado</h2>
+        <details>
+          <summary>Ver respostas e comentários</summary>
+          <div>
+            <p><strong>1. B</strong> — O texto fala da instalação de novos bebedouros para melhorar a rotina no intervalo.</p>
+            <p><strong>2. C</strong> — “Suas” retoma “os alunos”.</p>
+            <p><strong>3. D</strong> — Mesmo denominador: a maior fração é a de maior numerador.</p>
+            <p><strong>4. A</strong> — 1/2 e 2/4 representam a mesma quantidade.</p>
+            <p><strong>5. E</strong> — “Evitar frases longas” é detalhe verdadeiro, não a síntese central.</p>
+            <p><strong>6. B</strong> — A finalidade era comunicar com rapidez e clareza.</p>
+            <p><strong>7. A</strong> — O contexto mostra que Rafael pediu a devolução do livro.</p>
+            <p><strong>8. D</strong> — O núcleo do texto é o pedido de devolução do livro.</p>
+            <p><strong>9. C</strong> — 3 capítulos lidos em um total de 8 = 3/8.</p>
+            <p><strong>10. B</strong> — Compare as frações:</p>
+            <ol class="steps">
+              <li>2/3 ≈ 0,666...</li>
+              <li>3/5 = 0,6</li>
+              <li>0,666... é maior que 0,6</li>
+              <li>Logo, a turma A avançou mais.</li>
+            </ol>
+            <p><strong>11. D</strong> — Simplificação:</p>
+            <ol class="steps">
+              <li>3/12</li>
+              <li>Divida os dois por 3</li>
+              <li>3 ÷ 3 = 1 e 12 ÷ 3 = 4</li>
+              <li>Resultado: 1/4</li>
+            </ol>
+            <p><strong>12. A</strong> — Soma com denominadores iguais:</p>
+            <ol class="steps">
+              <li>2/7 + 3/7</li>
+              <li>Some os numeradores: 2 + 3 = 5</li>
+              <li>Mantenha o denominador: 7</li>
+              <li>Resultado: 5/7</li>
+            </ol>
+            <p><strong>13. E</strong> — Subtração e simplificação:</p>
+            <ol class="steps">
+              <li>6/10 - 2/10 = 4/10</li>
+              <li>Simplifique dividindo os dois por 2</li>
+              <li>4 ÷ 2 = 2 e 10 ÷ 2 = 5</li>
+              <li>Resultado: 2/5</li>
+            </ol>
+            <p><strong>14. C</strong> — Compare com o mesmo denominador:</p>
+            <ol class="steps">
+              <li>1/2 = 4/8</li>
+              <li>3/8 = 3/8</li>
+              <li>4/8 é maior que 3/8</li>
+              <li>Logo, 1/2 é maior.</li>
+            </ol>
+          </div>
+        </details>
+      </article>
+
+      <article class="card">
+        <h2>Fechamento do dia</h2>
+        <p>
+          Se hoje você percebeu que sabe a teoria, mas ainda escorrega na alternativa, isso é um bom sinal: o problema ficou visível.
+          A partir daqui, sua evolução passa menos por “ver matéria nova” e mais por acertar com consistência aquilo que já começou a dominar.
+        </p>
+        <div class="nav">
+          <a href="apostila_03_etec_03_04_2026.html">Anterior</a>
+          <a class="primary" href="cronograma_etec_fase1_semana1_semanal_v2.html">Cronograma</a>
+          <span class="disabled">Seguinte</span>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer">Apostila 4 • Data de estudo: 04/04/2026 • Preparação para o Vestibulinho Etec</p>
+  </main>
+
+  <script>
+    document.querySelectorAll('.question').forEach((card) => {
+      const correct = card.dataset.correct;
+      const explanation = card.dataset.explanation;
+      const feedback = card.querySelector('.feedback');
+      const alts = card.querySelectorAll('.alt');
+
+      alts.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          if (card.dataset.answered === '1') return;
+          card.dataset.answered = '1';
+
+          alts.forEach((alt) => {
+            const letter = alt.dataset.letter;
+            if (letter === correct) alt.classList.add('correct');
+            else alt.classList.add('dim');
+          });
+
+          const chosen = btn.dataset.letter;
+          if (chosen === correct) {
+            btn.classList.remove('dim');
+            btn.classList.add('correct');
+            feedback.className = 'feedback show ok';
+            feedback.innerHTML = '<strong>Acertou.</strong> ' + explanation;
+          } else {
+            btn.classList.remove('dim');
+            btn.classList.add('wrong');
+            feedback.className = 'feedback show no';
+            feedback.innerHTML = '<strong>Errou.</strong> ' + explanation;
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
