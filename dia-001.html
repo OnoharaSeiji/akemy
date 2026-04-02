@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akemy Estudos · Dia 001</title>
+  <meta name="description" content="Dia 001 do AKEMY — leitura de comando, informação explícita, ideia central e inferência básica no padrão da ETEC." />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    main{padding:28px 0 72px}
+    .page{width:min(980px,calc(100% - 32px));margin:0 auto;position:relative;z-index:1}
+    .hero{
+      background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96));
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      margin-bottom:22px;
+    }
+    .hero-inner{padding:28px;display:grid;grid-template-columns:1.15fr .85fr;gap:22px}
+    .eyebrow-row,.chip-row{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{
+      display:inline-flex;align-items:center;gap:6px;
+      min-height:30px;padding:0 12px;border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--bg3);color:var(--text2);
+      font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+    }
+    .chip.green{background:var(--green-lt);color:var(--green);border-color:rgba(45,186,110,.28)}
+    .chip.gold{background:var(--gold-lt);color:var(--gold);border-color:rgba(227,179,65,.28)}
+    .chip.blue{background:var(--blue-lt);color:var(--blue);border-color:rgba(56,139,253,.28)}
+    h1{font-size:clamp(32px,4.8vw,52px);line-height:.98;letter-spacing:-1.5px;margin:14px 0 14px}
+    .lead{color:var(--text2);font-size:16px;line-height:1.75;max-width:64ch}
+    .hero-points{display:grid;gap:12px}
+    .hero-point{
+      background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:16px
+    }
+    .hero-point small{
+      display:block;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;font-weight:800
+    }
+    .hero-point strong{display:block;font-size:18px;line-height:1.25;margin-bottom:8px}
+    .hero-point span{display:block;color:var(--text2);line-height:1.65;font-size:14px}
+    .section{
+      background:rgba(22,27,34,.96);
+      border:1px solid var(--border);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+      overflow:hidden;
+    }
+    .section-head{padding:18px 22px;border-bottom:1px solid var(--border);background:rgba(33,38,45,.55)}
+    .section-kicker{font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+    .section-head h2{font-size:28px;letter-spacing:-.6px;line-height:1.08}
+    .section-head p{margin-top:10px;color:var(--text2);line-height:1.75;font-size:15px;max-width:74ch}
+    .section-body{padding:22px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{
+      background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:18px
+    }
+    .card h3{font-size:19px;line-height:1.25;margin-bottom:10px}
+    .card p,.card li{color:var(--text2);line-height:1.75;font-size:15px}
+    .card ul{padding-left:18px}
+    .card strong.value{display:block;font-size:24px;color:var(--gold);line-height:1}
+    .callout{
+      padding:16px 18px;border-radius:16px;border:1px solid rgba(56,139,253,.25);
+      background:var(--blue-lt);color:#cfe5ff;line-height:1.75;font-size:15px
+    }
+    .text-box{
+      background:#10161d;border:1px solid var(--border2);border-radius:16px;padding:18px
+    }
+    .text-box .label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:800;margin-bottom:10px}
+    .text-box p{color:var(--text);line-height:1.8;font-size:15px}
+    .question{
+      background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:18px
+    }
+    .question + .question{margin-top:14px}
+    .question .q-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}
+    .q-id{font-size:11px;font-weight:800;letter-spacing:1.2px;color:var(--green);text-transform:uppercase}
+    .q-tag{font-size:10px;font-weight:800;letter-spacing:1.2px;color:var(--text3);text-transform:uppercase}
+    .question h3{font-size:18px;line-height:1.55;margin-bottom:10px}
+    .alts{display:grid;gap:8px;margin-top:10px}
+    .alt{
+      padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:#111827;color:var(--text2);font-size:14px;line-height:1.6
+    }
+    details{
+      margin-top:12px;border:1px solid var(--border);border-radius:12px;background:#0f141b;overflow:hidden
+    }
+    summary{
+      list-style:none;cursor:pointer;padding:12px 14px;font-weight:800;color:var(--gold)
+    }
+    summary::-webkit-details-marker{display:none}
+    details > div{padding:0 14px 14px;color:var(--text2);line-height:1.75;font-size:14px}
+    .steps{display:grid;gap:12px}
+    .step{
+      display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:start;
+      padding:14px 16px;border-radius:16px;background:var(--bg3);border:1px solid var(--border)
+    }
+    .step-num{
+      width:46px;height:46px;border-radius:14px;background:var(--green-lt);border:1px solid rgba(45,186,110,.28);
+      display:flex;align-items:center;justify-content:center;color:var(--green);font-size:18px;font-weight:900
+    }
+    .step h4{font-size:17px;margin-bottom:6px}
+    .step p{color:var(--text2);line-height:1.75;font-size:15px}
+    .meter{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .meter .card{min-height:100%}
+    .meter .card.good{box-shadow:inset 0 0 0 1px rgba(45,186,110,.28)}
+    .meter .card.mid{box-shadow:inset 0 0 0 1px rgba(227,179,65,.28)}
+    .meter .card.low{box-shadow:inset 0 0 0 1px rgba(248,81,73,.24)}
+    .checklist{display:grid;gap:10px}
+    .check{
+      display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--bg3)
+    }
+    .box{
+      width:18px;height:18px;border-radius:5px;border:1px solid var(--border2);flex:0 0 auto;margin-top:2px
+    }
+    .check span{color:var(--text2);line-height:1.7;font-size:15px}
+    .footer-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .footer-nav .btn{min-width:210px}
+    @media (max-width: 860px){
+      .hero-inner,.grid-2,.grid-3,.meter{grid-template-columns:1fr}
+      .page{width:min(100% - 20px,980px)}
+      .footer-nav{flex-direction:column}
+      .footer-nav .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="page">
+      <section class="hero">
+        <div class="hero-inner">
+          <div>
+            <div class="eyebrow-row">
+              <span class="chip green">Akemy</span>
+              <span class="chip">Dia 001</span>
+              <span class="chip gold">Português</span>
+              <span class="chip blue">Fase 1 · Base</span>
+            </div>
+            <h1>Leitura de comando, informação explícita e inferência básica</h1>
+            <p class="lead">Este não é um “dia leve de introdução”. É o ponto de partida mais importante do cronograma porque a ETEC derruba muita gente antes da conta, antes da gramática e antes do conteúdo: derruba na leitura ruim do enunciado e na escolha errada da alternativa.</p>
+            <div class="chip-row" style="margin-top:18px">
+              <span class="chip">Função do dia: calibrar leitura de prova</span>
+              <span class="chip">Tempo sugerido: 70–90 min</span>
+            </div>
+          </div>
+          <div class="hero-points">
+            <div class="hero-point">
+              <small>Conteúdo do dia</small>
+              <strong>O que a questão pede, o que o texto diz e o que ele sugere</strong>
+              <span>Você vai treinar o tripé que mais aparece na banca: comando, leitura literal e inferência.</span>
+            </div>
+            <div class="hero-point">
+              <small>Por que entra no Dia 1</small>
+              <strong>Porque essa habilidade atravessa a prova inteira</strong>
+              <span>Português, Matemática, Humanas e Ciências exigem leitura precisa. Quem lê mal já começa perdendo ponto.</span>
+            </div>
+            <div class="hero-point">
+              <small>Habilidades atacadas</small>
+              <span>ler o comando com precisão · separar explícito de implícito · identificar ideia central · eliminar alternativa parecida, mas incorreta</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-kicker">Antes de estudar</div>
+          <h2>Por que esse conteúdo abre o cronograma</h2>
+          <p>O Dia 1 existe para ajustar a postura de prova. Antes de aprofundar qualquer matéria, a aluna precisa entender como a ETEC pergunta, como a alternativa tenta confundir e como o texto entrega pistas que não vêm mastigadas.</p>
+        </div>
+        <div class="section-body">
+          <div class="grid-3">
+            <div class="card">
+              <strong class="value">1</strong>
+              <h3>Sem leitura precisa, o resto desaba</h3>
+              <p>Mesmo quando a questão é “fácil”, a banca cobra leitura fina do comando. Errar o que está sendo perguntado destrói o raciocínio inteiro.</p>
+            </div>
+            <div class="card">
+              <strong class="value">2</strong>
+              <h3>Essa habilidade reaparece em todas as áreas</h3>
+              <p>Interpretar um texto, um gráfico, uma charge, uma tabela ou um enunciado de matemática depende da mesma base de leitura.</p>
+            </div>
+            <div class="card">
+              <strong class="value">3</strong>
+              <h3>É o melhor diagnóstico inicial</h3>
+              <p>Antes de avançar, precisamos medir se o problema está no conteúdo ou no modo de ler a prova. O Dia 1 revela isso rapidamente.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-kicker">Diagnóstico inicial</div>
+          <h2>Ponto de partida</h2>
+          <p>Responda sem pressa e sem procurar “palavra-chave mágica”. O objetivo é observar como você lê, não decorar truques.</p>
+        </div>
+        <div class="section-body">
+          <div class="text-box">
+            <div class="label">Texto-base</div>
+            <p>Em muitas cidades, pequenos gestos ajudam mais do que campanhas longas. Quando uma escola organiza pontos de coleta para recicláveis, por exemplo, ela não apenas reduz o lixo enviado aos aterros, mas também ensina, na prática, que responsabilidade ambiental depende de rotina e participação coletiva.</p>
+          </div>
+
+          <div class="question">
+            <div class="q-top">
+              <span class="q-id">Questão 01</span>
+              <span class="q-tag">leitura literal</span>
+            </div>
+            <h3>Segundo o texto, a escola, ao organizar pontos de coleta, faz apenas uma ação de limpeza?</h3>
+            <div class="alts">
+              <div class="alt">(A) Sim, porque o objetivo único é diminuir o volume de lixo.</div>
+              <div class="alt">(B) Não, porque além de reduzir lixo, também ensina responsabilidade ambiental na prática.</div>
+              <div class="alt">(C) Sim, porque campanhas longas são mais eficientes que mudanças de rotina.</div>
+              <div class="alt">(D) Não, porque a escola transfere toda a responsabilidade ambiental aos aterros.</div>
+              <div class="alt">(E) Sim, porque participação coletiva não aparece no texto.</div>
+            </div>
+            <details>
+              <summary>Ver correção</summary>
+              <div><strong>Gabarito: B.</strong> O texto diz explicitamente que a ação não apenas reduz o lixo, mas também ensina responsabilidade ambiental. A letra A reduz o texto; C inventa comparação não feita; D contradiz o texto; E ignora a expressão “participação coletiva”.</div>
+            </details>
+          </div>
+
+          <div class="question">
+            <div class="q-top">
+              <span class="q-id">Questão 02</span>
+              <span class="q-tag">inferência</span>
+            </div>
+            <h3>O texto sugere que educação ambiental eficaz depende mais de discurso ou de prática constante?</h3>
+            <div class="alts">
+              <div class="alt">(A) De discurso, porque campanhas longas resolvem sozinhas o problema.</div>
+              <div class="alt">(B) De prática constante, porque o texto valoriza rotina e participação coletiva.</div>
+              <div class="alt">(C) De punição, porque a escola precisa obrigar os estudantes.</div>
+              <div class="alt">(D) De tecnologia, porque a reciclagem depende de máquinas.</div>
+              <div class="alt">(E) De limpeza urbana terceirizada, porque a escola não tem função educativa.</div>
+            </div>
+            <details>
+              <summary>Ver correção</summary>
+              <div><strong>Gabarito: B.</strong> Isso não está escrito com essas palavras, mas é inferido pelas pistas “na prática”, “rotina” e “participação coletiva”. As outras alternativas trazem ideias externas ao texto.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-kicker">Método do dia</div>
+          <h2>Como ler uma questão da ETEC sem cair em armadilha</h2>
+          <p>O ponto não é “achar a resposta bonita”. É entender exatamente o que a banca está pedindo e descartar o resto com método.</p>
+        </div>
+        <div class="section-body">
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h4>Leia primeiro o comando, não a alternativa</h4>
+                <p>Antes de olhar as letras, identifique a tarefa: localizar informação, inferir ideia, reconhecer efeito de sentido, apontar o referente de um pronome, comparar trechos ou identificar a finalidade do texto.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h4>Separe o que está dito do que está sugerido</h4>
+                <p><strong>Explícito</strong> é o que o texto afirma diretamente. <strong>Implícito</strong> é o que se conclui pelas pistas. Misturar esses dois níveis é uma das formas mais comuns de errar.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h4>Desconfie da alternativa quase certa</h4>
+                <p>A banca adora alternativas que reaproveitam palavras do texto, mas trocam o foco, exageram, generalizam ou introduzem algo que não foi dito.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div>
+                <h4>Prove sua resposta com trecho ou pista</h4>
+                <p>Se você não consegue apontar a frase, a palavra ou o conjunto de pistas que sustentam sua escolha, provavelmente ainda está respondendo no impulso.</p>
+              </div>
+            </div>
+          </div>
+          <div class="callout" style="margin-top:16px"><strong>Regra de ouro do Dia 1:</strong> alternativa certa não é a que “parece boa”; é a que pode ser sustentada pelo texto e pelo comando sem forçar interpretação.</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-kicker">Exemplo resolvido</div>
+          <h2>Modelo de leitura no padrão da prova</h2>
+          <p>Veja como o raciocínio correto começa pelo comando e só depois vai para a alternativa.</p>
+        </div>
+        <div class="section-body">
+          <div class="text-box">
+            <div class="label">Trecho</div>
+            <p>Muitas pessoas pensam que estudar mais horas sempre produz melhores resultados. No entanto, quando o estudante organiza sessões menores, com revisão frequente e pausa adequada, a retenção tende a ser superior. A qualidade do estudo, portanto, vale mais do que o excesso desorganizado.</p>
+          </div>
+          <div class="grid-2" style="margin-top:16px">
+            <div class="card">
+              <h3>Pergunta</h3>
+              <p><strong>A ideia central do trecho é:</strong></p>
+              <ul>
+                <li>estudar o máximo de horas possível;</li>
+                <li>trocar estudo por descanso;</li>
+                <li>valorizar qualidade e organização do estudo;</li>
+                <li>mostrar que revisão não funciona;</li>
+                <li>provar que quantidade e qualidade são a mesma coisa.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Leitura correta</h3>
+              <p><strong>Passo 1:</strong> o comando pede a <em>ideia central</em>, não um detalhe isolado.</p>
+              <p><strong>Passo 2:</strong> o texto contrapõe “muitas horas” a “sessões menores com revisão frequente”.</p>
+              <p><strong>Passo 3:</strong> a última frase fecha o raciocínio: <strong>qualidade do estudo vale mais do que excesso desorganizado</strong>.</p>
+              <div class="callout" style="margin-top:10px">Resposta correta: <strong>valorizar qualidade e organização do estudo</strong>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-kicker">Bloco principal</div>
+          <h2>Questões do Dia 1</h2>
+          <p>As questões abaixo já foram montadas no espírito da banca: comando claro, texto curto, alternativas próximas e exigência de leitura cuidadosa.</p>
+        </div>
+        <div class="section-body">
+          <div class="question">
+            <div class="q-top"><span class="q-id">Questão 03</span><span class="q-tag">comando</span></div>
+            <div class="text-box" style="margin-bottom:12px">
+              <div class="label">Aviso escolar</div>
+              <p>A biblioteca funcionará até as 17h na sexta-feira. Os estudantes que reservaram livros pela manhã deverão retirá-los até as 16h30.</p>
+            </div>
+            <h3>O comando do aviso estabelece um horário geral e um horário específico. Qual é o horário específico?</h3>
+            <div class="alts">
+              <div class="alt">(A) 17h, porque vale para todos.</div>
+              <div class="alt">(B) 16h30, porque vale para quem reservou livros pela manhã.</div>
+              <div class="alt">(C) 16h, porque aparece implícito.</div>
+              <div class="alt">(D) Sexta-feira, porque é o dado mais importante.</div>
+              <div class="alt">(E) Manhã, porque é o primeiro recorte temporal.</div>
+            </div>
+            <details><summary>Ver correção</summary><div><strong>Gabarito: B.</strong> A questão pede o horário específico, isto é, o recorte particular para um grupo determinado. 17h é o horário geral; 16h30 é o específico.</div></details>
+          </div>
+
+          <div class="question">
+            <div class="q-top"><span class="q-id">Questão 04</span><span class="q-tag">explícito x implícito</span></div>
+            <div class="text-box" style="margin-bottom:12px">
+              <div class="label">Trecho</div>
+              <p>Apesar da chuva, o pátio não ficou vazio. Muitos estudantes permaneceram ali, agora espremidos sob a cobertura, esperando o sinal tocar.</p>
+            </div>
+            <h3>Assinale a alternativa que apresenta uma informação implícita no trecho.</h3>
+            <div class="alts">
+              <div class="alt">(A) Chovia no momento descrito.</div>
+              <div class="alt">(B) Havia estudantes no pátio.</div>
+              <div class="alt">(C) O sinal ainda não havia tocado.</div>
+              <div class="alt">(D) Os estudantes estavam sob a cobertura.</div>
+              <div class="alt">(E) O pátio não ficou vazio.</div>
+            </div>
+            <details><summary>Ver correção</summary><div><strong>Gabarito: C.</strong> O texto não afirma diretamente “o sinal ainda não havia tocado”, mas isso é inferido pelo fato de os estudantes estarem esperando esse momento. As demais informações estão explícitas.</div></details>
+          </div>
+
+          <div class="question">
+            <div class="q-top"><span class="q-id">Questão 05</span><span class="q-tag">ideia central</span></div>
+            <div class="text-box" style="margin-bottom:12px">
+              <div class="label">Campanha</div>
+              <p>Doar sangue é um gesto rápido para quem doa, mas decisivo para quem espera. Em muitos hospitais, os estoques diminuem em feriados prolongados, justamente quando acidentes e emergências podem aumentar.</p>
+            </div>
+            <h3>A ideia central desse texto é:</h3>
+            <div class="alts">
+              <div class="alt">(A) mostrar que hospitais funcionam melhor em feriados.</div>
+              <div class="alt">(B) defender a doação de sangue diante da queda de estoques em períodos críticos.</div>
+              <div class="alt">(C) provar que acidentes só acontecem em feriados.</div>
+              <div class="alt">(D) explicar tecnicamente como o sangue é armazenado.</div>
+              <div class="alt">(E) criticar os hospitais por não preverem emergências.</div>
+            </div>
+            <details><summary>Ver correção</summary><div><strong>Gabarito: B.</strong> O texto tem função mobilizadora: valoriza a doação e justifica sua urgência. As outras alternativas inventam foco técnico, crítica institucional ou generalização indevida.</div></details>
+          </div>
+
+          <div class="question">
+            <div class="q-top"><span class="q-id">Questão 06</span><span class="q-tag">referente</span></div>
+            <div class="text-box" style="margin-bottom:12px">
+              <div class="label">Trecho</div>
+              <p>Os estudantes leram o regulamento do concurso e discutiram as regras com a professora, porque elas geravam dúvidas frequentes.</p>
+            </div>
+            <h3>No trecho, o pronome “elas” retoma:</h3>
+            <div class="alts">
+              <div class="alt">(A) estudantes</div>
+              <div class="alt">(B) professora</div>
+              <div class="alt">(C) dúvidas</div>
+              <div class="alt">(D) regras</div>
+              <div class="alt">(E) concurso</div>
+            </div>
+            <details><summary>Ver correção</summary><div><strong>Gabarito: D.</strong> O pronome feminino plural retoma “regras”, também feminino plural e semanticamente coerente com “geravam dúvidas frequentes”.</div></details>
+          </div>
+
+          <div class="question">
+            <div class="q-top"><span class="q-id">Questão 07</span><span class="q-tag">finalidade</span></div>
+            <div class="text-box" style="margin-bottom:12px">
+              <div class="label">Mensagem</div>
+              <p>Traga sua garrafa reutilizável. Pequenas escolhas do dia a dia diminuem o uso de descartáveis e ajudam a escola a produzir menos lixo.</p>
+            </div>
+            <h3>A finalidade principal da mensagem é:</h3>
+            <div class="alts">
+              <div class="alt">(A) narrar um fato ocorrido na escola.</div>
+              <div class="alt">(B) orientar um comportamento com base em uma justificativa ambiental.</div>
+              <div class="alt">(C) explicar o processo industrial do plástico.</div>
+              <div class="alt">(D) comparar marcas de garrafas reutilizáveis.</div>
+              <div class="alt">(E) ironizar quem utiliza copos descartáveis.</div>
+            </div>
+            <details><summary>Ver correção</summary><div><strong>Gabarito: B.</strong> Há um comando direto (“Traga sua garrafa reutilizável”) sustentado por uma justificativa. A função é orientar/mobilizar, não narrar nem ironizar.</div></details>
+          </div>
+
+          <div class="question">
+            <div class="q-top"><span class="q-id">Questão 08</span><span class="q-tag">alternativa armadilha</span></div>
+            <div class="text-box" style="margin-bottom:12px">
+              <div class="label">Trecho</div>
+              <p>Nem sempre o aluno que fala mais em sala aprendeu mais. Em vários casos, quem escuta bem, anota com método e revisa com constância demonstra compreensão mais sólida no momento da avaliação.</p>
+            </div>
+            <h3>Assinale a alternativa correta.</h3>
+            <div class="alts">
+              <div class="alt">(A) O texto afirma que falar em sala é sempre inútil.</div>
+              <div class="alt">(B) O texto opõe quantidade de fala e qualidade de estudo.</div>
+              <div class="alt">(C) O texto diz que avaliação mede apenas memória.</div>
+              <div class="alt">(D) O texto defende silêncio absoluto em sala.</div>
+              <div class="alt">(E) O texto conclui que anotar dispensa revisão.</div>
+            </div>
+            <details><summary>Ver correção</summary><div><strong>Gabarito: B.</strong> A armadilha está na palavra “sempre”. O texto usa “nem sempre”, portanto não condena toda fala; ele relativiza e valoriza método, escuta e revisão.</div></details>
+          </div>
+
+          <div class="question">
+            <div class="q-top"><span class="q-id">Questão 09</span><span class="q-tag">inferência fina</span></div>
+            <div class="text-box" style="margin-bottom:12px">
+              <div class="label">Bilhete</div>
+              <p>Mãe, saí um pouco mais cedo porque a atividade terminou antes. Vou passar na papelaria e chego em casa por volta das 17h.</p>
+            </div>
+            <h3>O que pode ser inferido corretamente a partir do bilhete?</h3>
+            <div class="alts">
+              <div class="alt">(A) A pessoa chegará exatamente às 17h.</div>
+              <div class="alt">(B) A atividade escolar prevista para aquele momento já acabou.</div>
+              <div class="alt">(C) A ida à papelaria era o principal motivo da saída antecipada.</div>
+              <div class="alt">(D) A mãe desconhecia completamente a rotina da pessoa.</div>
+              <div class="alt">(E) A pessoa não pretende voltar para casa no mesmo dia.</div>
+            </div>
+            <details><summary>Ver correção</summary><div><strong>Gabarito: B.</strong> O bilhete afirma que a atividade terminou antes, logo isso pode ser inferido como causa da saída antecipada. “Por volta” elimina exatidão; o resto extrapola sem base.</div></details>
+          </div>
+
+          <div class="question">
+            <div class="q-top"><span class="q-id">Questão 10</span><span class="q-tag">síntese</span></div>
+            <div class="text-box" style="margin-bottom:12px">
+              <div class="label">Trecho final</div>
+              <p>Ler bem não é apenas decodificar palavras. É perceber o que foi dito, o que não foi dito de forma direta e o que a pergunta realmente quer que você faça com o texto.</p>
+            </div>
+            <h3>Esse trecho resume o Dia 1 porque:</h3>
+            <div class="alts">
+              <div class="alt">(A) limita a leitura ao reconhecimento de palavras difíceis.</div>
+              <div class="alt">(B) mostra que compreender envolve texto, inferência e comando.</div>
+              <div class="alt">(C) exclui completamente a interpretação implícita.</div>
+              <div class="alt">(D) reduz o papel do comando na resolução da questão.</div>
+              <div class="alt">(E) define leitura como simples memorização de frases.</div>
+            </div>
+            <details><summary>Ver correção</summary><div><strong>Gabarito: B.</strong> O trecho fecha exatamente a tríade do dia: explícito, implícito e comando. As demais alternativas negam partes centrais do texto.</div></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-kicker">Fechamento</div>
+          <h2>Régua de desempenho</h2>
+          <p>Use o resultado para decidir se pode avançar com segurança ou se ainda precisa consolidar a leitura de prova.</p>
+        </div>
+        <div class="section-body">
+          <div class="meter">
+            <div class="card good">
+              <h3>8 a 10 acertos</h3>
+              <p>Base muito boa. Pode seguir para o Dia 2. Sua leitura já mostra controle de comando e boa distinção entre explícito e implícito.</p>
+            </div>
+            <div class="card mid">
+              <h3>5 a 7 acertos</h3>
+              <p>Base promissora, mas ainda há risco de cair em alternativa parecida. Vale reler o método e revisar as correções antes de avançar.</p>
+            </div>
+            <div class="card low">
+              <h3>0 a 4 acertos</h3>
+              <p>O problema hoje não é “falta de conteúdo”; é leitura de prova. Refaça o Dia 1 e só avance quando conseguir sustentar melhor suas escolhas.</p>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-top:16px">
+            <div class="card">
+              <h3>Caderno de erros do Dia 1</h3>
+              <div class="checklist">
+                <div class="check"><div class="box"></div><span>Li as alternativas antes de entender o comando.</span></div>
+                <div class="check"><div class="box"></div><span>Confundi informação explícita com inferência.</span></div>
+                <div class="check"><div class="box"></div><span>Escolhi a alternativa que parecia bonita, mas não estava sustentada pelo texto.</span></div>
+                <div class="check"><div class="box"></div><span>Ignorei palavras decisivas do comando, como “ideia central”, “implícita” ou “finalidade”.</span></div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Saída ideal do Dia 1</h3>
+              <ul>
+                <li>Sei começar pela pergunta, não pela alternativa.</li>
+                <li>Consigo apontar o que está dito e o que está sugerido.</li>
+                <li>Consigo eliminar alternativas por exagero, invenção ou troca de foco.</li>
+                <li>Entendi por que leitura de prova é a primeira habilidade do cronograma.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-nav">
+            <a class="btn btn-ghost" href="../index.html">← Voltar ao cronograma</a>
+            <a class="btn btn-primary" href="dia-002.html">Ir para a apostila 2 →</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
