@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronograma — Vestibulinho ETEC 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="config.js"></script>
+  <style>
+    :root {
+      --bg:       #F7F3EC;
+      --surface:  #FFFFFF;
+      --navy:     #1A2B3C;
+      --terra:    #C0572A;
+      --terra-lt: #E8784F;
+      --sage:     #4A7B58;
+      --amber:    #D4902A;
+      --amber-lt: #F0C060;
+      --muted:    #8A8078;
+      --border:   #E2D9CE;
+      --text:     #2A2318;
+      --text-soft:#5C5248;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--navy);
+      padding: 36px 48px 32px;
+      position: relative; overflow: hidden;
+    }
+    .header::before {
+      content: ''; position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(192,87,42,.15);
+    }
+    .header::after {
+      content: ''; position: absolute;
+      bottom: -50px; left: 25%;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(74,123,88,.1);
+    }
+    .header-inner { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; }
+    .header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 20px; padding: 4px 14px;
+      font-size: .72rem; font-weight: 500; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--amber-lt); margin-bottom: 12px;
+    }
+    .header-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--terra-lt); display: inline-block; }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 900;
+      color: #fff; line-height: 1.15; margin-bottom: 6px;
+    }
+    .header h1 em { font-style: italic; color: var(--amber-lt); }
+    .header-sub { font-size: .85rem; color: rgba(255,255,255,.55); }
+    .exam-badge {
+      background: var(--terra); border-radius: 12px;
+      padding: 14px 20px; text-align: center; flex-shrink: 0;
+    }
+    .exam-badge .eb-label { font-size: .7rem; color: rgba(255,255,255,.7); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 4px; }
+    .exam-badge .eb-date { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; color: #fff; }
+    .exam-badge .eb-days { font-size: .75rem; color: rgba(255,255,255,.8); margin-top: 4px; }
+
+    /* ── PHASE LEGEND ── */
+    .phase-bar {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      max-width: 1000px; margin: 0 auto;
+      padding: 16px 48px 0;
+    }
+    .phase-chip {
+      display: flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 20px;
+      font-size: .72rem; font-weight: 500; cursor: pointer;
+      transition: opacity .2s;
+    }
+    .phase-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── MAIN ── */
+    .main { max-width: 1000px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    /* ── WEEK NAV ── */
+    .week-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--surface); border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 16px 20px; margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    }
+    .nav-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 8px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem; font-weight: 500; color: var(--text);
+      cursor: pointer; transition: all .15s;
+    }
+    .nav-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+    .nav-btn:disabled:hover { background: var(--bg); color: var(--text); border-color: var(--border); }
+    .week-info { text-align: center; }
+    .week-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--navy);
+    }
+    .week-range { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+    .week-phase {
+      display: inline-block; padding: 3px 12px; border-radius: 20px;
+      font-size: .72rem; font-weight: 600; margin-top: 6px;
+    }
+
+    /* ── JUMP TO WEEK ── */
+    .week-jump {
+      display: flex; align-items: center; gap: 10px;
+      justify-content: center; margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .jump-label { font-size: .8rem; color: var(--muted); }
+    .jump-select {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 6px 12px;
+      font-family: 'DM Sans', sans-serif; font-size: .82rem;
+      color: var(--text); cursor: pointer;
+    }
+    .today-btn {
+      background: var(--terra); color: #fff;
+      border: none; border-radius: 8px; padding: 6px 14px;
+      font-family: 'DM Sans', sans-serif; font-size: .82rem;
+      font-weight: 500; cursor: pointer;
+      transition: background .15s;
+    }
+    .today-btn:hover { background: var(--terra-lt); }
+
+    /* ── CALENDAR GRID ── */
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .day-col { display: flex; flex-direction: column; gap: 0; }
+    .day-header {
+      text-align: center;
+      padding: 10px 4px 8px;
+      font-size: .72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .07em;
+      color: var(--muted); border-bottom: 2px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .day-header.today-header { color: var(--terra); border-color: var(--terra); }
+
+    .day-card {
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; background: var(--surface);
+      transition: transform .15s, box-shadow .15s;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
+      min-height: 140px;
+    }
+    .day-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+    .day-card.today { border-color: var(--terra); border-width: 2px; }
+    .day-card.exam-day { border-color: #059669; border-width: 2px; background: #ECFDF5; }
+    .day-card.empty { background: transparent; border-color: transparent; cursor: default; min-height: 140px; }
+    .day-card.empty:hover { transform: none; box-shadow: none; }
+
+    .dc-top {
+      padding: 10px 12px 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .dc-date {
+      font-family: 'DM Mono', monospace;
+      font-size: .78rem; font-weight: 500; color: var(--muted);
+    }
+    .dc-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 700; color: #fff;
+    }
+    .day-card.today .dc-top { background: #FEF0EC; }
+    .day-card.today .dc-date { color: var(--terra); font-weight: 600; }
+
+    .dc-body { padding: 10px 12px; flex: 1; display: flex; flex-direction: column; gap: 5px; }
+    .dc-subject {
+      display: flex; align-items: flex-start; gap: 6px;
+      font-size: .75rem; line-height: 1.35; color: var(--text-soft);
+    }
+    .dc-subject .sub-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 3px;
+    }
+    .dc-goal {
+      margin-top: auto; padding-top: 6px;
+      font-size: .68rem; color: var(--muted);
+      font-style: italic; border-top: 1px dashed var(--border);
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 10px; margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--surface); border-radius: 12px;
+      border: 1px solid var(--border); padding: 16px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 900; color: var(--navy);
+    }
+    .stat-label { font-size: .72rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── FOOTER ── */
+    .footer { text-align: center; padding: 32px 24px; font-size: .78rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+    @media (max-width: 780px) {
+      .header { padding: 24px 16px 20px; }
+      .phase-bar { padding: 12px 16px 0; }
+      .main { padding: 20px 12px 60px; }
+      .cal-grid { grid-template-columns: repeat(4, 1fr); }
+      .stats-bar { grid-template-columns: repeat(3, 1fr); }
+      .week-nav { flex-direction: column; gap: 10px; }
+    }
+    @media (max-width: 520px) {
+      .cal-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <div class="header-badge"><span></span> Vestibulinho ETEC 2026</div>
+        <h1>Cronograma de <em>Estudos</em></h1>
+        <p class="header-sub">244 dias · 5 fases · Akemy</p>
+      </div>
+      <div class="exam-badge">
+        <div class="eb-label">Dia da Prova</div>
+        <div class="eb-date">30/11/2026</div>
+        <div class="eb-days" id="days-left">— dias restantes</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="phase-bar" id="phase-bar"></div>
+
+<main class="main">
+
+  <!-- STATS -->
+  <div class="stats-bar" id="stats-bar"></div>
+
+  <!-- CONTROLES -->
+  <div class="week-nav">
+    <button class="nav-btn" id="btn-prev" onclick="changeWeek(-1)">← Semana anterior</button>
+    <div class="week-info">
+      <div class="week-num" id="week-num-display">Semana —</div>
+      <div class="week-range" id="week-range-display">—</div>
+      <div id="week-phase-display"></div>
+    </div>
+    <button class="nav-btn" id="btn-next" onclick="changeWeek(+1)">Próxima semana →</button>
+  </div>
+
+  <div class="week-jump">
+    <span class="jump-label">Ir para:</span>
+    <select class="jump-select" id="week-select" onchange="goToWeek(this.value)"></select>
+    <button class="today-btn" onclick="goToToday()">📅 Semana atual</button>
+  </div>
+
+  <!-- CALENDÁRIO -->
+  <div class="cal-grid" id="cal-grid"></div>
+
+</main>
+
+<footer class="footer">
+  Vestibulinho ETEC 2026 · Cronograma de Estudos · Akemy
+</footer>
+
+<script>
+  // ── DATA ──────────────────────────────────────
+  const WEEK_DAYS_ORDER = ['segunda','terca','quarta','quinta','sexta','sabado','domingo'];
+  const WEEK_DAYS_LABEL = { segunda:'Segunda',terca:'Terça',quarta:'Quarta',quinta:'Quinta',sexta:'Sexta',sabado:'Sábado',domingo:'Domingo' };
+  const WEEKS = [...new Set(CRONOGRAMA.map(d => d.week))].sort((a,b) => a-b);
+
+  // Today
+  const today = new Date();
+  const todayStr = [
+    String(today.getDate()).padStart(2,'0'),
+    String(today.getMonth()+1).padStart(2,'0'),
+    today.getFullYear()
+  ].join('/');
+
+  const examDate = new Date(2026, 10, 30); // Nov 30, 2026
+  const daysLeft = Math.ceil((examDate - today) / 86400000);
+  document.getElementById('days-left').textContent = daysLeft > 0 ? daysLeft + ' dias restantes' : 'Dia da Prova!';
+
+  // Current week state
+  let currentWeekIdx = 0;
+
+  function findTodayWeek() {
+    const d = CRONOGRAMA.find(x => x.date === todayStr);
+    if (d) {
+      const idx = WEEKS.indexOf(d.week);
+      return idx >= 0 ? idx : 0;
+    }
+    // if before start, show week 0; if after end, show last
+    return 0;
+  }
+
+  // ── PHASE COLORS ──────────────────────────────
+  function getPhaseStyle(phase) {
+    const p = FASES[phase] || { color: '#8A8078', bg: '#F7F3EC' };
+    return p;
+  }
+
+  // ── PHASE BAR ────────────────────────────────
+  function buildPhaseBar() {
+    const bar = document.getElementById('phase-bar');
+    Object.entries(FASES).forEach(([key, val]) => {
+      const chip = document.createElement('div');
+      chip.className = 'phase-chip';
+      chip.style.background = val.bg;
+      chip.style.color = val.color;
+      chip.innerHTML = `<span class="dot" style="background:${val.color}"></span>${val.label}`;
+      bar.appendChild(chip);
+    });
+  }
+
+  // ── STATS BAR ────────────────────────────────
+  function buildStats() {
+    const bar = document.getElementById('stats-bar');
+    const done = CRONOGRAMA.filter(d => {
+      const [dd,mm,yy] = d.date.split('/');
+      return new Date(yy,mm-1,dd) < today;
+    }).length;
+    const pct = Math.round((done / CRONOGRAMA.length) * 100);
+    const weeksTotal = WEEKS.length;
+
+    const stats = [
+      { val: CRONOGRAMA.length, label: 'Dias de Estudo' },
+      { val: weeksTotal, label: 'Semanas' },
+      { val: done, label: 'Dias Concluídos' },
+      { val: pct + '%', label: 'Progresso Geral' },
+      { val: Math.max(0, daysLeft), label: 'Dias p/ Prova' },
+    ];
+
+    stats.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'stat-card';
+      card.innerHTML = `<div class="stat-val">${s.val}</div><div class="stat-label">${s.label}</div>`;
+      bar.appendChild(card);
+    });
+  }
+
+  // ── SELECT DE SEMANAS ────────────────────────
+  function buildSelect() {
+    const sel = document.getElementById('week-select');
+    WEEKS.forEach((w, i) => {
+      const days = CRONOGRAMA.filter(d => d.week === w);
+      const first = days[0].date;
+      const last = days[days.length-1].date;
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `Semana ${w}  (${first} – ${last})`;
+      sel.appendChild(opt);
+    });
+  }
+
+  // ── RENDER WEEK ──────────────────────────────
+  function renderWeek(weekIdx) {
+    currentWeekIdx = weekIdx;
+    const weekNum = WEEKS[weekIdx];
+    const days = CRONOGRAMA.filter(d => d.week === weekNum);
+    const phase = days[0]?.phase || '';
+    const ps = getPhaseStyle(phase);
+
+    // Nav buttons
+    document.getElementById('btn-prev').disabled = weekIdx === 0;
+    document.getElementById('btn-next').disabled = weekIdx === WEEKS.length - 1;
+
+    // Week header
+    document.getElementById('week-num-display').textContent = `Semana ${weekNum}`;
+    const first = days[0].date, last = days[days.length-1].date;
+    document.getElementById('week-range-display').textContent = `${first} – ${last}`;
+
+    const phaseEl = document.getElementById('week-phase-display');
+    phaseEl.innerHTML = `<span class="week-phase" style="background:${ps.bg};color:${ps.color}">${FASES[phase]?.label || phase}</span>`;
+
+    // Select sync
+    document.getElementById('week-select').value = weekIdx;
+
+    // Build by day-of-week
+    const byDay = {};
+    days.forEach(d => { byDay[d.day] = d; });
+
+    const grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+
+    WEEK_DAYS_ORDER.forEach(dayKey => {
+      const col = document.createElement('div');
+      col.className = 'day-col';
+
+      // Header
+      const hdr = document.createElement('div');
+      hdr.className = 'day-header';
+      const d = byDay[dayKey];
+      if (d && d.date === todayStr) hdr.classList.add('today-header');
+      hdr.textContent = WEEK_DAYS_LABEL[dayKey];
+      col.appendChild(hdr);
+
+      if (!d) {
+        const empty = document.createElement('div');
+        empty.className = 'day-card empty';
+        col.appendChild(empty);
+      } else {
+        const isToday = d.date === todayStr;
+        const isExam = d.b1 === 'dia da prova';
+        const [dd, mm, yy] = d.date.split('/');
+        const dayNum = parseInt(dd);
+        const dayNumDisplay = dayNum;
+
+        const card = document.createElement('a');
+        card.className = 'day-card' + (isToday ? ' today' : '') + (isExam ? ' exam-day' : '');
+        card.href = `apostila_${d.file}.html`;
+
+        const numColor = isExam ? '#059669' : ps.color;
+
+        const subj1 = d.b1 ? `<div class="dc-subject"><span class="sub-dot" style="background:${numColor}"></span>${d.b1}</div>` : '';
+        const subj2 = d.b2 ? `<div class="dc-subject"><span class="sub-dot" style="background:${numColor}99"></span>${d.b2}</div>` : '';
+
+        card.innerHTML = `
+          <div class="dc-top">
+            <span class="dc-date">${dd}/${mm}</span>
+            <span class="dc-num" style="background:${numColor}">${dayNumDisplay}</span>
+          </div>
+          <div class="dc-body">
+            ${subj1}
+            ${subj2}
+            <div class="dc-goal">${d.goal}</div>
+          </div>
+        `;
+        col.appendChild(card);
+      }
+
+      grid.appendChild(col);
+    });
+  }
+
+  // ── CONTROLS ─────────────────────────────────
+  function changeWeek(delta) {
+    const next = currentWeekIdx + delta;
+    if (next >= 0 && next < WEEKS.length) renderWeek(next);
+  }
+
+  function goToWeek(idx) {
+    renderWeek(parseInt(idx));
+  }
+
+  function goToToday() {
+    const idx = findTodayWeek();
+    renderWeek(idx);
+  }
+
+  // ── INIT ─────────────────────────────────────
+  buildPhaseBar();
+  buildStats();
+  buildSelect();
+  const startWeek = findTodayWeek();
+  renderWeek(startWeek);
+</script>
+</body>
+</html>

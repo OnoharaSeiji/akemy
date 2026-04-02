@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apostila 01/04/2026 · Vestibulinho ETEC 2026</title>
+  <script src="config.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #F7F3EC;
+      --surface:   #FFFFFF;
+      --navy:      #1A2B3C;
+      --navy-soft: #2C3E50;
+      --terra:     #C0572A;
+      --terra-lt:  #E8784F;
+      --sage:      #4A7B58;
+      --sage-lt:   #6FAB7F;
+      --amber:     #D4902A;
+      --amber-lt:  #F0C060;
+      --muted:     #8A8078;
+      --border:    #E2D9CE;
+      --text:      #2A2318;
+      --text-soft: #5C5248;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 400; line-height: 1.7; }
+
+    /* ── HEADER ── */
+    .header { background: var(--navy); color: #fff; padding: 40px 48px 36px; position: relative; overflow: hidden; }
+    .header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: rgba(192,87,42,.18); }
+    .header::after { content: ''; position: absolute; bottom: -40px; left: 30%; width: 180px; height: 180px; border-radius: 50%; background: rgba(74,123,88,.12); }
+    .header-inner { position: relative; z-index: 1; max-width: 860px; }
+    .header-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 20px; padding: 4px 14px; font-size: .72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--amber-lt); margin-bottom: 14px; }
+    .header-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--terra-lt); display: inline-block; }
+    .header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; line-height: 1.15; color: #fff; margin-bottom: 10px; }
+    .header h1 em { font-style: italic; color: var(--amber-lt); }
+    .header-meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: .82rem; color: rgba(255,255,255,.6); margin-top: 18px; }
+    .header-meta strong { color: rgba(255,255,255,.9); }
+    .pills { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+    .pill { display: inline-block; padding: 5px 12px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.9); border-radius: 999px; font-size: .75rem; font-weight: 500; }
+
+    /* ── NAV ── */
+    .nav-bar { background: var(--surface); border-bottom: 2px solid var(--border); padding: 0 48px; display: flex; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.05); overflow-x: auto; }
+    .nav-bar a { display: flex; align-items: center; gap: 8px; padding: 16px 20px; font-size: .82rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .2s; white-space: nowrap; }
+    .nav-bar a.b1:hover { color: var(--terra); border-color: var(--terra); }
+    .nav-bar a.b2:hover { color: var(--sage); border-color: var(--sage); }
+    .nav-bar a.b3:hover { color: var(--amber); border-color: var(--amber); }
+    .nav-bar a.bf:hover { color: var(--navy); border-color: var(--navy); }
+    .nav-pill { width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: .65rem; font-weight: 700; color: #fff; }
+    .b1 .nav-pill { background: var(--terra); }
+    .b2 .nav-pill { background: var(--sage); }
+    .b3 .nav-pill { background: var(--amber); }
+    .bf .nav-pill { background: var(--navy); }
+
+    /* ── MAIN ── */
+    .main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    /* ── PROGRESSO ── */
+    .progress-wrap { margin-bottom: 36px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 8px; }
+    .progress-bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(to right, var(--terra), var(--amber)); border-radius: 4px; width: 0; transition: width .6s ease; }
+
+    /* ── OVERVIEW TABLE ── */
+    .overview { background: var(--surface); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 40px; }
+    .overview-head { background: var(--navy); color: #fff; padding: 18px 28px; font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; }
+    .ov-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .ov-table th { background: #F0EBE3; padding: 10px 20px; text-align: left; font-weight: 600; color: var(--navy); font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+    .ov-table td { padding: 12px 20px; border-bottom: 1px solid var(--border); color: var(--text-soft); vertical-align: top; }
+    .ov-table tr:last-child td { border-bottom: none; }
+    .ov-table .blabel { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: .72rem; font-weight: 600; }
+    .b1-tag { background: #FDEEE8; color: var(--terra); }
+    .b2-tag { background: #E8F4EC; color: var(--sage); }
+    .b3-tag { background: #FEF3DC; color: var(--amber); }
+
+    /* ── BLOCO CARD ── */
+    .bloco { background: var(--surface); border-radius: 16px; margin-bottom: 40px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 6px 24px rgba(0,0,0,.04); }
+    .bloco-header { padding: 22px 32px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); }
+    .bloco-num { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: .7rem; font-weight: 500; color: #fff; flex-shrink: 0; }
+    .bloco-1 .bloco-num { background: var(--terra); }
+    .bloco-2 .bloco-num { background: var(--sage); }
+    .bloco-3 .bloco-num { background: var(--amber); color: var(--navy); }
+    .bloco-info { flex: 1; }
+    .bloco-info h2 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+    .bloco-info .meta { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+    .timer-badge { background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: .75rem; font-weight: 500; color: var(--text-soft); display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .timer-badge::before { content: '⏱'; font-size: .85rem; }
+    .bloco-body { padding: 32px; }
+
+    /* ── INTRO BOX ── */
+    .intro-box { background: #F0EBE3; border-left: 4px solid var(--terra); border-radius: 0 10px 10px 0; padding: 16px 20px; margin-bottom: 28px; font-size: .88rem; color: var(--text-soft); }
+    .intro-box strong { color: var(--terra); }
+    .intro-sage { border-color: var(--sage); }
+    .intro-sage strong { color: var(--sage); }
+    .intro-amber { border-color: var(--amber); }
+    .intro-amber strong { color: var(--amber); }
+
+    /* ── SECTION TITLE ── */
+    .sec-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin: 28px 0 14px; display: flex; align-items: center; gap: 10px; }
+    .sec-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--border), transparent); }
+
+    /* ── CONTENT ── */
+    .content p { margin-bottom: 12px; font-size: .92rem; }
+    .content strong { color: var(--navy); font-weight: 600; }
+    .content ul { padding-left: 20px; margin-bottom: 12px; }
+    .content li { font-size: .92rem; margin-bottom: 6px; }
+    .content ol { padding-left: 20px; margin-bottom: 12px; }
+
+    /* ── STEPS ── */
+    .steps { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 24px; }
+    .step { border-left: 4px solid var(--terra); padding: 12px 16px; background: #F8F4EE; border-radius: 0 10px 10px 0; font-size: .9rem; }
+    .step strong { color: var(--terra); }
+    .step-sage { border-color: var(--sage); }
+    .step-sage strong { color: var(--sage); }
+
+    /* ── SKILL GRID ── */
+    .skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 16px 0 24px; }
+    .skill-card { border-radius: 12px; padding: 16px 18px; border: 1px solid var(--border); background: var(--bg); }
+    .skill-card .sk-title { font-weight: 600; font-size: .88rem; color: var(--navy); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .skill-card ul { padding-left: 16px; }
+    .skill-card li { font-size: .83rem; color: var(--text-soft); margin-bottom: 4px; }
+
+    /* ── MÉTODO BOX ── */
+    .metodo { background: linear-gradient(135deg, #EFF6F1, #F0F8F2); border: 1px solid #C8E0D0; border-radius: 12px; padding: 20px 24px; margin: 16px 0 24px; }
+    .metodo .m-title { font-weight: 600; color: var(--sage); font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 12px; }
+    .metodo ol { padding-left: 18px; }
+    .metodo li { font-size: .9rem; margin-bottom: 8px; color: var(--text); }
+    .metodo li strong { color: var(--sage); }
+
+    /* ── HIGHLIGHT ── */
+    .highlight { background: linear-gradient(135deg, #FEF7E8, #FDF3D6); border: 1px solid #F0D898; border-radius: 10px; padding: 16px 20px; margin: 20px 0; font-size: .88rem; }
+    .highlight .hl-title { font-weight: 600; color: var(--amber); font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 8px; }
+
+    /* ── TEXT BASE ── */
+    .text-label { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--sage); margin-bottom: 10px; }
+    .text-box { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; font-size: .9rem; line-height: 1.8; }
+    .text-box .source { display: block; text-align: right; font-size: .75rem; color: var(--muted); margin-top: 12px; font-style: italic; }
+
+    /* ── QUESTIONS ── */
+    .q-section-label { font-size: .8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin: 24px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .question-list { display: flex; flex-direction: column; gap: 16px; }
+    .question-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .q-head { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; cursor: pointer; background: var(--surface); transition: background .15s; user-select: none; }
+    .q-head:hover { background: #F7F3EC; }
+    .q-num { width: 30px; height: 30px; border-radius: 8px; color: #fff; display: flex; align-items: center; justify-content: center; font-size: .78rem; font-weight: 700; flex-shrink: 0; }
+    .q-num.terra { background: var(--terra); }
+    .q-num.sage  { background: var(--sage); }
+    .q-text { font-size: .9rem; flex: 1; padding-top: 3px; line-height: 1.55; }
+    .q-toggle { width: 24px; height: 24px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .8rem; flex-shrink: 0; margin-top: 2px; transition: transform .2s; }
+    .question-card.open .q-toggle { transform: rotate(180deg); background: var(--navy); color: #fff; border-color: var(--navy); }
+    .q-options { padding: 0 20px 16px 64px; display: none; flex-direction: column; gap: 8px; }
+    .question-card.open .q-options { display: flex; }
+    .opt { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); font-size: .86rem; cursor: pointer; transition: all .15s; background: var(--bg); }
+    .opt:hover:not(.correct):not(.wrong) { border-color: var(--navy); background: #EEF2F5; }
+    .opt .opt-letter { font-family: 'DM Mono', monospace; font-size: .8rem; font-weight: 600; color: var(--muted); flex-shrink: 0; }
+    .opt.correct { background: #ECFDF5; border-color: var(--sage-lt); pointer-events: none; }
+    .opt.correct .opt-letter { color: var(--sage); }
+    .opt.wrong { background: #FEF2F2; border-color: #FCA5A5; pointer-events: none; }
+    .opt.wrong .opt-letter { color: #EF4444; }
+    .opt.disabled { pointer-events: none; opacity: .6; }
+    .q-explain { margin: 8px 0 4px; padding: 12px 16px; background: #EFF6F1; border-radius: 8px; font-size: .83rem; color: var(--sage); display: none; line-height: 1.6; }
+    .q-explain strong { color: var(--navy); }
+
+    /* ── CADERNO ── */
+    .caderno-steps { display: flex; flex-direction: column; gap: 14px; margin: 16px 0 24px; }
+    .caderno-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; background: var(--bg); border-radius: 12px; border: 1px solid var(--border); }
+    .step-num { width: 34px; height: 34px; border-radius: 50%; background: var(--amber); color: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: .82rem; font-weight: 600; flex-shrink: 0; }
+    .step-content h4 { font-size: .9rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .step-content p { font-size: .83rem; color: var(--text-soft); margin: 0; }
+
+    /* ── CADERNO TABLE ── */
+    .caderno-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .82rem; }
+    .caderno-table th { background: var(--navy); color: #fff; padding: 10px 14px; text-align: left; font-weight: 500; font-size: .75rem; letter-spacing: .04em; }
+    .caderno-table th:first-child { border-radius: 8px 0 0 0; }
+    .caderno-table th:last-child { border-radius: 0 8px 0 0; }
+    .caderno-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: .81rem; color: var(--text-soft); font-style: italic; vertical-align: top; }
+    .caderno-table tr:nth-child(even) td { background: #F7F3EC; }
+    .caderno-table tr:last-child td { border-bottom: none; }
+
+    /* ── FECHAMENTO ── */
+    .fechamento { background: var(--surface); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 40px; }
+    .fechamento-head { background: var(--navy); color: #fff; padding: 20px 28px; display: flex; align-items: center; gap: 12px; }
+    .fechamento-head h2 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; }
+    .fechamento-body { padding: 28px 32px; }
+    .benchmark-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+    .bm-card { border-radius: 12px; padding: 18px 16px; text-align: center; border: 1px solid var(--border); }
+    .bm-card .bm-score { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; margin-bottom: 6px; }
+    .bm-card .bm-label { font-size: .8rem; font-weight: 600; margin-bottom: 6px; }
+    .bm-card .bm-desc { font-size: .78rem; color: var(--text-soft); }
+    .bm-great { background: #ECFDF5; border-color: #A7F3D0; }
+    .bm-great .bm-score, .bm-great .bm-label { color: var(--sage); }
+    .bm-ok { background: #FEF7E8; border-color: #FDE68A; }
+    .bm-ok .bm-score, .bm-ok .bm-label { color: var(--amber); }
+    .bm-retry { background: #FEF2F2; border-color: #FCA5A5; }
+    .bm-retry .bm-score, .bm-retry .bm-label { color: #EF4444; }
+    .missao { background: linear-gradient(135deg, var(--navy), var(--navy-soft)); border-radius: 12px; padding: 20px 24px; color: #fff; }
+    .missao h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--amber-lt); margin-bottom: 8px; }
+    .missao ul { padding-left: 18px; }
+    .missao li { font-size: .88rem; color: rgba(255,255,255,.8); margin-bottom: 6px; }
+
+    /* ── FOOTER ── */
+    .footer { text-align: center; padding: 40px 24px; font-size: .78rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+    @media (max-width: 640px) {
+      .header { padding: 28px 20px; }
+      .header h1 { font-size: 1.7rem; }
+      .main { padding: 24px 16px 60px; }
+      .bloco-body { padding: 20px; }
+      .skill-grid { grid-template-columns: 1fr; }
+      .benchmark-grid { grid-template-columns: 1fr; }
+      .q-options { padding-left: 20px; }
+      .bloco-header { flex-wrap: wrap; }
+    }
+
+    @media print {
+      .nav-bar, .q-toggle { display: none; }
+      .q-options { display: flex !important; }
+      .bloco { box-shadow: none; border: 1px solid #ddd; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-badge"><span></span> Vestibulinho ETEC · Fase 1 — Base Forte</div>
+    <h1>Apostila <em>Dia 1</em></h1>
+    <div class="header-meta">
+      <span>📅 <strong>01 de abril de 2026</strong> — Quarta-feira</span>
+      <span>📚 <strong>Semana 14</strong></span>
+      <span>🎯 Objetivo: <strong>Construir base sem atropelo</strong></span>
+    </div>
+    <div class="pills">
+      <span class="pill">Humanas</span>
+      <span class="pill">Português</span>
+      <span class="pill">Caderno de Erros</span>
+      <span class="pill">⏱ 2h – 2h30 no total</span>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <a href="#overview" class="bf"><span class="nav-pill" style="background:var(--navy)">▦</span> Visão geral</a>
+  <a href="#bloco1" class="b1"><span class="nav-pill">1</span> Humanas</a>
+  <a href="#bloco2" class="b2"><span class="nav-pill">2</span> Português</a>
+  <a href="#bloco3" class="b3"><span class="nav-pill">3</span> Caderno</a>
+  <a href="#fechamento" class="bf"><span class="nav-pill" style="background:var(--navy)">✓</span> Fechamento</a>
+</nav>
+
+<main class="main">
+
+  <!-- PROGRESSO -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Questões respondidas</span>
+      <span id="prog-pct">0 / 15</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+  </div>
+
+  <!-- VISÃO GERAL -->
+  <div class="overview" id="overview">
+    <div class="overview-head">📋 O que estudar hoje</div>
+    <table class="ov-table">
+      <thead><tr><th>Bloco</th><th>Foco</th><th>Atividade</th><th>Tempo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="blabel b1-tag">Bloco 1</span></td>
+          <td><strong>Humanas</strong></td>
+          <td>Teoria: mapa, linha do tempo, escala e leitura de gráfico + 5 exercícios</td>
+          <td>~45–60 min</td>
+        </tr>
+        <tr>
+          <td><span class="blabel b2-tag">Bloco 2</span></td>
+          <td><strong>Português</strong></td>
+          <td>Teoria: método de leitura, conectivos e gênero textual + 10 questões</td>
+          <td>~45–60 min</td>
+        </tr>
+        <tr>
+          <td><span class="blabel b3-tag">Bloco 3</span></td>
+          <td><strong>Caderno de Erros</strong></td>
+          <td>Montar o caderno e registrar todos os erros de hoje</td>
+          <td>~20–30 min</td>
+        </tr>
+        <tr>
+          <td colspan="2"><strong>Regra do dia</strong></td>
+          <td colspan="2">Não precisa "vencer a prova inteira". Precisa fechar bem o primeiro tijolo da base.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══ BLOCO 1 — HUMANAS ══ -->
+  <section class="bloco bloco-1" id="bloco1">
+    <div class="bloco-header">
+      <div class="bloco-num">B1</div>
+      <div class="bloco-info">
+        <h2>Humanas — Mapa, Linha do Tempo e Gráficos</h2>
+        <div class="meta">Teoria + 5 exercícios interativos</div>
+      </div>
+      <div class="timer-badge">45–60 min</div>
+    </div>
+    <div class="bloco-body">
+
+      <div class="intro-box">
+        <strong>Por que essas habilidades?</strong> A ETEC raramente cobra decoração pura. Ela apresenta um mapa, uma linha do tempo ou um gráfico e pede que você <em>leia</em> a informação. Quem domina a leitura visual resolve essas questões sem precisar memorizar nada.
+      </div>
+
+      <!-- 1. Linha do Tempo -->
+      <div class="sec-title"><span>📅</span> 1. Linha do Tempo</div>
+      <div class="content">
+        <p>Linha do tempo organiza acontecimentos em sequência. O erro mais comum é olhar só a data e ignorar a <strong>relação entre os fatos</strong>.</p>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="sk-title">📌 O que observar</div>
+          <ul>
+            <li><strong>Antes / depois:</strong> veja a ordem dos eventos</li>
+            <li><strong>Duração:</strong> quanto tempo passou entre eles</li>
+            <li><strong>Contexto:</strong> o que mudou de um evento para o outro</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="sk-title">⚡ Datas-chave do Brasil</div>
+          <ul>
+            <li>1500 — Chegada dos portugueses</li>
+            <li>1822 — Independência (século XIX)</li>
+            <li>1889 — Proclamação da República (século XIX)</li>
+            <li>1988 — Constituição Cidadã (século XX)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. Mapa -->
+      <div class="sec-title"><span>🗺️</span> 2. Mapa</div>
+      <div class="content">
+        <p>Em prova, mapa quase nunca cobra decoração pura — ele cobra <strong>leitura</strong>. Siga sempre esta ordem:</p>
+      </div>
+      <div class="steps">
+        <div class="step"><strong>Título</strong> — Diz o assunto do mapa. Leia primeiro.</div>
+        <div class="step"><strong>Legenda</strong> — Explica o que cada símbolo e cor significam. Sem ela, nada faz sentido.</div>
+        <div class="step"><strong>Escala</strong> — Mostra proporção: quantos cm no mapa equivalem a quantos km no mundo real.</div>
+        <div class="step"><strong>Rosa dos ventos</strong> — Indica os pontos cardeais (N, S, L, O). Se A está a <em>oeste</em> de B, então B está a <em>leste</em> de A.</div>
+      </div>
+
+      <!-- 3. Gráficos -->
+      <div class="sec-title"><span>📊</span> 3. Leitura de Gráficos</div>
+      <div class="content">
+        <p>A banca costuma apresentar gráfico de barras ou linha e perguntar sobre <strong>tendência</strong>, <strong>comparação</strong> ou <strong>conclusão</strong>. Nunca olhe só uma barra isolada — compare o conjunto.</p>
+      </div>
+      <div class="metodo">
+        <div class="m-title">🧭 Sequência para qualquer questão visual</div>
+        <ol>
+          <li><strong>O que está sendo mostrado?</strong> (assunto)</li>
+          <li><strong>Em que lugar ou período?</strong> (contexto)</li>
+          <li><strong>Qual informação visual ajuda a responder?</strong> (dado)</li>
+          <li><strong>Qual alternativa bate exatamente com os dados?</strong> (resposta)</li>
+        </ol>
+      </div>
+
+      <!-- EXERCÍCIOS HUMANAS -->
+      <div class="q-section-label">🏋️ Exercícios — Bloco 1 (5 questões)</div>
+      <div class="question-list">
+
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">01</div>
+            <div class="q-text">Em uma linha do tempo aparecem os marcos: <strong>1500, 1822, 1889 e 1988</strong>. Qual alternativa apresenta a leitura correta?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Todos os acontecimentos ocorreram no mesmo século.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Há dois acontecimentos no século XIX.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> O evento de 1988 aconteceu antes do de 1889.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> O evento de 1500 é o mais recente.</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> 1822 e 1889 pertencem ao século XIX (anos de 1801 a 1900). 1500 é século XVI e 1988 é século XX. Os eventos estão em ordem crescente, portanto 1988 é o mais recente — não 1500.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">02</div>
+            <div class="q-text">Se a cidade A está a <strong>oeste</strong> da cidade B, então B está a _____ de A.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Norte.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Sul.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Leste.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Sudoeste.</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> A relação é sempre invertida: se A está a <em>oeste</em> de B, significa que B está mais para a direita (leste) no mapa. Dica: nunca diga "B está a oeste de A" porque isso contradiz o enunciado.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">03</div>
+            <div class="q-text">Um mapa usa <strong>área verde</strong> para floresta preservada e <strong>área vermelha</strong> para desmatamento. Se a legenda indica aumento da área vermelha ao longo dos anos, a conclusão correta é:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> A preservação aumentou.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> O território ficou menor.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> O desmatamento aumentou.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> O clima ficou necessariamente frio.</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> A legenda define: vermelho = desmatamento. Se a área vermelha aumentou, o desmatamento aumentou. Simples — a resposta está na legenda, não exige conhecimento prévio de ecologia.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="a">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">04</div>
+            <div class="q-text">Um mapa tem escala <strong>1:100 000</strong>. Isso significa que:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> 1 cm no mapa representa 100 000 cm no espaço real.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> 100 000 cm no mapa representam 1 cm no real.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> O mapa não pode ser usado para medir distâncias.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> A escala serve apenas para indicar direção.</div>
+            <div class="q-explain">✅ <strong>Gabarito A.</strong> Escala 1:100 000 significa: 1 unidade no mapa = 100 000 unidades na realidade. Logo, 1 cm no mapa = 100 000 cm = 1 km no mundo real. Direção é função da rosa dos ventos, não da escala.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num terra">05</div>
+            <div class="q-text">Ao analisar um gráfico de barras sobre desmatamento anual, a atitude mais correta é:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Olhar apenas a barra mais alta.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Ignorar o eixo vertical.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Comparar valores, anos e tendência do conjunto.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Ler só o título e marcar a alternativa mais longa.</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> Gráfico exige leitura comparativa: eixo X (anos), eixo Y (valores) e a tendência geral. Uma barra isolada pode enganar — é a tendência do conjunto que responde a maioria das questões.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BLOCO 2 — PORTUGUÊS ══ -->
+  <section class="bloco bloco-2" id="bloco2">
+    <div class="bloco-header">
+      <div class="bloco-num">B2</div>
+      <div class="bloco-info">
+        <h2>Português — Interpretação de Texto</h2>
+        <div class="meta">Teoria + 10 questões interativas com gabarito</div>
+      </div>
+      <div class="timer-badge">45–60 min</div>
+    </div>
+    <div class="bloco-body">
+
+      <div class="intro-box intro-sage">
+        <strong>Instrução:</strong> Leia o texto completo antes de abrir qualquer questão. Marque sua resposta e depois veja o gabarito. Anote no Caderno de Erros tudo que errar.
+      </div>
+
+      <!-- TEORIA -->
+      <div class="sec-title"><span>📖</span> O que a prova mais cobra</div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="sk-title">🎯 Habilidades-alvo</div>
+          <ul>
+            <li><strong>Finalidade:</strong> informar, convencer, alertar, explicar</li>
+            <li><strong>Inferência:</strong> o que está implícito no texto</li>
+            <li><strong>Pronome:</strong> a quem ou ao que a palavra retoma</li>
+            <li><strong>Conectivo:</strong> adição, oposição, causa, conclusão</li>
+            <li><strong>Sujeito verbal:</strong> quem pratica a ação do verbo</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="sk-title">🔗 Conectivos essenciais</div>
+          <ul>
+            <li><strong>Adição:</strong> além disso, também, e</li>
+            <li><strong>Oposição:</strong> no entanto, porém, mas, contudo</li>
+            <li><strong>Causa:</strong> porque, pois, já que</li>
+            <li><strong>Conclusão:</strong> portanto, logo, assim</li>
+            <li><strong>Condição:</strong> se, caso, desde que</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="metodo">
+        <div class="m-title">🧭 Método de leitura — 4 passos</div>
+        <ol>
+          <li><strong>Leia o texto inteiro</strong> sem olhar as alternativas.</li>
+          <li><strong>Identifique o tema central</strong> em uma frase curta.</li>
+          <li><strong>Volte ao enunciado</strong> e entenda exatamente o que ele pede.</li>
+          <li><strong>Elimine</strong> alternativas exageradas, absolutas ou fora do texto.</li>
+        </ol>
+      </div>
+
+      <!-- TEXTO BASE -->
+      <div class="text-label">Texto base — Questões 06 a 15</div>
+      <div class="text-box">
+        <p>Muitas cidades têm ampliado áreas verdes urbanas porque árvores ajudam a reduzir a temperatura, melhoram a qualidade do ar e tornam os espaços públicos mais agradáveis. Além disso, praças bem cuidadas estimulam convivência, lazer e sensação de segurança.</p>
+        <p>No entanto, apenas plantar árvores não basta: é preciso planejamento, manutenção e participação da população. Sem esses três fatores, áreas verdes se deterioram rapidamente e perdem sua função social e ambiental.</p>
+        <p>A integração entre poder público e comunidade, portanto, é o que transforma uma simples praça em um espaço vivo — capaz de beneficiar a todos, independentemente de renda ou localização.</p>
+        <span class="source">Texto elaborado para fins pedagógicos.</span>
+      </div>
+
+      <!-- QUESTÕES PORTUGUÊS -->
+      <div class="q-section-label">🏋️ Exercícios — Bloco 2 (10 questões)</div>
+      <div class="question-list">
+
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">06</div>
+            <div class="q-text">A finalidade principal do texto é:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Contar uma história fictícia sobre uma praça.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Explicar a importância das áreas verdes e as condições para que funcionem.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Vender imóveis em bairros arborizados.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Criticar exclusivamente a população por não cuidar das praças.</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> O texto expõe benefícios das áreas verdes e depois apresenta as condições necessárias (planejamento, manutenção, participação). Isso caracteriza um texto <em>expositivo-argumentativo</em> — informa e defende uma tese.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">07</div>
+            <div class="q-text">No trecho <em>"No entanto, apenas plantar árvores não basta"</em>, a expressão destacada introduz ideia de:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Adição.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Causa.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Oposição.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Conclusão.</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> "No entanto" é conectivo de <em>oposição/contraste</em>. O parágrafo anterior afirmava os benefícios das áreas verdes; este introduz a ideia contrária: só plantar não é suficiente. Decore: <strong>no entanto = mas = porém = contudo</strong>.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="a">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">08</div>
+            <div class="q-text">No trecho <em>"porque árvores ajudam a reduzir a temperatura"</em>, a palavra <strong>porque</strong> indica:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Explicação / causa.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Dúvida.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Lugar.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Condição.</div>
+            <div class="q-explain">✅ <strong>Gabarito A.</strong> "Porque" introduz a <em>causa</em> ou <em>explicação</em> de algo. Aqui explica <em>por que</em> as cidades ampliam áreas verdes. Não confunda com "porquê" (substantivo) ou "por quê" (em perguntas).</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">09</div>
+            <div class="q-text">É possível inferir do texto que áreas verdes urbanas:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> São inúteis quando há prédios altos ao redor.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Trazem benefícios ambientais e sociais simultaneamente.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Servem apenas para decorar a cidade.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Eliminam todos os problemas urbanos.</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> O texto cita benefícios <em>ambientais</em> (temperatura, qualidade do ar) e <em>sociais</em> (convivência, lazer, segurança). A alternativa D usa "todos" — palavra absoluta que quase nunca é o gabarito.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">10</div>
+            <div class="q-text">Em <em>"tornam os espaços públicos mais agradáveis"</em>, o sujeito do verbo <strong>tornam</strong> é:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Cidades.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Árvores.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Praças.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Temperaturas.</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> O trecho completo é: "árvores ajudam a reduzir a temperatura, melhoram a qualidade do ar e <em>tornam</em> os espaços públicos mais agradáveis." O sujeito "árvores" rege os três verbos em série.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="d">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">11</div>
+            <div class="q-text">O trecho <em>"Além disso, praças bem cuidadas estimulam convivência, lazer e sensação de segurança"</em> tem função de:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Contrapor a ideia do parágrafo anterior.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Concluir o raciocínio do texto.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Introduzir uma condição para o argumento.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Acrescentar mais um benefício das áreas verdes.</div>
+            <div class="q-explain">✅ <strong>Gabarito D.</strong> "Além disso" é conectivo de <em>adição</em>. O parágrafo 1 já listava benefícios (temperatura, ar); esse trecho soma mais um: benefícios sociais. Nunca confunda "além disso" com "no entanto" — são opostos.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">12</div>
+            <div class="q-text">A palavra <strong>portanto</strong> no último parágrafo indica:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Oposição ao que foi dito antes.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Uma nova condição que precisa ser cumprida.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Conclusão do argumento apresentado no texto.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Uma causa para o problema descrito.</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> "Portanto" = conectivo de <em>conclusão</em>. O texto apresentou os benefícios e os requisitos; o último parágrafo tira a conclusão: a integração entre poder público e comunidade é o que transforma a praça.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="a">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">13</div>
+            <div class="q-text">Qual é o gênero textual do texto apresentado?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Texto expositivo-argumentativo.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Conto literário.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Anúncio publicitário.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> Poema em prosa.</div>
+            <div class="q-explain">✅ <strong>Gabarito A.</strong> O texto informa (expõe benefícios) e ao mesmo tempo defende uma tese (integração é fundamental). Isso é o expositivo-argumentativo — o gênero mais cobrado nas provas da ETEC.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="b">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">14</div>
+            <div class="q-text">No trecho <em>"capaz de beneficiar a todos, independentemente de renda ou localização"</em>, a expressão em destaque sugere que:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> Apenas moradores ricos têm acesso às praças.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> Os benefícios devem alcançar todos os grupos sociais, sem exceção.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> A renda é o único fator que determina o acesso ao espaço público.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> O local onde a praça fica não importa para seu funcionamento.</div>
+            <div class="q-explain">✅ <strong>Gabarito B.</strong> "Independentemente de renda ou localização" significa <em>sem distinção</em> — inclusão total. A alternativa A contradiz o texto. A C e a D distorcem o sentido da expressão.</div>
+          </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+          <div class="q-head" onclick="toggleQ(this)">
+            <div class="q-num sage">15</div>
+            <div class="q-text">Segundo o texto, o que <strong>não</strong> é suficiente por si só para que as áreas verdes cumpram sua função?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-options">
+            <div class="opt" onclick="answer(this,'a')"><span class="opt-letter">A)</span> A participação da comunidade.</div>
+            <div class="opt" onclick="answer(this,'b')"><span class="opt-letter">B)</span> O planejamento e a manutenção.</div>
+            <div class="opt" onclick="answer(this,'c')"><span class="opt-letter">C)</span> Apenas plantar árvores.</div>
+            <div class="opt" onclick="answer(this,'d')"><span class="opt-letter">D)</span> A integração entre poder público e comunidade.</div>
+            <div class="q-explain">✅ <strong>Gabarito C.</strong> O texto é explícito: <em>"apenas plantar árvores não basta"</em>. As outras alternativas (planejamento, manutenção, participação, integração) são exatamente o que o texto defende como <em>necessário além do plantio</em>.</div>
+          </div>
+        </div>
+
+      </div><!-- /question-list -->
+    </div>
+  </section>
+
+  <!-- ══ BLOCO 3 — CADERNO DE ERROS ══ -->
+  <section class="bloco bloco-3" id="bloco3">
+    <div class="bloco-header">
+      <div class="bloco-num">B3</div>
+      <div class="bloco-info">
+        <h2>Caderno de Erros — Setup do Dia 1</h2>
+        <div class="meta">Montar o caderno e registrar os erros de hoje</div>
+      </div>
+      <div class="timer-badge">20–30 min</div>
+    </div>
+    <div class="bloco-body">
+
+      <div class="intro-box intro-amber">
+        <strong>Por que o Caderno de Erros é tão importante?</strong> Em vez de reler tudo, você revisa só o que errou. A cada semana o caderno fica mais preciso — e errar o mesmo ponto duas vezes é o que você vai eliminar com ele.
+      </div>
+
+      <div class="sec-title"><span>📋</span> Como montar — Passo a passo</div>
+      <div class="caderno-steps">
+        <div class="caderno-step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Escolha o suporte</h4>
+            <p>Caderno físico dedicado, pasta no Google Drive ou arquivo de texto no celular. O importante é um lugar fixo e de fácil acesso.</p>
+          </div>
+        </div>
+        <div class="caderno-step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Divida por matéria</h4>
+            <p>Seções separadas: Português · Matemática · Ciências · Humanas. Facilita a revisão por bloco temático.</p>
+          </div>
+        </div>
+        <div class="caderno-step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Registre com 5 colunas — não só o conteúdo, mas o processo</h4>
+            <p>Questão · Matéria · <strong>Errei por quê?</strong> · Qual é a regra correta · <strong>Como evitar repetir?</strong></p>
+          </div>
+        </div>
+        <div class="caderno-step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Classifique o tipo de erro</h4>
+            <p><strong>Conteúdo</strong> (não sabia o assunto) · <strong>Interpretação</strong> (leu errado o enunciado) · <strong>Distração</strong> (sabia, mas marcou errado)</p>
+          </div>
+        </div>
+        <div class="caderno-step">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <h4>Revise toda sexta-feira</h4>
+            <p>O cronograma já prevê isso. O objetivo não é decorar — é não cometer o mesmo erro pela segunda vez.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-title"><span>📄</span> Modelo de Registro</div>
+      <table class="caderno-table">
+        <thead>
+          <tr>
+            <th>Questão</th>
+            <th>Matéria</th>
+            <th>Errei por quê?</th>
+            <th>Regra correta</th>
+            <th>Como evitar repetir?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Q02 – Dia 1</td>
+            <td>Humanas</td>
+            <td>Confundi a direção — achei que leste = oeste</td>
+            <td>Se A está a oeste de B, então B está a leste de A</td>
+            <td>Desenhar uma bússola rápida antes de responder</td>
+          </tr>
+          <tr>
+            <td>Q07 – Dia 1</td>
+            <td>Português</td>
+            <td>Não reconheci "no entanto" como oposição</td>
+            <td>No entanto = mas = porém = oposição/contraste</td>
+            <td>Grifar o conectivo antes de olhar as alternativas</td>
+          </tr>
+          <tr>
+            <td>— / —</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight">
+        <div class="hl-title">📌 Tarefa agora</div>
+        Registre no caderno todos os erros dos Blocos 1 e 2. Use as 5 colunas. Cada erro bem registrado hoje vale mais do que uma hora de leitura passiva na semana que vem.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ FECHAMENTO DO DIA ══ -->
+  <div class="fechamento" id="fechamento">
+    <div class="fechamento-head">
+      <span style="font-size:1.4rem">🏁</span>
+      <h2>Fechamento do Dia 1</h2>
+    </div>
+    <div class="fechamento-body">
+
+      <div class="sec-title" style="margin-top:0"><span>📊</span> Como foi seu desempenho?</div>
+      <div class="benchmark-grid">
+        <div class="bm-card bm-great">
+          <div class="bm-score">12–15</div>
+          <div class="bm-label">✅ Base muito boa</div>
+          <div class="bm-desc">Ótimo início. Registre os erros e avance normalmente amanhã.</div>
+        </div>
+        <div class="bm-card bm-ok">
+          <div class="bm-score">9–11</div>
+          <div class="bm-label">⚠️ Bom início</div>
+          <div class="bm-desc">Revise os erros hoje mesmo antes de fechar o caderno.</div>
+        </div>
+        <div class="bm-card bm-retry">
+          <div class="bm-score">0–8</div>
+          <div class="bm-label">🔁 Sem drama</div>
+          <div class="bm-desc">Refaça as questões erradas amanhã antes de seguir. Base é base.</div>
+        </div>
+      </div>
+
+      <div class="missao">
+        <h3>🎯 Missão do Dia 1 — cumprida se você:</h3>
+        <ul>
+          <li>Consegue identificar <strong>direção em mapa</strong> usando a rosa dos ventos</li>
+          <li>Sabe o que é <strong>escala</strong> e como funciona a relação mapa/real</li>
+          <li>Identifica a <strong>ideia central</strong> de um texto em uma frase</li>
+          <li>Reconhece os principais <strong>conectivos</strong> (oposição, causa, conclusão, adição)</li>
+          <li>Tem o <strong>caderno de erros montado</strong> e os erros de hoje registrados</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  Apostila — Dia 1 · Vestibulinho ETEC 2026 · Fase 1: Base Forte · 01/04/2026
+</footer>
+
+<script>
+  const TOTAL = 15;
+  const answered = new Set();
+
+  function toggleQ(head) {
+    const card = head.parentElement;
+    card.classList.toggle('open');
+  }
+
+  function answer(optEl, letter) {
+    const card = optEl.closest('.question-card');
+    if (card.dataset.done) return;
+    card.dataset.done = '1';
+
+    const correct = card.dataset.correct;
+    const opts = card.querySelectorAll('.opt');
+    const explain = card.querySelector('.q-explain');
+
+    opts.forEach(o => o.classList.add('disabled'));
+
+    if (letter === correct) {
+      optEl.classList.add('correct');
+    } else {
+      optEl.classList.add('wrong');
+      opts.forEach(o => {
+        const l = o.querySelector('.opt-letter').textContent.replace(')','').trim().toLowerCase();
+        if (l === correct) o.classList.add('correct');
+      });
+    }
+
+    if (explain) explain.style.display = 'block';
+
+    // Track progress
+    const qNum = card.querySelector('.q-num').textContent.trim();
+    answered.add(qNum);
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const done = document.querySelectorAll('.question-card[data-done]').length;
+    const pct = Math.round((done / TOTAL) * 100);
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('prog-pct').textContent = done + ' / ' + TOTAL;
+  }
+</script>
+
+
+  <!-- ══ NAVEGAÇÃO ENTRE APOSTILAS ══ -->
+  <div class="apostila-nav" id="apostila-nav">
+    <a class="anav-btn anav-prev" id="btn-apostila-prev" href="#">
+      <span class="anav-arrow">←</span>
+      <span class="anav-label">Apostila anterior</span>
+      <span class="anav-date" id="prev-date">—</span>
+    </a>
+    <a class="anav-btn anav-cronograma" href="index.html">
+      <span class="anav-icon">📅</span>
+      <span class="anav-label">Cronograma</span>
+      <span class="anav-date">Ver todas as semanas</span>
+    </a>
+    <a class="anav-btn anav-next" id="btn-apostila-next" href="#">
+      <span class="anav-label">Próxima apostila</span>
+      <span class="anav-date" id="next-date">—</span>
+      <span class="anav-arrow">→</span>
+    </a>
+  </div>
+
+  <style>
+    .apostila-nav {
+      max-width: 860px; margin: 0 auto 20px;
+      padding: 0 24px;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: 12px; align-items: stretch;
+    }
+    .anav-btn {
+      display: flex; flex-direction: column;
+      padding: 18px 22px; border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      text-decoration: none; color: var(--text);
+      transition: all .2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    }
+    .anav-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+    .anav-prev { align-items: flex-start; }
+    .anav-cronograma {
+      align-items: center; justify-content: center;
+      background: var(--navy); border-color: var(--navy);
+      color: #fff; text-align: center;
+    }
+    .anav-cronograma:hover { background: #243447; }
+    .anav-next { align-items: flex-end; }
+    .anav-arrow { font-size: 1.2rem; color: var(--muted); margin-bottom: 2px; }
+    .anav-next .anav-arrow { margin-bottom: 0; margin-top: 2px; }
+    .anav-icon { font-size: 1.6rem; margin-bottom: 4px; }
+    .anav-label { font-weight: 600; font-size: .88rem; color: var(--navy); }
+    .anav-cronograma .anav-label { color: #fff; }
+    .anav-date { font-size: .75rem; color: var(--muted); margin-top: 2px; font-family: 'DM Mono', monospace; }
+    .anav-cronograma .anav-date { color: rgba(255,255,255,.6); font-family: 'DM Sans', sans-serif; font-size: .78rem; }
+    .anav-btn.disabled { opacity: .35; pointer-events: none; }
+    @media (max-width: 580px) {
+      .apostila-nav { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script>
+    // ── NAVEGAÇÃO ENTRE APOSTILAS ─────────────────
+    // Detecta o arquivo atual e injeta links prev/next
+    (function() {
+      const filename = window.location.pathname.split('/').pop() || 'apostila_01_04_2026.html';
+      const match = filename.match(/apostila_(\d{2})_(\d{2})_(\d{4})\.html/);
+      if (!match) return;
+
+      const [, dd, mm, yy] = match;
+      const thisDate = `${dd}/${mm}/${yy}`;
+
+      // Tenta usar CRONOGRAMA do config.js se disponível
+      if (typeof CRONOGRAMA !== 'undefined') {
+        const idx = CRONOGRAMA.findIndex(d => d.date === thisDate);
+        const prev = idx > 0 ? CRONOGRAMA[idx - 1] : null;
+        const next = idx >= 0 && idx < CRONOGRAMA.length - 1 ? CRONOGRAMA[idx + 1] : null;
+
+        const prevBtn = document.getElementById('btn-apostila-prev');
+        const nextBtn = document.getElementById('btn-apostila-next');
+        const prevDate = document.getElementById('prev-date');
+        const nextDate = document.getElementById('next-date');
+
+        if (prev) {
+          prevBtn.href = `apostila_${prev.file}.html`;
+          prevDate.textContent = prev.date;
+        } else {
+          prevBtn.classList.add('disabled');
+          prevDate.textContent = 'Início do cronograma';
+        }
+
+        if (next) {
+          nextBtn.href = `apostila_${next.file}.html`;
+          nextDate.textContent = next.date;
+        } else {
+          nextBtn.classList.add('disabled');
+          nextDate.textContent = 'Fim do cronograma';
+        }
+      }
+    })();
+  </script>
+
+</body>
+</html>
