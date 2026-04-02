@@ -1,190 +1,1194 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akemy Estudos · Calendário</title>
-  <meta name="description" content="Calendário mensal do ciclo de estudos do Akemy.">
-  <link rel="stylesheet" href="style.css">
+  <title>Akemy Estudos · ETEC 2026</title>
+  <meta name="description" content="Akemy Estudos — preparação para a ETEC com calendário, fases, progresso e acesso rápido às apostilas.">
   <style>
-    .calendar-only-shell{padding:24px 0 40px}
-    .calendar-only-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:22px;
-      box-shadow:var(--shadow);
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --border: #30363d;
+      --border2: #3d444d;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --text3: #6e7681;
+
+      --green: #2dba6e;
+      --green2: #1f8a4f;
+      --green-lt: rgba(45,186,110,.12);
+
+      --gold: #e3b341;
+      --gold2: #bb8a00;
+      --gold-lt: rgba(227,179,65,.14);
+
+      --blue: #388bfd;
+      --blue-lt: rgba(56,139,253,.12);
+
+      --purple: #bc8cff;
+      --purple-lt: rgba(188,140,255,.12);
+
+      --orange: #f0883e;
+      --orange-lt: rgba(240,136,62,.12);
+
+      --red: #f85149;
+      --red-lt: rgba(248,81,73,.12);
+
+      --content: #2dba6e;
+      --review: #e3b341;
+      --sim: #bc8cff;
+      --rest: #6e7681;
+
+      --phase1: #2dba6e;
+      --phase2: #388bfd;
+      --phase3: #f0883e;
+      --phase4: #bc8cff;
+      --phase5: #f85149;
+
+      --radius: 14px;
+      --shadow: 0 18px 40px rgba(0,0,0,.18);
+      --container: 1180px;
     }
-    .calendar-head{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-bottom:18px;
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
     }
-    .calendar-head h1{
-      margin:8px 0 4px;
-      font-size:clamp(1.8rem,3vw,2.6rem);
-      line-height:1.08;
-      max-width:none;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(45,186,110,.08), transparent 28%),
+        radial-gradient(circle at 100% 18%, rgba(56,139,253,.08), transparent 30%),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.012) 2px, rgba(255,255,255,.012) 4px);
     }
-    .calendar-head p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.7;
-      max-width:60ch;
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .shell { position: relative; z-index: 1; }
+    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
+
+    .header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,17,23,.9);
+      backdrop-filter: blur(8px);
     }
-    .month-nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:18px;
+    .header-inner {
+      padding: 28px 0 24px;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 28px;
+      align-items: center;
     }
-    .month-title{
-      font-size:clamp(1.2rem,2.4vw,1.8rem);
-      font-weight:800;
-      color:var(--text);
-      text-align:center;
-      flex:1;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
     }
-    .weekday-row{
-      display:grid;
-      grid-template-columns:repeat(7,minmax(0,1fr));
-      gap:10px;
-      margin-bottom:10px;
+    .eyebrow-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 0 rgba(45,186,110,.45);
+      animation: pulse 2s infinite;
     }
-    .weekday{
-      text-align:center;
-      color:var(--soft);
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-weight:800;
-      padding-bottom:4px;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(45,186,110,.45); }
+      70% { box-shadow: 0 0 0 10px rgba(45,186,110,0); }
+      100% { box-shadow: 0 0 0 0 rgba(45,186,110,0); }
     }
-    .month-grid{
-      display:grid;
-      grid-template-columns:repeat(7,minmax(0,1fr));
-      gap:10px;
+    .title {
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -1.6px;
     }
-    .day-cell{
-      min-height:170px;
-      border-radius:18px;
-      border:1px solid rgba(31,41,55,.08);
-      background:#fff;
-      padding:12px;
-      display:flex;
-      flex-direction:column;
+    .title .brand { color: var(--green); }
+    .subtitle {
+      margin-top: 12px;
+      color: var(--text2);
+      font-size: 15px;
+      max-width: 64ch;
     }
-    .day-cell.empty{
-      background:transparent;
-      border-style:dashed;
+    .header-actions {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    .day-topline{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:8px;
-      margin-bottom:10px;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      color: var(--text);
+      font-weight: 700;
+      transition: .18s ease;
+      cursor: pointer;
     }
-    .day-number{
-      font-weight:800;
-      font-size:18px;
-      color:var(--text);
+    .btn:hover { transform: translateY(-1px); border-color: var(--border2); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      border-color: transparent;
+      color: #09120d;
     }
-    .day-badge{
-      font-size:10px;
-      text-transform:uppercase;
-      letter-spacing:.09em;
-      padding:6px 8px;
-      border-radius:999px;
-      background:#f8fafc;
-      color:var(--concept);
-      border:1px solid rgba(31,41,55,.08);
-      white-space:nowrap;
+    .btn-ghost:hover {
+      color: var(--green);
+      border-color: rgba(45,186,110,.35);
+      background: var(--green-lt);
     }
-    .day-study{
-      font-size:14px;
-      line-height:1.45;
-      font-weight:700;
-      color:var(--text);
+
+    .countdown {
+      justify-self: end;
+      width: 100%;
+      max-width: 380px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
     }
-    .day-theme{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.45;
+    .countdown-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 10px;
+      font-weight: 800;
     }
-    .day-link{
-      margin-top:auto;
-      display:inline-flex;
-      font-weight:700;
-      text-decoration:none;
-      color:var(--concept);
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
     }
-    .day-link.disabled{
-      color:var(--soft);
+    .cd-unit {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 6px 8px;
+      text-align: center;
     }
-    .mode-conteudo{background:linear-gradient(180deg, rgba(36,59,107,.08), rgba(255,255,255,1))}
-    .mode-revisao{background:linear-gradient(180deg, rgba(233,216,166,.42), rgba(255,255,255,1))}
-    .mode-mini_simulado{background:linear-gradient(180deg, rgba(47,111,94,.10), rgba(255,255,255,1))}
-    .mode-descanso{background:linear-gradient(180deg, rgba(109,86,201,.08), rgba(255,255,255,1))}
-    .toolbar-note{
-      margin-top:18px;
-      color:var(--soft);
-      font-size:.92rem;
-      text-align:center;
+    .cd-num {
+      display: block;
+      color: var(--gold);
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
-    @media (max-width:900px){
-      .weekday-row,.month-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .cd-lbl {
+      display: block;
+      margin-top: 4px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text3);
     }
-    @media (max-width:680px){
-      .weekday-row,.month-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .day-cell{min-height:130px}
-      .calendar-head{align-items:flex-start}
-      .month-nav{gap:8px}
+    .exam-badge {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--gold-lt);
+      border: 1px solid rgba(227,179,65,.35);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .progress-strip {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+    }
+    .progress-inner {
+      padding: 18px 0 20px;
+    }
+    .phase-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .phase-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+    }
+    .phase-track {
+      display: flex;
+      width: 100%;
+      height: 8px;
+      background: var(--bg3);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.04);
+    }
+    .phase-seg { height: 100%; }
+    .progress-meta {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      color: var(--text3);
+      font-size: 11px;
+    }
+    .progress-pct {
+      color: var(--green);
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .hero-stats {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .hero-stats-inner {
+      padding: 18px 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .stat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 94px;
+    }
+    .stat-num {
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--gold);
+      letter-spacing: -1px;
+    }
+    .stat-title {
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .stat-sub {
+      margin-top: 3px;
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(13,17,23,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-scroll {
+      display: flex;
+      gap: 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 0;
+    }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+    .nav-link {
+      padding: 14px 16px;
+      color: var(--text2);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+    .section-head {
+      margin-bottom: 22px;
+    }
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text3);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.04;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+    .section-sub {
+      margin-top: 10px;
+      color: var(--text2);
+      max-width: 72ch;
+      font-size: 15px;
+    }
+
+    .phase-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .phase-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.06);
+      padding: 22px;
+      min-height: 220px;
+      color: white;
+    }
+    .phase-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.12), transparent 55%);
+      pointer-events: none;
+    }
+    .phase-card .phase-big {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 62px;
+      line-height: 1;
+      opacity: .16;
+      font-weight: 900;
+    }
+    .phase-mini {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+      opacity: .8;
+      margin-bottom: 8px;
+    }
+    .phase-name {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 8px;
+    }
+    .phase-period {
+      font-size: 12px;
+      opacity: .85;
+      margin-bottom: 12px;
+    }
+    .phase-days {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .phase-goal {
+      font-size: 13px;
+      line-height: 1.55;
+      max-width: 34ch;
+      opacity: .96;
+    }
+
+    .phase-card.p1 { background: linear-gradient(160deg, #247a4b, #2dba6e); }
+    .phase-card.p2 { background: linear-gradient(160deg, #234d96, #388bfd); }
+    .phase-card.p3 { background: linear-gradient(160deg, #a45718, #f0883e); }
+    .phase-card.p4 { background: linear-gradient(160deg, #7e56c2, #bc8cff); }
+
+    .legend {
+      margin-top: 22px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      gap: 10px 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .legend-title {
+      width: 100%;
+      color: var(--text3);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text2);
+      font-weight: 600;
+    }
+    .legend-dot {
+      width: 12px; height: 12px; border-radius: 4px;
+    }
+
+    .cadence-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+    }
+    .cadence-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 12px;
+      text-align: center;
+      min-height: 152px;
+    }
+    .cadence-day {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      color: var(--text3);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .cadence-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .subject-pill {
+      padding: 5px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      color: white;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .pill-content { background: var(--content); }
+    .pill-review { background: var(--review); color: #1a1405; }
+    .pill-sim { background: var(--sim); }
+    .pill-rest { background: var(--rest); }
+    .cadence-hours {
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .calendar-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .calendar-layout {
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 24px;
+      align-items: start;
+    }
+    .calendar-card, .side-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .calendar-card-head {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .calendar-title-wrap h3 {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -.4px;
+    }
+    .calendar-title-wrap p {
+      font-size: 13px;
+      color: var(--text3);
+      margin-top: 4px;
+    }
+    .month-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .month-name {
+      min-width: 200px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+    }
+
+    .calendar-stage {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: var(--bg2);
+      font-size: 12px;
+      color: var(--text2);
+    }
+    .calendar-stage strong { color: var(--text); }
+    .calendar-grid-wrap { padding: 18px; }
+    .weekday-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .weekday {
+      text-align: center;
+      padding: 8px 4px;
+      font-size: 10px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-weight: 800;
+    }
+    .month-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+    }
+    .day-cell {
+      min-height: 128px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: .16s ease;
+      position: relative;
+    }
+    .day-cell:hover {
+      transform: translateY(-1px);
+      border-color: var(--border2);
+    }
+    .day-cell.empty {
+      background: transparent;
+      border-style: dashed;
+      opacity: .35;
+    }
+    .day-cell.empty:hover { transform: none; }
+    .day-cell.out-of-range {
+      opacity: .35;
+    }
+    .day-cell.sunday {
+      background: rgba(255,255,255,.02);
+    }
+    .day-cell.today {
+      border-color: rgba(45,186,110,.5);
+      box-shadow: inset 0 0 0 1px rgba(45,186,110,.28);
+    }
+    .day-cell.exam {
+      border-color: rgba(227,179,65,.6);
+      box-shadow: inset 0 0 0 1px rgba(227,179,65,.34);
+      background: rgba(227,179,65,.06);
+    }
+    .day-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .day-num {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--text2);
+    }
+    .day-badge {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 6px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .badge-conteudo { color: var(--green); background: var(--green-lt); border-color: rgba(45,186,110,.25); }
+    .badge-revisao { color: var(--gold); background: var(--gold-lt); border-color: rgba(227,179,65,.25); }
+    .badge-mini_simulado { color: var(--purple); background: var(--purple-lt); border-color: rgba(188,140,255,.24); }
+    .badge-descanso { color: var(--text3); background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.06); }
+
+    .day-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: auto;
+    }
+    .day-line {
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: var(--text);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .day-theme {
+      font-size: 11px;
+      color: var(--text3);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .day-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--green);
+    }
+    .day-link.disabled {
+      color: var(--text3);
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .side-card-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .side-card-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text2);
+    }
+    .side-card-body { padding: 16px; }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .mini-stat {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+    .mini-num {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--green);
+    }
+    .mini-num.gold { color: var(--gold); }
+    .mini-num.blue { color: var(--blue); }
+    .mini-num.purple { color: var(--purple); }
+    .mini-label {
+      margin-top: 6px;
+      font-size: 10px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .link-list, .phase-list, .upcoming-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      transition: .16s ease;
+    }
+    .quick-link:hover {
+      border-color: rgba(45,186,110,.32);
+      background: var(--green-lt);
+      color: var(--green);
+    }
+    .quick-link-badge {
+      margin-left: auto;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      background: rgba(255,255,255,.05);
+      color: var(--text3);
+    }
+
+    .phase-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .phase-icon {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .phase-item-title {
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .phase-item-sub {
+      margin-top: 3px;
+      color: var(--text3);
+      font-size: 11px;
+    }
+
+    .upcoming-item {
+      display: flex;
+      gap: 10px;
+      border-left: 2px solid var(--border2);
+      padding: 8px 0 8px 10px;
+    }
+    .upcoming-date {
+      min-width: 56px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      padding-top: 2px;
+    }
+    .upcoming-text strong {
+      display: block;
+      font-size: 12px;
+      color: var(--text);
+      font-weight: 800;
+    }
+    .upcoming-text span {
+      display: block;
+      font-size: 11px;
+      color: var(--text3);
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .note-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .note-card h4 {
+      font-size: 20px;
+      font-weight: 900;
+      margin-top: 10px;
+      margin-bottom: 8px;
+      color: var(--gold);
+    }
+    .note-card p {
+      color: var(--text2);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .note-icon { font-size: 28px; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 34px 0 46px;
+      text-align: center;
+      color: var(--text3);
+      font-size: 12px;
+    }
+    footer strong { color: var(--gold); }
+
+    @media (max-width: 1100px) {
+      .hero-stats-inner { grid-template-columns: repeat(3, 1fr); }
+      .phase-cards { grid-template-columns: repeat(2, 1fr); }
+      .calendar-layout { grid-template-columns: 1fr; }
+      .notes-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 860px) {
+      .header-inner { grid-template-columns: 1fr; }
+      .countdown { justify-self: stretch; max-width: none; }
+      .hero-stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .cadence-grid { grid-template-columns: repeat(4, 1fr); }
+      .month-grid, .weekday-row { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(var(--container), calc(100% - 20px)); }
+      .hero-stats-inner,
+      .phase-cards,
+      .notes-grid,
+      .mini-stats { grid-template-columns: 1fr; }
+      .cadence-grid { grid-template-columns: repeat(2, 1fr); }
+      .month-grid, .weekday-row { grid-template-columns: repeat(2, 1fr); }
+      .calendar-card-head, .calendar-stage { padding-inline: 14px; }
+      .calendar-grid-wrap { padding: 14px; }
+      .month-name { min-width: 0; }
+      .countdown-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
-  <main class="container calendar-only-shell">
-    <section class="calendar-only-card">
-      <div class="calendar-head">
+  <div class="shell">
+    <header class="header">
+      <div class="container header-inner">
         <div>
-          <div class="section-title">Calendário</div>
-          <h1>Visão mensal do ciclo</h1>
-          <p>Navegue pelos meses do plano e abra a apostila do dia diretamente pelo calendário.</p>
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Preparatório Akemy · ETEC 2026</div>
+          <h1 class="title"><span class="brand">AKEMY</span> Estudos <span id="header-year"></span></h1>
+          <p class="subtitle" id="header-subtitle">Cronograma, fases, progresso e acesso rápido às apostilas do projeto.</p>
+          <div class="header-actions">
+            <a class="btn btn-primary" href="#calendario">Abrir calendário</a>
+            <a class="btn btn-ghost" href="#fases">Ver fases</a>
+            <a class="btn btn-ghost" href="#estrutura">Entender a rotina</a>
+          </div>
+        </div>
+
+        <aside class="countdown">
+          <div class="countdown-label">Faltam para a prova</div>
+          <div class="countdown-grid">
+            <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">dias</span></div>
+            <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-lbl">horas</span></div>
+            <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-lbl">min</span></div>
+            <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl">seg</span></div>
+          </div>
+          <div class="exam-badge" id="exam-badge">—</div>
+        </aside>
+      </div>
+    </header>
+
+    <section class="progress-strip">
+      <div class="container progress-inner">
+        <div class="phase-row" id="phase-row"></div>
+        <div class="phase-track" id="phase-track"></div>
+        <div class="progress-meta">
+          <div id="progress-dates">—</div>
+          <div class="progress-pct" id="overall-pct">0% concluído</div>
         </div>
       </div>
-
-      <div class="month-nav">
-        <button class="btn btn-ghost" id="prev-month">◀</button>
-        <div class="month-title" id="month-title">—</div>
-        <button class="btn btn-ghost" id="next-month">▶</button>
-      </div>
-
-      <div class="weekday-row" id="weekday-row"></div>
-      <div class="month-grid" id="month-grid"></div>
-      <p class="toolbar-note">Somente os dias já publicados mostram o link de abertura.</p>
     </section>
-  </main>
+
+    <section class="hero-stats">
+      <div class="container hero-stats-inner">
+        <article class="stat-card">
+          <div class="stat-num" id="stat-study-days">0</div>
+          <div class="stat-title">Dias de estudo</div>
+          <div class="stat-sub">conteúdo, revisão e mini simulado</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-num" id="stat-weeks">0</div>
+          <div class="stat-title">Semanas</div>
+          <div class="stat-sub">planejamento completo</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-num" id="stat-published">0</div>
+          <div class="stat-title">Apostilas publicadas</div>
+          <div class="stat-sub">detectadas automaticamente</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-num" id="stat-current-week">—</div>
+          <div class="stat-title">Semana atual</div>
+          <div class="stat-sub">baseada na data de hoje</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-num" id="stat-phase">—</div>
+          <div class="stat-title">Fase atual</div>
+          <div class="stat-sub">posição no ciclo</div>
+        </article>
+      </div>
+    </section>
+
+    <nav class="sticky-nav">
+      <div class="container nav-scroll">
+        <a class="nav-link active" href="#fases">Fases</a>
+        <a class="nav-link" href="#estrutura">Estrutura semanal</a>
+        <a class="nav-link" href="#calendario">Calendário</a>
+        <a class="nav-link" href="#notas">Princípios do sistema</a>
+      </div>
+    </nav>
+
+    <section class="section" id="fases">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Arquitetura do plano</div>
+          <h2 class="section-title">As fases reais do AKEMY</h2>
+          <p class="section-sub">A lógica pedagógica do AKEMY foi preservada. O que mudou aqui foi a apresentação do sistema: mais forte, mais clara e com visão de produto.</p>
+        </div>
+
+        <div class="phase-cards" id="phase-cards"></div>
+
+        <div class="legend">
+          <div class="legend-title">Legenda da cadência do calendário</div>
+          <div class="legend-item"><span class="legend-dot" style="background: var(--content)"></span> Conteúdo</div>
+          <div class="legend-item"><span class="legend-dot" style="background: var(--review)"></span> Revisão</div>
+          <div class="legend-item"><span class="legend-dot" style="background: var(--sim)"></span> Mini simulado</div>
+          <div class="legend-item"><span class="legend-dot" style="background: var(--rest)"></span> Descanso</div>
+          <div class="legend-item"><span class="legend-dot" style="background: var(--gold)"></span> Dia da prova</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="estrutura">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Ritmo semanal</div>
+          <h2 class="section-title">Como a semana funciona</h2>
+          <p class="section-sub">A espinha do AKEMY continua: segunda a quinta para conteúdo, sexta para revisão, sábado para mini simulado e domingo sem apostila numerada.</p>
+        </div>
+
+        <div class="cadence-grid" id="cadence-grid"></div>
+      </div>
+    </section>
+
+    <section class="section calendar-section" id="calendario">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Visão operacional</div>
+          <h2 class="section-title">Calendário vivo do projeto</h2>
+          <p class="section-sub">Você navega pelos meses, vê o tipo de cada dia e abre a apostila quando ela estiver publicada.</p>
+        </div>
+
+        <div class="calendar-layout">
+          <div class="calendar-card">
+            <div class="calendar-card-head">
+              <div class="calendar-title-wrap">
+                <h3>Calendário do ciclo</h3>
+                <p>Ligado ao <code>config.js</code> real do AKEMY.</p>
+              </div>
+              <div class="month-nav">
+                <button class="btn btn-ghost" id="prev-month">◀</button>
+                <div class="month-name" id="month-name">—</div>
+                <button class="btn btn-ghost" id="next-month">▶</button>
+              </div>
+            </div>
+
+            <div class="calendar-stage">
+              <div><strong id="calendar-phase-label">—</strong> · <span id="calendar-phase-range">—</span></div>
+              <div id="calendar-month-summary">—</div>
+            </div>
+
+            <div class="calendar-grid-wrap">
+              <div class="weekday-row" id="weekday-row"></div>
+              <div class="month-grid" id="month-grid"></div>
+            </div>
+          </div>
+
+          <aside class="sidebar">
+            <section class="side-card">
+              <div class="side-card-head"><div class="side-card-title">Progresso</div></div>
+              <div class="side-card-body">
+                <div class="mini-stats">
+                  <div class="mini-stat">
+                    <div class="mini-num" id="mini-done">0</div>
+                    <div class="mini-label">dias concluídos</div>
+                  </div>
+                  <div class="mini-stat">
+                    <div class="mini-num gold" id="mini-left">0</div>
+                    <div class="mini-label">dias restantes</div>
+                  </div>
+                  <div class="mini-stat">
+                    <div class="mini-num blue" id="mini-reviews">0</div>
+                    <div class="mini-label">revisões</div>
+                  </div>
+                  <div class="mini-stat">
+                    <div class="mini-num purple" id="mini-sims">0</div>
+                    <div class="mini-label">mini simulados</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="side-card">
+              <div class="side-card-head"><div class="side-card-title">Acesso rápido</div></div>
+              <div class="side-card-body">
+                <div class="link-list" id="quick-links"></div>
+              </div>
+            </section>
+
+            <section class="side-card">
+              <div class="side-card-head"><div class="side-card-title">Fases</div></div>
+              <div class="side-card-body">
+                <div class="phase-list" id="phase-list"></div>
+              </div>
+            </section>
+
+            <section class="side-card">
+              <div class="side-card-head"><div class="side-card-title">Próximos marcos</div></div>
+              <div class="side-card-body">
+                <div class="upcoming-list" id="upcoming-list"></div>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="notas">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Direção do produto</div>
+          <h2 class="section-title">O que foi preservado e o que mudou</h2>
+          <p class="section-sub">A casa visual foi elevada para o padrão do projeto ETEC. A lógica curricular continua sendo a do AKEMY.</p>
+        </div>
+
+        <div class="notes-grid">
+          <article class="note-card">
+            <div class="note-icon">🧠</div>
+            <h4>Espinha pedagógica do AKEMY</h4>
+            <p>O cronograma continua vindo do <code>config.js</code> real do repositório, com 216 dias de estudo, revisão na sexta, mini simulado no sábado e descanso no domingo.</p>
+          </article>
+          <article class="note-card">
+            <div class="note-icon">🎛️</div>
+            <h4>Casca no padrão ETEC</h4>
+            <p>Hero forte, countdown, cards, barra de fases, calendário protagonista, sidebar e sensação de plataforma, não de arquivo isolado.</p>
+          </article>
+          <article class="note-card">
+            <div class="note-icon">🚀</div>
+            <h4>Próximo passo natural</h4>
+            <p>Depois do <code>index</code>, o passo de maior impacto é criar o template visual definitivo das apostilas e migrar as páginas internas para o mesmo padrão.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p><strong>AKEMY Estudos · ETEC 2026</strong> · index reformulado com a arquitetura visual inspirada no projeto ETEC e conectado ao cronograma real do AKEMY.</p>
+      </div>
+    </footer>
+  </div>
 
   <script src="config.js"></script>
   <script>
     const cfg = window.AKEMY_CONFIG;
     const helpers = window.AKEMY_HELPERS;
-    const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-    const weekdayNames = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 
-    let state = {
-      currentMonth: 2,
-      currentYear: 2026
+    const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const WEEKDAYS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+    const PHASE_META = [
+      { emoji: '🌱', name: 'Base', color: 'var(--phase1)' },
+      { emoji: '🏗️', name: 'Consolidação', color: 'var(--phase2)' },
+      { emoji: '🔥', name: 'Aprofundamento', color: 'var(--phase3)' },
+      { emoji: '🚀', name: 'Reta final', color: 'var(--phase4)' }
+    ];
+
+    const MODE_LABEL = {
+      conteudo: 'conteúdo',
+      revisao: 'revisão',
+      mini_simulado: 'mini simulado',
+      descanso: 'descanso'
     };
 
-    function isAvailable(dayNumber) {
-      return cfg.availableApostilas.includes(dayNumber);
+    const modeBadgeClass = {
+      conteudo: 'badge-conteudo',
+      revisao: 'badge-revisao',
+      mini_simulado: 'badge-mini_simulado',
+      descanso: 'badge-descanso'
+    };
+
+    const state = {
+      availableApostilas: [],
+      currentYear: 0,
+      currentMonth: 0
+    };
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    function parseIsoLocal(iso) {
+      const [y, m, d] = iso.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function formatLongDate(iso) {
+      const d = parseIsoLocal(iso);
+      return `${String(d.getDate()).padStart(2,'0')} ${MONTHS_PT[d.getMonth()].slice(0,3).toLowerCase()} ${d.getFullYear()}`;
+    }
+
+    function formatHeaderDateTime(isoDateTime) {
+      const d = new Date(isoDateTime);
+      const date = `${String(d.getDate()).padStart(2,'0')} · ${MONTHS_PT[d.getMonth()].slice(0,3).toUpperCase()} · ${d.getFullYear()}`;
+      const time = `${String(d.getHours()).padStart(2,'0')}h${String(d.getMinutes()).padStart(2,'0')}`;
+      return `${date} · ${time}`;
+    }
+
+    function currentPhaseMeta() {
+      const phaseCount = Math.max(cfg.phases.length, 1);
+      return cfg.phases.map((phase, idx) => ({
+        ...phase,
+        emoji: PHASE_META[idx]?.emoji || '📍',
+        shortName: PHASE_META[idx]?.name || phase.label,
+        color: PHASE_META[idx]?.color || 'var(--green)'
+      }));
+    }
+
+    function getStudyDayToday() {
+      const iso = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+      return helpers.getStudyDayByIso(iso);
     }
 
     async function resourceExists(path) {
@@ -192,7 +1196,6 @@
         const head = await fetch(`${path}?v=${Date.now()}`, { method: 'HEAD', cache: 'no-store' });
         if (head.ok) return true;
       } catch (e) {}
-
       try {
         const get = await fetch(`${path}?v=${Date.now()}`, { cache: 'no-store' });
         return get.ok;
@@ -203,7 +1206,7 @@
 
     async function detectAvailableApostilas() {
       if (!cfg.autoDetectApostilas) {
-        cfg.availableApostilas = Array.isArray(cfg.availableApostilas) ? cfg.availableApostilas : [];
+        state.availableApostilas = Array.isArray(cfg.availableApostilas) ? cfg.availableApostilas : [];
         return;
       }
 
@@ -218,84 +1221,360 @@
         published.push(day.number);
       }
 
+      state.availableApostilas = published;
       cfg.availableApostilas = published;
     }
 
-    function renderWeekdays() {
-      const wrap = document.getElementById('weekday-row');
-      wrap.innerHTML = weekdayNames.map(name => `<div class="weekday">${name}</div>`).join('');
+    function isAvailable(dayNumber) {
+      return state.availableApostilas.includes(dayNumber);
+    }
+
+    function fillHeader() {
+      document.getElementById('header-year').textContent = cfg.projectName.replace('Akemy Estudos · ', '');
+      document.getElementById('header-subtitle').textContent = `${cfg.totalStudyDays} dias de estudo · início em ${formatLongDate(cfg.startDate)} · prova em ${formatHeaderDateTime(cfg.examDateTime)}.`;
+      document.getElementById('exam-badge').textContent = formatHeaderDateTime(cfg.examDateTime);
+
+      document.getElementById('stat-study-days').textContent = cfg.totalStudyDays;
+      document.getElementById('stat-weeks').textContent = cfg.weeks.length;
+      document.getElementById('stat-published').textContent = state.availableApostilas.length;
+      const todayDay = getStudyDayToday();
+      document.getElementById('stat-current-week').textContent = todayDay ? String(todayDay.week).padStart(2, '0') : '—';
+      document.getElementById('stat-phase').textContent = helpers.getPhaseByDate(`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`)?.label || '—';
+    }
+
+    function fillCountdown() {
+      const examTime = new Date(cfg.examDateTime);
+
+      function tick() {
+        const diff = examTime - new Date();
+        if (diff <= 0) {
+          ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00');
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('cd-d').textContent = String(d).padStart(3, '0');
+        document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+        document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
+        document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    function renderPhaseProgress() {
+      const phases = currentPhaseMeta();
+      const row = document.getElementById('phase-row');
+      const track = document.getElementById('phase-track');
+
+      row.innerHTML = phases.map(phase => `
+        <span class="phase-label" style="color:${phase.color}">${phase.emoji} ${phase.shortName}</span>
+      `).join('');
+
+      const totalSpan = parseIsoLocal(cfg.endDate) - parseIsoLocal(cfg.startDate);
+      track.innerHTML = phases.map(phase => {
+        const span = parseIsoLocal(phase.end) - parseIsoLocal(phase.start) + 86400000;
+        const width = Math.max((span / (totalSpan + 86400000)) * 100, 4);
+        return `<div class="phase-seg" style="width:${width}%;background:${phase.color};opacity:.9"></div>`;
+      }).join('');
+
+      document.getElementById('progress-dates').textContent = `${formatLongDate(cfg.startDate)} → ${formatLongDate(cfg.endDate)}`;
+
+      const daysDone = cfg.studyDays.filter(day => day.mode !== 'descanso' && parseIsoLocal(day.date) < today).length;
+      const pct = Math.round((daysDone / cfg.totalStudyDays) * 100);
+      document.getElementById('overall-pct').textContent = `${pct}% concluído`;
+    }
+
+    function renderPhaseCards() {
+      const phases = currentPhaseMeta();
+      const phaseCards = document.getElementById('phase-cards');
+      phaseCards.innerHTML = phases.map((phase, idx) => {
+        const weeksInPhase = cfg.weeks.filter(week => week.arc === phase.label).length;
+        const focus = idx === 0
+          ? 'Construir a base com clareza e acertar o ritmo.'
+          : idx === 1
+            ? 'Consolidar recorrências, revisar e aprofundar.'
+            : idx === 2
+              ? 'Misturar assuntos e elevar a leitura de prova.'
+              : 'Refinar, revisar e ganhar segurança final.';
+        return `
+          <article class="phase-card p${idx + 1}">
+            <div class="phase-big">${idx + 1}</div>
+            <div class="phase-mini">${phase.emoji} fase ${idx + 1}</div>
+            <div class="phase-name">${phase.shortName}</div>
+            <div class="phase-period">${formatLongDate(phase.start)} → ${formatLongDate(phase.end)}</div>
+            <div class="phase-days">${weeksInPhase} semanas</div>
+            <div class="phase-goal">${focus}</div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderCadence() {
+      const cadenceGrid = document.getElementById('cadence-grid');
+      const cards = [
+        { day: 'Segunda', pills: ['conteúdo'], hours: 'conteúdo novo' },
+        { day: 'Terça', pills: ['conteúdo'], hours: 'conteúdo novo' },
+        { day: 'Quarta', pills: ['conteúdo'], hours: 'conteúdo novo' },
+        { day: 'Quinta', pills: ['conteúdo'], hours: 'conteúdo novo' },
+        { day: 'Sexta', pills: ['revisão'], hours: 'consolidar a semana' },
+        { day: 'Sábado', pills: ['mini simulado'], hours: 'medir nível e corrigir' },
+        { day: 'Domingo', pills: ['descanso'], hours: 'sem apostila numerada' }
+      ];
+
+      cadenceGrid.innerHTML = cards.map(card => `
+        <article class="cadence-card">
+          <div class="cadence-day">${card.day}</div>
+          <div class="cadence-stack">
+            ${card.pills.map(label => {
+              const cls = label === 'conteúdo' ? 'pill-content' : label === 'revisão' ? 'pill-review' : label === 'mini simulado' ? 'pill-sim' : 'pill-rest';
+              return `<span class="subject-pill ${cls}">${label}</span>`;
+            }).join('')}
+          </div>
+          <div class="cadence-hours">${card.hours}</div>
+        </article>
+      `).join('');
+    }
+
+    function getMonthPhase(date) {
+      const iso = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+      return helpers.getPhaseByDate(iso);
+    }
+
+    function renderCalendarWeekdays() {
+      const row = document.getElementById('weekday-row');
+      row.innerHTML = WEEKDAYS.map(day => `<div class="weekday">${day}</div>`).join('');
+    }
+
+    function updateMonthSummary() {
+      const first = new Date(state.currentYear, state.currentMonth, 1);
+      const monthDays = cfg.studyDays.filter(day => {
+        const d = parseIsoLocal(day.date);
+        return d.getMonth() === first.getMonth() && d.getFullYear() === first.getFullYear();
+      });
+
+      const phase = getMonthPhase(new Date(state.currentYear, state.currentMonth, 15));
+      document.getElementById('calendar-phase-label').textContent = phase?.label || 'Fora do ciclo';
+      document.getElementById('calendar-phase-range').textContent = phase ? `${formatLongDate(phase.start)} → ${formatLongDate(phase.end)}` : '—';
+      document.getElementById('calendar-month-summary').textContent = `${monthDays.filter(d => d.mode !== 'descanso').length} dias úteis do plano`;
     }
 
     function renderCalendar() {
-      const grid = document.getElementById('month-grid');
-      grid.innerHTML = '';
+      const monthName = document.getElementById('month-name');
+      const monthGrid = document.getElementById('month-grid');
+
+      monthName.textContent = `${MONTHS_PT[state.currentMonth]} de ${state.currentYear}`;
+      updateMonthSummary();
 
       const firstDay = new Date(state.currentYear, state.currentMonth, 1);
       const lastDay = new Date(state.currentYear, state.currentMonth + 1, 0);
-      const offset = firstDay.getDay();
-      document.getElementById('month-title').textContent = `${monthNames[state.currentMonth]} de ${state.currentYear}`;
+      const startOffset = firstDay.getDay();
 
-      for (let i = 0; i < offset; i++) {
+      monthGrid.innerHTML = '';
+
+      for (let i = 0; i < startOffset; i++) {
         const empty = document.createElement('div');
         empty.className = 'day-cell empty';
-        grid.appendChild(empty);
+        monthGrid.appendChild(empty);
       }
 
       for (let day = 1; day <= lastDay.getDate(); day++) {
-        const currentDate = new Date(state.currentYear, state.currentMonth, day);
-        const iso = currentDate.toISOString().slice(0, 10);
+        const date = new Date(state.currentYear, state.currentMonth, day);
+        const iso = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
         const study = helpers.getStudyDayByIso(iso);
         const cell = document.createElement('div');
-        cell.className = 'day-cell';
 
         if (!study) {
-          cell.innerHTML = `<div class="day-number">${day}</div><div class="day-theme">fora do plano</div>`;
-          grid.appendChild(cell);
+          cell.className = 'day-cell out-of-range';
+          cell.innerHTML = `
+            <div class="day-top">
+              <div class="day-num">${day}</div>
+            </div>
+            <div class="day-info">
+              <div class="day-line">fora do plano</div>
+            </div>
+          `;
+          monthGrid.appendChild(cell);
           continue;
         }
 
+        const isToday = date.getTime() === today.getTime();
+        const isExam = iso === cfg.examDateTime.slice(0, 10);
         const available = study.mode !== 'descanso' && isAvailable(study.number);
-        cell.classList.add(`mode-${study.mode}`);
+
+        cell.className = `day-cell ${date.getDay() === 0 ? 'sunday' : ''} ${isToday ? 'today' : ''} ${isExam ? 'exam' : ''}`;
 
         cell.innerHTML = `
-          <div class="day-topline">
-            <div class="day-number">${day}</div>
-            <div class="day-badge">${study.mode.replace('_',' ')}</div>
+          <div class="day-top">
+            <div class="day-num">${day}</div>
+            <div class="day-badge ${modeBadgeClass[study.mode]}">${MODE_LABEL[study.mode]}</div>
           </div>
-          <div class="day-study">${study.mode === 'descanso' ? study.title : `#${helpers.formatDayNumber(study.number)} · ${study.title}`}</div>
-          <div class="day-theme">${study.theme}</div>
-          ${study.mode === 'descanso'
-            ? `<span class="day-link disabled">pausa</span>`
-            : available
-              ? `<a class="day-link" href="${study.href}">abrir apostila</a>`
-              : `<span class="day-link disabled">em breve</span>`}
+          <div class="day-info">
+            <div class="day-line">${study.mode === 'descanso' ? study.title : `#${helpers.formatDayNumber(study.number)} · ${study.title}`}</div>
+            <div class="day-theme">${study.theme}</div>
+            ${study.mode === 'descanso'
+              ? `<span class="day-link disabled">pausa</span>`
+              : available
+                ? `<a class="day-link" href="${study.href}">abrir apostila →</a>`
+                : `<span class="day-link disabled">em breve</span>`
+            }
+          </div>
         `;
-        grid.appendChild(cell);
+        monthGrid.appendChild(cell);
+      }
+    }
+
+    function initMonthState() {
+      const startDate = parseIsoLocal(cfg.startDate);
+      if (today >= startDate && today <= parseIsoLocal(cfg.endDate)) {
+        state.currentYear = today.getFullYear();
+        state.currentMonth = today.getMonth();
+      } else {
+        state.currentYear = startDate.getFullYear();
+        state.currentMonth = startDate.getMonth();
       }
     }
 
     function changeMonth(step) {
-      let nextMonth = state.currentMonth + step;
-      let nextYear = state.currentYear;
+      let month = state.currentMonth + step;
+      let year = state.currentYear;
 
-      if (nextMonth < 0) { nextMonth = 11; nextYear--; }
-      if (nextMonth > 11) { nextMonth = 0; nextYear++; }
+      if (month < 0) { month = 11; year--; }
+      if (month > 11) { month = 0; year++; }
 
-      if (nextYear !== 2026) return;
-      if (nextMonth < 2 || nextMonth > 10) return;
+      const start = parseIsoLocal(cfg.startDate);
+      const end = parseIsoLocal(cfg.endDate);
+      const candidate = new Date(year, month, 15);
 
-      state.currentMonth = nextMonth;
-      state.currentYear = nextYear;
+      if (candidate < new Date(start.getFullYear(), start.getMonth(), 1)) return;
+      if (candidate > new Date(end.getFullYear(), end.getMonth(), 31)) return;
+
+      state.currentMonth = month;
+      state.currentYear = year;
       renderCalendar();
     }
 
-    document.getElementById('prev-month').addEventListener('click', () => changeMonth(-1));
-    document.getElementById('next-month').addEventListener('click', () => changeMonth(1));
+    function renderSidebar() {
+      const nonRestDays = cfg.studyDays.filter(d => d.mode !== 'descanso');
+      const completed = nonRestDays.filter(d => parseIsoLocal(d.date) < today).length;
+      const reviews = cfg.studyDays.filter(d => d.mode === 'revisao').length;
+      const sims = cfg.studyDays.filter(d => d.mode === 'mini_simulado').length;
+
+      document.getElementById('mini-done').textContent = completed;
+      document.getElementById('mini-left').textContent = Math.max(cfg.totalStudyDays - completed, 0);
+      document.getElementById('mini-reviews').textContent = reviews;
+      document.getElementById('mini-sims').textContent = sims;
+
+      const firstPublished = state.availableApostilas[0];
+      const lastPublished = state.availableApostilas[state.availableApostilas.length - 1];
+      const firstPublishedDay = cfg.studyDays.find(d => d.number === firstPublished);
+      const lastPublishedDay = cfg.studyDays.find(d => d.number === lastPublished);
+      const todayStudy = getStudyDayToday();
+      const nextReview = cfg.studyDays.find(d => d.mode === 'revisao' && parseIsoLocal(d.date) >= today);
+      const nextSim = cfg.studyDays.find(d => d.mode === 'mini_simulado' && parseIsoLocal(d.date) >= today);
+
+      const quickLinks = [
+        firstPublishedDay ? {
+          label: 'Primeira apostila publicada',
+          href: firstPublishedDay.href,
+          badge: `#${helpers.formatDayNumber(firstPublishedDay.number)}`
+        } : null,
+        lastPublishedDay ? {
+          label: 'Última apostila publicada',
+          href: lastPublishedDay.href,
+          badge: `#${helpers.formatDayNumber(lastPublishedDay.number)}`
+        } : null,
+        todayStudy && todayStudy.mode !== 'descanso' ? {
+          label: 'Apostila do dia',
+          href: isAvailable(todayStudy.number) ? todayStudy.href : '#calendario',
+          badge: isAvailable(todayStudy.number) ? 'hoje' : 'em breve'
+        } : {
+          label: 'Ver calendário do mês',
+          href: '#calendario',
+          badge: 'agenda'
+        },
+        nextReview ? {
+          label: 'Próxima revisão',
+          href: '#calendario',
+          badge: formatLongDate(nextReview.date)
+        } : null,
+        nextSim ? {
+          label: 'Próximo mini simulado',
+          href: '#calendario',
+          badge: formatLongDate(nextSim.date)
+        } : null
+      ].filter(Boolean);
+
+      document.getElementById('quick-links').innerHTML = quickLinks.map(link => `
+        <a class="quick-link" href="${link.href}">
+          <span>→</span>
+          <span>${link.label}</span>
+          <span class="quick-link-badge">${link.badge}</span>
+        </a>
+      `).join('');
+
+      const phases = currentPhaseMeta();
+      document.getElementById('phase-list').innerHTML = phases.map((phase, idx) => `
+        <div class="phase-item">
+          <div class="phase-icon" style="background:${phase.color}22;color:${phase.color}">${phase.emoji}</div>
+          <div>
+            <div class="phase-item-title">${phase.label}</div>
+            <div class="phase-item-sub">${formatLongDate(phase.start)} → ${formatLongDate(phase.end)}</div>
+          </div>
+        </div>
+      `).join('');
+
+      const upcoming = cfg.studyDays
+        .filter(day => parseIsoLocal(day.date) >= today)
+        .slice(0, 7);
+
+      document.getElementById('upcoming-list').innerHTML = upcoming.map(day => {
+        const color = day.mode === 'conteudo' ? 'var(--green)' : day.mode === 'revisao' ? 'var(--gold)' : day.mode === 'mini_simulado' ? 'var(--purple)' : 'var(--text3)';
+        return `
+          <div class="upcoming-item" style="border-left-color:${color}">
+            <div class="upcoming-date">${formatLongDate(day.date)}</div>
+            <div class="upcoming-text">
+              <strong>${day.mode === 'descanso' ? 'Descanso' : `#${helpers.formatDayNumber(day.number)} · ${day.title}`}</strong>
+              <span>${day.theme}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function bindNav() {
+      document.getElementById('prev-month').addEventListener('click', () => changeMonth(-1));
+      document.getElementById('next-month').addEventListener('click', () => changeMonth(1));
+
+      const links = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section[id]');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          links.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+          });
+        });
+      }, { threshold: .35 });
+
+      sections.forEach(section => observer.observe(section));
+    }
 
     async function bootstrap() {
-      renderWeekdays();
+      initMonthState();
+      renderCalendarWeekdays();
       await detectAvailableApostilas();
+      fillHeader();
+      fillCountdown();
+      renderPhaseProgress();
+      renderPhaseCards();
+      renderCadence();
       renderCalendar();
+      renderSidebar();
+      bindNav();
     }
 
     bootstrap();
