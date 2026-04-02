@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apostila 1 | Etec | 01/04/2026</title>
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --primary: #1d4ed8;
+      --primary-soft: #dbeafe;
+      --good: #166534;
+      --good-soft: #dcfce7;
+      --wrong: #b91c1c;
+      --wrong-soft: #fee2e2;
+      --warn: #92400e;
+      --warn-soft: #fef3c7;
+      --shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 140px);
+      color: var(--ink);
+      line-height: 1.58;
+    }
+    .wrap { width: min(1100px, calc(100% - 32px)); margin: 32px auto 80px; }
+    .hero {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+    .kicker {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #eff6ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    h1, h2, h3, h4 { margin: 0 0 12px; }
+    h1 { font-size: 34px; line-height: 1.12; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 18px; }
+    h4 { font-size: 16px; }
+    .hero p { margin: 0; max-width: 780px; color: #dbeafe; font-size: 16px; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .meta-item {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .meta-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #bfdbfe;
+      margin-bottom: 6px;
+    }
+    .meta-value { font-size: 16px; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      grid-column: span 12;
+    }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .tag {
+      display: inline-block;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0 6px 6px 0;
+      border: 1px solid transparent;
+    }
+    .tag.primary { background: var(--primary-soft); color: var(--primary); border-color: #bfdbfe; }
+    .tag.good { background: var(--good-soft); color: var(--good); border-color: #bbf7d0; }
+    .tag.warn { background: var(--warn-soft); color: var(--warn); border-color: #fde68a; }
+    .box { border-radius: 16px; padding: 16px 18px; margin-top: 14px; border: 1px solid transparent; }
+    .box.primary { background: #eff6ff; border-color: #bfdbfe; }
+    .box.good { background: #ecfdf5; border-color: #bbf7d0; }
+    .box.warn { background: #fffbeb; border-color: #fde68a; }
+    ol, ul { margin: 10px 0 0 22px; padding: 0; }
+    li + li { margin-top: 8px; }
+    .text-base { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 18px; padding: 18px; margin-top: 12px; }
+    .formula {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .checkpoint {
+      margin-top: 14px;
+      border: 1px solid #dbeafe;
+      border-radius: 16px;
+      background: #f8fbff;
+      padding: 14px 16px;
+    }
+    .checkpoint p { margin: 0 0 10px; }
+    .question-card {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fcfcff;
+      overflow: hidden;
+    }
+    .question-head { padding: 18px 18px 10px; }
+    .question-title { font-weight: 700; margin-bottom: 8px; }
+    .answers { display: grid; gap: 10px; padding: 0 18px 18px; }
+    .answer-btn {
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      color: var(--ink);
+      font-size: 15px;
+    }
+    .answer-btn:hover { transform: translateY(-1px); border-color: #93c5fd; }
+    .answer-btn.is-correct { background: var(--good-soft); border-color: #22c55e; color: #14532d; }
+    .answer-btn.is-wrong { background: var(--wrong-soft); border-color: #ef4444; color: #7f1d1d; }
+    .answer-btn:disabled { cursor: default; }
+    .feedback {
+      display: none;
+      margin: 0 18px 18px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+    }
+    .feedback.show { display: block; }
+    .feedback.correct { background: var(--good-soft); color: #14532d; border: 1px solid #22c55e; }
+    .feedback.wrong { background: var(--wrong-soft); color: #7f1d1d; border: 1px solid #ef4444; }
+    details { margin-top: 14px; border: 1px solid var(--line); border-radius: 16px; background: #fff; overflow: hidden; }
+    summary { cursor: pointer; padding: 16px 18px; font-weight: 700; background: #f9fafb; }
+    details > div { padding: 0 18px 18px; }
+    .calc {
+      margin-top: 10px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      white-space: pre-line;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .nav-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+    .nav-btn:hover { background: #dbeafe; }
+    .nav-btn.disabled { background: #f3f4f6; color: #9ca3af; border-color: #e5e7eb; pointer-events: none; }
+    .footer { margin-top: 22px; color: var(--muted); font-size: 14px; text-align: center; }
+    @media (max-width: 900px) {
+      .span-8, .span-6, .span-4 { grid-column: span 12; }
+      .meta { grid-template-columns: repeat(2, 1fr); }
+      .split { grid-template-columns: 1fr; }
+      h1 { font-size: 28px; }
+      .hero, .card { padding: 20px; }
+    }
+    @media (max-width: 560px) {
+      .meta { grid-template-columns: 1fr; }
+      .wrap { width: min(100%, calc(100% - 20px)); margin-top: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="kicker">Projeto Etec • Apostila 1</div>
+      <h1>Diagnóstico + base inicial forte</h1>
+      <p>Esta apostila foi reforçada para o seu primeiro dia de estudo. O foco continua enxuto, mas agora com profundidade suficiente para estudo autônomo: leitura objetiva, ideia principal, armadilhas de interpretação e frações com aplicação real.</p>
+      <div class="meta">
+        <div class="meta-item"><div class="meta-label">Data de estudo</div><div class="meta-value">01/04/2026</div></div>
+        <div class="meta-item"><div class="meta-label">Carga sugerida</div><div class="meta-value">1h50 a 2h20</div></div>
+        <div class="meta-item"><div class="meta-label">Foco</div><div class="meta-value">Português + Matemática</div></div>
+        <div class="meta-item"><div class="meta-label">Meta do dia</div><div class="meta-value">Ler melhor e errar menos</div></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card span-8">
+        <h2>Objetivo da apostila</h2>
+        <p>Hoje você vai construir a base que mais reaparece no Vestibulinho. O objetivo não é estudar muita coisa: é estudar o que mais gera acerto. Por isso, esta apostila concentra esforço em dois pilares de altíssimo retorno: leitura e frações. Eles parecem simples, mas aparecem escondidos em praticamente toda a prova.</p>
+        <div style="margin-top: 12px;">
+          <span class="tag primary">Interpretação literal</span>
+          <span class="tag primary">Ideia principal</span>
+          <span class="tag primary">Armadilhas de leitura</span>
+          <span class="tag good">Frações</span>
+          <span class="tag good">Equivalência</span>
+          <span class="tag good">Aplicação em problemas</span>
+        </div>
+      </article>
+
+      <article class="card span-4">
+        <h2>Como usar esta apostila</h2>
+        <ol>
+          <li>Resolva o diagnóstico antes da teoria.</li>
+          <li>Leia a explicação inteira, sem pular os exemplos.</li>
+          <li>Ao errar, descubra se foi leitura, conta ou distração.</li>
+          <li>Só avance quando entender por que a correta é correta.</li>
+        </ol>
+        <div class="box warn"><strong>Regra do dia:</strong> a pressa vai parecer produtividade, mas hoje ela só atrapalha.</div>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 1 • Diagnóstico inicial</h2>
+        <p>Resolva sem consultar nada. O objetivo aqui é revelar seu ponto de partida real.</p>
+
+        <div class="text-base">
+          <strong>Texto para as questões 1 e 2</strong>
+          <p>Uma escola decidiu reorganizar sua biblioteca para facilitar o acesso dos estudantes aos livros mais usados. Para isso, criou um espaço exclusivo para obras de consulta frequente, como dicionários, gramáticas, atlas e livros de apoio. Com a mudança, os alunos passaram a localizar mais rapidamente os materiais necessários para as aulas e para os estudos em casa.</p>
+        </div>
+
+        <div class="question-card" data-correct="B">
+          <div class="question-head"><div class="question-title">1. O objetivo principal da reorganização da biblioteca foi</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) aumentar a quantidade de livros da escola.</button>
+            <button class="answer-btn" data-letter="B">(B) facilitar o acesso aos materiais mais usados.</button>
+            <button class="answer-btn" data-letter="C">(C) reduzir o número de alunos na biblioteca.</button>
+            <button class="answer-btn" data-letter="D">(D) trocar todos os livros antigos por novos.</button>
+            <button class="answer-btn" data-letter="E">(E) separar livros apenas para os professores.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="C">
+          <div class="question-head"><div class="question-title">2. Segundo o texto, os alunos passaram a</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) usar menos livros de apoio.</button>
+            <button class="answer-btn" data-letter="B">(B) estudar somente dentro da escola.</button>
+            <button class="answer-btn" data-letter="C">(C) localizar mais rapidamente os materiais.</button>
+            <button class="answer-btn" data-letter="D">(D) frequentar menos a biblioteca.</button>
+            <button class="answer-btn" data-letter="E">(E) substituir aulas por leituras.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="A">
+          <div class="question-head"><div class="question-title">3. Qual fração representa a parte colorida de uma figura dividida em 8 partes iguais, das quais 6 estão pintadas?</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) 6/8</button>
+            <button class="answer-btn" data-letter="B">(B) 8/6</button>
+            <button class="answer-btn" data-letter="C">(C) 2/6</button>
+            <button class="answer-btn" data-letter="D">(D) 6/2</button>
+            <button class="answer-btn" data-letter="E">(E) 8/2</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="B">
+          <div class="question-head"><div class="question-title">4. A fração equivalente a 1/2 é</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) 2/3</button>
+            <button class="answer-btn" data-letter="B">(B) 2/4</button>
+            <button class="answer-btn" data-letter="C">(C) 3/4</button>
+            <button class="answer-btn" data-letter="D">(D) 4/10</button>
+            <button class="answer-btn" data-letter="E">(E) 5/12</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="B">
+          <div class="question-head"><div class="question-title">5. Quanto é 1/3 + 1/3?</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) 1/6</button>
+            <button class="answer-btn" data-letter="B">(B) 2/3</button>
+            <button class="answer-btn" data-letter="C">(C) 2/6</button>
+            <button class="answer-btn" data-letter="D">(D) 3/3</button>
+            <button class="answer-btn" data-letter="E">(E) 1/9</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="B">
+          <div class="question-head"><div class="question-title">6. Uma garrafa foi preenchida com 3/4 de litro de água. Se foram consumidos 1/4 de litro, restou</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) 1/4</button>
+            <button class="answer-btn" data-letter="B">(B) 1/2</button>
+            <button class="answer-btn" data-letter="C">(C) 2/4</button>
+            <button class="answer-btn" data-letter="D">(D) 3/4</button>
+            <button class="answer-btn" data-letter="E">(E) 4/4</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+      </article>
+
+      <article class="card span-6">
+        <h2>Bloco 2 • Teoria de Português</h2>
+        <h3>1. O que a prova mais cobra aqui</h3>
+        <p>A Etec gosta de textos curtos, mas com perguntas que exigem atenção. No começo da preparação, o mais importante é dominar três coisas: localizar informação explícita, descobrir a ideia principal e não cair em alternativa bonita que não foi dita no texto.</p>
+
+        <h3>2. Leitura literal</h3>
+        <p>Leitura literal é quando a resposta está claramente escrita. A prova troca palavras, reorganiza a frase ou resume um trecho, mas continua falando a mesma coisa. O erro mais comum é responder com base no que parece lógico, não com base no que está no texto.</p>
+        <div class="box primary"><strong>Pergunta-chave:</strong> “Eu consigo apontar no texto a parte que sustenta minha resposta?” Se sim, provavelmente é leitura literal.</div>
+
+        <h3>3. Ideia principal</h3>
+        <p>Todo texto tem uma mensagem central. Os detalhes ajudam, mas não mandam. A ideia principal normalmente responde: “sobre o que este texto quer falar afinal?”</p>
+        <div class="split">
+          <div class="box good"><strong>Exemplo de ideia principal</strong><br>“A escola reorganizou a biblioteca para facilitar o acesso aos materiais mais usados.”</div>
+          <div class="box warn"><strong>Exemplo de detalhe</strong><br>“Entre os materiais estavam dicionários, gramáticas e atlas.”</div>
+        </div>
+
+        <h3>4. Três armadilhas clássicas</h3>
+        <ul>
+          <li><strong>Exagero:</strong> a alternativa usa palavras como sempre, nunca, todos, apenas, e distorce o texto.</li>
+          <li><strong>Invenção:</strong> parece coerente, mas não foi dito.</li>
+          <li><strong>Troca de foco:</strong> pega um detalhe verdadeiro e faz parecer que ele é a mensagem central.</li>
+        </ul>
+
+        <div class="checkpoint">
+          <p><strong>Checklist rápido antes de marcar:</strong></p>
+          <ul>
+            <li>Essa alternativa responde exatamente ao que foi perguntado?</li>
+            <li>Ela está apoiada no texto, não na minha opinião?</li>
+            <li>Ela fala do principal ou só de um detalhe?</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card span-6">
+        <h2>Bloco 3 • Teoria de Matemática</h2>
+        <div class="box warn"><strong>Escopo desta apostila:</strong><br>Hoje você vai aprender frações em sua base: leitura da fração, equivalência, comparação em casos simples e soma/subtração com <strong>denominadores iguais</strong>. <strong>Soma e subtração com denominadores diferentes serão ensinadas na Apostila 2, prevista para 02/04/2026</strong>, para não misturar fundamentos com um passo novo antes da hora.</div>
+        <h3>1. O que é fração</h3>
+        <p>Fração representa partes de um todo dividido em partes iguais. Em <strong>3/5</strong>, o numerador mostra quantas partes foram consideradas e o denominador mostra em quantas partes iguais o todo foi dividido.</p>
+        <div class="formula">numerador / denominador</div>
+
+        <h3>2. Frações equivalentes</h3>
+        <p>Frações equivalentes têm o mesmo valor, mesmo com números diferentes. Isso acontece quando multiplicamos ou dividimos numerador e denominador pelo mesmo número.</p>
+        <div class="formula">1/2 = 2/4 = 3/6</div>
+
+        <h3>3. Como comparar frações</h3>
+        <p>Quando os denominadores são iguais, vence a fração com maior numerador. Quando os numeradores são iguais, vence a fração com menor denominador, porque o todo foi dividido em menos partes e cada parte ficou maior.</p>
+        <div class="split">
+          <div class="box primary"><strong>Mesmo denominador</strong><br>5/8 &gt; 3/8</div>
+          <div class="box primary"><strong>Mesmo numerador</strong><br>1/3 &gt; 1/5</div>
+        </div>
+
+        <h3>4. Soma e subtração</h3>
+        <p>Quando os denominadores já são iguais, mantemos o denominador e operamos só os numeradores.</p>
+        <div class="formula">2/7 + 3/7 = 5/7</div>
+        <div class="formula">6/9 - 2/9 = 4/9</div>
+        <div class="box warn"><strong>E quando o denominador é diferente?</strong><br>Não se preocupe: esse caso <strong>não foi esquecido</strong>. Ele será ensinado na <strong>Apostila 2 (02/04/2026)</strong>, junto com o passo de transformar frações para o mesmo denominador antes de somar ou subtrair.</div>
+
+        <h3>5. Onde isso volta na prova</h3>
+        <ul>
+          <li>porcentagem</li>
+          <li>razão e proporção</li>
+          <li>gráficos e tabelas</li>
+          <li>problemas com quantidade, consumo e divisão</li>
+        </ul>
+
+        <div class="checkpoint">
+          <p><strong>Erro mais comum:</strong> inverter o sentido da fração. Se 6 de 8 partes estão pintadas, a fração é <strong>6/8</strong>, não <strong>8/6</strong>.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 4 • Exemplo resolvido</h2>
+        <div class="box primary"><strong>Importante:</strong> neste primeiro dia os exemplos foram mantidos com denominadores iguais de propósito. O próximo passo do estudo será aprender a lidar com denominadores diferentes sem decorar fórmula solta.</div>
+        <div class="split">
+          <div class="text-base">
+            <strong>Exemplo de interpretação</strong>
+            <p><strong>Pergunta:</strong> Qual foi o objetivo da reorganização da biblioteca?</p>
+            <p><strong>Passo 1:</strong> procure no texto a ação principal.</p>
+            <p><strong>Passo 2:</strong> encontre a justificativa dessa ação.</p>
+            <p><strong>Passo 3:</strong> elimine alternativas que inventam efeito colateral como se fosse objetivo.</p>
+            <div class="box good"><strong>Conclusão:</strong> o objetivo foi facilitar o acesso aos materiais mais usados.</div>
+          </div>
+          <div class="text-base">
+            <strong>Exemplo com fração</strong>
+            <p><strong>Problema:</strong> uma pizza foi dividida em 8 partes iguais e 6 foram consumidas. Que fração representa a parte consumida?</p>
+            <p><strong>Passo 1:</strong> veja o total de partes: 8.</p>
+            <p><strong>Passo 2:</strong> veja quantas foram consumidas: 6.</p>
+            <p><strong>Passo 3:</strong> monte a fração na ordem certa: consumidas sobre total.</p>
+            <div class="box good"><strong>Conclusão:</strong> a fração é 6/8.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 5 • Exercícios de fixação</h2>
+        <div class="text-base">
+          <strong>Texto para as questões 7 a 9</strong>
+          <p>Um grupo de estudantes decidiu montar uma horta na escola. Primeiro, organizaram o espaço, limparam o terreno e separaram os materiais. Depois, escolheram as sementes mais adequadas, prepararam o solo e definiram uma escala de cuidados diários. Em pouco tempo, a horta começou a produzir temperos e hortaliças usados em atividades pedagógicas.</p>
+        </div>
+
+        <div class="question-card" data-correct="B">
+          <div class="question-head"><div class="question-title">7. A ordem correta das ações realizadas pelo grupo foi</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) colher, limpar, plantar e organizar.</button>
+            <button class="answer-btn" data-letter="B">(B) limpar, escolher, preparar e cuidar.</button>
+            <button class="answer-btn" data-letter="C">(C) escolher, colher, limpar e regar.</button>
+            <button class="answer-btn" data-letter="D">(D) preparar, colher, escolher e organizar.</button>
+            <button class="answer-btn" data-letter="E">(E) cuidar, limpar, plantar e colher.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="B">
+          <div class="question-head"><div class="question-title">8. A ideia principal do texto é</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) mostrar como a escola passou a vender alimentos.</button>
+            <button class="answer-btn" data-letter="B">(B) explicar como os estudantes organizaram uma horta.</button>
+            <button class="answer-btn" data-letter="C">(C) defender que toda escola tenha uma fazenda.</button>
+            <button class="answer-btn" data-letter="D">(D) criticar o uso de temperos nas atividades pedagógicas.</button>
+            <button class="answer-btn" data-letter="E">(E) provar que cuidar do solo é uma tarefa difícil.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="C">
+          <div class="question-head"><div class="question-title">9. No trecho “Em pouco tempo, a horta começou a produzir...”, a expressão destacada indica</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) modo.</button>
+            <button class="answer-btn" data-letter="B">(B) causa.</button>
+            <button class="answer-btn" data-letter="C">(C) tempo.</button>
+            <button class="answer-btn" data-letter="D">(D) condição.</button>
+            <button class="answer-btn" data-letter="E">(E) finalidade.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="B">
+          <div class="question-head"><div class="question-title">10. Simplifique a fração 6/12.</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) 1/3</button>
+            <button class="answer-btn" data-letter="B">(B) 1/2</button>
+            <button class="answer-btn" data-letter="C">(C) 2/3</button>
+            <button class="answer-btn" data-letter="D">(D) 3/4</button>
+            <button class="answer-btn" data-letter="E">(E) 2/5</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="B">
+          <div class="question-head"><div class="question-title">11. Qual é a maior fração?</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) 2/9</button>
+            <button class="answer-btn" data-letter="B">(B) 4/9</button>
+            <button class="answer-btn" data-letter="C">(C) 3/9</button>
+            <button class="answer-btn" data-letter="D">(D) 1/9</button>
+            <button class="answer-btn" data-letter="E">(E) 0/9</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="C">
+          <div class="question-head"><div class="question-title">12. Em uma turma, 2/5 dos alunos levaram garrafa de água. Se a turma tem 30 alunos, quantos levaram?</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) 6</button>
+            <button class="answer-btn" data-letter="B">(B) 10</button>
+            <button class="answer-btn" data-letter="C">(C) 12</button>
+            <button class="answer-btn" data-letter="D">(D) 15</button>
+            <button class="answer-btn" data-letter="E">(E) 18</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="A">
+          <div class="question-head"><div class="question-title">13. Quanto é 3/8 + 2/8?</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) 5/8</button>
+            <button class="answer-btn" data-letter="B">(B) 5/16</button>
+            <button class="answer-btn" data-letter="C">(C) 1/8</button>
+            <button class="answer-btn" data-letter="D">(D) 6/8</button>
+            <button class="answer-btn" data-letter="E">(E) 3/16</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="question-card" data-correct="D">
+          <div class="question-head"><div class="question-title">14. Uma pizza foi dividida em 8 partes iguais. Pedro comeu 3 pedaços e Ana comeu 2. Que fração da pizza foi consumida?</div></div>
+          <div class="answers">
+            <button class="answer-btn" data-letter="A">(A) 3/8</button>
+            <button class="answer-btn" data-letter="B">(B) 2/8</button>
+            <button class="answer-btn" data-letter="C">(C) 4/8</button>
+            <button class="answer-btn" data-letter="D">(D) 5/8</button>
+            <button class="answer-btn" data-letter="E">(E) 6/8</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 6 • Gabarito comentado</h2>
+        <details>
+          <summary>Ver respostas e comentários</summary>
+          <div>
+            <p><strong>1.</strong> B — a frase inicial já informa que a reorganização foi feita para facilitar o acesso aos livros mais usados.</p>
+            <p><strong>2.</strong> C — essa informação aparece explicitamente no final do texto.</p>
+            <p><strong>3.</strong> A — a ordem certa é partes pintadas sobre total de partes: 6/8.</p>
+            <p><strong>4.</strong> B — 1/2 e 2/4 representam a mesma metade.</p>
+            <div class="calc">1/2
+
+Multiplico em cima e embaixo por 2:
+1 × 2 = 2
+2 × 2 = 4
+
+Resultado: 2/4</div>
+            <p><strong>5.</strong> B — como os denominadores são iguais, conserva o 3 e soma os numeradores.</p>
+            <div class="calc">1/3 + 1/3
+
+1 + 1 = 2
+
+Resultado: 2/3</div>
+            <p><strong>6.</strong> B — restou metade da garrafa.</p>
+            <div class="calc">3/4 − 1/4
+
+3 − 1 = 2
+
+Resultado: 2/4
+
+Simplificando:
+2/4 = 1/2</div>
+            <p><strong>7.</strong> B — o texto mostra a sequência: limpar, escolher sementes, preparar o solo e cuidar da horta.</p>
+            <p><strong>8.</strong> B — o texto inteiro explica como a horta foi montada; isso é a ideia principal.</p>
+            <p><strong>9.</strong> C — “Em pouco tempo” indica tempo.</p>
+            <p><strong>10.</strong> B — 6/12 simplifica para 1/2.</p>
+            <div class="calc">6/12
+
+Divido em cima e embaixo por 6:
+6 ÷ 6 = 1
+12 ÷ 6 = 2
+
+Resultado: 1/2</div>
+            <p><strong>11.</strong> B — todos têm denominador 9; basta escolher o maior numerador.</p>
+            <div class="calc">2/9, 4/9, 3/9, 1/9, 0/9
+
+Maior numerador = 4
+
+Resultado: 4/9</div>
+            <p><strong>12.</strong> C — “2/5 de 30” significa multiplicar 30 por 2 e dividir por 5.</p>
+            <div class="calc">2/5 de 30
+
+30 × 2 = 60
+60 ÷ 5 = 12
+
+Resultado: 12</div>
+            <p><strong>13.</strong> A — soma com mesmo denominador.</p>
+            <div class="calc">3/8 + 2/8
+
+3 + 2 = 5
+
+Resultado: 5/8</div>
+            <p><strong>14.</strong> D — foram consumidos 3 pedaços + 2 pedaços = 5 pedaços de 8.</p>
+            <div class="calc">3/8 + 2/8
+
+3 + 2 = 5
+
+Resultado: 5/8</div>
+          </div>
+        </details>
+      </article>
+
+      <article class="card">
+        <h2>Bloco 7 • Caderno de erros</h2>
+        <p>Depois da correção, classifique cada erro. Isso vale mais do que simplesmente olhar o gabarito.</p>
+        <div class="split">
+          <div class="box primary"><strong>Leitura</strong><br>Você leu rápido demais ou ignorou uma palavra importante.</div>
+          <div class="box warn"><strong>Distração</strong><br>Você sabia, mas marcou errado ou se confundiu no detalhe.</div>
+          <div class="box good"><strong>Conteúdo</strong><br>Você realmente não dominava a regra ou o conceito.</div>
+          <div class="box primary"><strong>Conta</strong><br>O caminho estava certo, mas a operação saiu errada.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="nav-buttons">
+          <a class="nav-btn disabled" href="#">Anterior</a>
+          <a class="nav-btn" href="cronograma_etec_fase1_semana1_semanal.html">Cronograma</a>
+          <a class="nav-btn disabled" href="#">Seguinte</a>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer">Apostila 1 • Data de estudo: 01/04/2026 • Preparação para o Vestibulinho Etec</p>
+  </main>
+
+  <script>
+    document.querySelectorAll('.question-card').forEach(card => {
+      const correct = card.dataset.correct;
+      const buttons = card.querySelectorAll('.answer-btn');
+      const feedback = card.querySelector('.feedback');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          if ([...buttons].some(btn => btn.disabled)) return;
+          const chosen = button.dataset.letter;
+          buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.dataset.letter === correct) btn.classList.add('is-correct');
+          });
+          if (chosen === correct) {
+            button.classList.add('is-correct');
+            feedback.textContent = 'Correto. Continue.';
+            feedback.className = 'feedback show correct';
+          } else {
+            button.classList.add('is-wrong');
+            feedback.textContent = 'Errado. A resposta correta é ' + correct + '.';
+            feedback.className = 'feedback show wrong';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
